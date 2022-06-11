@@ -18,6 +18,14 @@
     </categories>
     
     
+    <tags>
+      
+      <tag>CSS</tag>
+      
+      <tag>布局</tag>
+      
+    </tags>
+    
   </entry>
   
   
@@ -37,6 +45,14 @@
     </categories>
     
     
+    <tags>
+      
+      <tag>异步编程</tag>
+      
+      <tag>Promise</tag>
+      
+    </tags>
+    
   </entry>
   
   
@@ -55,6 +71,20 @@
       
     </categories>
     
+    
+    <tags>
+      
+      <tag>HTTP</tag>
+      
+      <tag>DNS</tag>
+      
+      <tag>TCP/UDP</tag>
+      
+      <tag>缓存</tag>
+      
+      <tag>浏览器解析</tag>
+      
+    </tags>
     
   </entry>
   
