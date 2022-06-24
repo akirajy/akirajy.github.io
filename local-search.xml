@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>前端性能优化</title>
+    <link href="/2022/06/24/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+    <url>/2022/06/24/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</url>
+    
+    <content type="html"><![CDATA[<h2 id="前端性能优化的手段"><a href="#前端性能优化的手段" class="headerlink" title="前端性能优化的手段"></a>前端性能优化的手段</h2><h3 id="减少-http-请求"><a href="#减少-http-请求" class="headerlink" title="减少 http 请求"></a>减少 http 请求</h3><ol><li>base64 处理图片</li><li>减少重定向</li><li>使用缓存</li><li>不使用 css 的 @import</li></ol><h3 id="减少资源太小-压缩"><a href="#减少资源太小-压缩" class="headerlink" title="减少资源太小(压缩)"></a>减少资源太小(压缩)</h3><ol><li><strong>webpack</strong></li></ol><p>压缩 htmlHtmlWebpackPlugin 配置 minify</p><p>压缩 css   optimize-css-assets-webpack-plugin</p><p>压缩 js  mode: ‘production’(自动使用 terser-webpack-plugin)</p><ol start="2"><li><strong>开启 gzip 编码</strong></li></ol><p>开发模式下：webpack-dev-server 配置 compress: true</p><p>生产模式下：服务端配置，如 express 使用 compression 中间件</p><h3 id="优化网络连接"><a href="#优化网络连接" class="headerlink" title="优化网络连接"></a>优化网络连接</h3><ol><li><strong>内容分发网络 CDN</strong></li></ol><p>根据网络流量和各节点的连接、负载状况以及到用户的距离和响应时间等综合信息将用户的请求重新导向离用户最近的服务节点上</p><ol start="2"><li><strong>DNS 预解析</strong></li></ol><p>DNS 预解析就是根据浏览器定义的规则，提前解析之后可能会用到的域名，使解析结果缓存到系统缓存中，缩短DNS解析时间，来提高网站的访问速度</p><p>方法是在 head 标签里面写上几个 link 标签</p><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;link <span class="hljs-attribute">rel</span>=<span class="hljs-string">&quot;dns-prefecth&quot;</span> <span class="hljs-attribute">href</span>=<span class="hljs-string">&quot;https://www.google.com&quot;</span>&gt;<br>&lt;link <span class="hljs-attribute">rel</span>=<span class="hljs-string">&quot;dns-prefecth&quot;</span> <span class="hljs-attribute">href</span>=<span class="hljs-string">&quot;https://www.google-analytics.com&quot;</span>&gt;<br></code></pre></td></tr></table></figure><p>对以上几个网站提前解析 DNS，由于它是并行的，不会堵塞页面渲染，这样可以缩短资源加载的时间</p><h3 id="优化资源加载"><a href="#优化资源加载" class="headerlink" title="优化资源加载"></a>优化资源加载</h3><ol><li><strong>资源加载位置</strong></li></ol><p>通过优化资源加载位置，更改资源加载时机，使尽可能快地展示出页面内容，尽可能快地使功能可用</p><p>CSS文件放在head中</p><p>JS文件放在body底部，或者使用 defer&#x2F;async</p><ol start="2"><li><strong>资源加载时机</strong></li></ol><p>按需加载</p><p>懒加载与预加载</p><h3 id="减少重绘回流"><a href="#减少重绘回流" class="headerlink" title="减少重绘回流"></a>减少重绘回流</h3><ol><li><p>避免使用层级较深的选择器</p></li><li><p>防抖节流</p></li><li><p>DocumentFragment</p></li></ol><p>让DOM操作发生在内存中，而不是页面上；可以实现离线更新</p><ol start="4"><li>事件代理</li><li>动画 GPU 加速</li></ol><h3 id="性能更好的API"><a href="#性能更好的API" class="headerlink" title="性能更好的API"></a>性能更好的API</h3><ol><li>requestAnimationFrame来替代setTimeout和setInterval</li><li>使用IntersectionObserver来实现图片可视区域的懒加载</li></ol><h3 id="webpack优化"><a href="#webpack优化" class="headerlink" title="webpack优化"></a>webpack优化</h3><ol><li><p>treeshaking 去除无用代码</p></li><li><p>文件缓存</p></li></ol><p>hash chunkhash contenthash</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>优化</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JS</tag>
+      
+      <tag>性能优化</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>模块化</title>
     <link href="/2022/06/22/%E6%A8%A1%E5%9D%97%E5%8C%96/"/>
     <url>/2022/06/22/%E6%A8%A1%E5%9D%97%E5%8C%96/</url>
