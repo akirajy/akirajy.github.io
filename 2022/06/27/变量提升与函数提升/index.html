@@ -16,23 +16,21 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="前端性能优化的手段减少 http 请求 base64 处理图片 减少重定向 使用缓存 不使用 css 的 @import  减少资源太小(压缩) webpack  压缩 html	HtmlWebpackPlugin 配置 minify 压缩 css	   optimize-css-assets-webpack-plugin 压缩 js		  mode: ‘production’	(自动使用 ter">
+    <meta name="description" content="变量提升与函数提升变量提升只有var定义的变量才会被提升 只提升声明，不提升赋值 123console.log(a);&#x2F;&#x2F; undefinedvar a&#x3D; &quot;hello world&quot;;console.log(a);&#x2F;&#x2F;  &quot;hello world&quot;    函数提升只提升函数声明式，不提升函数字面量式 1234&#x2F;&#x2F;函数声明式function bar () &amp;#">
 <meta property="og:type" content="article">
-<meta property="og:title" content="前端性能优化">
-<meta property="og:url" content="http://example.com/2022/06/24/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/index.html">
+<meta property="og:title" content="变量提升与函数提升">
+<meta property="og:url" content="http://example.com/2022/06/27/%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87%E4%B8%8E%E5%87%BD%E6%95%B0%E6%8F%90%E5%8D%87/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="前端性能优化的手段减少 http 请求 base64 处理图片 减少重定向 使用缓存 不使用 css 的 @import  减少资源太小(压缩) webpack  压缩 html	HtmlWebpackPlugin 配置 minify 压缩 css	   optimize-css-assets-webpack-plugin 压缩 js		  mode: ‘production’	(自动使用 ter">
+<meta property="og:description" content="变量提升与函数提升变量提升只有var定义的变量才会被提升 只提升声明，不提升赋值 123console.log(a);&#x2F;&#x2F; undefinedvar a&#x3D; &quot;hello world&quot;;console.log(a);&#x2F;&#x2F;  &quot;hello world&quot;    函数提升只提升函数声明式，不提升函数字面量式 1234&#x2F;&#x2F;函数声明式function bar () &amp;#">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-06-24T08:53:18.000Z">
-<meta property="article:modified_time" content="2022-06-24T09:24:02.978Z">
+<meta property="article:published_time" content="2022-06-27T09:34:48.000Z">
+<meta property="article:modified_time" content="2022-06-27T09:41:27.851Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="JS">
-<meta property="article:tag" content="性能优化">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>前端性能优化 - Hexo</title>
+  <title>变量提升与函数提升 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -195,7 +193,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="前端性能优化"></span>
+            <span id="subtitle" data-typed-text="变量提升与函数提升"></span>
           
         </div>
 
@@ -206,8 +204,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-06-24 16:53" pubdate>
-          June 24, 2022 pm
+        <time datetime="2022-06-27 17:34" pubdate>
+          June 27, 2022 pm
         </time>
       </span>
     
@@ -218,7 +216,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          989 words
+          507 words
         
       </span>
     
@@ -229,7 +227,7 @@
         
         
         
-          9 mins
+          5 mins
         
       </span>
     
@@ -275,74 +273,29 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">前端性能优化</h1>
+            <h1 style="display: none">变量提升与函数提升</h1>
             
             <div class="markdown-body">
               
-              <h2 id="前端性能优化的手段"><a href="#前端性能优化的手段" class="headerlink" title="前端性能优化的手段"></a>前端性能优化的手段</h2><h3 id="减少-http-请求"><a href="#减少-http-请求" class="headerlink" title="减少 http 请求"></a>减少 http 请求</h3><ol>
-<li>base64 处理图片</li>
-<li>减少重定向</li>
-<li>使用缓存</li>
-<li>不使用 css 的 @import</li>
-</ol>
-<h3 id="减少资源太小-压缩"><a href="#减少资源太小-压缩" class="headerlink" title="减少资源太小(压缩)"></a>减少资源太小(压缩)</h3><ol>
-<li><strong>webpack</strong></li>
-</ol>
-<p>压缩 html	HtmlWebpackPlugin 配置 minify</p>
-<p>压缩 css	   optimize-css-assets-webpack-plugin</p>
-<p>压缩 js		  mode: ‘production’	(自动使用 terser-webpack-plugin)</p>
-<ol start="2">
-<li><strong>开启 gzip 编码</strong></li>
-</ol>
-<p>开发模式下：webpack-dev-server 配置 compress: true</p>
-<p>生产模式下：服务端配置，如 express 使用 compression 中间件</p>
-<h3 id="优化网络连接"><a href="#优化网络连接" class="headerlink" title="优化网络连接"></a>优化网络连接</h3><ol>
-<li><strong>内容分发网络 CDN</strong></li>
-</ol>
-<p>根据网络流量和各节点的连接、负载状况以及到用户的距离和响应时间等综合信息将用户的请求重新导向离用户最近的服务节点上</p>
-<ol start="2">
-<li><strong>DNS 预解析</strong></li>
-</ol>
-<p>DNS 预解析就是根据浏览器定义的规则，提前解析之后可能会用到的域名，使解析结果缓存到系统缓存中，缩短DNS解析时间，来提高网站的访问速度</p>
-<p>方法是在 head 标签里面写上几个 link 标签</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;link <span class="hljs-attribute">rel</span>=<span class="hljs-string">&quot;dns-prefecth&quot;</span> <span class="hljs-attribute">href</span>=<span class="hljs-string">&quot;https://www.google.com&quot;</span>&gt;<br>&lt;link <span class="hljs-attribute">rel</span>=<span class="hljs-string">&quot;dns-prefecth&quot;</span> <span class="hljs-attribute">href</span>=<span class="hljs-string">&quot;https://www.google-analytics.com&quot;</span>&gt;<br></code></pre></td></tr></table></figure>
+              <h1 id="变量提升与函数提升"><a href="#变量提升与函数提升" class="headerlink" title="变量提升与函数提升"></a>变量提升与函数提升</h1><h2 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h2><p>只有var定义的变量才会被提升</p>
+<p>只提升声明，不提升赋值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a);<span class="hljs-comment">// undefined</span><br><span class="hljs-keyword">var</span> a= <span class="hljs-string">&quot;hello world&quot;</span>;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a);<span class="hljs-comment">//  &quot;hello world&quot;</span><br></code></pre></td></tr></table></figure>
 
-<p>对以上几个网站提前解析 DNS，由于它是并行的，不会堵塞页面渲染，这样可以缩短资源加载的时间</p>
-<h3 id="优化资源加载"><a href="#优化资源加载" class="headerlink" title="优化资源加载"></a>优化资源加载</h3><ol>
-<li><strong>资源加载位置</strong></li>
-</ol>
-<p>通过优化资源加载位置，更改资源加载时机，使尽可能快地展示出页面内容，尽可能快地使功能可用</p>
-<p>CSS文件放在head中</p>
-<p>JS文件放在body底部，或者使用 defer&#x2F;async</p>
-<ol start="2">
-<li><strong>资源加载时机</strong></li>
-</ol>
-<p>按需加载</p>
-<p>懒加载与预加载</p>
-<h3 id="减少重绘回流"><a href="#减少重绘回流" class="headerlink" title="减少重绘回流"></a>减少重绘回流</h3><ol>
-<li><p>避免使用层级较深的选择器</p>
-</li>
-<li><p>防抖节流</p>
-</li>
-<li><p>DocumentFragment</p>
-</li>
-</ol>
-<p>让DOM操作发生在内存中，而不是页面上；可以实现离线更新</p>
-<ol start="4">
-<li>事件代理</li>
-<li>动画 GPU 加速</li>
-</ol>
-<h3 id="性能更好的API"><a href="#性能更好的API" class="headerlink" title="性能更好的API"></a>性能更好的API</h3><ol>
-<li>requestAnimationFrame来替代setTimeout和setInterval</li>
-<li>使用IntersectionObserver来实现图片可视区域的懒加载</li>
-</ol>
-<h3 id="webpack优化"><a href="#webpack优化" class="headerlink" title="webpack优化"></a>webpack优化</h3><ol>
-<li><p>treeshaking 去除无用代码</p>
-</li>
-<li><p>文件缓存</p>
-</li>
-</ol>
-<p>hash chunkhash contenthash</p>
+
+
+<h2 id="函数提升"><a href="#函数提升" class="headerlink" title="函数提升"></a>函数提升</h2><p>只提升函数声明式，不提升函数字面量式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//函数声明式</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">bar</span> () &#123;&#125;<br><span class="hljs-comment">//函数字面量式 </span><br><span class="hljs-keyword">var</span> foo = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;&#125;<br></code></pre></td></tr></table></figure>
+
+<p>会整体提升</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">getName</span>()		<span class="hljs-comment">// 小明</span><br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">getName</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;小明&#x27;</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>1.后面覆盖前面</p>
+<p>2.如果变量和函数同名，提升的是函数</p>
+<p>3.变量提升会区分作用域</p>
+<h2 id="一道经典题目"><a href="#一道经典题目" class="headerlink" title="一道经典题目"></a>一道经典题目</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a)<br><span class="hljs-title function_">a</span>();<br><span class="hljs-keyword">var</span> a=<span class="hljs-number">3</span>;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">a</span> ()&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">10</span>)<br>&#125;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a)<br>a=<span class="hljs-number">6</span>;<br><span class="hljs-title function_">a</span>()<br><br><span class="hljs-comment">//输出结果：function a () &#123;console.log()&#125;  10 3  TypeError </span><br></code></pre></td></tr></table></figure>
+
 
               
             </div>
@@ -360,7 +313,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E4%BC%98%E5%8C%96/" class="category-chain-item">优化</a>
+  <a href="/categories/JS/" class="category-chain-item">JS</a>
   
   
 
@@ -372,15 +325,6 @@
     </div>
   
   
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/JS/">#JS</a>
-      
-        <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">#性能优化</a>
-      
-    </div>
-  
 </div>
 
 
@@ -389,8 +333,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>前端性能优化</div>
-      <div>http://example.com/2022/06/24/前端性能优化/</div>
+      <div>变量提升与函数提升</div>
+      <div>http://example.com/2022/06/27/变量提升与函数提升/</div>
     </div>
     <div class="license-meta">
       
@@ -402,7 +346,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>June 24, 2022</div>
+          <div>June 27, 2022</div>
         </div>
       
       
@@ -432,18 +376,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/27/%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87%E4%B8%8E%E5%87%BD%E6%95%B0%E6%8F%90%E5%8D%87/" title="变量提升与函数提升">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">变量提升与函数提升</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/22/%E6%A8%A1%E5%9D%97%E5%8C%96/" title="模块化">
-                        <span class="hidden-mobile">模块化</span>
+                      <a href="/2022/06/24/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" title="前端性能优化">
+                        <span class="hidden-mobile">前端性能优化</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

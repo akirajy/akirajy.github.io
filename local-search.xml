@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>变量提升与函数提升</title>
+    <link href="/2022/06/27/%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87%E4%B8%8E%E5%87%BD%E6%95%B0%E6%8F%90%E5%8D%87/"/>
+    <url>/2022/06/27/%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87%E4%B8%8E%E5%87%BD%E6%95%B0%E6%8F%90%E5%8D%87/</url>
+    
+    <content type="html"><![CDATA[<h1 id="变量提升与函数提升"><a href="#变量提升与函数提升" class="headerlink" title="变量提升与函数提升"></a>变量提升与函数提升</h1><h2 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h2><p>只有var定义的变量才会被提升</p><p>只提升声明，不提升赋值</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a);<span class="hljs-comment">// undefined</span><br><span class="hljs-keyword">var</span> a= <span class="hljs-string">&quot;hello world&quot;</span>;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a);<span class="hljs-comment">//  &quot;hello world&quot;</span><br></code></pre></td></tr></table></figure><h2 id="函数提升"><a href="#函数提升" class="headerlink" title="函数提升"></a>函数提升</h2><p>只提升函数声明式，不提升函数字面量式</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//函数声明式</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">bar</span> () &#123;&#125;<br><span class="hljs-comment">//函数字面量式 </span><br><span class="hljs-keyword">var</span> foo = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;&#125;<br></code></pre></td></tr></table></figure><p>会整体提升</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">getName</span>()<span class="hljs-comment">// 小明</span><br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">getName</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;小明&#x27;</span>)<br>&#125;<br></code></pre></td></tr></table></figure><h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>1.后面覆盖前面</p><p>2.如果变量和函数同名，提升的是函数</p><p>3.变量提升会区分作用域</p><h2 id="一道经典题目"><a href="#一道经典题目" class="headerlink" title="一道经典题目"></a>一道经典题目</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a)<br><span class="hljs-title function_">a</span>();<br><span class="hljs-keyword">var</span> a=<span class="hljs-number">3</span>;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">a</span> ()&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">10</span>)<br>&#125;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a)<br>a=<span class="hljs-number">6</span>;<br><span class="hljs-title function_">a</span>()<br><br><span class="hljs-comment">//输出结果：function a () &#123;console.log()&#125;  10 3  TypeError </span><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>JS</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>前端性能优化</title>
     <link href="/2022/06/24/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
     <url>/2022/06/24/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</url>
