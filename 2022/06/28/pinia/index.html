@@ -16,21 +16,23 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="变量提升与函数提升变量提升只有var定义的变量才会被提升 只提升声明，不提升赋值 123console.log(a);&#x2F;&#x2F; undefinedvar a&#x3D; &quot;hello world&quot;;console.log(a);&#x2F;&#x2F;  &quot;hello world&quot;    函数提升只提升函数声明式，不提升函数字面量式 1234&#x2F;&#x2F;函数声明式function bar () &amp;#">
+    <meta name="description" content="Pinia（未完）介绍什么是 piniaVue 的状态管理库，会逐渐取代 Vuex pinia 的优势1.完全支持 ts 2.移除了 mutations，actions 同时支持同步和异步 3.轻量 压缩后体积只有 1kb 左右 4.没有模块嵌套，只有 store，每一个 store 都是独立的 5.store 一旦创建便会自动添加，无需手动添加 store 6.支持 vue2 与 vue3 使用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="变量提升与函数提升">
-<meta property="og:url" content="http://example.com/2022/06/27/%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87%E4%B8%8E%E5%87%BD%E6%95%B0%E6%8F%90%E5%8D%87/index.html">
+<meta property="og:title" content="pinia">
+<meta property="og:url" content="http://example.com/2022/06/28/pinia/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="变量提升与函数提升变量提升只有var定义的变量才会被提升 只提升声明，不提升赋值 123console.log(a);&#x2F;&#x2F; undefinedvar a&#x3D; &quot;hello world&quot;;console.log(a);&#x2F;&#x2F;  &quot;hello world&quot;    函数提升只提升函数声明式，不提升函数字面量式 1234&#x2F;&#x2F;函数声明式function bar () &amp;#">
+<meta property="og:description" content="Pinia（未完）介绍什么是 piniaVue 的状态管理库，会逐渐取代 Vuex pinia 的优势1.完全支持 ts 2.移除了 mutations，actions 同时支持同步和异步 3.轻量 压缩后体积只有 1kb 左右 4.没有模块嵌套，只有 store，每一个 store 都是独立的 5.store 一旦创建便会自动添加，无需手动添加 store 6.支持 vue2 与 vue3 使用">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-06-27T09:34:48.000Z">
-<meta property="article:modified_time" content="2022-06-27T09:41:27.851Z">
+<meta property="article:published_time" content="2022-06-28T07:27:47.000Z">
+<meta property="article:modified_time" content="2022-06-30T12:01:58.491Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Vue">
+<meta property="article:tag" content="状态管理">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>变量提升与函数提升 - Hexo</title>
+  <title>pinia - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -193,7 +195,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="变量提升与函数提升"></span>
+            <span id="subtitle" data-typed-text="pinia"></span>
           
         </div>
 
@@ -204,8 +206,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-06-27 17:34" pubdate>
-          June 27, 2022 pm
+        <time datetime="2022-06-28 15:27" pubdate>
+          June 28, 2022 pm
         </time>
       </span>
     
@@ -216,7 +218,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          507 words
+          1.3k words
         
       </span>
     
@@ -227,7 +229,7 @@
         
         
         
-          5 mins
+          11 mins
         
       </span>
     
@@ -273,28 +275,44 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">变量提升与函数提升</h1>
+            <h1 style="display: none">pinia</h1>
             
             <div class="markdown-body">
               
-              <h1 id="变量提升与函数提升"><a href="#变量提升与函数提升" class="headerlink" title="变量提升与函数提升"></a>变量提升与函数提升</h1><h2 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h2><p>只有var定义的变量才会被提升</p>
-<p>只提升声明，不提升赋值</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a);<span class="hljs-comment">// undefined</span><br><span class="hljs-keyword">var</span> a= <span class="hljs-string">&quot;hello world&quot;</span>;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a);<span class="hljs-comment">//  &quot;hello world&quot;</span><br></code></pre></td></tr></table></figure>
+              <h1 id="Pinia（未完）"><a href="#Pinia（未完）" class="headerlink" title="Pinia（未完）"></a>Pinia（未完）</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><h3 id="什么是-pinia"><a href="#什么是-pinia" class="headerlink" title="什么是 pinia"></a>什么是 pinia</h3><p>Vue 的状态管理库，会逐渐取代 Vuex</p>
+<h3 id="pinia-的优势"><a href="#pinia-的优势" class="headerlink" title="pinia 的优势"></a>pinia 的优势</h3><p>1.完全支持 ts</p>
+<p>2.移除了 mutations，actions 同时支持同步和异步</p>
+<p>3.轻量 压缩后体积只有 1kb 左右</p>
+<p>4.没有模块嵌套，只有 store，每一个 store 都是独立的</p>
+<p>5.store 一旦创建便会自动添加，无需手动添加 store</p>
+<p>6.支持 vue2 与 vue3</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="安装-pinia"><a href="#安装-pinia" class="headerlink" title="安装 pinia"></a>安装 pinia</h3><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">npm install pinia <span class="hljs-comment">--save</span><br></code></pre></td></tr></table></figure>
 
 
 
-<h2 id="函数提升"><a href="#函数提升" class="headerlink" title="函数提升"></a>函数提升</h2><p>只提升函数声明式，不提升函数字面量式</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//函数声明式</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">bar</span> () &#123;&#125;<br><span class="hljs-comment">//函数字面量式 </span><br><span class="hljs-keyword">var</span> foo = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="创建-store"><a href="#创建-store" class="headerlink" title="创建 store"></a>创建 store</h3><p>新建 src&#x2F;store 目录并在其下面创建 index.ts，导出 store</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// src/store/index.ts</span><br><span class="hljs-keyword">import</span> &#123;createPinia&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;pinia&#x27;</span><br><br><span class="hljs-keyword">const</span> store = <span class="hljs-title function_">createPinia</span>()<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> store<br></code></pre></td></tr></table></figure>
 
-<p>会整体提升</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">getName</span>()		<span class="hljs-comment">// 小明</span><br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">getName</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;小明&#x27;</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>vue3 是 createPinia </p>
+<p>vue2 是 PiniaVuePlugin</p>
+<p>在 main.ts 中引入并使用。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-comment">// src/main.ts</span><br><br><span class="hljs-keyword">import</span> &#123; createApp &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">App</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./App.vue&#x27;</span><br><span class="hljs-keyword">import</span> store <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./store&#x27;</span><br><br><span class="hljs-keyword">const</span> app = <span class="hljs-title function_">createApp</span>(<span class="hljs-title class_">App</span>)<br>app.<span class="hljs-title function_">use</span>(store)<br></code></pre></td></tr></table></figure>
 
 
 
-<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>1.后面覆盖前面</p>
-<p>2.如果变量和函数同名，提升的是函数</p>
-<p>3.变量提升会区分作用域</p>
-<h2 id="一道经典题目"><a href="#一道经典题目" class="headerlink" title="一道经典题目"></a>一道经典题目</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a)<br><span class="hljs-title function_">a</span>();<br><span class="hljs-keyword">var</span> a=<span class="hljs-number">3</span>;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">a</span> ()&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">10</span>)<br>&#125;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a)<br>a=<span class="hljs-number">6</span>;<br><span class="hljs-title function_">a</span>()<br><br><span class="hljs-comment">//输出结果：function a () &#123;console.log()&#125;  10 3  TypeError </span><br></code></pre></td></tr></table></figure>
+<h3 id="定义-store"><a href="#定义-store" class="headerlink" title="定义 store"></a>定义 store</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-comment">//src/store/user.ts</span><br><br><span class="hljs-keyword">import</span> &#123; defineStore &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;pinia&#x27;</span><br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> useTestStore = <span class="hljs-title function_">defineStore</span>(&#123;<br>    <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;user&#x27;</span>, 			<span class="hljs-comment">// id必填，唯一值(可以理解成命名空间)</span><br>    <span class="hljs-attr">state</span>: <span class="hljs-function">() =&gt;</span> &#123;		<span class="hljs-comment">// vuex中的state是对象, pinia中是箭头函数返回对象</span><br>        <span class="hljs-keyword">return</span> &#123;<br>            <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;lwj&#x27;</span>,<br>            <span class="hljs-attr">age</span>: <span class="hljs-string">&#x27;23&#x27;</span><br>        &#125;<br>    &#125;,<br>    <span class="hljs-attr">getters</span>: &#123;<br><br>    &#125;,<br>    <span class="hljs-attr">actions</span>: &#123;<br><br>    &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+
+
+<p>使用数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>    &lt;div&gt;<br>        &#123;&#123;Test.name&#125;&#125;-&#123;&#123;Test.age&#125;&#125;<br>    &lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;script&gt;<br>    import &#123;useTestStore&#125; from &#x27;./store/user.ts&#x27;<br>    const Test = useTestStore()<br>&lt;/script&gt;<br><br>&lt;style scoped&gt;<br>&lt;/style&gt;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="state"><a href="#state" class="headerlink" title="state"></a>state</h3><p>修改 state 的五种方法</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">const</span> c<br></code></pre></td></tr></table></figure>
+
+
 
 
               
@@ -313,7 +331,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/JS/" class="category-chain-item">JS</a>
+  <a href="/categories/Vue/" class="category-chain-item">Vue</a>
   
   
 
@@ -325,6 +343,15 @@
     </div>
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Vue/">#Vue</a>
+      
+        <a href="/tags/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/">#状态管理</a>
+      
+    </div>
+  
 </div>
 
 
@@ -333,8 +360,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>变量提升与函数提升</div>
-      <div>http://example.com/2022/06/27/变量提升与函数提升/</div>
+      <div>pinia</div>
+      <div>http://example.com/2022/06/28/pinia/</div>
     </div>
     <div class="license-meta">
       
@@ -346,7 +373,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>June 27, 2022</div>
+          <div>June 28, 2022</div>
         </div>
       
       
@@ -376,9 +403,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/28/pinia/" title="pinia">
+                      <a href="/2022/06/30/Vite/" title="Vite">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">pinia</span>
+                        <span class="hidden-mobile">Vite</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -386,8 +413,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/24/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" title="前端性能优化">
-                        <span class="hidden-mobile">前端性能优化</span>
+                      <a href="/2022/06/27/%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87%E4%B8%8E%E5%87%BD%E6%95%B0%E6%8F%90%E5%8D%87/" title="变量提升与函数提升">
+                        <span class="hidden-mobile">变量提升与函数提升</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

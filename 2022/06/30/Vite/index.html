@@ -16,21 +16,24 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="变量提升与函数提升变量提升只有var定义的变量才会被提升 只提升声明，不提升赋值 123console.log(a);&#x2F;&#x2F; undefinedvar a&#x3D; &quot;hello world&quot;;console.log(a);&#x2F;&#x2F;  &quot;hello world&quot;    函数提升只提升函数声明式，不提升函数字面量式 1234&#x2F;&#x2F;函数声明式function bar () &amp;#">
+    <meta name="description" content="Vite（未完）参考官方文档 Vite的优势更快的服务器启动Vite 通过在一开始将应用中的模块区分为 依赖 和 源码 两类，改进了开发服务器启动时间 依赖 大多为在开发时不会变动的纯 JavaScript。 Vite 将会使用 **esbuild 预构建依赖**。Esbuild 使用 Go 编写，并且比以 JavaScript 编写的打包器预构建依赖快 10-100 倍。 源码 通常包含一些并非">
 <meta property="og:type" content="article">
-<meta property="og:title" content="变量提升与函数提升">
-<meta property="og:url" content="http://example.com/2022/06/27/%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87%E4%B8%8E%E5%87%BD%E6%95%B0%E6%8F%90%E5%8D%87/index.html">
+<meta property="og:title" content="Vite">
+<meta property="og:url" content="http://example.com/2022/06/30/Vite/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="变量提升与函数提升变量提升只有var定义的变量才会被提升 只提升声明，不提升赋值 123console.log(a);&#x2F;&#x2F; undefinedvar a&#x3D; &quot;hello world&quot;;console.log(a);&#x2F;&#x2F;  &quot;hello world&quot;    函数提升只提升函数声明式，不提升函数字面量式 1234&#x2F;&#x2F;函数声明式function bar () &amp;#">
+<meta property="og:description" content="Vite（未完）参考官方文档 Vite的优势更快的服务器启动Vite 通过在一开始将应用中的模块区分为 依赖 和 源码 两类，改进了开发服务器启动时间 依赖 大多为在开发时不会变动的纯 JavaScript。 Vite 将会使用 **esbuild 预构建依赖**。Esbuild 使用 Go 编写，并且比以 JavaScript 编写的打包器预构建依赖快 10-100 倍。 源码 通常包含一些并非">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-06-27T09:34:48.000Z">
-<meta property="article:modified_time" content="2022-06-27T09:41:27.851Z">
+<meta property="og:image" content="http://example.com/2022/06/30/Vite/Vite/image-20220630141857883.png">
+<meta property="article:published_time" content="2022-06-30T06:04:41.000Z">
+<meta property="article:modified_time" content="2022-06-30T12:02:36.872Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="vite">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2022/06/30/Vite/Vite/image-20220630141857883.png">
   
   
   
-  <title>变量提升与函数提升 - Hexo</title>
+  <title>Vite - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -193,7 +196,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="变量提升与函数提升"></span>
+            <span id="subtitle" data-typed-text="Vite"></span>
           
         </div>
 
@@ -204,8 +207,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-06-27 17:34" pubdate>
-          June 27, 2022 pm
+        <time datetime="2022-06-30 14:04" pubdate>
+          June 30, 2022 pm
         </time>
       </span>
     
@@ -216,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          507 words
+          776 words
         
       </span>
     
@@ -227,7 +230,7 @@
         
         
         
-          5 mins
+          7 mins
         
       </span>
     
@@ -273,29 +276,30 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">变量提升与函数提升</h1>
+            <h1 style="display: none">Vite</h1>
             
             <div class="markdown-body">
               
-              <h1 id="变量提升与函数提升"><a href="#变量提升与函数提升" class="headerlink" title="变量提升与函数提升"></a>变量提升与函数提升</h1><h2 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h2><p>只有var定义的变量才会被提升</p>
-<p>只提升声明，不提升赋值</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a);<span class="hljs-comment">// undefined</span><br><span class="hljs-keyword">var</span> a= <span class="hljs-string">&quot;hello world&quot;</span>;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a);<span class="hljs-comment">//  &quot;hello world&quot;</span><br></code></pre></td></tr></table></figure>
+              <h1 id="Vite（未完）"><a href="#Vite（未完）" class="headerlink" title="Vite（未完）"></a>Vite（未完）</h1><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://vitejs.cn/guide/why.html#the-problems">官方文档</a></p>
+<h2 id="Vite的优势"><a href="#Vite的优势" class="headerlink" title="Vite的优势"></a>Vite的优势</h2><h3 id="更快的服务器启动"><a href="#更快的服务器启动" class="headerlink" title="更快的服务器启动"></a><strong>更快的服务器启动</strong></h3><p>Vite 通过在一开始将应用中的模块区分为 <strong>依赖</strong> 和 <strong>源码</strong> 两类，改进了开发服务器启动时间</p>
+<p><strong>依赖</strong> 大多为在开发时不会变动的纯 JavaScript。</p>
+<p>Vite 将会使用 **<a target="_blank" rel="noopener" href="https://esbuild.github.io/">esbuild</a> <a target="_blank" rel="noopener" href="https://vitejs.cn/guide/dep-pre-bundling.html">预构建依赖</a>**。Esbuild 使用 Go 编写，并且比以 JavaScript 编写的打包器预构建依赖快 10-100 倍。</p>
+<p><strong>源码</strong> 通常包含一些并非直接是 JavaScript 的文件，需要转换（例如 JSX，CSS 或者 Vue&#x2F;Svelte 组件），时常会被编辑。同时，并不是所有的源码都需要同时被加载（例如基于路由拆分的代码模块）。</p>
+<p>Vite 以 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"><strong>原生 ESM</strong></a> 方式提供源码。这实际上是<strong>让浏览器接管了打包程序的部分工作</strong>：Vite 只需要在浏览器请求源码时进行转换并按需提供源码。根据情景<strong>动态导入</strong>代码，即只在当前屏幕上实际使用时才会被处理。</p>
+<h2 id="快速搭建一个项目"><a href="#快速搭建一个项目" class="headerlink" title="快速搭建一个项目"></a>快速搭建一个项目</h2><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript"><span class="hljs-number">1.</span>初始化<br><span class="hljs-regexp">//</span> yarn create vite<br><span class="hljs-built_in">npm</span> init vite@latest<br><br><span class="hljs-number">2.</span>安装依赖包<br><span class="hljs-built_in">npm</span> install<br><br><span class="hljs-number">3.</span>启动<br><span class="hljs-built_in">npm</span> run dev<br></code></pre></td></tr></table></figure>
 
 
 
-<h2 id="函数提升"><a href="#函数提升" class="headerlink" title="函数提升"></a>函数提升</h2><p>只提升函数声明式，不提升函数字面量式</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//函数声明式</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">bar</span> () &#123;&#125;<br><span class="hljs-comment">//函数字面量式 </span><br><span class="hljs-keyword">var</span> foo = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;&#125;<br></code></pre></td></tr></table></figure>
-
-<p>会整体提升</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">getName</span>()		<span class="hljs-comment">// 小明</span><br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">getName</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;小明&#x27;</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-comment">// package.json 命令解析</span><br><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;scripts&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;dev&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;vite&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// 启动开发服务器，别名：`vite dev`，`vite serve`</span><br>    <span class="hljs-attr">&quot;build&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;vite build&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// 为生产环境构建产物</span><br>    <span class="hljs-attr">&quot;preview&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;vite preview&quot;</span> <span class="hljs-comment">// 本地预览生产构建产物</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
 
 
 
-<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>1.后面覆盖前面</p>
-<p>2.如果变量和函数同名，提升的是函数</p>
-<p>3.变量提升会区分作用域</p>
-<h2 id="一道经典题目"><a href="#一道经典题目" class="headerlink" title="一道经典题目"></a>一道经典题目</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a)<br><span class="hljs-title function_">a</span>();<br><span class="hljs-keyword">var</span> a=<span class="hljs-number">3</span>;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">a</span> ()&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">10</span>)<br>&#125;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a)<br>a=<span class="hljs-number">6</span>;<br><span class="hljs-title function_">a</span>()<br><br><span class="hljs-comment">//输出结果：function a () &#123;console.log()&#125;  10 3  TypeError </span><br></code></pre></td></tr></table></figure>
+<p>项目目录</p>
+<img src="Vite/image-20220630141857883.png" srcset="/img/loading.gif" lazyload alt="image-20220630141857883" style="zoom:80%;" />
 
+<p>public 下放无需编译的静态资源（图片 &#x2F; js）</p>
+<p>assets 放可被编译的静态资源（图片 -&gt; base64）</p>
+<p>components 公共组件</p>
 
               
             </div>
@@ -313,7 +317,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/JS/" class="category-chain-item">JS</a>
+  <a href="/categories/vite/" class="category-chain-item">vite</a>
   
   
 
@@ -325,6 +329,13 @@
     </div>
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/vite/">#vite</a>
+      
+    </div>
+  
 </div>
 
 
@@ -333,8 +344,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>变量提升与函数提升</div>
-      <div>http://example.com/2022/06/27/变量提升与函数提升/</div>
+      <div>Vite</div>
+      <div>http://example.com/2022/06/30/Vite/</div>
     </div>
     <div class="license-meta">
       
@@ -346,7 +357,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>June 27, 2022</div>
+          <div>June 30, 2022</div>
         </div>
       
       
@@ -376,9 +387,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/28/pinia/" title="pinia">
+                      <a href="/2022/06/30/npm-nvm-nrm/" title="npm nvm nrm">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">pinia</span>
+                        <span class="hidden-mobile">npm nvm nrm</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -386,8 +397,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/24/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" title="前端性能优化">
-                        <span class="hidden-mobile">前端性能优化</span>
+                      <a href="/2022/06/28/pinia/" title="pinia">
+                        <span class="hidden-mobile">pinia</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
