@@ -23,17 +23,17 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="垃圾回收为什么需要垃圾回收V8引擎已经帮我们自动进行了内存的分配和管理，JS 不需要手动开辟和释放内存。 存在写代码的过程中不够严谨而容易引发内存泄漏的问题 V8引擎的内存限制JS 是单线程，垃圾回收的过程阻碍了主线程逻辑的执行。会导致主线程的等待时间长，浏览器长时间得不到响应。 V8引擎直接粗暴的限制了堆内存的大小。在浏览器端一般也不会遇到需要操作几个G内存这样的场景。在node端我们可以手动调">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022/06/18/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/垃圾回收/16ee12280b78399dtplv-t2oaga2asx-zoom-in-crop-mark1304000.awebp">
+<meta property="og:image" content="http://example.com/2022/06/18/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/16ee12280b78399dtplv-t2oaga2asx-zoom-in-crop-mark1304000.awebp">
 <meta property="og:image" content="http://example.com/2022/06/18/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/153329224-c2120a5d-4f25-4659-9347-d6217d5a5ce8.png">
 <meta property="og:image" content="http://example.com/2022/06/18/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/153329251-e6a21086-f646-48d5-a23c-c2e3351497ef.png">
 <meta property="article:published_time" content="2022-06-18T01:25:43.000Z">
-<meta property="article:modified_time" content="2022-06-18T03:33:46.472Z">
+<meta property="article:modified_time" content="2022-06-30T16:26:04.931Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="JS">
 <meta property="article:tag" content="垃圾回收">
 <meta property="article:tag" content="V8引擎">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2022/06/18/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/垃圾回收/16ee12280b78399dtplv-t2oaga2asx-zoom-in-crop-mark1304000.awebp">
+<meta name="twitter:image" content="http://example.com/2022/06/18/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/16ee12280b78399dtplv-t2oaga2asx-zoom-in-crop-mark1304000.awebp">
   
   
   
@@ -302,7 +302,7 @@
 <p><code>大对象区(large_object_space)</code>：存放体积超越其他区域大小的对象，每个对象都会有自己的内存，垃圾回收不会移动大对象区。</p>
 <p><code>代码区(code_space)</code>：代码对象，会被分配在这里，唯一拥有执行权限的内存区域。</p>
 <p><code>map区(map_space)</code>：存放Cell和Map，每个区域都是存放相同大小的元素，结构简单(这里没有做具体深入的了解，有清楚的小伙伴儿还麻烦解释下)。</p>
-<img src="垃圾回收/16ee12280b78399dtplv-t2oaga2asx-zoom-in-crop-mark1304000.awebp" srcset="/img/loading.gif" lazyload alt="img" style="zoom: 67%;" />
+<img src="/2022/06/18/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/16ee12280b78399dtplv-t2oaga2asx-zoom-in-crop-mark1304000.awebp" srcset="/img/loading.gif" lazyload class="" title="1620974853612-a480b43e-b3bb-452f-a502-3a0162548a7f">
 
 <p>上图中的带斜纹的区域代表暂未使用的内存，新生代(new_space)被划分为了两个部分，其中一部分叫做inactive new space，表示暂未激活的内存区域，另一部分为激活状态。</p>
 <h3 id="新生代"><a href="#新生代" class="headerlink" title="新生代"></a>新生代</h3><p>新生代的垃圾回收过程中主要采用了**<code>Scavenge</code>**算法。</p>

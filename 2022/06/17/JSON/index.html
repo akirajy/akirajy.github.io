@@ -23,14 +23,14 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="JSONJSON是什么是一种数据格式，之所以需要这样一种数据格式，是因为前后端的编程语言不同，数据的表示形式也不同，所以需要有这样一种格式来作为桥梁传递数据。 JSON 和 JS 对象的区别JSON和JS有相同的语法，JSON和JS对象也非常的像，但还是有一定区别的，JSON的要求更多一些，区别在于：   在我们前端向后端发送数据时，需要将JS对象转换为一个JSON字符串，可以通过JSON.str">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022/06/17/JSON/JSON/image-20220125191015133.png">
+<meta property="og:image" content="http://example.com/2022/06/17/JSON/image-20220701002710162.png">
 <meta property="article:published_time" content="2022-06-17T11:27:21.000Z">
-<meta property="article:modified_time" content="2022-06-17T11:40:34.664Z">
+<meta property="article:modified_time" content="2022-06-30T16:27:15.843Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="JS">
 <meta property="article:tag" content="JSON">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2022/06/17/JSON/JSON/image-20220125191015133.png">
+<meta name="twitter:image" content="http://example.com/2022/06/17/JSON/image-20220701002710162.png">
   
   
   
@@ -283,7 +283,7 @@
               
               <h1 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h1><h2 id="JSON是什么"><a href="#JSON是什么" class="headerlink" title="JSON是什么"></a>JSON是什么</h2><p>是一种数据格式，之所以需要这样一种数据格式，是因为前后端的编程语言不同，数据的表示形式也不同，所以需要有这样一种格式来作为桥梁传递数据。</p>
 <h2 id="JSON-和-JS-对象的区别"><a href="#JSON-和-JS-对象的区别" class="headerlink" title="JSON 和 JS 对象的区别"></a>JSON 和 JS 对象的区别</h2><p>JSON和JS有相同的语法，JSON和JS对象也非常的像，但还是有一定区别的，JSON的要求更多一些，区别在于：</p>
-<img src="JSON/image-20220125191015133.png" srcset="/img/loading.gif" lazyload alt="image-20220125191015133" style="zoom: 33%;" />
+<img src="/2022/06/17/JSON/image-20220701002710162.png" srcset="/img/loading.gif" lazyload class="" title="image-20220701002710162">
 
 <p>在我们前端向后端发送数据时，需要将JS对象转换为一个JSON字符串，可以通过JSON.stringify()这个JS方法来实现，并且提供了一些参数来对转换过程做一些处理。相反，我们收到的后端的数据也是JSON格式，我们需要通过JSON.parse()来将其转化为JS对象之后再使用。</p>
 <h2 id="JSON-stringify"><a href="#JSON-stringify" class="headerlink" title="JSON.stringify()"></a>JSON.stringify()</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(value[, replacer [, space]])<br><span class="hljs-comment">// value: 将要序列化成一个 JSON 字符串的值</span><br></code></pre></td></tr></table></figure>
