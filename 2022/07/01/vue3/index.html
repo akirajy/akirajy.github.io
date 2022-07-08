@@ -34,7 +34,7 @@
 <meta property="og:image" content="http://example.com/2022/07/01/vue3/bc0be8211fc54b6c941c036791ba4efetplv-k3u1fbpfcp-watermark-165726304478210.image">
 <meta property="og:image" content="http://example.com/2022/07/01/vue3/6cc55165c0e34069a75fe36f8712eb80tplv-k3u1fbpfcp-watermark-165726305601013.image">
 <meta property="article:published_time" content="2022-07-01T02:38:54.000Z">
-<meta property="article:modified_time" content="2022-07-08T06:51:22.418Z">
+<meta property="article:modified_time" content="2022-07-08T07:26:00.047Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/2022/07/01/vue3/image-20220701143037245.png">
@@ -227,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          12k words
+          14k words
         
       </span>
     
@@ -238,7 +238,7 @@
         
         
         
-          101 mins
+          117 mins
         
       </span>
     
@@ -588,7 +588,102 @@
 <p>Teleport是一种能够<strong>将组件的html结构移动到指定位置</strong>的技术。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;teleport to=&quot;移动位置&quot;&gt;<br>	&lt;div v-if=&quot;isShow&quot; class=&quot;mask&quot;&gt;<br>		&lt;div class=&quot;dialog&quot;&gt;<br>			&lt;h3&gt;我是一个弹窗&lt;/h3&gt;<br>			&lt;button @click=&quot;isShow = false&quot;&gt;关闭弹窗&lt;/button&gt;<br>		&lt;/div&gt;<br>	&lt;/div&gt;<br>&lt;/teleport&gt;<br></code></pre></td></tr></table></figure></li>
 </ul>
-<h3 id="3-Suspense"><a href="#3-Suspense" class="headerlink" title="3.Suspense"></a>3.Suspense</h3>
+<h3 id="3-Suspense"><a href="#3-Suspense" class="headerlink" title="3.Suspense"></a>3.Suspense</h3><p>等待异步组件时渲染一些额外内容，让应用有更好的用户体验</p>
+<p>静态引入需等所有组件全部引入完毕，一起显示（木桶原理），异步引入（动态引入）则可以先显示引入好的组件</p>
+<p>但是用户并不知道页面是否还有组件没有加载完毕，而且组件加载完毕后突然出现，效果并不好。可以使用 Suspense 包裹，底层通过插槽实现。</p>
+<ul>
+<li><p>使用步骤：</p>
+<ul>
+<li><p>异步引入组件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123;defineAsyncComponent&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">Child</span> = <span class="hljs-title function_">defineAsyncComponent</span>(<span class="hljs-function">()=&gt;</span><span class="hljs-title function_">import</span>(<span class="hljs-string">&#x27;./components/Child.vue&#x27;</span>))<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>使用<code>Suspense</code>包裹组件，并配置好<code>default</code> 与 <code>fallback</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>	&lt;div class=&quot;app&quot;&gt;<br>		&lt;h3&gt;我是App组件&lt;/h3&gt;<br>		&lt;Suspense&gt;<br>			&lt;template v-slot:default&gt;<br>				&lt;Child/&gt;<br>			&lt;/template&gt;<br>			&lt;template v-slot:fallback&gt;<br>				&lt;h3&gt;加载中.....&lt;/h3&gt;<br>			&lt;/template&gt;<br>		&lt;/Suspense&gt;<br>	&lt;/div&gt;<br>&lt;/template&gt;<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="1-全局API的转移"><a href="#1-全局API的转移" class="headerlink" title="1.全局API的转移"></a>1.全局API的转移</h3><ul>
+<li><p>Vue 2.x 有许多全局 API 和配置。</p>
+<ul>
+<li><p>例如：注册全局组件、注册全局指令等。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//注册全局组件</span><br><span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">component</span>(<span class="hljs-string">&#x27;MyButton&#x27;</span>, &#123;<br>  <span class="hljs-attr">data</span>: <span class="hljs-function">() =&gt;</span> (&#123;<br>    <span class="hljs-attr">count</span>: <span class="hljs-number">0</span><br>  &#125;),<br>  <span class="hljs-attr">template</span>: <span class="hljs-string">&#x27;&lt;button @click=&quot;count++&quot;&gt;Clicked &#123;&#123; count &#125;&#125; times.&lt;/button&gt;&#x27;</span><br>&#125;)<br><br><span class="hljs-comment">//注册全局指令</span><br><span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">directive</span>(<span class="hljs-string">&#x27;focus&#x27;</span>, &#123;<br>  <span class="hljs-attr">inserted</span>: <span class="hljs-function"><span class="hljs-params">el</span> =&gt;</span> el.<span class="hljs-title function_">focus</span>()<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>Vue3.0中对这些API做出了调整：</p>
+<ul>
+<li><p>将全局的API，即：<code>Vue.xxx</code>调整到应用实例（<code>app</code>）上</p>
+<table>
+<thead>
+<tr>
+<th>2.x 全局 API（<code>Vue</code>）</th>
+<th>3.x 实例 API (<code>app</code>)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Vue.config.xxxx</td>
+<td>app.config.xxxx</td>
+</tr>
+<tr>
+<td>Vue.config.productionTip</td>
+<td><strong style="color:#DD5145">移除</strong></td>
+</tr>
+<tr>
+<td>Vue.component</td>
+<td>app.component</td>
+</tr>
+<tr>
+<td>Vue.directive</td>
+<td>app.directive</td>
+</tr>
+<tr>
+<td>Vue.mixin</td>
+<td>app.mixin</td>
+</tr>
+<tr>
+<td>Vue.use</td>
+<td>app.use</td>
+</tr>
+<tr>
+<td>Vue.prototype</td>
+<td>app.config.globalProperties</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-其他改变"><a href="#2-其他改变" class="headerlink" title="2.其他改变"></a>2.其他改变</h3><ul>
+<li><p>data选项应始终被声明为一个函数。</p>
+</li>
+<li><p>过度类名的更改：</p>
+<ul>
+<li><p>Vue2.x写法</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.v-enter</span>,<br><span class="hljs-selector-class">.v-leave-to</span> &#123;<br>  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-selector-class">.v-leave</span>,<br><span class="hljs-selector-class">.v-enter-to</span> &#123;<br>  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>Vue3.x写法</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.v-enter-from</span>,<br><span class="hljs-selector-class">.v-leave-to</span> &#123;<br>  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-selector-class">.v-leave-from</span>,<br><span class="hljs-selector-class">.v-enter-to</span> &#123;<br>  <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong style="color:#DD5145">移除</strong>keyCode作为 v-on 的修饰符，同时也不再支持<code>config.keyCodes</code></p>
+</li>
+<li><p><strong style="color:#DD5145">移除</strong><code>v-on.native</code>修饰符</p>
+<ul>
+<li><p>父组件中绑定事件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;my-component<br>  v-on:close=&quot;handleComponentEvent&quot;<br>  v-on:click=&quot;handleNativeClickEvent&quot;<br>/&gt;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>子组件中声明自定义事件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;script&gt;<br>  export default &#123;<br>    emits: [&#x27;close&#x27;]	// 不声明 click 说明是原生s<br>  &#125;<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong style="color:#DD5145">移除</strong>过滤器（filter）</p>
+<blockquote>
+<p>过滤器虽然这看起来很方便，但它需要一个自定义语法，打破大括号内表达式是 “只是 JavaScript” 的假设，这不仅有学习成本，而且有实现成本！建议用方法调用或计算属性去替换过滤器。</p>
+</blockquote>
+</li>
+<li><p>……</p>
+</li>
+</ul>
+
               
             </div>
             <hr/>
