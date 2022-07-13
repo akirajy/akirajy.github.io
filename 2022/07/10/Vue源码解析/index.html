@@ -24,8 +24,9 @@
 <meta property="og:description" content="(更新中) 数据响应式原理将数据变为响应式1234567891011121314151617181920212223&#x2F;&#x2F; 让 data 变为响应式&#x2F;&#x2F; let val 临时变量也是可以的, 但是不美观, 可以封装到函数 defineReactive 中 , 也方便复用export default function defineReactive(data, key, val) &amp;#123;    &#x2F;">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2022/07/10/Vue%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/image-20220710214346769.png">
+<meta property="og:image" content="http://example.com/2022/07/10/Vue%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/image-20220713134710965.png">
 <meta property="article:published_time" content="2022-07-10T14:01:23.000Z">
-<meta property="article:modified_time" content="2022-07-10T14:03:16.003Z">
+<meta property="article:modified_time" content="2022-07-13T15:12:15.804Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="双向绑定">
 <meta property="article:tag" content="虚拟DOM">
@@ -220,7 +221,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.5k words
+          6.1k words
         
       </span>
     
@@ -231,7 +232,7 @@
         
         
         
-          30 mins
+          52 mins
         
       </span>
     
@@ -320,8 +321,36 @@
 <img src="/2022/07/10/Vue%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/image-20220710214346769.png" srcset="/img/loading.gif" lazyload class="" title="image-20220710214346769">
 
 <p>当传入 observe 的值不是对象时跳出递归</p>
+<h2 id="数组的响应式处理"><a href="#数组的响应式处理" class="headerlink" title="数组的响应式处理"></a>数组的响应式处理</h2><h3 id="为什么需要处理数组的响应式"><a href="#为什么需要处理数组的响应式" class="headerlink" title="为什么需要处理数组的响应式"></a>为什么需要处理数组的响应式</h3><p>正因为我们可以<strong>通过Array原型上的方法来改变数组的内容</strong>，所以 object 那种<strong>通过getter&#x2F;setter的实现方式就行不通了</strong>。</p>
+<p>ES6 之前没有提供可以拦截原型方法的能力，我们可以用自定义的方法去覆盖原生的原型方法。</p>
+<p><strong>Vue 是通过改写数组的七个方法（可以改变数组自身内容的方法）来实现对数组的响应式处理</strong></p>
+<p>这些方法分别是：<strong>push、pop、shift、unshift、splice、sort、reverse</strong></p>
+<h3 id="处理思路"><a href="#处理思路" class="headerlink" title="处理思路"></a>处理思路</h3><p>这七个方法都是定义在 Array.prototype上，要保留方法的功能，同时增加数据劫持的代码</p>
+<p>思路就是 以 Array.prototype为原型，创建一个新对象 arrayMethods<br>然后在新对象arrayMethods上定义（改写）这些方法<br>定义 数组 的原型指向 arrayMethods</p>
+<p>这就相当于用一个拦截器覆盖 Array.prototype，每当使用Array原型上的方法操作数组时，其实执行的是拦截器中提供的方法。在拦截器中使用原生Array的原型方法去操作数组。</p>
+<h3 id="重写数组方法"><a href="#重写数组方法" class="headerlink" title="重写数组方法"></a>重写数组方法</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// array.js</span><br><span class="hljs-keyword">import</span> &#123; def &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./utils.js&#x27;</span><br><br><span class="hljs-keyword">const</span> arrayPrototype = <span class="hljs-title class_">Array</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span><br><br><span class="hljs-comment">// 以 arrayPrototype 为原型创建 arrayMethods 对象</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> arrayMethods = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">create</span>(arrayPrototype)<br><br><span class="hljs-keyword">const</span> methodsNeedChange = [<br>    <span class="hljs-string">&#x27;push&#x27;</span>,<br>    <span class="hljs-string">&#x27;pop&#x27;</span>,<br>    <span class="hljs-string">&#x27;shift&#x27;</span>,<br>    <span class="hljs-string">&#x27;unshift&#x27;</span>,<br>    <span class="hljs-string">&#x27;splice&#x27;</span>,<br>    <span class="hljs-string">&#x27;sort&#x27;</span>,<br>    <span class="hljs-string">&#x27;reverse&#x27;</span><br>]<br><br>methodsNeedChange.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">methodName</span> =&gt;</span> &#123;<br>    <span class="hljs-comment">// 备份原来的方法</span><br>    <span class="hljs-keyword">const</span> original = arrayPrototype[methodName]<br><br>    <span class="hljs-comment">// 定义新的方法</span><br>    <span class="hljs-title function_">def</span>(arrayMethods, methodName, <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-comment">// 恢复原来的功能</span><br>        <span class="hljs-keyword">const</span> result = original.<span class="hljs-title function_">apply</span>(<span class="hljs-variable language_">this</span>, <span class="hljs-variable language_">arguments</span>)<br><br>        <span class="hljs-comment">// 把这个数组身上的 __ob__ 取出来,</span><br>        <span class="hljs-keyword">const</span> ob = <span class="hljs-variable language_">this</span>.<span class="hljs-property">__ob__</span><br><br>        <span class="hljs-comment">// 有三种方法 push unshift splice 能插入新项, 要将新项变为 observe的</span><br>        <span class="hljs-comment">// inserted 用来存要插入的项</span><br>        <span class="hljs-keyword">let</span> inserted = []<br>        <br>        <span class="hljs-comment">// 根据方法名来判断要插入的项是什么并存入 inserted</span><br>        <span class="hljs-keyword">switch</span>(methodName) &#123;<br>            <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;push&#x27;</span>:<br>            <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;unshift&#x27;</span>:<br>                inserted = <span class="hljs-variable language_">arguments</span><br>                <span class="hljs-keyword">break</span><br>            <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;splice&#x27;</span>:<br>                inserted = [...<span class="hljs-variable language_">arguments</span>].<span class="hljs-title function_">slice</span>(<span class="hljs-number">2</span>)<br>                <span class="hljs-keyword">break</span><br>        &#125;<br><br>        <span class="hljs-comment">// 判断有没有要插入的新项, 让新项也变为响应的</span><br>        <span class="hljs-keyword">if</span> (inserted.<span class="hljs-property">length</span>) &#123;<br>            ob.<span class="hljs-title function_">observeArray</span>(inserted)<br>        &#125;<br><br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;啦啦啦&#x27;</span>)<br>        <span class="hljs-keyword">return</span> result<br>    &#125;, <span class="hljs-literal">false</span>)<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="observeArray"><a href="#observeArray" class="headerlink" title="observeArray"></a>observeArray</h3><p>如果是数组的话走 observeArray 来遍历所有键；否则走 walk</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; def &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./utils.js&#x27;</span><br><span class="hljs-keyword">import</span> defineReactive <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./defineReactive.js&#x27;</span><br><span class="hljs-keyword">import</span> &#123; arrayMethods &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./array.js&#x27;</span><br><span class="hljs-keyword">import</span> observe <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./observe.js&#x27;</span><br><br><span class="hljs-comment">/* Observer 类, 给 value __ob__ 属性, 遍历所有属性并调用 defineReactive 使它们变为响应式 */</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Observer</span> &#123;<br>    <span class="hljs-title function_">constructor</span>(<span class="hljs-params">value</span>) &#123;<br>        <span class="hljs-comment">// this 为 new 的实例</span><br>        <span class="hljs-title function_">def</span>(value, <span class="hljs-string">&#x27;__ob__&#x27;</span>, <span class="hljs-variable language_">this</span>, <span class="hljs-literal">false</span>)   <span class="hljs-comment">// 目前 __ob__ 的意义好像只有在 observe 中判断循环引用</span><br><br>        <span class="hljs-comment">// 检查是数组还是对象</span><br>        <span class="hljs-keyword">if</span> (<span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(value)) &#123;<br>            <span class="hljs-comment">// 如果是数组, 将这个数组的原型指向 arrayMethods (arrayMethods的原型上的方法是改写过的)</span><br>            <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">setPrototypeOf</span>(value, arrayMethods)<br>            <span class="hljs-comment">// 让这个数组变得 observe</span><br>            <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">observeArray</span>(value)<br>        &#125; <span class="hljs-keyword">else</span>&#123;<br>            <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">walk</span>(value)<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">// 遍历所有键, 让其响应式</span><br>    <span class="hljs-title function_">walk</span>(<span class="hljs-params">value</span>) &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> k <span class="hljs-keyword">in</span> value) &#123;<br>            <span class="hljs-title function_">defineReactive</span>(value, k)<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">// 数组的特殊遍历</span><br>    <span class="hljs-title function_">observeArray</span>(<span class="hljs-params">arr</span>) &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, l = arr.<span class="hljs-property">length</span>; i &lt; l; i++) &#123;<br>            <span class="hljs-comment">// 逐项 observe</span><br>            <span class="hljs-title function_">observe</span>(arr[i])<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><p>Dep 类</p>
+<p>依赖收集，用来管理依赖</p>
+<p>每个 Observer 的实例成员中都有一个 Dep 的实例</p>
+<p>Watcher 类</p>
+<p>中介，数据发生</p>
+<img src="/2022/07/10/Vue%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/image-20220713134710965.png" srcset="/img/loading.gif" lazyload class="" title="image-20220713134710965">
+
+
+
+
+
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1G54y1s7xV/?spm_id_from=333.788.recommend_more_video.0&amp;vd_source=1616b746cefe2e7615c229563ba38eb4">https://www.bilibili.com/video/BV1G54y1s7xV/?spm_id_from=333.788.recommend_more_video.0&amp;vd_source=1616b746cefe2e7615c229563ba38eb4</a></p>
 <p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6932659815424458760">https://juejin.cn/post/6932659815424458760</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44972008/article/details/115922118">https://blog.csdn.net/weixin_44972008/article/details/115922118</a></p>
 
               
             </div>
@@ -339,7 +368,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/vue/" class="category-chain-item">vue</a>
+  <a href="/categories/Vue/" class="category-chain-item">Vue</a>
   
   
 
@@ -410,6 +439,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2022/07/11/%E6%AD%A3%E5%88%99/" title="正则">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">正则</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

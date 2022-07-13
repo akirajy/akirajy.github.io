@@ -16,31 +16,28 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Git    初始化用户设置设置用户名 git config –global user.name lwj 设置邮箱 git config –global user.email &amp;#54;&amp;#49;&amp;#57;&amp;#x35;&amp;#48;&amp;#x30;&amp;#56;&amp;#x32;&amp;#x38;&amp;#64;&amp;#113;&amp;#113;&amp;#46;&amp;#99;&amp;#111;&amp;#x6d; 初始化git init 多了一个 .git 文">
+    <meta name="description" content="scoped 和样式穿透scoped不使用 scoped顺便复习一下 vue3 中路由的使用 配置路由并导出 123456789101112131415161718&#x2F;&#x2F; src&#x2F;router&#x2F;router.ts&#x2F;&#x2F; 配置路由并导出import NoRed from &amp;#x27;..&#x2F;components&#x2F;nored.vue&amp;#x27;import Red from &amp;#x27;..&#x2F;compone">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git">
-<meta property="og:url" content="http://example.com/2022/07/09/Git/index.html">
+<meta property="og:title" content="scoped和样式穿透">
+<meta property="og:url" content="http://example.com/2022/07/13/scoped%E5%92%8C%E6%A0%B7%E5%BC%8F%E7%A9%BF%E9%80%8F/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Git    初始化用户设置设置用户名 git config –global user.name lwj 设置邮箱 git config –global user.email &amp;#54;&amp;#49;&amp;#57;&amp;#x35;&amp;#48;&amp;#x30;&amp;#56;&amp;#x32;&amp;#x38;&amp;#64;&amp;#113;&amp;#113;&amp;#46;&amp;#99;&amp;#111;&amp;#x6d; 初始化git init 多了一个 .git 文">
+<meta property="og:description" content="scoped 和样式穿透scoped不使用 scoped顺便复习一下 vue3 中路由的使用 配置路由并导出 123456789101112131415161718&#x2F;&#x2F; src&#x2F;router&#x2F;router.ts&#x2F;&#x2F; 配置路由并导出import NoRed from &amp;#x27;..&#x2F;components&#x2F;nored.vue&amp;#x27;import Red from &amp;#x27;..&#x2F;compone">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022/07/09/Git/image-20220709160235846.png">
-<meta property="og:image" content="http://example.com/2022/07/09/Git/image-20220709161701963.png">
-<meta property="og:image" content="http://example.com/2022/07/09/Git/image-20220709162553790.png">
-<meta property="og:image" content="http://example.com/2022/07/09/Git/image-20220709163820131.png">
-<meta property="og:image" content="http://example.com/2022/07/09/Git/image-20220709163829783.png">
-<meta property="og:image" content="http://example.com/2022/07/09/Git/image-20220709164756819.png">
-<meta property="og:image" content="http://example.com/2022/07/09/Git/image-20220709170218325.png">
-<meta property="og:image" content="http://example.com/2022/07/09/Git/image-20220709170748070.png">
-<meta property="og:image" content="http://example.com/2022/07/09/Git/image-20220709171256207.png">
-<meta property="article:published_time" content="2022-07-09T07:59:14.000Z">
-<meta property="article:modified_time" content="2022-07-09T09:16:19.833Z">
+<meta property="og:image" content="http://example.com/2022/07/13/scoped%E5%92%8C%E6%A0%B7%E5%BC%8F%E7%A9%BF%E9%80%8F/image-20220713222944618.png">
+<meta property="og:image" content="http://example.com/2022/07/13/scoped%E5%92%8C%E6%A0%B7%E5%BC%8F%E7%A9%BF%E9%80%8F/image-20220713223018761.png">
+<meta property="og:image" content="http://example.com/2022/07/13/scoped%E5%92%8C%E6%A0%B7%E5%BC%8F%E7%A9%BF%E9%80%8F/image-20220713222944618.png">
+<meta property="og:image" content="http://example.com/2022/07/13/scoped%E5%92%8C%E6%A0%B7%E5%BC%8F%E7%A9%BF%E9%80%8F/image-20220713222951713.png">
+<meta property="og:image" content="http://example.com/2022/07/13/scoped%E5%92%8C%E6%A0%B7%E5%BC%8F%E7%A9%BF%E9%80%8F/image-20220713223437121.png">
+<meta property="og:image" content="http://example.com/2022/07/13/scoped%E5%92%8C%E6%A0%B7%E5%BC%8F%E7%A9%BF%E9%80%8F/image-20220713223714421.png">
+<meta property="article:published_time" content="2022-07-13T15:10:22.000Z">
+<meta property="article:modified_time" content="2022-07-13T15:11:10.886Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2022/07/09/Git/image-20220709160235846.png">
+<meta name="twitter:image" content="http://example.com/2022/07/13/scoped%E5%92%8C%E6%A0%B7%E5%BC%8F%E7%A9%BF%E9%80%8F/image-20220713222944618.png">
   
   
   
-  <title>Git - Hexo</title>
+  <title>scoped和样式穿透 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -203,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Git"></span>
+            <span id="subtitle" data-typed-text="scoped和样式穿透"></span>
           
         </div>
 
@@ -214,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-07-09 15:59" pubdate>
-          July 9, 2022 pm
+        <time datetime="2022-07-13 23:10" pubdate>
+          July 13, 2022 pm
         </time>
       </span>
     
@@ -226,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k words
+          2.2k words
         
       </span>
     
@@ -237,7 +234,7 @@
         
         
         
-          10 mins
+          19 mins
         
       </span>
     
@@ -283,82 +280,68 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Git</h1>
+            <h1 style="display: none">scoped和样式穿透</h1>
             
             <div class="markdown-body">
               
-              <h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1><img src="/2022/07/09/Git/image-20220709160235846.png" srcset="/img/loading.gif" lazyload class="" title="image-20220709160235846">
+              <h1 id="scoped-和样式穿透"><a href="#scoped-和样式穿透" class="headerlink" title="scoped 和样式穿透"></a>scoped 和样式穿透</h1><h2 id="scoped"><a href="#scoped" class="headerlink" title="scoped"></a>scoped</h2><h3 id="不使用-scoped"><a href="#不使用-scoped" class="headerlink" title="不使用 scoped"></a>不使用 scoped</h3><p>顺便复习一下 vue3 中路由的使用</p>
+<p><strong>配置路由并导出</strong></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-comment">// src/router/router.ts</span><br><span class="hljs-comment">// 配置路由并导出</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">NoRed</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../components/nored.vue&#x27;</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">Red</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../components/red.vue&#x27;</span><br><br><span class="hljs-keyword">import</span> &#123; createRouter,createWebHistory &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;vue-router&quot;</span>;<br><br><span class="hljs-keyword">const</span> routes = [<br>    &#123; <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/red&#x27;</span>, <span class="hljs-attr">component</span>: <span class="hljs-title class_">Red</span>&#125;,<br>    &#123; <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/no_red&#x27;</span>, <span class="hljs-attr">component</span>: <span class="hljs-title class_">NoRed</span>&#125;<br>]<br><br><span class="hljs-keyword">const</span> router = <span class="hljs-title function_">createRouter</span>(&#123;<br>    <span class="hljs-attr">history</span>: <span class="hljs-title function_">createWebHistory</span>(),	<span class="hljs-comment">// vue3 的 history 模式	对应 createWebHashHistory hash 模式</span><br>    routes<br>&#125;)<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> router<br></code></pre></td></tr></table></figure>
 
 
 
-<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><h3 id="用户设置"><a href="#用户设置" class="headerlink" title="用户设置"></a>用户设置</h3><p><strong>设置用户名</strong></p>
-<p>git config –global user.name lwj</p>
-<p><strong>设置邮箱</strong></p>
-<p>git config –global user.email <a href="mailto:&#54;&#49;&#57;&#x35;&#48;&#x30;&#56;&#x32;&#x38;&#64;&#113;&#113;&#46;&#99;&#111;&#x6d;">&#54;&#49;&#57;&#x35;&#48;&#x30;&#56;&#x32;&#x38;&#64;&#113;&#113;&#46;&#99;&#111;&#x6d;</a></p>
-<h3 id="初始化-1"><a href="#初始化-1" class="headerlink" title="初始化"></a>初始化</h3><p>git init</p>
-<p>多了一个 .git 文件夹，git 的所有记录都在此文件夹中</p>
-<p>默认位于 master (主分支)</p>
-<h2 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h2><h3 id="创建文件"><a href="#创建文件" class="headerlink" title="创建文件"></a>创建文件</h3><p>echo “版本1” &gt; lao.md</p>
-<p>lao.md 为我们创建的文件；版本1 为在文件中添加的内容</p>
-<h3 id="查看状态"><a href="#查看状态" class="headerlink" title="查看状态"></a>查看状态</h3><p>git status</p>
-<p>用于查看目前分支，以及需要做什么步骤</p>
-<img src="/2022/07/09/Git/image-20220709161701963.png" srcset="/img/loading.gif" lazyload class="" title="image-20220709161701963">
-
-<p>处于 master 分支</p>
-<p>刚刚添加的文件 lao.md 为 untracked files，需要添加到缓存区</p>
-<h3 id="添加文件到暂存区"><a href="#添加文件到暂存区" class="headerlink" title="添加文件到暂存区"></a>添加文件到暂存区</h3><p>git add lao.md</p>
-<h3 id="提交文件"><a href="#提交文件" class="headerlink" title="提交文件"></a>提交文件</h3><p>git commit	会进入 vim 编辑器</p>
-<p>git commit -m “版本2和版本3”	加上 -m 和提交信息 则不会进入 vim</p>
-<h3 id="查看之前版本"><a href="#查看之前版本" class="headerlink" title="查看之前版本"></a>查看之前版本</h3><p>git log</p>
-<img src="/2022/07/09/Git/image-20220709162553790.png" srcset="/img/loading.gif" lazyload class="" title="image-20220709162553790">
+<p><strong>引入并使用组件</strong></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-comment">// src/main.ts</span><br><span class="hljs-keyword">import</span> &#123; createApp &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">App</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./App.vue&#x27;</span><br><br><span class="hljs-comment">// 引入路由</span><br><span class="hljs-keyword">import</span> router <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./router/router&#x27;</span><br><br><span class="hljs-comment">// use 路由</span><br><span class="hljs-title function_">createApp</span>(<span class="hljs-title class_">App</span>).<span class="hljs-title function_">use</span>(router).<span class="hljs-title function_">mount</span>(<span class="hljs-string">&#x27;#app&#x27;</span>)<br></code></pre></td></tr></table></figure>
 
 
 
-<h3 id="不需要提交的文件"><a href="#不需要提交的文件" class="headerlink" title="不需要提交的文件"></a>不需要提交的文件</h3><p>创建 .gitignore 文件</p>
-<p>echo &gt; .gitignore</p>
-<p>在 .gitignore 中写上不想提交的文件 rubbish.md，git status 后就不会显示该文件了</p>
-<img src="/2022/07/09/Git/image-20220709163820131.png" srcset="/img/loading.gif" lazyload class="" title="image-20220709163820131">
+<p><strong>写组件</strong></p>
+<p>只在 red 中写样式并不加 scoped</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;!-- src/components/nored.vue --&gt;<br>&lt;template&gt;<br>    &lt;div&gt; <br>      &lt;h1&gt;我应该不是红色&lt;/h1&gt;<br>    &lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;script setup lang=&quot;ts&quot;&gt;<br><br>&lt;/script&gt;<br><br>&lt;style&gt; <br>&lt;/style&gt;<br></code></pre></td></tr></table></figure>
 
-<p>配置 .gitignore 后</p>
-<img src="/2022/07/09/Git/image-20220709163829783.png" srcset="/img/loading.gif" lazyload class="" title="image-20220709163829783">
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;!-- src/components/red.vue --&gt;<br>&lt;template&gt;<br>    &lt;div&gt; <br>      &lt;h1&gt;我应该是红色&lt;/h1&gt;<br>    &lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;script setup lang=&quot;ts&quot;&gt;<br><br>&lt;/script&gt;<br><br>&lt;style&gt; <br>  a &#123;<br>    color: red<br>  &#125;<br>&lt;/style&gt;<br></code></pre></td></tr></table></figure>
 
 
 
-<h2 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h2><p>一个分支代表一条独立的开发线。</p>
-<p>使用分支意味着你可以从开发主线上分离开来，然后在不影响主线的同时继续工作。</p>
-<img src="/2022/07/09/Git/image-20220709164756819.png" srcset="/img/loading.gif" lazyload class="" title="image-20220709164756819">
+<p><strong>显示组件</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;!-- src/App.vue --&gt;<br>&lt;script setup lang=&quot;ts&quot;&gt;<br><br>&lt;/script&gt;<br><br>&lt;template&gt;<br>  &lt;p&gt;<br>     &lt;router-link to=&quot;/red&quot;&gt;red&lt;/router-link&gt;<br>     &lt;router-link to=&quot;/no_red&quot; style=&quot;margin-left: 20px;&quot;&gt;nored&lt;/router-link&gt;<br>     &lt;router-view&gt;&lt;/router-view&gt;<br>   &lt;/p&gt;<br>&lt;/template&gt;<br><br>&lt;style&gt;<br><br>&lt;/style&gt;<br></code></pre></td></tr></table></figure>
 
 
 
-<h3 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h3><p>git branch 分支名</p>
-<h3 id="查看分支"><a href="#查看分支" class="headerlink" title="查看分支"></a>查看分支</h3><p>git branch</p>
-<h3 id="切换分支"><a href="#切换分支" class="headerlink" title="切换分支"></a>切换分支</h3><p>git checkout 分支名</p>
-<h3 id="删除分支"><a href="#删除分支" class="headerlink" title="删除分支"></a>删除分支</h3><p>git branch -d 分支名（会有提示）</p>
-<p>git branch -D 分支名（不会有提示，非常确定要删除时使用）</p>
-<h3 id="分支合并"><a href="#分支合并" class="headerlink" title="分支合并"></a>分支合并</h3><p>把别的分支合并到当前所处分支</p>
-<p>git merge 分支名</p>
-<h2 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h2><h3 id="拷贝远程仓库到本地"><a href="#拷贝远程仓库到本地" class="headerlink" title="拷贝远程仓库到本地"></a>拷贝远程仓库到本地</h3><p>直接 download，则版本历史和记录(.git)不会下载</p>
-<p>使用 git clone url 更好</p>
-<h3 id="查看本地仓库与远程仓库的联系"><a href="#查看本地仓库与远程仓库的联系" class="headerlink" title="查看本地仓库与远程仓库的联系"></a>查看本地仓库与远程仓库的联系</h3><p>git remote -v</p>
-<h3 id="更新远程仓库"><a href="#更新远程仓库" class="headerlink" title="更新远程仓库"></a>更新远程仓库</h3><p>git push</p>
-<p>2021年后不支持通过账号密码，而要生成个人 token</p>
-<h3 id="更新本地仓库"><a href="#更新本地仓库" class="headerlink" title="更新本地仓库"></a>更新本地仓库</h3><p>git fetch (远程仓库&#x2F;分支名)		更新本地仓库，本地文件（工作区）并不会改变</p>
-<p>git diff 远程仓库名&#x2F;分支名		查看工作区和本地仓库的区别</p>
-<p>如果没问题则可使用 git pull 把远程仓库的内容直接整合到工作区</p>
-<h2 id="vscode-中的-git"><a href="#vscode-中的-git" class="headerlink" title="vscode 中的 git"></a>vscode 中的 git</h2><p>初始化仓库</p>
-<p>相当于 git init</p>
-<img src="/2022/07/09/Git/image-20220709170218325.png" srcset="/img/loading.gif" lazyload class="" title="image-20220709170218325">
+<p><strong>效果是</strong></p>
+<img src="/2022/07/13/scoped%E5%92%8C%E6%A0%B7%E5%BC%8F%E7%A9%BF%E9%80%8F/image-20220713222944618.png" srcset="/img/loading.gif" lazyload class="" title="image-20220713222944618">
 
-<p>一些操作</p>
-<img src="/2022/07/09/Git/image-20220709170748070.png" srcset="/img/loading.gif" lazyload class="" title="image-20220709170748070">
+<img src="/2022/07/13/scoped%E5%92%8C%E6%A0%B7%E5%BC%8F%E7%A9%BF%E9%80%8F/image-20220713223018761.png" srcset="/img/loading.gif" lazyload class="" title="image-20220713223018761">
 
-<p>左下角切换分支</p>
-<img src="/2022/07/09/Git/image-20220709171256207.png" srcset="/img/loading.gif" lazyload class="" title="image-20220709171256207">
+<p>只在 red 组件中写了样式 结果 nored 也有了样式</p>
+<h3 id="使用-scoped"><a href="#使用-scoped" class="headerlink" title="使用 scoped"></a>使用 scoped</h3><p>在 red 组件的 style 标签中加上 scoped</p>
+<img src="/2022/07/13/scoped%E5%92%8C%E6%A0%B7%E5%BC%8F%E7%A9%BF%E9%80%8F/image-20220713222944618.png" srcset="/img/loading.gif" lazyload class="" title="image-20220713222944618">
+
+<img src="/2022/07/13/scoped%E5%92%8C%E6%A0%B7%E5%BC%8F%E7%A9%BF%E9%80%8F/image-20220713222951713.png" srcset="/img/loading.gif" lazyload class="" title="image-20220713222951713">
+
+<p><strong>原理上就是 vue 在该组件的标签中加了一串字符</strong></p>
+<img src="/2022/07/13/scoped%E5%92%8C%E6%A0%B7%E5%BC%8F%E7%A9%BF%E9%80%8F/image-20220713223437121.png" srcset="/img/loading.gif" lazyload class="" title="image-20220713223437121">
+
+<p><strong>该组件中的样式中也会以属性选择器的方式拼接上</strong></p>
+<img src="/2022/07/13/scoped%E5%92%8C%E6%A0%B7%E5%BC%8F%E7%A9%BF%E9%80%8F/image-20220713223714421.png" srcset="/img/loading.gif" lazyload class="" title="image-20220713223714421">
 
 
 
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1r3411F7kn?spm_id_from=333.337.search-card.all.click&amp;vd_source=1616b746cefe2e7615c229563ba38eb4">https://www.bilibili.com/video/BV1r3411F7kn?spm_id_from=333.337.search-card.all.click&amp;vd_source=1616b746cefe2e7615c229563ba38eb4</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.runoob.com/git/git-basic-operations.html">https://www.runoob.com/git/git-basic-operations.html</a></p>
+<p><strong>实际的步骤</strong></p>
+<p>给HTML的DOM节点加一个不重复data属性(形如：data-v-123)来表示他的唯一性</p>
+<p>在每句css选择器的末尾（编译后的生成的css语句）加一个当前组件的data属性选择器（如[data-v-123]）来私有化样式</p>
+<p>如果组件内部包含有其他组件，只会给其他组件的最外层标签加上当前组件的data属性</p>
+<h3 id="scoped-的副作用"><a href="#scoped-的副作用" class="headerlink" title="scoped 的副作用"></a>scoped 的副作用</h3><p>如果我们在使用第三方库时企图修改其样式且使用 scoped（尤其是一些 ui 库）</p>
+<p>会发现标签上并没有加上字符串，而样式中却加上了，因此样式会失效。</p>
+<h2 id="样式穿透"><a href="#样式穿透" class="headerlink" title="样式穿透"></a>样式穿透</h2><p>不使用样式穿透</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-selector-class">.lei</span> &#123;<br>    <span class="hljs-selector-tag">input</span> &#123;<br>        <span class="hljs-attribute">background</span>: red<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>使用样式穿透 <strong>:deep()</strong></p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-selector-class">.lei</span> &#123;<br>    :<span class="hljs-selector-tag">deep</span>(input) &#123;<br>        <span class="hljs-attribute">background</span>: red<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这样就可以修改第三方库的样式了</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7083051766874374174">https://juejin.cn/post/7083051766874374174</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq1195566313/article/details/123319462">https://blog.csdn.net/qq1195566313/article/details/123319462</a></p>
 
               
             </div>
@@ -376,7 +359,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Git/" class="category-chain-item">Git</a>
+  <a href="/categories/CSS/" class="category-chain-item">CSS</a>
   
   
 
@@ -396,8 +379,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Git</div>
-      <div>http://example.com/2022/07/09/Git/</div>
+      <div>scoped和样式穿透</div>
+      <div>http://example.com/2022/07/13/scoped和样式穿透/</div>
     </div>
     <div class="license-meta">
       
@@ -409,7 +392,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>July 9, 2022</div>
+          <div>July 13, 2022</div>
         </div>
       
       
@@ -439,18 +422,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/07/10/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JS/" title="你不知道的JS">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">你不知道的JS</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/07/01/vue3/" title="vue3">
-                        <span class="hidden-mobile">vue3</span>
+                      <a href="/2022/07/11/%E6%AD%A3%E5%88%99/" title="正则">
+                        <span class="hidden-mobile">正则</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
