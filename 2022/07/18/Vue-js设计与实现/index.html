@@ -16,21 +16,26 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="定位一种布局方式 定位 &#x3D; 定位模式 + 边偏移 边偏移   边偏移属性 示例 描述    top top: 80px &#x2F; 50% 顶端偏移量，定义元素相对于其父元素上边线的距离。   bottom bottom: 80px 底部偏移量，定义元素相对于其父元素下边线的距离。   left left: 80px 左侧偏移量，定义元素相对于其父元素左边线的距离。   right right:">
+    <meta name="description" content="框架设计概览权衡的艺术命令式和声明式命令式 关注过程 声明式 关注结果 Vue.js 帮我们封装了过程，内部实现是命令式的，而暴露给用户的却更加声明式 性能与可维护性的权衡声明式代码的性能不优于命令式代码的性能 命令式代码的更新性能消耗 &#x3D; 直接修改的性能消耗 声明式代码的更新性能消耗 &#x3D; 直接修改的性能消耗 + 找出差异的性能消耗 但声明式代码的可维护性更强 设计框架时 要保">
 <meta property="og:type" content="article">
-<meta property="og:title" content="定位">
-<meta property="og:url" content="http://example.com/2022/07/14/%E5%AE%9A%E4%BD%8D/index.html">
+<meta property="og:title" content="Vue.js设计与实现">
+<meta property="og:url" content="http://example.com/2022/07/18/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="定位一种布局方式 定位 &#x3D; 定位模式 + 边偏移 边偏移   边偏移属性 示例 描述    top top: 80px &#x2F; 50% 顶端偏移量，定义元素相对于其父元素上边线的距离。   bottom bottom: 80px 底部偏移量，定义元素相对于其父元素下边线的距离。   left left: 80px 左侧偏移量，定义元素相对于其父元素左边线的距离。   right right:">
+<meta property="og:description" content="框架设计概览权衡的艺术命令式和声明式命令式 关注过程 声明式 关注结果 Vue.js 帮我们封装了过程，内部实现是命令式的，而暴露给用户的却更加声明式 性能与可维护性的权衡声明式代码的性能不优于命令式代码的性能 命令式代码的更新性能消耗 &#x3D; 直接修改的性能消耗 声明式代码的更新性能消耗 &#x3D; 直接修改的性能消耗 + 找出差异的性能消耗 但声明式代码的可维护性更强 设计框架时 要保">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-07-14T06:42:40.000Z">
-<meta property="article:modified_time" content="2022-07-14T06:59:06.301Z">
+<meta property="og:image" content="http://example.com/2022/07/18/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20220718191653483.png">
+<meta property="og:image" content="http://example.com/2022/07/18/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20220718191710254.png">
+<meta property="og:image" content="http://example.com/2022/07/18/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20220718171611741.png">
+<meta property="og:image" content="http://example.com/2022/07/18/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20220718204108277.png">
+<meta property="article:published_time" content="2022-07-18T09:02:23.000Z">
+<meta property="article:modified_time" content="2022-07-18T15:10:04.511Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2022/07/18/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20220718191653483.png">
   
   
   
-  <title>定位 - Hexo</title>
+  <title>Vue.js设计与实现 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -193,7 +198,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="定位"></span>
+            <span id="subtitle" data-typed-text="Vue.js设计与实现"></span>
           
         </div>
 
@@ -204,8 +209,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-07-14 14:42" pubdate>
-          July 14, 2022 pm
+        <time datetime="2022-07-18 17:02" pubdate>
+          July 18, 2022 pm
         </time>
       </span>
     
@@ -216,7 +221,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          625 words
+          1.6k words
         
       </span>
     
@@ -227,7 +232,7 @@
         
         
         
-          6 mins
+          14 mins
         
       </span>
     
@@ -273,86 +278,73 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">定位</h1>
+            <h1 style="display: none">Vue.js设计与实现</h1>
             
             <div class="markdown-body">
               
-              <h1 id="定位"><a href="#定位" class="headerlink" title="定位"></a>定位</h1><p>一种布局方式</p>
-<p>定位 &#x3D; 定位模式 + 边偏移</p>
-<h2 id="边偏移"><a href="#边偏移" class="headerlink" title="边偏移"></a>边偏移</h2><table>
-<thead>
-<tr>
-<th>边偏移属性</th>
-<th align="left">示例</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>top</code></td>
-<td align="left"><code>top: 80px / 50%</code></td>
-<td><strong>顶端</strong>偏移量，定义元素相对于其父元素<strong>上边线的距离</strong>。</td>
-</tr>
-<tr>
-<td><code>bottom</code></td>
-<td align="left"><code>bottom: 80px</code></td>
-<td><strong>底部</strong>偏移量，定义元素相对于其父元素<strong>下边线的距离</strong>。</td>
-</tr>
-<tr>
-<td><code>left</code></td>
-<td align="left"><code>left: 80px</code></td>
-<td><strong>左侧</strong>偏移量，定义元素相对于其父元素<strong>左边线的距离</strong>。</td>
-</tr>
-<tr>
-<td><code>right</code></td>
-<td align="left"><code>right: 80px</code></td>
-<td><strong>右侧</strong>偏移量，定义元素相对于其父元素<strong>右边线的距离</strong></td>
-</tr>
-</tbody></table>
-<h2 id="定位模式"><a href="#定位模式" class="headerlink" title="定位模式"></a>定位模式</h2><table>
-<thead>
-<tr>
-<th>值</th>
-<th align="center">语义</th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>static</td>
-<td align="center"><strong>静态</strong>定位</td>
-<td>标准流 无定位</td>
-</tr>
-<tr>
-<td>relative</td>
-<td align="center"><strong>相对</strong>定位</td>
-<td>标准流 相对自身定位 标准流区域的位置仍占有</td>
-</tr>
-<tr>
-<td>absolute</td>
-<td align="center"><strong>绝对</strong>定位</td>
-<td>脱离标准流 相对最近的有定位且不为 static 的祖先元素定位，若没有则相对 body 定位</td>
-</tr>
-<tr>
-<td>fixed</td>
-<td align="center"><strong>固定</strong>定位</td>
-<td>脱离标准流 相对于浏览器窗口定位</td>
-</tr>
-<tr>
-<td>sticky</td>
-<td align="center"><strong>粘性</strong>定位</td>
-<td>根据窗口滚动自动切换 relative 和 fixed，由设置的边偏移决定</td>
-</tr>
-</tbody></table>
-<h2 id="z-index"><a href="#z-index" class="headerlink" title="z-index"></a>z-index</h2><p>在使用<strong>定位</strong>布局时，可能会<strong>出现盒子重叠的情况</strong>。</p>
-<p>加了定位的盒子，默认<strong>后来者居上</strong>， 后面的盒子会压住前面的盒子。</p>
-<p>使用 <code>z-index</code> 层叠等级属性可以<strong>调整盒子的堆叠顺序</strong>。</p>
-<p><code>z-index</code> 的特性如下：</p>
-<ol>
-<li><strong>属性值</strong>：<strong>整数</strong>，默认值是 0，数值越大，盒子越靠上；</li>
-<li>如果<strong>属性值相同</strong>，则按照书写顺序，<strong>后来居上</strong>；</li>
-<li><strong>数字后面不能加单位</strong>。</li>
-</ol>
-<p><strong>注意</strong>：<code>z-index</code> 只能应用于<strong>相对定位</strong>、<strong>绝对定位</strong>和<strong>固定定位</strong>的元素，其他<strong>标准流</strong>、<strong>浮动</strong>和<strong>静态定位</strong>无效。</p>
-<h2 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h2><p>设定 position ＝ absolute 或 fixed 可以创建 BFC 解决高度塌陷, 外边距重叠，清除浮动问题</p>
+              <h2 id="框架设计概览"><a href="#框架设计概览" class="headerlink" title="框架设计概览"></a>框架设计概览</h2><h3 id="权衡的艺术"><a href="#权衡的艺术" class="headerlink" title="权衡的艺术"></a>权衡的艺术</h3><h4 id="命令式和声明式"><a href="#命令式和声明式" class="headerlink" title="命令式和声明式"></a>命令式和声明式</h4><p>命令式 关注过程</p>
+<p>声明式 关注结果</p>
+<p>Vue.js 帮我们封装了过程，内部实现是命令式的，而暴露给用户的却更加声明式</p>
+<h4 id="性能与可维护性的权衡"><a href="#性能与可维护性的权衡" class="headerlink" title="性能与可维护性的权衡"></a>性能与可维护性的权衡</h4><p>声明式代码的性能不优于命令式代码的性能</p>
+<p>命令式代码的更新性能消耗 &#x3D; 直接修改的性能消耗</p>
+<p>声明式代码的更新性能消耗 &#x3D; 直接修改的性能消耗 + <strong>找出差异的性能消耗</strong></p>
+<p>但声明式代码的可维护性更强</p>
+<p>设计框架时 要保证可维护性的同时让性能损失最小化</p>
+<h4 id="虚拟-DOM-的性能到底如何"><a href="#虚拟-DOM-的性能到底如何" class="headerlink" title="虚拟 DOM 的性能到底如何"></a>虚拟 DOM 的性能到底如何</h4><p>虚拟 DOM 就是为了<strong>最小化找出差异</strong>这一步的性能消耗而出现的 (diff算法)</p>
+<p><strong>创建页面差异不大</strong></p>
+<img src="/2022/07/18/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20220718191653483.png" srcset="/img/loading.gif" lazyload class="" title="image-20220718191653483">
+
+<p><strong>更新页面性能差异大</strong></p>
+<img src="/2022/07/18/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20220718191710254.png" srcset="/img/loading.gif" lazyload class="" title="image-20220718191710254">
+
+<p><strong>更新页面的性能效果总结</strong></p>
+<img src="/2022/07/18/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20220718171611741.png" srcset="/img/loading.gif" lazyload class="" title="image-20220718171611741">
+
+
+
+<h4 id="运行时和编译时"><a href="#运行时和编译时" class="headerlink" title="运行时和编译时"></a>运行时和编译时</h4><p>纯运行时，没有编译的过程，没办法分析用户提供的内容</p>
+<p>纯编译时，可以分析用户提供的内容，性能更好，但用户提供的内容必须编译后才能用，有损灵活性</p>
+<p>Vue.js 是运行时 + 编译时的架构</p>
+<h3 id="框架设计的核心要素"><a href="#框架设计的核心要素" class="headerlink" title="框架设计的核心要素"></a>框架设计的核心要素</h3><h4 id="提供用户的开发体验"><a href="#提供用户的开发体验" class="headerlink" title="提供用户的开发体验"></a>提供用户的开发体验</h4><p>更友好的警告</p>
+<p>自定义输出形式</p>
+<h4 id="控制框架代码的体积"><a href="#控制框架代码的体积" class="headerlink" title="控制框架代码的体积"></a>控制框架代码的体积</h4><p>利用 Tree-shaking 机制，配合构建工具预定义常量的能力，如预定义 __DEV__常量，从而实现仅在开发环境中打印警告信息，从而控制线上代码体积</p>
+<h4 id="良好的-Tree-Shaking"><a href="#良好的-Tree-Shaking" class="headerlink" title="良好的 Tree-Shaking"></a>良好的 Tree-Shaking</h4><p>利用 &#x2F;*#__PURE__*&#x2F; 注释 来让 webpack 相信这段代码不会产生副作用，从而 tree-shaking 掉</p>
+<p>副作用：当调用函数的时候会对外部产生影响</p>
+<p>Vue.js 3 源码中，基本都是在一些顶级调用的函数中使用 &#x2F;*#__PURE__*&#x2F; 注释掉</p>
+<h4 id="框架应该输出怎样的构建产物"><a href="#框架应该输出怎样的构建产物" class="headerlink" title="框架应该输出怎样的构建产物"></a>框架应该输出怎样的构建产物</h4><p>为了让用户能够通过 <script> 标签直接引用并使用，需要输出 IIFE 格式的资源</p>
+<p>为了让用户能够通过 <script type="module"> 引用并使用，需要输出 ESM 格式的资源</p>
+<p>ESM格式的资源有两种：</p>
+<p>esm-browser.js 用于浏览器		使用 __DEV__  true/false 来判断环境</p>
+<p>esm-bundler.js 用于打包工具	 使用 process.env.NODE_ENV !== ‘production’ 来判断</p>
+<p>为了让用户能够通过在服务端通过</p>
+<figure class="highlight isbl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs isbl"><span class="hljs-variable">const</span> <span class="hljs-variable">Vue</span> = <span class="hljs-function"><span class="hljs-title">require</span>(<span class="hljs-string">&#x27;vue&#x27;</span>)</span><br></code></pre></td></tr></table></figure>
+
+<p>使用，需要输出 CommonJS 格式的资源（一般用于服务端渲染）</p>
+<h4 id="特性开关"><a href="#特性开关" class="headerlink" title="特性开关"></a>特性开关</h4><p>Vue.js 提供了很多功能，如果不需要可以通过特性开关关闭，这样打包时代码就不会出现在最终资源中，文件体积减小</p>
+<p>比如 Vue3.js 中我们仍可使用 options API，可以关闭，通过 __VUE_OPTIONS_API__ 控制。</p>
+<p>实现特性开关的方法和 __DEV__ 是一样的，本质上是通过 rollup.js(webpack) 的预定义常量插件来实现</p>
+<p>可以使用 webpack.DefinePlugin 插件来控制是否开启</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript"><span class="hljs-keyword">new</span> webpack.DefinePlugin (&#123;<br>	__VUE_OPTIONS_API__: <span class="hljs-built_in">JSON</span>.stringify(<span class="hljs-literal">true</span>)<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h4><p>Vue3.js 中将错误处理程序封装为一个函数 callWithErrorHandling</p>
+<p>还提供了 registerErrorHandler 函数，用户可以使用它注册错误处理程序</p>
+<h4 id="良好的-TS-支持"><a href="#良好的-TS-支持" class="headerlink" title="良好的 TS 支持"></a>良好的 TS 支持</h4><p>使用 TS 编写框架 和 框架对 TS 类型 支持友好是完全不同的</p>
+<h3 id="Vue3-js-的设计思路"><a href="#Vue3-js-的设计思路" class="headerlink" title="Vue3.js 的设计思路"></a>Vue3.js 的设计思路</h3><h4 id="声明式描述-UI"><a href="#声明式描述-UI" class="headerlink" title="声明式描述 UI"></a>声明式描述 UI</h4><p>描述 UI 的两种方式：模板和虚拟 DOM</p>
+<p>组件中的 render 函数就是使用虚拟 DOM 来描述 UI</p>
+<p>h 函数就是一个辅助创建虚拟 DOM 的工具函数</p>
+<h4 id="初始渲染器"><a href="#初始渲染器" class="headerlink" title="初始渲染器"></a>初始渲染器</h4><p><strong>渲染器</strong>的作用就是把 <strong>虚拟 DOM 转为 真实 DOM</strong></p>
+<p>代码部分看书上的 renderer 函数</p>
+<h4 id="组件的本质"><a href="#组件的本质" class="headerlink" title="组件的本质"></a>组件的本质</h4><p>组件就是一组 DOM 元素的封装</p>
+<h4 id="模板的工作原理"><a href="#模板的工作原理" class="headerlink" title="模板的工作原理"></a>模板的工作原理</h4><img src="/2022/07/18/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20220718204108277.png" srcset="/img/loading.gif" lazyload class="" title="image-20220718204108277">
+
+
+
+<h4 id="编译器分析动态内容"><a href="#编译器分析动态内容" class="headerlink" title="编译器分析动态内容"></a>编译器分析动态内容</h4><p>代码中有静态内容（如写死的字符串），有动态内容（如双向绑定的变量）</p>
+<p>动态内容改变时，渲染器会自动寻找变更点，找起来比较麻烦。</p>
+<p>如果编译器有能力分析动态内容，获取更多信息，就会方便很多。</p>
+<p>编译器能够识别出哪些是静态属性，哪些是动态属性（代码显然不一样），在生成虚拟 DOM 的时候就会携带额外的 patchFlags 信息。(patchFlags 应该是 vue3 新增的)</p>
 
               
             </div>
@@ -370,7 +362,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/CSS/" class="category-chain-item">CSS</a>
+  <a href="/categories/%E4%B9%A6%E7%B1%8D/" class="category-chain-item">书籍</a>
   
   
 
@@ -390,8 +382,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>定位</div>
-      <div>http://example.com/2022/07/14/定位/</div>
+      <div>Vue.js设计与实现</div>
+      <div>http://example.com/2022/07/18/Vue-js设计与实现/</div>
     </div>
     <div class="license-meta">
       
@@ -403,7 +395,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>July 14, 2022</div>
+          <div>July 18, 2022</div>
         </div>
       
       
@@ -433,18 +425,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/07/15/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" title="类型转换">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">类型转换</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/07/13/scoped%E5%92%8C%E6%A0%B7%E5%BC%8F%E7%A9%BF%E9%80%8F/" title="scoped和样式穿透">
-                        <span class="hidden-mobile">scoped和样式穿透</span>
+                      <a href="/2022/07/15/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" title="类型转换">
+                        <span class="hidden-mobile">类型转换</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
