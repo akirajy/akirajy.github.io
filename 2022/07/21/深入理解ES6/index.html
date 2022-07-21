@@ -1,0 +1,892 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="let const  没什么新的东西 就不写了 不知道为什么这本书后面都用的 var 字符串与正则表达式  更好的 Unicode 支持关于 UnicodeUnicode使用16位二进制来存储文字。我们将一个16位的二进制编码叫做一个码元（Code Unit），Unicode编码范围在0 - 2^16。也就是我们所说的占一个字节。 由于技术的发展，Unicode对文字编码进行了扩展，将某些文字扩展">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入理解ES6">
+<meta property="og:url" content="http://example.com/2022/07/21/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="let const  没什么新的东西 就不写了 不知道为什么这本书后面都用的 var 字符串与正则表达式  更好的 Unicode 支持关于 UnicodeUnicode使用16位二进制来存储文字。我们将一个16位的二进制编码叫做一个码元（Code Unit），Unicode编码范围在0 - 2^16。也就是我们所说的占一个字节。 由于技术的发展，Unicode对文字编码进行了扩展，将某些文字扩展">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2022/07/21/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/image-20220721192756233.png">
+<meta property="og:image" content="http://example.com/2022/07/21/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/image-20220721192733715.png">
+<meta property="og:image" content="http://example.com/2022/07/21/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/image-20220721204939237.png">
+<meta property="article:published_time" content="2022-07-21T05:57:00.000Z">
+<meta property="article:modified_time" content="2022-07-21T13:25:02.026Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="字符串">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2022/07/21/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/image-20220721192756233.png">
+  
+  
+  
+  <title>深入理解ES6 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"qPzYEpTngSrzQtV1XpsPSmPm-gzGzoHsz","app_key":"kf4lqne4FqonWhpUQzS1Ffrx","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>JY BLOG</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="深入理解ES6"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-07-21 13:57" pubdate>
+          July 21, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.7k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          73 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span>次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">深入理解ES6</h1>
+            
+            <div class="markdown-body">
+              
+              <h1 id="let-const"><a href="#let-const" class="headerlink" title="let const"></a>let const</h1><img src="/2022/07/21/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/image-20220721192756233.png" srcset="/img/loading.gif" lazyload class="" title="image-20220721192756233">
+
+<p>没什么新的东西 就不写了</p>
+<p>不知道为什么这本书后面都用的 var</p>
+<h1 id="字符串与正则表达式"><a href="#字符串与正则表达式" class="headerlink" title="字符串与正则表达式"></a>字符串与正则表达式</h1><img src="/2022/07/21/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/image-20220721192733715.png" srcset="/img/loading.gif" lazyload class="" title="image-20220721192733715">
+
+<h2 id="更好的-Unicode-支持"><a href="#更好的-Unicode-支持" class="headerlink" title="更好的 Unicode 支持"></a>更好的 Unicode 支持</h2><h3 id="关于-Unicode"><a href="#关于-Unicode" class="headerlink" title="关于 Unicode"></a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yongG/p/12153646.html">关于 Unicode</a></h3><p>Unicode使用16位二进制来存储文字。我们将一个16位的二进制编码叫做一个码元（Code Unit），Unicode编码范围在0 - 2^16。也就是我们所说的占一个字节。</p>
+<p>由于技术的发展，Unicode对文字编码进行了扩展，将某些文字扩展到了32位（占用两个码元），并且，将某个文字对应的二进制数字叫做码点（Code Point），Unicode编码范围在0 - 2^32，占2个字节。</p>
+<p>特别要注意，码点可以是一个码元，也可以是两个码元。</p>
+<p>字符串的length属性返回的是码元。所以在对一些字符串如果要处理长度的时候要注意这一点。</p>
+<p><strong>ES6 为了支持 Unicode 的发展也新增了一些方法</strong></p>
+<h3 id="codePointAt"><a href="#codePointAt" class="headerlink" title="codePointAt()"></a>codePointAt()</h3><p>可以在给定字符串中按位置提取 Unicode 代码点。该方法接受的是<strong>码元位置</strong>而非字符位置，并返回一个整数值。</p>
+<p><strong>charCodeAt 的优化版</strong></p>
+<p>charCodeAt是根据码元来匹配，codePointAt是根据码点来进行匹配的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> text = <span class="hljs-string">&quot;𘚠a&quot;</span> ;		<span class="hljs-comment">// 特殊字符显示不出来</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(text.<span class="hljs-title function_">charCodeAt</span>(<span class="hljs-number">0</span>)); <span class="hljs-comment">// 55329</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(text.<span class="hljs-title function_">charCodeAt</span>(<span class="hljs-number">1</span>)); <span class="hljs-comment">// 56992</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(text.<span class="hljs-title function_">charCodeAt</span>(<span class="hljs-number">2</span>)); <span class="hljs-comment">// 97</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(text.<span class="hljs-title function_">codePointAt</span>(<span class="hljs-number">0</span>)); <span class="hljs-comment">// 100000</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(text.<span class="hljs-title function_">codePointAt</span>(<span class="hljs-number">1</span>)); <span class="hljs-comment">// 56992</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(text.<span class="hljs-title function_">codePointAt</span>(<span class="hljs-number">2</span>)); <span class="hljs-comment">// 97</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>判断字符包含了一个还是两个码元</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 16 位字符的上边界用十六进制表示就是 FFFF ，因此任何大于该数字的代码点必须用两个码元（共 32 位）来表示。</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">is32Bit</span>(<span class="hljs-params">c</span>) &#123;<br>    <span class="hljs-keyword">return</span> c.<span class="hljs-title function_">codePointAt</span>(<span class="hljs-number">0</span>) &gt; <span class="hljs-number">0xFFFF</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>String.fromCodePoint</strong></p>
+<p>codePointAt() 的逆操作</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">String</span>.<span class="hljs-title function_">fromCodePoint</span>(<span class="hljs-number">134071</span>))   <span class="hljs-comment">// 𠮷</span><br></code></pre></td></tr></table></figure>
+
+<p>codePointAt &lt;—&gt; fromCodePoint</p>
+<p>charCodeAt &lt;—&gt; fromCharCode</p>
+<h3 id="normalize"><a href="#normalize" class="headerlink" title="normalize"></a>normalize</h3><p>开发国际化应用时，这个方法很重要</p>
+<p>在比较字符串时，必须被标准化为同一种形式</p>
+<h3 id="正则表达式-u-标志"><a href="#正则表达式-u-标志" class="headerlink" title="正则表达式 u 标志"></a>正则表达式 u 标志</h3><p>正则表达式假定单个字符由一个16位的码元表示。为了解决这个问题，ES6 定义了用于处理 Unicode 的 u 标志</p>
+<p>当一个正则表达式设置了 u 标志后看，工作表模式将切换到针对字符，而不是针对码元</p>
+<p><strong>计算码点数量</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">codePointLength</span>(<span class="hljs-params">text</span>) &#123;<br>    <span class="hljs-keyword">let</span> result = text.<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/[\s\S]/gu</span>)<br>    <span class="hljs-keyword">return</span> result ? result.<span class="hljs-property">length</span> : <span class="hljs-number">0</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>判断是否支持 u 标志</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">hasRegExpU</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-keyword">let</span> pattern = <span class="hljs-keyword">new</span> <span class="hljs-title class_">RegExp</span>(<span class="hljs-string">&quot;.&quot;</span>, <span class="hljs-string">&quot;u&quot;</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span><br>    &#125; <span class="hljs-keyword">catch</span> (ex) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="字符串的其他改动"><a href="#字符串的其他改动" class="headerlink" title="字符串的其他改动"></a>字符串的其他改动</h2><h3 id="识别子字符串的方法"><a href="#识别子字符串的方法" class="headerlink" title="识别子字符串的方法"></a>识别子字符串的方法</h3><p><strong>includes()</strong> 方法，在给定文本存在于字符串中的任意位置时会返回 true ，否则返回false ；</p>
+<p><strong>startsWith()</strong> 方法，在给定文本出现在字符串起始处时返回 true ，否则返回 false ；</p>
+<p><strong>endsWith()</strong> 方法，在给定文本出现在字符串结尾处时返回 true ，否则返回 false 。</p>
+<p>每个方法都接受两个参数：<strong>需要搜索的文本</strong>，以及<strong>可选的搜索起始位置索引</strong>。</p>
+<p>当提供了第二个参数时， includes() 与 startsWith() 方法会从该索引位置开始尝试匹配；而<strong>endsWith() 方法会将字符串长度减去该参数</strong>，以此为起点开始尝试匹配。</p>
+<p>当第二个参数未提供时， includes() 与 startsWith() 方法会从字符串起始处开始查找，而 endsWith() 方法则从尾部开始。实际上，第二个参数减少了搜索字符串的次数。以下是使用这些方法的演示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> msg = <span class="hljs-string">&quot;Hello world!&quot;</span>;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(msg.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">&quot;Hello&quot;</span>)); <span class="hljs-comment">// true</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(msg.<span class="hljs-title function_">endsWith</span>(<span class="hljs-string">&quot;!&quot;</span>)); <span class="hljs-comment">// true</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(msg.<span class="hljs-title function_">includes</span>(<span class="hljs-string">&quot;o&quot;</span>)); <span class="hljs-comment">// true</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(msg.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">&quot;o&quot;</span>)); <span class="hljs-comment">// false</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(msg.<span class="hljs-title function_">endsWith</span>(<span class="hljs-string">&quot;world!&quot;</span>)); <span class="hljs-comment">// true</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(msg.<span class="hljs-title function_">includes</span>(<span class="hljs-string">&quot;x&quot;</span>)); <span class="hljs-comment">// false</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(msg.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">&quot;o&quot;</span>, <span class="hljs-number">4</span>)); <span class="hljs-comment">// true</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(msg.<span class="hljs-title function_">endsWith</span>(<span class="hljs-string">&quot;o&quot;</span>, <span class="hljs-number">8</span>)); <span class="hljs-comment">// true</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(msg.<span class="hljs-title function_">includes</span>(<span class="hljs-string">&quot;o&quot;</span>, <span class="hljs-number">8</span>)); <span class="hljs-comment">// false</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>若你需要找到它们在另一个字符串中的确切位置，则需要使用 indexOf() 和 lastIndexOf() 。</strong></p>
+<p>如果向 startsWith() 、 endsWith() 或 includes() 方法传入了正则表达式,会抛出错误。</p>
+<p>而 indexOf() 以及 lastIndexOf() 会将正则表达式转换为字符串并搜索它。</p>
+<h3 id="repeat"><a href="#repeat" class="headerlink" title="repeat"></a>repeat</h3><p>ES6 还为字符串添加了一个 repeat() 方法，它接受一个参数作为字符串的重复次数，返回一个将初始字符串重复指定次数的新字符串。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;x&quot;</span>.<span class="hljs-title function_">repeat</span>(<span class="hljs-number">3</span>)); <span class="hljs-comment">// &quot;xxx&quot;</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;hello&quot;</span>.<span class="hljs-title function_">repeat</span>(<span class="hljs-number">2</span>)); <span class="hljs-comment">// &quot;hellohello&quot;</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;abc&quot;</span>.<span class="hljs-title function_">repeat</span>(<span class="hljs-number">4</span>)); <span class="hljs-comment">// &quot;abcabcabcabc&quot;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="正则表达式的其他改动"><a href="#正则表达式的其他改动" class="headerlink" title="正则表达式的其他改动"></a>正则表达式的其他改动</h2><h3 id="y-标志"><a href="#y-标志" class="headerlink" title="y 标志"></a>y 标志</h3><p>y 标志影响正则表达式搜索时的粘连（ sticky ）属性，它表示从正则表达式的 lastIndex 属性值的位置开始检索字符串中的匹配字符。如果在该位置没有匹配成功，那么正则表达式将停止检索</p>
+<h3 id="复制正则表达式"><a href="#复制正则表达式" class="headerlink" title="复制正则表达式"></a>复制正则表达式</h3><p>允许复制正则表达式时修改标志</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> re1 = <span class="hljs-regexp">/ab/i</span>,<br><span class="hljs-comment">// ES5 中会抛出错误, ES6 中可用</span><br>re2 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">RegExp</span>(re1, <span class="hljs-string">&quot;g&quot;</span>);	<span class="hljs-comment">// 如果没有第二个参数, re2 就会拥有与 re1 相同的标志。</span><br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(re1.<span class="hljs-title function_">toString</span>()); <span class="hljs-comment">// &quot;/ab/i&quot;</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(re2.<span class="hljs-title function_">toString</span>()); <span class="hljs-comment">// &quot;/ab/g&quot;</span><br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(re1.<span class="hljs-title function_">test</span>(<span class="hljs-string">&quot;ab&quot;</span>)); <span class="hljs-comment">// true</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(re2.<span class="hljs-title function_">test</span>(<span class="hljs-string">&quot;ab&quot;</span>)); <span class="hljs-comment">// true</span><br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(re1.<span class="hljs-title function_">test</span>(<span class="hljs-string">&quot;AB&quot;</span>)); <span class="hljs-comment">// true</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(re2.<span class="hljs-title function_">test</span>(<span class="hljs-string">&quot;AB&quot;</span>)); <span class="hljs-comment">// false</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="flags-属性"><a href="#flags-属性" class="headerlink" title="flags 属性"></a>flags 属性</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> re = <span class="hljs-regexp">/ab/g</span>;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(re.<span class="hljs-property">source</span>); <span class="hljs-comment">// &quot;ab&quot; ES5就有</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(re.<span class="hljs-property">flags</span>); <span class="hljs-comment">// &quot;g&quot;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="模板字符串"><a href="#模板字符串" class="headerlink" title="模板字符串"></a>模板字符串</h2><p><strong>模板字符串解决了什么问题：</strong></p>
+<p>多行字符串：针对多行字符串的形式概念；</p>
+<p>基本的字符串格式化：将字符串部分替换为已存在的变量值的能力；</p>
+<p>HTML 转义：能转换字符串以便将其安全插入到 HTML 中的能力。</p>
+<h3 id="多行字符串"><a href="#多行字符串" class="headerlink" title="多行字符串"></a>多行字符串</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> message = <span class="hljs-string">`Multiline</span><br><span class="hljs-string">string`</span>;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(message); <br><span class="hljs-comment">// &quot;Multiline</span><br><span class="hljs-comment">// string&quot;</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(message.<span class="hljs-property">length</span>); <span class="hljs-comment">// 16</span><br></code></pre></td></tr></table></figure>
+
+<p>反引号之内的所有空白符都是字符串的一部分，因此需要留意缩进</p>
+<p>如果让多行文本保持合适的缩进很重要，考虑将多行模板字面量的第一行空置并在此后进行缩进</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> html = <span class="hljs-string">`</span><br><span class="hljs-string">&lt;div&gt;</span><br><span class="hljs-string">&lt;h1&gt;Title&lt;/h1&gt;</span><br><span class="hljs-string">&lt;/div&gt;`</span>.<span class="hljs-title function_">trim</span>();<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="制造替代位"><a href="#制造替代位" class="headerlink" title="制造替代位"></a>制造替代位</h3><p>${任意表达式}</p>
+<p>模板字面量本身也是 JS 表达式，因此可嵌套</p>
+<h3 id="标签化模板"><a href="#标签化模板" class="headerlink" title="标签化模板"></a>标签化模板</h3><p>一个模板标签（ template tag ）能对模板字面量进行转换并返回最终的字符串值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> message = tag<span class="hljs-string">`Hello world`</span>;<br></code></pre></td></tr></table></figure>
+
+
+
+<p>标签（ tag ）是函数，它被调用时接收需要处理的模板字面量数据。标签所接收的数据被划分为独立片段，并且必须将它们组合起来以创建结果。第一个参数是个数组，包含被 JS 解释过的字面量字符串，随后的参数是每个替换位的解释值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">tag</span>(<span class="hljs-params">literals, ...substitutions</span>) &#123;<br>    <span class="hljs-comment">// 返回一个字符串</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>内置的标签 String.raw()</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> message1 = <span class="hljs-string">`Multiline\nstring`</span>,<br>message2 = <span class="hljs-title class_">String</span>.<span class="hljs-property">raw</span><span class="hljs-string">`Multiline\nstring`</span>;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(message1);<br><span class="hljs-comment">// &quot;Multiline</span><br><span class="hljs-comment">// string&quot;</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(message2); <span class="hljs-comment">// &quot;Multiline\\nstring&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>内部实现</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">raw</span>(<span class="hljs-params">literals, ...substitutions</span>) &#123;<br>    <span class="hljs-keyword">let</span> result = <span class="hljs-string">&quot;&quot;</span>;<br>    <span class="hljs-comment">// 仅使用 substitution 的元素数量来进行循环</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; substitutions.<span class="hljs-property">length</span>; i++) &#123;<br>        result += literals.<span class="hljs-property">raw</span>[i]; <span class="hljs-comment">// 改为使用原始值</span><br>        result += substitutions[i];<br>    &#125;<br>    <span class="hljs-comment">// 添加最后一个字面量</span><br>    result += literals.<span class="hljs-property">raw</span>[literals.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>];<br>    <span class="hljs-keyword">return</span> result;<br>&#125;<br><span class="hljs-keyword">let</span> message = raw<span class="hljs-string">`Multiline\nstring`</span>;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(message); <span class="hljs-comment">// &quot;Multiline\\nstring&quot;</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(message.<span class="hljs-property">length</span>); <span class="hljs-comment">// 17</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h1><img src="/2022/07/21/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/image-20220721204939237.png" srcset="/img/loading.gif" lazyload class="" title="image-20220721204939237">
+
+<h2 id="参数默认值"><a href="#参数默认值" class="headerlink" title="参数默认值"></a>参数默认值</h2><p>参数默认值的存在触发了 arguments 对象与具名参数的分离</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 非严格模式</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">mixArgs</span>(<span class="hljs-params">first, second = <span class="hljs-string">&quot;b&quot;</span></span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">arguments</span>.<span class="hljs-property">length</span>);          <span class="hljs-comment">// 1</span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(first === <span class="hljs-variable language_">arguments</span>[<span class="hljs-number">0</span>]);    <span class="hljs-comment">// true  </span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(second === <span class="hljs-variable language_">arguments</span>[<span class="hljs-number">1</span>]);   <span class="hljs-comment">// false</span><br>    first = <span class="hljs-string">&quot;c&quot;</span>;<br>    second = <span class="hljs-string">&quot;d&quot;</span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(first === <span class="hljs-variable language_">arguments</span>[<span class="hljs-number">0</span>]);    <span class="hljs-comment">// false</span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(second === <span class="hljs-variable language_">arguments</span>[<span class="hljs-number">1</span>]);   <span class="hljs-comment">// false</span><br>&#125;<br><span class="hljs-title function_">mixArgs</span>(<span class="hljs-string">&quot;a&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+
+
+<p>参数默认值可以使用表达式</p>
+<p>参数默认值存在暂时性死区</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">add</span>(<span class="hljs-params">first = second, second</span>) &#123;<br>    <span class="hljs-keyword">return</span> first + second;<br>&#125;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">add</span>(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>)); <span class="hljs-comment">// 2</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">add</span>(<span class="hljs-literal">undefined</span>, <span class="hljs-number">1</span>)); <span class="hljs-comment">// 抛出错误</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="剩余参数"><a href="#剩余参数" class="headerlink" title="剩余参数"></a>剩余参数</h2><p>…具名参数</p>
+<p>是包含传递给函数的其余参数的一个数组</p>
+<p>函数的 length 属性用于指示剧名参数的数量，而剩余参数对其毫无影响</p>
+<p><strong>剩余参数的限制条件：</strong></p>
+<p>一、函数只能有一个剩余参数，并且它必须被放在最后。</p>
+<p>二、剩余参数不能在对象字面量的 setter 属性中使用。（对象字面量的 setter 被限定只能使用单个参数）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> object = &#123;<br><span class="hljs-comment">// 语法错误：不能在 setter 中使用剩余参数</span><br>    <span class="hljs-keyword">set</span> <span class="hljs-title function_">name</span>(<span class="hljs-params">...value</span>) &#123;<br>        <span class="hljs-comment">// 一些操作</span><br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>设计剩余参数是为了替代 ES 中的 arguments</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">checkArgs</span>(<span class="hljs-params">...args</span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(args.<span class="hljs-property">length</span>);			<span class="hljs-comment">// 2</span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">arguments</span>.<span class="hljs-property">length</span>);		<span class="hljs-comment">// 2</span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(args[<span class="hljs-number">0</span>], <span class="hljs-variable language_">arguments</span>[<span class="hljs-number">0</span>]);	<span class="hljs-comment">// a a</span><br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(args[<span class="hljs-number">1</span>], <span class="hljs-variable language_">arguments</span>[<span class="hljs-number">1</span>]);	<span class="hljs-comment">// b b</span><br>&#125;<br><span class="hljs-title function_">checkArgs</span>(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>拓展运算符</strong></p>
+<p>拓展运算符常和剩余参数一起使用</p>
+<p>以一个例子为例，查找数组最大值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// ES5及以前</span><br><span class="hljs-keyword">let</span> values = [<span class="hljs-number">25</span>, <span class="hljs-number">50</span>, <span class="hljs-number">75</span>, <span class="hljs-number">100</span>]<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-property">max</span>.<span class="hljs-title function_">apply</span>(<span class="hljs-title class_">Math</span>, values)); <span class="hljs-comment">// 100</span><br><br><span class="hljs-comment">// ES6</span><br><span class="hljs-keyword">let</span> values = [<span class="hljs-number">25</span>, <span class="hljs-number">50</span>, <span class="hljs-number">75</span>, <span class="hljs-number">100</span>]<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(...values)); <span class="hljs-comment">// 100</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="ES6-的名称属性"><a href="#ES6-的名称属性" class="headerlink" title="ES6 的名称属性"></a>ES6 的名称属性</h2><p>匿名函数使得调试困难，因此 ES6 给所有函数添加了 name 属性。name 仅用于在调试时获得函数的相关信息，不能获取对函数的引用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">doSomething</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-comment">// ...</span><br>&#125;<br><span class="hljs-keyword">var</span> doAnotherThing = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-comment">// ...</span><br>&#125;;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(doSomething.<span class="hljs-property">name</span>); <span class="hljs-comment">// &quot;doSomething&quot;</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(doAnotherThing.<span class="hljs-property">name</span>); <span class="hljs-comment">// &quot;doAnotherThing&quot;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>特殊情况</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> doSomething = <span class="hljs-keyword">function</span> <span class="hljs-title function_">doSomethingElse</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-comment">// ...</span><br>&#125;;<br><span class="hljs-keyword">var</span> person = &#123;<br>    <span class="hljs-keyword">get</span> <span class="hljs-title function_">firstName</span>() &#123;<br>    	<span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Nicholas&quot;</span><br>	&#125;,<br>    <span class="hljs-attr">sayName</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span>);<br>    &#125;<br>&#125;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(doSomething.<span class="hljs-property">name</span>); <span class="hljs-comment">// &quot;doSomethingElse&quot;</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(person.<span class="hljs-property">sayName</span>.<span class="hljs-property">name</span>); <span class="hljs-comment">// &quot;sayName&quot;</span><br><span class="hljs-keyword">var</span> descriptor = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">getOwnPropertyDescriptor</span>(person, <span class="hljs-string">&quot;firstName&quot;</span>);<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(descriptor.<span class="hljs-property">get</span>.<span class="hljs-property">name</span>); <span class="hljs-comment">// &quot;get firstName&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>getter 函数会有 get 前缀，setter 函数会有 set 前缀</p>
+<p>getter 与 setter 函数都必须使用 Object.getOwnPropertyDescriptor 来检索</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> doSomething = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br><span class="hljs-comment">// ...</span><br>&#125;;<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(doSomething.<span class="hljs-title function_">bind</span>().<span class="hljs-property">name</span>); <span class="hljs-comment">// &quot;bound doSomething&quot;</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>((<span class="hljs-keyword">new</span> <span class="hljs-title class_">Function</span>()).<span class="hljs-property">name</span>); <span class="hljs-comment">// &quot;anonymous&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>使用 bind() 创建的函数会有 bound 前缀</p>
+<p>使用 Function 构造器创建的函数会有 anonymous 前缀</p>
+<h2 id="明确函数的双重用途"><a href="#明确函数的双重用途" class="headerlink" title="明确函数的双重用途"></a>明确函数的双重用途</h2><p>一般函数 和 构造函数(new)，构造函数名首字母大写</p>
+<p>JS 为函数提供了两个内部方法，[[Call]] 和 [[Construct]]</p>
+<p>函数未使用 new 调用时，[[call]] 方法执行，运行函数体</p>
+<p>函数使用 new 调用时，[[Construct]] 方法调用，创建一个新的对象，并且以该对象为 this 执行函数体</p>
+<p>拥有 [[Constructor]] 方法的函数被称为构造器</p>
+<p><strong>判断调用的是什么方法</strong></p>
+<p>当 [[Constructor]] 被调用时，new.target 为 new 调用的构造函数</p>
+<p>当 [[Call]] 被调用时，new.target 为 undefiend</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Person</span>(<span class="hljs-params">name</span>) &#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> <span class="hljs-keyword">new</span>.<span class="hljs-property">target</span> !== <span class="hljs-string">&quot;undefined&quot;</span>) &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">new</span>.<span class="hljs-property">target</span>)			<span class="hljs-comment">// [Function: Person]</span><br>        <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = name; <span class="hljs-comment">// 使用 new</span><br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;You must use new with Person.&quot;</span>)<br>    &#125;   <br>&#125;<br><span class="hljs-keyword">var</span> person = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>(<span class="hljs-string">&quot;Nicholas&quot;</span>);<br><span class="hljs-keyword">var</span> notAPerson = <span class="hljs-title class_">Person</span>.<span class="hljs-title function_">call</span>(person, <span class="hljs-string">&quot;Michael&quot;</span>); <span class="hljs-comment">// 出错！</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="块级函数"><a href="#块级函数" class="headerlink" title="块级函数"></a>块级函数</h2><p>块级函数会被提升到所在代码块的顶部</p>
+<p>而使用 let 的函数表达式不会</p>
+<h2 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h2><p>没有 this 、 super 、 arguments ，也没有 new.target 绑定。this 、 super 、arguments 、以及函数内部的 new.target 的值由所在的、最靠近的非箭头函数来决定。</p>
+<p>不能被使用 new 调用： 箭头函数没有 [[Construct]] 方法，因此不能被用为构造函数，使用 new 调用箭头函数会抛出错误。</p>
+<p>没有原型： 既然不能对箭头函数使用 new ，那么它也不需要原型，也就是没有prototype 属性。</p>
+<p>不能更改 this ： this 的值在函数内部不能被修改，在函数的整个生命周期内其值会保持不变。</p>
+<p>没有 arguments 对象： 既然箭头函数没有 arguments 绑定，你必须依赖于具名参数或剩余参数来访问函数的参数。</p>
+<p>不允许重复的具名参数： 箭头函数不允许拥有重复的具名参数，无论是否在严格模式下；而相对来说，传统函数只有在严格模式下才禁止这种重复。</p>
+<p>箭头函数也拥有 name 属性，并且遵循与其他函数相同的规则</p>
+<h2 id="尾调用优化"><a href="#尾调用优化" class="headerlink" title="尾调用优化"></a>尾调用优化</h2><p>这是一项引擎优化，改变了尾部调用的系统。</p>
+<p>尾调用（tail call ）指的是调用函数的语句是另一个函数的最后语句</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs JS"><span class="hljs-keyword">function</span> <span class="hljs-title function_">doSomething</span>(<span class="hljs-params"></span>) &#123;<br>	<span class="hljs-keyword">return</span> <span class="hljs-title function_">doSomethingElse</span>(); <span class="hljs-comment">// 尾调用</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在 ES5 引擎中实现的尾调用，其处理就像其他函数调用一样：<strong>一个新的栈帧</strong>（ stack frame）被创建并推到调用栈之上，用于表示该次函数调用。这意味着<strong>之前每个栈帧都被保留在内存中，当调用栈太大时会出问题。</strong></p>
+<p>ES6 在严格模式下力图为特定尾调用减少调用栈的大小（非严格模式的尾调用则保持不变）。<strong>当满足以下条件时，尾调用优化会清除当前栈帧并再次利用它，而不是为尾调用创建新的栈帧</strong>：</p>
+<ol>
+<li>尾调用不能引用当前栈帧中的变量（意味着该函数不能是闭包）；</li>
+<li>进行尾调用的函数在尾调用返回结果后不能做额外操作；</li>
+<li>尾调用的结果作为当前函数的返回值。</li>
+</ol>
+<p><strong>尾调用优化主要是用在递归中</strong></p>
+<p>不考虑尾调用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">factorial</span>(<span class="hljs-params">n</span>) &#123;<br>    <span class="hljs-keyword">if</span> (n &lt;= <span class="hljs-number">1</span>) &#123;<br>    	<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>    	<span class="hljs-comment">// 未被优化：在返回之后还要执行乘法</span><br>    	<span class="hljs-keyword">return</span> n * <span class="hljs-title function_">factorial</span>(n - <span class="hljs-number">1</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>考虑尾调用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">factorial</span>(<span class="hljs-params">n</span>) &#123;<br>    <span class="hljs-keyword">if</span> (n &lt;= <span class="hljs-number">1</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-comment">// 未被优化：在返回之后还要执行乘法</span><br>        <span class="hljs-keyword">return</span> n * <span class="hljs-title function_">factorial</span>(n - <span class="hljs-number">1</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在重写的 factorial() 函数中，添加了第二个参数 p ，其默认值为 1 。 p 参数保存着前一次乘法的结果，因此下一次的结果就能在进行函数调用之前被算出。</p>
+<p><strong>尾调用优化是你在书写任意递归函数时都需要考虑的因素</strong>，因为它能提供显著的性能提升，尤其是被应用到计算复杂度很高的函数时。</p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%B9%A6%E7%B1%8D/" class="category-chain-item">书籍</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/">#字符串</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>深入理解ES6</div>
+      <div>http://example.com/2022/07/21/深入理解ES6/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>July 21, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/07/18/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/" title="Vue.js设计与实现">
+                        <span class="hidden-mobile">Vue.js设计与实现</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+    
+      
+            
+                  
+</div>
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
