@@ -16,32 +16,25 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Git    初始化用户设置设置用户名 git config –global user.name lwj 设置邮箱 git config –global user.email &amp;#54;&amp;#49;&amp;#x39;&amp;#53;&amp;#48;&amp;#48;&amp;#56;&amp;#50;&amp;#56;&amp;#x40;&amp;#x71;&amp;#x71;&amp;#x2e;&amp;#99;&amp;#111;&amp;#x6d; 初始化git init 多了一个 .git 文件">
+    <meta name="description" content="服务端渲染 SSR无论是服务端渲染还是客户端渲染，一开始都是要请求一个 HTML 文本，但是区别就在于这个文本是否已经被服务端组装好了  客户端渲染还需要去下载和执行Javascript脚本之后才能得到我们想要的页面效果，所以速度会比服务端渲染慢很多 服务端渲染得到的HTML文档就已经组合好了对应的文本，浏览器请求到之后直接解析渲染出来即可，不需要再去下载和执行额外的Javasript 脚本，所以">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git">
-<meta property="og:url" content="http://example.com/2022/07/09/Git/index.html">
+<meta property="og:title" content="为什么React官网那么快">
+<meta property="og:url" content="http://example.com/2022/08/08/%E4%B8%BA%E4%BB%80%E4%B9%88React%E5%AE%98%E7%BD%91%E9%82%A3%E4%B9%88%E5%BF%AB/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Git    初始化用户设置设置用户名 git config –global user.name lwj 设置邮箱 git config –global user.email &amp;#54;&amp;#49;&amp;#x39;&amp;#53;&amp;#48;&amp;#48;&amp;#56;&amp;#50;&amp;#56;&amp;#x40;&amp;#x71;&amp;#x71;&amp;#x2e;&amp;#99;&amp;#111;&amp;#x6d; 初始化git init 多了一个 .git 文件">
+<meta property="og:description" content="服务端渲染 SSR无论是服务端渲染还是客户端渲染，一开始都是要请求一个 HTML 文本，但是区别就在于这个文本是否已经被服务端组装好了  客户端渲染还需要去下载和执行Javascript脚本之后才能得到我们想要的页面效果，所以速度会比服务端渲染慢很多 服务端渲染得到的HTML文档就已经组合好了对应的文本，浏览器请求到之后直接解析渲染出来即可，不需要再去下载和执行额外的Javasript 脚本，所以">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022/07/09/Git/image-20220709160235846.png">
-<meta property="og:image" content="http://example.com/2022/07/09/Git/image-20220709161701963.png">
-<meta property="og:image" content="http://example.com/2022/07/09/Git/image-20220709162553790.png">
-<meta property="og:image" content="http://example.com/2022/07/09/Git/image-20220709163820131.png">
-<meta property="og:image" content="http://example.com/2022/07/09/Git/image-20220709163829783.png">
-<meta property="og:image" content="http://example.com/2022/07/09/Git/image-20220709164756819.png">
-<meta property="og:image" content="http://example.com/2022/07/09/Git/image-20220709170218325.png">
-<meta property="og:image" content="http://example.com/2022/07/09/Git/image-20220709170748070.png">
-<meta property="og:image" content="http://example.com/2022/07/09/Git/image-20220709171256207.png">
-<meta property="og:image" content="http://example.com/2022/07/09/Git/Git/image-20220805172652696.png">
-<meta property="article:published_time" content="2022-07-09T07:59:14.000Z">
-<meta property="article:modified_time" content="2022-08-05T09:27:42.702Z">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/610390beb91049e49c897392fe130d3d~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp">
+<meta property="article:published_time" content="2022-08-08T02:59:13.000Z">
+<meta property="article:modified_time" content="2022-08-08T03:18:29.760Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="SSR">
+<meta property="article:tag" content="预加载">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2022/07/09/Git/image-20220709160235846.png">
+<meta name="twitter:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/610390beb91049e49c897392fe130d3d~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp">
   
   
   
-  <title>Git - Hexo</title>
+  <title>为什么React官网那么快 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -204,7 +197,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Git"></span>
+            <span id="subtitle" data-typed-text="为什么React官网那么快"></span>
           
         </div>
 
@@ -215,8 +208,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-07-09 15:59" pubdate>
-          July 9, 2022 pm
+        <time datetime="2022-08-08 10:59" pubdate>
+          August 8, 2022 am
         </time>
       </span>
     
@@ -227,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.4k words
+          1.5k words
         
       </span>
     
@@ -238,7 +231,7 @@
         
         
         
-          12 mins
+          13 mins
         
       </span>
     
@@ -284,92 +277,44 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Git</h1>
+            <h1 style="display: none">为什么React官网那么快</h1>
             
             <div class="markdown-body">
               
-              <h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1><img src="/2022/07/09/Git/image-20220709160235846.png" srcset="/img/loading.gif" lazyload class="" title="image-20220709160235846">
+              <h2 id="服务端渲染-SSR"><a href="#服务端渲染-SSR" class="headerlink" title="服务端渲染 SSR"></a>服务端渲染 SSR</h2><p>无论是服务端渲染还是客户端渲染，一开始都是要请求一个 <code>HTML</code> 文本，但是区别就在于这个文本是否已经被服务端组装好了</p>
+<ul>
+<li>客户端渲染还需要去下载和执行<code>Javascript</code>脚本之后才能得到我们想要的页面效果，所以速度会比服务端渲染慢很多</li>
+<li>服务端渲染得到的<code>HTML</code>文档就已经组合好了对应的文本，浏览器请求到之后直接解析渲染出来即可，不需要再去下载和执行额外的<code>Javasript</code> 脚本，所以速度会比客户端渲染快很多</li>
+</ul>
+<p>下图是客户端渲染和服务端渲染的流程图：</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/610390beb91049e49c897392fe130d3d~tplv-k3u1fbpfcp-zoom-in-crop-mark:3024:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id="预加载-x2F-预处理资源"><a href="#预加载-x2F-预处理资源" class="headerlink" title="预加载&#x2F;预处理资源"></a>预加载&#x2F;预处理资源</h2><h3 id="preload"><a href="#preload" class="headerlink" title="preload"></a>preload</h3><p>关键字 <strong>preload</strong> 作为元素 <code>&lt;link&gt;</code> 的属性 <code>rel</code>的值，表示用户十分有可能需要在当前浏览中加载目标资源，所以<strong>浏览器必须预先获取和缓存对应资源</strong>。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">as</span>=<span class="hljs-string">&quot;script&quot;</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;preload&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;/webpack-runtime-732352b70a6d0733ac95.js&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>好处就是让在当前页面中可能被访问到的资源提前加载但并不阻塞页面的初步渲染，进而提升性能。</p>
+<blockquote>
+<p>注意：使用 <code>preload</code>作为 <code>link</code>标签<code>rel</code>属性的属性值的话一定要记得在标签上添加 <code>as</code>属性，其属性值就是要预加载的内容类型</p>
+</blockquote>
+<h3 id="preconnect"><a href="#preconnect" class="headerlink" title="preconnect"></a>preconnect</h3><p><strong>preconnect</strong> 是提示浏览器用户可能需要来自目标域名的资源，因此<strong>浏览器可以通过抢先启动与该域名的连接</strong>来改善用户体验。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;preconnect&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://www.google-analytics.com&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 
 
-<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><h3 id="用户设置"><a href="#用户设置" class="headerlink" title="用户设置"></a>用户设置</h3><p><strong>设置用户名</strong></p>
-<p>git config –global user.name lwj</p>
-<p><strong>设置邮箱</strong></p>
-<p>git config –global user.email <a href="mailto:&#54;&#49;&#x39;&#53;&#48;&#48;&#56;&#50;&#56;&#x40;&#x71;&#x71;&#x2e;&#99;&#111;&#x6d;">&#54;&#49;&#x39;&#53;&#48;&#48;&#56;&#50;&#56;&#x40;&#x71;&#x71;&#x2e;&#99;&#111;&#x6d;</a></p>
-<h3 id="初始化-1"><a href="#初始化-1" class="headerlink" title="初始化"></a>初始化</h3><p>git init</p>
-<p>多了一个 .git 文件夹，git 的所有记录都在此文件夹中</p>
-<p>默认位于 master (主分支)</p>
-<h2 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h2><h3 id="创建文件"><a href="#创建文件" class="headerlink" title="创建文件"></a>创建文件</h3><p>echo “版本1” &gt; lao.md</p>
-<p>lao.md 为我们创建的文件；版本1 为在文件中添加的内容</p>
-<h3 id="查看状态"><a href="#查看状态" class="headerlink" title="查看状态"></a>查看状态</h3><p>git status</p>
-<p>用于查看目前分支，以及需要做什么步骤</p>
-<img src="/2022/07/09/Git/image-20220709161701963.png" srcset="/img/loading.gif" lazyload class="" title="image-20220709161701963">
-
-<p>处于 master 分支</p>
-<p>刚刚添加的文件 lao.md 为 untracked files，需要添加到缓存区</p>
-<h3 id="添加文件到暂存区"><a href="#添加文件到暂存区" class="headerlink" title="添加文件到暂存区"></a>添加文件到暂存区</h3><p>git add lao.md</p>
-<h3 id="提交文件"><a href="#提交文件" class="headerlink" title="提交文件"></a>提交文件</h3><p>git commit	会进入 vim 编辑器</p>
-<p>git commit -m “版本2和版本3”	加上 -m 和提交信息 则不会进入 vim</p>
-<h3 id="查看之前版本"><a href="#查看之前版本" class="headerlink" title="查看之前版本"></a>查看之前版本</h3><p>git log</p>
-<img src="/2022/07/09/Git/image-20220709162553790.png" srcset="/img/loading.gif" lazyload class="" title="image-20220709162553790">
+<h3 id="dns-prefetch"><a href="#dns-prefetch" class="headerlink" title="dns-prefetch"></a>dns-prefetch</h3><p><strong>DNS-prefetch</strong> (<strong>DNS 预获取</strong>) 是尝试<strong>在请求资源之前解析域名</strong>。这可能是后面要加载的文件，也可能是用户尝试打开的链接目标。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;dns-prefetch&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://www.google-analytics.com&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 
 
-<h3 id="不需要提交的文件"><a href="#不需要提交的文件" class="headerlink" title="不需要提交的文件"></a>不需要提交的文件</h3><p>创建 .gitignore 文件</p>
-<p>echo &gt; .gitignore</p>
-<p>在 .gitignore 中写上不想提交的文件 rubbish.md，git status 后就不会显示该文件了</p>
-<img src="/2022/07/09/Git/image-20220709163820131.png" srcset="/img/loading.gif" lazyload class="" title="image-20220709163820131">
+<h3 id="prefetch"><a href="#prefetch" class="headerlink" title="prefetch"></a>prefetch</h3><p><strong>prefetch</strong> 作为元素 的属性 <a href="https://link.juejin.cn/?target=https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/link%23attr-rel">rel</a> 的值，是为了提示浏览器，用户未来的浏览有可能需要加载目标资源，所以<strong>浏览器会事先获取和缓存对应资源</strong>，优化用户体验。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;prefetch&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;/page-data/docs/getting-started.html/page-data.json&quot;</span> <span class="hljs-attr">crossorigin</span>=<span class="hljs-string">&quot;anonymous&quot;</span> <span class="hljs-attr">as</span>=<span class="hljs-string">&quot;fetch&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
-<p>配置 .gitignore 后</p>
-<img src="/2022/07/09/Git/image-20220709163829783.png" srcset="/img/loading.gif" lazyload class="" title="image-20220709163829783">
-
-
-
-<h2 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h2><p>一个分支代表一条独立的开发线。</p>
-<p>使用分支意味着你可以从开发主线上分离开来，然后在不影响主线的同时继续工作。</p>
-<img src="/2022/07/09/Git/image-20220709164756819.png" srcset="/img/loading.gif" lazyload class="" title="image-20220709164756819">
-
-
-
-<h3 id="创建分支"><a href="#创建分支" class="headerlink" title="创建分支"></a>创建分支</h3><p>git branch 分支名</p>
-<h3 id="查看分支"><a href="#查看分支" class="headerlink" title="查看分支"></a>查看分支</h3><p>git branch</p>
-<h3 id="切换分支"><a href="#切换分支" class="headerlink" title="切换分支"></a>切换分支</h3><p>git checkout 分支名</p>
-<h3 id="删除分支"><a href="#删除分支" class="headerlink" title="删除分支"></a>删除分支</h3><p>git branch -d 分支名（会有提示）</p>
-<p>git branch -D 分支名（不会有提示，非常确定要删除时使用）</p>
-<h3 id="分支合并"><a href="#分支合并" class="headerlink" title="分支合并"></a>分支合并</h3><p>把别的分支合并到当前所处分支</p>
-<p>git merge 分支名</p>
-<h2 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h2><h3 id="拷贝远程仓库到本地"><a href="#拷贝远程仓库到本地" class="headerlink" title="拷贝远程仓库到本地"></a>拷贝远程仓库到本地</h3><p>直接 download，则版本历史和记录(.git)不会下载</p>
-<p>使用 git clone url 更好</p>
-<h3 id="查看本地仓库与远程仓库的联系"><a href="#查看本地仓库与远程仓库的联系" class="headerlink" title="查看本地仓库与远程仓库的联系"></a>查看本地仓库与远程仓库的联系</h3><p>git remote -v</p>
-<h3 id="更新远程仓库"><a href="#更新远程仓库" class="headerlink" title="更新远程仓库"></a>更新远程仓库</h3><p>git push</p>
-<p>2021年后不支持通过账号密码，而要生成个人 token</p>
-<h3 id="更新本地仓库"><a href="#更新本地仓库" class="headerlink" title="更新本地仓库"></a>更新本地仓库</h3><p>git fetch (远程仓库&#x2F;分支名)		更新本地仓库，本地文件（工作区）并不会改变</p>
-<p>git diff 远程仓库名&#x2F;分支名		查看工作区和本地仓库的区别</p>
-<p>如果没问题则可使用 git pull 把远程仓库的内容直接整合到工作区</p>
-<h2 id="vscode-中的-git"><a href="#vscode-中的-git" class="headerlink" title="vscode 中的 git"></a>vscode 中的 git</h2><p>初始化仓库</p>
-<p>相当于 git init</p>
-<img src="/2022/07/09/Git/image-20220709170218325.png" srcset="/img/loading.gif" lazyload class="" title="image-20220709170218325">
-
-<p>一些操作</p>
-<img src="/2022/07/09/Git/image-20220709170748070.png" srcset="/img/loading.gif" lazyload class="" title="image-20220709170748070">
-
-<p>左下角切换分支</p>
-<img src="/2022/07/09/Git/image-20220709171256207.png" srcset="/img/loading.gif" lazyload class="" title="image-20220709171256207">
-
-
-
-<h2 id="使用顺序注意"><a href="#使用顺序注意" class="headerlink" title="使用顺序注意"></a>使用顺序注意</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/aaaaa1994/article/details/90340224">https://blog.csdn.net/aaaaa1994/article/details/90340224</a> 实习期间遇到了同样的问题</p>
-<p>1.本地修改与远程代码无冲突，优先使用</p>
-<p>pull -&gt; commit -&gt; push</p>
-<p><strong>2.本地修改与远程代码有冲突，优先使用</strong></p>
-<p>commit -&gt; pull -&gt; push</p>
-<p>pull 是为了本地 commit 和远程 commit 的对比记录</p>
-<h2 id="多人同时修改同一分支"><a href="#多人同时修改同一分支" class="headerlink" title="多人同时修改同一分支"></a><strong>多人同时修改同一分支</strong></h2><img src="Git/image-20220805172652696.png" srcset="/img/loading.gif" lazyload alt="image-20220805172652696" style="zoom:80%;" />
-
-
-
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1r3411F7kn?spm_id_from=333.337.search-card.all.click&amp;vd_source=1616b746cefe2e7615c229563ba38eb4">https://www.bilibili.com/video/BV1r3411F7kn?spm_id_from=333.337.search-card.all.click&amp;vd_source=1616b746cefe2e7615c229563ba38eb4</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.runoob.com/git/git-basic-operations.html">https://www.runoob.com/git/git-basic-operations.html</a></p>
+<p><strong>什么时候使用：</strong></p>
+<p><strong>当你的页面中具有可能跳转到其他页面的路由链接时</strong>，就可以使用<code>prefetch</code> 预请求对应页面的资源了。如果一个页面中路由链接太多，全部发一遍显然浪费流量，也不利于性能优化。</p>
+<p>可以通过监听 <code>Link</code>元素，当其出现到可见区域时动态插入带有<code>prefetch</code>属性值的<code>link</code>标签到<code>HTML</code>文档中，从而去预加载对应路由页面的一些资源，这样当用户点击路由链接跳转过去时由于资源已经请求好所以页面加载会特别快。（<strong>懒加载思想</strong>）</p>
+<h3 id="preload-和-prefetch-的区别"><a href="#preload-和-prefetch-的区别" class="headerlink" title="preload 和 prefetch 的区别"></a>preload 和 prefetch 的区别</h3><p>两者都用于提前获取和缓存对应资源</p>
+<p>preload让浏览器提前加载指定资源，需要执行时再执行，可以加速本页面的加载速度</p>
+<p>prefetch告诉浏览器加载下一页面可能会用到的资源，可以加速下一个页面的加载速度</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7128369638794231839">https://juejin.cn/post/7128369638794231839</a> 本文绝大部分内容来源于这篇文章</p>
 
               
             </div>
@@ -387,7 +332,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Git/" class="category-chain-item">Git</a>
+  <a href="/categories/%E4%BC%98%E5%8C%96/" class="category-chain-item">优化</a>
   
   
 
@@ -399,6 +344,15 @@
     </div>
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/SSR/">#SSR</a>
+      
+        <a href="/tags/%E9%A2%84%E5%8A%A0%E8%BD%BD/">#预加载</a>
+      
+    </div>
+  
 </div>
 
 
@@ -407,8 +361,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Git</div>
-      <div>http://example.com/2022/07/09/Git/</div>
+      <div>为什么React官网那么快</div>
+      <div>http://example.com/2022/08/08/为什么React官网那么快/</div>
     </div>
     <div class="license-meta">
       
@@ -420,7 +374,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>July 9, 2022</div>
+          <div>August 8, 2022</div>
         </div>
       
       
@@ -450,18 +404,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/07/10/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JS/" title="你不知道的JS">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">你不知道的JS</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/07/01/vue3/" title="vue3">
-                        <span class="hidden-mobile">vue3</span>
+                      <a href="/2022/08/01/%E5%AE%9E%E4%B9%A0%E8%AE%B0%E5%BD%95/" title="实习记录">
+                        <span class="hidden-mobile">实习记录</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

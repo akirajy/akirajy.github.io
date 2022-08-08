@@ -24,7 +24,7 @@
 <meta property="og:description" content="对象的深拷贝与浅拷贝什么是浅拷贝只拷贝了数据对象的第一层，深层次的数据值与原始数据会互相影响（拷贝后的数据与原始数据还存有关联） 常见浅拷贝的方式：Object.assign()、扩展运算符 123456789const obj1 &#x3D; &amp;#123; name: &amp;#x27;dog&amp;#x27;, info: &amp;#123; age: 3 &amp;#125; &amp;#125;const obj2 &#x3D; Object">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-06-14T04:53:10.000Z">
-<meta property="article:modified_time" content="2022-06-17T11:21:59.111Z">
+<meta property="article:modified_time" content="2022-08-08T02:11:47.195Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="JS">
 <meta property="article:tag" content="深拷贝与浅拷贝">
@@ -219,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.1k words
+          3.6k words
         
       </span>
     
@@ -230,7 +230,7 @@
         
         
         
-          26 mins
+          31 mins
         
       </span>
     
@@ -305,7 +305,13 @@
 
 <h3 id="深拷贝的实现"><a href="#深拷贝的实现" class="headerlink" title="深拷贝的实现"></a><a target="_blank" rel="noopener" href="https://juejin.cn/post/7072528644739956773#heading-15">深拷贝的实现</a></h3><h4 id="JSON-stringify-与-JSON-parse"><a href="#JSON-stringify-与-JSON-parse" class="headerlink" title="JSON.stringify() 与 JSON.parse()"></a>JSON.stringify() 与 JSON.parse()</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">deepClone</span>(<span class="hljs-params">obj</span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(<span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(obj))<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>问题：遇到函数，undefined，Sybmol，Date对象时会自动忽略，遇到正则时会返回空对象</p>
+<p><strong><a target="_blank" rel="noopener" href="https://juejin.cn/post/7113829141392130078">问题：</a></strong></p>
+<ol>
+<li>对象中的时间类型会被变成字符串类型数据</li>
+<li>对象中的 undefined 和 函数类型会直接丢失</li>
+<li>对象中的 NaN、Infinity、-Infinity 会变成 null</li>
+<li>对象循环引用时会报错</li>
+</ol>
 <h4 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h4><h5 id="简单版"><a href="#简单版" class="headerlink" title="简单版"></a>简单版</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">deepClone</span>(<span class="hljs-params">obj</span>) &#123;<br>    <span class="hljs-comment">// 处理 null date reg 原始类型</span><br>    <span class="hljs-keyword">if</span> (obj === <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> obj<br>    <span class="hljs-keyword">if</span> (obj <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Date</span>) <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(obj)<br>    <span class="hljs-keyword">if</span> (obj <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">RegExp</span>) <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RegExp</span>(obj)<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> obj !== <span class="hljs-string">&#x27;object&#x27;</span>) <span class="hljs-keyword">return</span> obj<br><br>    <span class="hljs-comment">// 处理对象和数组</span><br>    <span class="hljs-keyword">const</span> cloneObj = <span class="hljs-keyword">new</span> obj.<span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>)      <span class="hljs-comment">// 根据对象和数组自动生成</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">of</span> <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">keys</span>(obj)) &#123;<br>        cloneObj[key] = <span class="hljs-title function_">deepClone</span>(obj[key])<br>    &#125;<br>    <br>    <span class="hljs-keyword">return</span> cloneObj<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
@@ -332,6 +338,29 @@
 
 <h3 id="日常开发"><a href="#日常开发" class="headerlink" title="日常开发"></a>日常开发</h3><p>日常开发中，如果要使用深拷贝，为了兼容各种边界情况，一般是使用三方库如 lodash</p>
 <figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs livescript"><span class="hljs-built_in">npm</span> i --save lodash<br><span class="hljs-keyword">import</span> _ <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;lodash&#x27;</span><br><span class="hljs-keyword">const</span> cloneObj = _.cloneDeep(obj)<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="structuredClone"><a href="#structuredClone" class="headerlink" title="structuredClone()"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/songjungang/article/details/125373543">structuredClone()</a></h3><p>一个新的深拷贝API，ES 的一部分，目前兼容性还不够好。chrome &gt;&#x3D; 98才支持。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-title function_">structuredClone</span>(<span class="hljs-attr">value</span>: <span class="hljs-built_in">any</span>): <span class="hljs-built_in">any</span><br></code></pre></td></tr></table></figure>
+
+<p>这个函数有第二个参数 transferables，这个参数很少有用。详细信息，请参考<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/structuredClone">MDN 页面structuredClone()</a></p>
+<p><strong>缺陷：</strong></p>
+<ol>
+<li><strong>一些内置对象不能被复制，structuredClone()会抛出DOMException</strong></li>
+</ol>
+<p>Functions (ordinary functions, arrow functions, classes, methods)</p>
+<p>DOM 节点DOM nodes</p>
+<ol start="2">
+<li><strong>structuredClone()不会复制对象的原型链</strong></li>
+</ol>
+<p>如果structuredClone()与类实例一起使用，将获得一个普通对象作为返回值，因为结构化克隆会丢弃对象的原型链。</p>
+<ol start="3">
+<li><strong>structuredClone()并不能复制DOM节点<a target="_blank" rel="noopener" href="https://exploringjs.com/deep-js/ch_property-attributes-intro.html">特性属性</a>：</strong></li>
+</ol>
+<p>访问器 get 变成了数据属性。</p>
+<p>在副本中，特性属性始终具有默认值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-attr">writable</span>: <span class="hljs-literal">true</span>,<br><span class="hljs-attr">enumerable</span>: <span class="hljs-literal">true</span>,<br><span class="hljs-attr">configurable</span>: <span class="hljs-literal">true</span>,<br></code></pre></td></tr></table></figure>
 
 
               
