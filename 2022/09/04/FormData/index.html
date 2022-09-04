@@ -16,23 +16,30 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="once实现一个 once 函数，记忆返回结果只执行一次 类似于 lodash.once 12345678910&#x2F;&#x2F; f 是一个函数const f &#x3D; (x) &#x3D;&gt; x;const onceF &#x3D; once(f);&#x2F;&#x2F;&#x3D;&gt; 3console.log(onceF(3))&#x2F;&#x2F;&#x3D;&gt; 3console.log(onceF(100))    1234567891011function on">
+    <meta name="description" content="Content-TypeContent-Type（MediaType），即是Internet Media Type，互联网媒体类型，也叫做MIME类型。在互联网中有成百上千中不同的数据类型，HTTP在传输数据对象时会为他们打上称为MIME的数据格式标签，用于区分数据类型。 在HTTP协议消息头中，使用Content-Type来表示请求和响应中的媒体类型信息。它用来告诉服务端如何处理请求的数据，以及">
 <meta property="og:type" content="article">
-<meta property="og:title" content="手写常用函数">
-<meta property="og:url" content="http://example.com/2022/08/28/%E6%89%8B%E5%86%99%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:title" content="Content-Type">
+<meta property="og:url" content="http://example.com/2022/09/04/FormData/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="once实现一个 once 函数，记忆返回结果只执行一次 类似于 lodash.once 12345678910&#x2F;&#x2F; f 是一个函数const f &#x3D; (x) &#x3D;&gt; x;const onceF &#x3D; once(f);&#x2F;&#x2F;&#x3D;&gt; 3console.log(onceF(3))&#x2F;&#x2F;&#x3D;&gt; 3console.log(onceF(100))    1234567891011function on">
+<meta property="og:description" content="Content-TypeContent-Type（MediaType），即是Internet Media Type，互联网媒体类型，也叫做MIME类型。在互联网中有成百上千中不同的数据类型，HTTP在传输数据对象时会为他们打上称为MIME的数据格式标签，用于区分数据类型。 在HTTP协议消息头中，使用Content-Type来表示请求和响应中的媒体类型信息。它用来告诉服务端如何处理请求的数据，以及">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-08-28T09:46:55.000Z">
-<meta property="article:modified_time" content="2022-08-29T08:28:59.330Z">
+<meta property="og:image" content="http://example.com/2022/09/04/FormData/20190111180712373.png">
+<meta property="og:image" content="http://example.com/2022/09/04/FormData/20190624231555162.png">
+<meta property="og:image" content="http://example.com/2022/09/04/FormData/20190111174842982.png">
+<meta property="og:image" content="http://example.com/2022/09/04/FormData/20190624231322976.png">
+<meta property="og:image" content="http://example.com/2022/09/04/FormData/20190111174827455.png">
+<meta property="og:image" content="http://example.com/2022/09/04/FormData/20190624231435322.png">
+<meta property="og:image" content="http://example.com/2022/09/04/FormData/image-20220904172337954.png">
+<meta property="article:published_time" content="2022-09-04T08:50:36.000Z">
+<meta property="article:modified_time" content="2022-09-04T09:30:00.938Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="JS">
-<meta property="article:tag" content="手写函数">
+<meta property="article:tag" content="传参">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2022/09/04/FormData/20190111180712373.png">
   
   
   
-  <title>手写常用函数 - Hexo</title>
+  <title>Content-Type - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -195,7 +202,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="手写常用函数"></span>
+            <span id="subtitle" data-typed-text="Content-Type"></span>
           
         </div>
 
@@ -206,8 +213,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-08-28 17:46" pubdate>
-          August 28, 2022 pm
+        <time datetime="2022-09-04 16:50" pubdate>
+          September 4, 2022 pm
         </time>
       </span>
     
@@ -218,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          609 words
+          1.9k words
         
       </span>
     
@@ -229,7 +236,7 @@
         
         
         
-          6 mins
+          16 mins
         
       </span>
     
@@ -275,27 +282,50 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">手写常用函数</h1>
+            <h1 style="display: none">Content-Type</h1>
             
             <div class="markdown-body">
               
-              <h2 id="once"><a href="#once" class="headerlink" title="once"></a>once</h2><p>实现一个 once 函数，记忆返回结果只执行一次</p>
-<p>类似于 lodash.once</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// f 是一个函数</span><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">f</span> = (<span class="hljs-params">x</span>) =&gt; x;<br><br><span class="hljs-keyword">const</span> onceF = <span class="hljs-title function_">once</span>(f);<br><br><span class="hljs-comment">//=&gt; 3</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">onceF</span>(<span class="hljs-number">3</span>))<br><br><span class="hljs-comment">//=&gt; 3</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">onceF</span>(<span class="hljs-number">100</span>))<br></code></pre></td></tr></table></figure>
+              <h1 id="Content-Type"><a href="#Content-Type" class="headerlink" title="Content-Type"></a>Content-Type</h1><p><strong>Content-Type</strong>（MediaType），即是Internet Media Type，互联网媒体类型，也叫做<strong>MIME类型</strong>。在互联网中有成百上千中不同的数据类型，HTTP在传输数据对象时会为他们打上称为MIME的数据格式标签，用于<strong>区分数据类型</strong>。</p>
+<p>在HTTP协议消息头中，使用Content-Type来表示请求和响应中的媒体类型信息。它用来告诉服务端如何处理请求的数据，以及告诉客户端（一般是浏览器）如何解析响应的数据，比如显示图片，解析并展示html等等。</p>
+<p><strong>Content-Type的格式：</strong><br><strong>Content-Type：type&#x2F;subtype ;parameter</strong></p>
+<p>type：主类型，任意的字符串，如text，如果是*号代表所有；<br>subtype：子类型，任意的字符串，如html，如果是*号代表所有，用“&#x2F;”与主类型隔开；<br>parameter：可选参数，如charset，boundary等。</p>
+<p>例如：<br>Content-Type: text&#x2F;html;<br>Content-Type: application&#x2F;json;charset:utf-8;</p>
+<h2 id="application-x2F-json"><a href="#application-x2F-json" class="headerlink" title="application&#x2F;json"></a>application&#x2F;json</h2><p>现在越来越多的应用使用application&#x2F;json，用来告诉服务端消息主体是序列化的json字符串。由于json规范的流行，各大浏览器都开始原生支持JSON.stringfy。</p>
+<p>而且spring对这个content-Type上传的数据有很好的支持，可以直接通过@RequestBody进行接收。也是当前完美适配当前流行的RestApi。</p>
+<p>JSON 是一种轻量级的数据格式，以“键-值”对的方式组织的数据。使用这个类型，需要参数本身就是json格式的数据，参数会被直接放到请求实体里，不进行任何处理。服务端&#x2F;客户端会按json格式解析数据（约定好的情况下）。</p>
+<p>请求参数</p>
+<img src="/2022/09/04/FormData/20190111180712373.png" srcset="/img/loading.gif" lazyload class="" title="application&#x2F;json请求参数">
+
+<p>http 请求报文</p>
+<img src="/2022/09/04/FormData/20190624231555162.png" srcset="/img/loading.gif" lazyload class="" title="application&#x2F;json报文">
 
 
 
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">once</span>(<span class="hljs-params">f</span>) &#123;<br>  <span class="hljs-keyword">let</span> result<br>  <span class="hljs-keyword">let</span> flag = <span class="hljs-literal">false</span><br><br>  <span class="hljs-keyword">return</span> <span class="hljs-function">(<span class="hljs-params">...args</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">if</span> (flag) <span class="hljs-keyword">return</span> result<br>    result = <span class="hljs-title function_">f</span>(...args)<br>    flag = <span class="hljs-literal">true</span><br>    <span class="hljs-keyword">return</span> result<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="application-x2F-x-www-form-urlencoded"><a href="#application-x2F-x-www-form-urlencoded" class="headerlink" title="application&#x2F;x-www-form-urlencoded"></a>application&#x2F;x-www-form-urlencoded</h2><p>在最开始的请求方式中，请求参数都是放在url中，表单提交的时候，都是以key&#x3D;&amp;value&#x3D;的方式写在url后面。这也是浏览器表单提交的默认方式。</p>
+<p>不支持文件，一般用于表单提交。</p>
+<ul>
+<li>请求参数<img src="/2022/09/04/FormData/20190111174842982.png" srcset="/img/loading.gif" lazyload class="" title="application&#x2F;x-www-form-urlencoded请求参数"></li>
+<li>http 请求报文<img src="/2022/09/04/FormData/20190624231322976.png" srcset="/img/loading.gif" lazyload class="" title="application&#x2F;x-www-form-urlencoded报文"></li>
+</ul>
+<h2 id="multipart-x2F-form-data"><a href="#multipart-x2F-form-data" class="headerlink" title="multipart&#x2F;form-data"></a>multipart&#x2F;form-data</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>此种方式多用于<strong>文件上传</strong>，表单数据都保存在http的正文部分，各个表单项之间用boundary分开。</p>
+<p>与application&#x2F;x-www-form-urlencoded不同，这是一个多部分多媒体类型。首先生成了一个 boundary 用于分割不同的字段，在请求实体里每个参数以——boundary开始，然后是附加信息和参数名，然后是空行，最后是参数内容。多个参数将会有多个boundary块。如果参数是文件会有特别的文件域。最后以——boundary–为结束标识。multipart&#x2F;form-data支持文件上传的格式，一般需要上传文件的表单则用该类型。</p>
+<p>下面是一个例子：</p>
+<ul>
+<li>请求参数<img src="/2022/09/04/FormData/20190111174827455.png" srcset="/img/loading.gif" lazyload class="" title="multipart&#x2F;form-data请求参数"></li>
+<li>http 请求报文<img src="/2022/09/04/FormData/20190624231435322.png" srcset="/img/loading.gif" lazyload class="" title="multipart&#x2F;form-data报文"></li>
+</ul>
+<p><code>Content-Disposition</code> 是必选项， <code>name</code> 属性代表着表单元素的 <code>key</code>，<code>filename</code> 则是上传文件的名称</p>
+<h3 id="为什么需要-FormData"><a href="#为什么需要-FormData" class="headerlink" title="为什么需要 FormData"></a>为什么需要 FormData</h3><p><code>application/json</code> 作为请求头 <code>Content-Type</code> 字段值时，表示告知服务端参数是序列化后的 <code>JSON</code> 字符串，所以一般在传参时都会用 <code>JSON.stringify</code> 序列化一下，但是 <strong><code>JSON.stringify</code> 在转换某一些数据结构时会出问题</strong>，比如 会丢失 function 类型的参数、循环引用时会报错、**<code>Blob</code> &#x2F;<code>File</code> 对象会被转化成 <code>&#123;&#125;</code>**  等等。</p>
+<p>如果要是图片那可以转换成 <code>base64</code> 格式进行上传解决，这种方式虽然可行，但是转换成 <code>base64</code> 格式需要很多字符，占用很多资源，而且很长，不便于阅读，另外就是服务端接收到这个参数还得解析，很麻烦，此时，<code>FormData</code> 就可用上了。</p>
+<h3 id="使用-FormData"><a href="#使用-FormData" class="headerlink" title="使用 FormData"></a>使用 FormData</h3><p>window 上直接挂载了 FormData 对象</p>
+<img src="/2022/09/04/FormData/image-20220904172337954.png" srcset="/img/loading.gif" lazyload class="" title="image-20220904172337954">
 
-
-
-<h2 id="无限累加的-sum-函数"><a href="#无限累加的-sum-函数" class="headerlink" title="无限累加的 sum 函数"></a>无限累加的 sum 函数</h2><p>参数无限，调用次数无限</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">sum</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>).<span class="hljs-title function_">valueOf</span>(); <span class="hljs-comment">//6</span><br><span class="hljs-title function_">sum</span>(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>)(<span class="hljs-number">2</span>, <span class="hljs-number">4</span>).<span class="hljs-title function_">valueOf</span>(); <span class="hljs-comment">//11</span><br><span class="hljs-title function_">sum</span>(<span class="hljs-number">1</span>)(<span class="hljs-number">2</span>)(<span class="hljs-number">3</span>)(<span class="hljs-number">4</span>).<span class="hljs-title function_">valueOf</span>(); <span class="hljs-comment">//10</span><br><span class="hljs-title function_">sum</span>(<span class="hljs-number">2</span>)(<span class="hljs-number">4</span>, <span class="hljs-number">1</span>)(<span class="hljs-number">2</span>).<span class="hljs-title function_">valueOf</span>(); <span class="hljs-comment">//9</span><br><span class="hljs-title function_">sum</span>(<span class="hljs-number">1</span>)(<span class="hljs-number">2</span>)(<span class="hljs-number">3</span>)(<span class="hljs-number">4</span>)(<span class="hljs-number">5</span>)(<span class="hljs-number">6</span>).<span class="hljs-title function_">valueOf</span>(); <span class="hljs-comment">// 21</span><br></code></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">sum</span>(<span class="hljs-params">...args</span>) &#123;<br>  <span class="hljs-keyword">const</span> <span class="hljs-title function_">f</span> = (<span class="hljs-params">...rest</span>) =&gt; <span class="hljs-title function_">sum</span>(...args, ...rest)<br>  f.<span class="hljs-property">valueOf</span> = <span class="hljs-function">() =&gt;</span> args.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">x, y</span>) =&gt;</span> x + y, <span class="hljs-number">0</span>)<br>  <span class="hljs-keyword">return</span> f<br>&#125;<br></code></pre></td></tr></table></figure>
-
+<p>我们一般都使用 append 方法</p>
+<p>append 和 set 的区别：</p>
+<p><code>append</code> 的 <code>key</code> 存在，就会附加到已有值集合的后面，而 <code>set</code> 会使用新值覆盖已有的值</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/a772116804/article/details/114586937">https://blog.csdn.net/a772116804/article/details/114586937</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7057293668440834061">https://juejin.cn/post/7057293668440834061</a></p>
 
               
             </div>
@@ -313,7 +343,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/JS/" class="category-chain-item">JS</a>
+  <a href="/categories/HTTP/" class="category-chain-item">HTTP</a>
   
   
 
@@ -328,9 +358,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/JS/">#JS</a>
-      
-        <a href="/tags/%E6%89%8B%E5%86%99%E5%87%BD%E6%95%B0/">#手写函数</a>
+        <a href="/tags/%E4%BC%A0%E5%8F%82/">#传参</a>
       
     </div>
   
@@ -342,8 +370,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>手写常用函数</div>
-      <div>http://example.com/2022/08/28/手写常用函数/</div>
+      <div>Content-Type</div>
+      <div>http://example.com/2022/09/04/FormData/</div>
     </div>
     <div class="license-meta">
       
@@ -355,7 +383,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>August 28, 2022</div>
+          <div>September 4, 2022</div>
         </div>
       
       
@@ -385,9 +413,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/09/04/FormData/" title="Content-Type">
+                      <a href="/2022/09/04/ToDo/" title="">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Content-Type</span>
+                        <span class="hidden-mobile"></span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -395,8 +423,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/08/28/VueRouter%E7%9A%84hash%E5%92%8Chistory%E6%A8%A1%E5%BC%8F/" title="VueRouter的hash和history模式">
-                        <span class="hidden-mobile">VueRouter的hash和history模式</span>
+                      <a href="/2022/08/28/%E6%89%8B%E5%86%99%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" title="手写常用函数">
+                        <span class="hidden-mobile">手写常用函数</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
