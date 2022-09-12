@@ -34,7 +34,7 @@
 <meta property="og:image" content="http://example.com/2022/07/01/vue3/bc0be8211fc54b6c941c036791ba4efetplv-k3u1fbpfcp-watermark-165726304478210.image">
 <meta property="og:image" content="http://example.com/2022/07/01/vue3/6cc55165c0e34069a75fe36f8712eb80tplv-k3u1fbpfcp-watermark-165726305601013.image">
 <meta property="article:published_time" content="2022-07-01T02:38:54.000Z">
-<meta property="article:modified_time" content="2022-08-10T09:04:59.168Z">
+<meta property="article:modified_time" content="2022-09-11T14:38:23.149Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/2022/07/01/vue3/image-20220701143037245.png">
@@ -227,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          14k words
+          16k words
         
       </span>
     
@@ -238,7 +238,7 @@
         
         
         
-          120 mins
+          137 mins
         
       </span>
     
@@ -388,23 +388,42 @@
 </li>
 </ul>
 <h4 id="reactive与ref"><a href="#reactive与ref" class="headerlink" title="reactive与ref"></a>reactive与ref</h4><ul>
-<li>从定义数据角度对比：<ul>
+<li><p>从定义数据角度对比：</p>
+<ul>
 <li>ref用来定义：<strong style="color:#DD5145">基本类型数据</strong>。</li>
 <li>reactive用来定义：<strong style="color:#DD5145">对象（或数组）类型数据</strong>。</li>
 <li>备注：ref也可以用来定义<strong style="color:#DD5145">对象（或数组）类型数据</strong>, 它内部会自动通过<code>reactive</code>转为<strong style="color:#DD5145">代理对象</strong>。</li>
 </ul>
 </li>
-<li>从原理角度对比：<ul>
+<li><p>从原理角度对比：</p>
+<ul>
 <li>ref通过<code>Object.defineProperty()</code>的<code>get</code>与<code>set</code>来实现响应式（数据劫持）。</li>
 <li>reactive通过使用<strong style="color:#DD5145">Proxy</strong>来实现响应式（数据劫持）, 并通过<strong style="color:#DD5145">Reflect</strong>操作<strong style="color:orange">源对象</strong>内部的数据。</li>
 </ul>
 </li>
-<li>从使用角度对比：<ul>
+<li><p>从使用角度对比：</p>
+<ul>
 <li>ref定义的数据：操作数据<strong style="color:#DD5145">需要</strong><code>.value</code>，读取数据时模板中直接读取<strong style="color:#DD5145">不需要</strong><code>.value</code>。</li>
 <li>reactive定义的数据：操作数据与读取数据：<strong style="color:#DD5145">均不需要</strong><code>.value</code>。</li>
 </ul>
 </li>
+<li><p>从是否丢失相应性对比：</p>
+<ul>
+<li><p>refactive 被传递给函数或是从一般对象上被解构时，不会丢失响应性。</p>
+</li>
+<li><p>ref 被传递给函数或是从一般对象上被解构时，不会丢失响应性。</p>
+</li>
 </ul>
+<p><strong>简言之，<code>ref()</code> 让我们能创造一种对任意值的 “引用”，并能够在不丢失响应性的前提下传递这些引用。</strong></p>
+</li>
+</ul>
+<h4 id="ref-实验中"><a href="#ref-实验中" class="headerlink" title="$ref(实验中)"></a>$ref(实验中)</h4><p>相对于普通的 JavaScript 变量，我们不得不用相对繁琐的 <code>.value</code> 来获取 ref 的值。这是一个受限于 JavaScript 语言限制的缺点。然而，通过编译时转换，我们可以让编译器帮我们省去使用 <code>.value</code> 的麻烦。Vue 提供了一种编译时转换，使得我们可以像这样书写之前的“计数器”示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs vue3">&lt;script setup&gt;<br>let count = $ref(0)<br><br>function increment() &#123;<br>  // 无需 .value<br>  count++<br>&#125;<br>&lt;/script&gt;<br><br>&lt;template&gt;<br>  &lt;button @click=&quot;increment&quot;&gt;&#123;&#123; count &#125;&#125;&lt;/button&gt;<br>&lt;/template&gt;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
 <h4 id="setup-注意点"><a href="#setup-注意点" class="headerlink" title="setup 注意点"></a>setup 注意点</h4><p>setup执行的时机</p>
 <ul>
 <li>在beforeCreate之前执行一次，this是undefined。</li>
@@ -693,6 +712,40 @@
 <li><p>……</p>
 </li>
 </ul>
+<h2 id="一些重要操作"><a href="#一些重要操作" class="headerlink" title="一些重要操作"></a>一些重要操作</h2><h3 id="全局事件总线"><a href="#全局事件总线" class="headerlink" title="全局事件总线"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_50789696/article/details/125168752">全局事件总线</a></h3><p>Vue3从实例中移除了 $on、$off 和 $once 方法，所以我们如果希望继续使用全局事件总线，要通过第三方的库：<br>Vue3官方有推荐一些库，例如 mitt </p>
+<h4 id="1-安装-mitt"><a href="#1-安装-mitt" class="headerlink" title="1.安装 mitt"></a>1.安装 mitt</h4><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">npm <span class="hljs-keyword">install</span> mitt<br></code></pre></td></tr></table></figure>
+
+<h4 id="2-两种使用方式"><a href="#2-两种使用方式" class="headerlink" title="2.两种使用方式"></a><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv15580240/">2.两种使用方式</a></h4><h5 id="全局引入"><a href="#全局引入" class="headerlink" title="全局引入"></a>全局引入</h5><p>挂载到 app 上</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// main.js</span><br><span class="hljs-keyword">const</span> bus = <span class="hljs-title function_">mitt</span>()<br><span class="hljs-keyword">const</span> app = <span class="hljs-title function_">createApp</span>(<span class="hljs-title class_">App</span>)<br>app.<span class="hljs-property">config</span>.<span class="hljs-property">globalProperties</span>.<span class="hljs-property">$bus</span> = bus<br>app.<span class="hljs-title function_">use</span>(store).<span class="hljs-title function_">use</span>(router).<span class="hljs-title function_">mount</span>(<span class="hljs-string">&#x27;#app&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;!-- 兄弟组件 bro1 --&gt;<br>&lt;script&gt;<br>    import &#123;getCurrentInstance&#125; from &#x27;vue&#x27;;<br>    export default &#123;<br>        setup(props) &#123;<br>            const ins=getCurrentInstance()<br>            const bus=ins.appContext.config.globalProperties.$bus<br>            function passE()&#123;<br>          		// 触发事件<br>                bus.emit(&#x27;bro&#x27;,&#x27;xwl&#x27;)<br>            &#125;<br>            return &#123;<br>                passE<br>            &#125;<br>        &#125;<br>    &#125;<br>&lt;/script&gt;<br><br>&lt;!-- 兄弟组件 bro2 --&gt;<br>&lt;script&gt;<br>    import &#123;getCurrentInstance&#125; from &#x27;vue&#x27;;<br>    export default &#123;<br>        setup(props) &#123;<br>            const ins=getCurrentInstance()<br>            const bus=ins.appContext.config.globalProperties.$bus<br>            onMounted(()=&gt;&#123;<br>                // 绑定事件<br>                bus.on(&#x27;bro&#x27;,(value)=&gt;&#123;<br>                    console.log(value);<br>                &#125;)<br>            &#125;)<br>            return &#123; &#125;<br>        &#125;<br>    &#125;<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+
+
+
+<h5 id="局部引入"><a href="#局部引入" class="headerlink" title="局部引入"></a>局部引入</h5><p>不与 vue 建立连接</p>
+<ol>
+<li><strong>封装 eventBus.js，可以放在 utils 下面</strong></li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> mitt <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;mitt&#x27;</span>;<br><br><span class="hljs-keyword">const</span> emitter = <span class="hljs-title function_">mitt</span>();<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> emitter<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><strong>使用</strong></li>
+</ol>
+<p><strong>导入</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> emitter <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./utils/eventbus&#x27;</span>;<br></code></pre></td></tr></table></figure>
+
+<p><strong>触发事件</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">emitter.<span class="hljs-title function_">emit</span>(<span class="hljs-string">&quot;event&quot;</span>, &#123;<span class="hljs-attr">name</span>: <span class="hljs-string">&quot;code&quot;</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">18</span>&#125;);<br></code></pre></td></tr></table></figure>
+
+<p><strong>监听事件</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js">emitter.<span class="hljs-title function_">on</span>(<span class="hljs-string">&quot;event&quot;</span>, <span class="hljs-function">(<span class="hljs-params">info</span>) =&gt;</span> &#123;<br>	<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;event:&quot;</span>, info)<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p><strong>移除事件监听</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">emitter.<span class="hljs-property">all</span>.<span class="hljs-title function_">clear</span>()<br></code></pre></td></tr></table></figure>
+
+<p><strong>指定监听移除</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">onEvent</span>(<span class="hljs-params"></span>)&#123;&#125;<br>emitter.<span class="hljs-title function_">off</span>(<span class="hljs-string">&quot;event&quot;</span>, onEvent);<br></code></pre></td></tr></table></figure>
+
 
               
             </div>

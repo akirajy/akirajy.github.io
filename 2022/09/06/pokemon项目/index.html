@@ -16,25 +16,24 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="VueRouter的hash和history模式vue-router 在实现单页面前端路由时，提供了两种方式：Hash 模式和 History 模式 vue2 是根据 mode 参数来决定采用哪一种方式 vue3 则是 history 参数 hash简述localhost:8080&#x2F;#&#x2F;home  vue-router 默认 hash 模式 —— 使用 URL 的 hash 来">
+    <meta name="description" content="数据描述getPokemonApi(id: number) base_experience：击败这只宝可梦获得的经验 abilities: 能力&#x2F;被动 为神奇宝贝在战斗或主世界中提供被动效果。神奇宝贝有多种可能的能力，但一次只能有一种能力 forms：种族？暂时没啥用 game_indices:  游戏不同代 height: 身高 dm held_items：当遭遇到这只宝可梦时，它可能">
 <meta property="og:type" content="article">
-<meta property="og:title" content="VueRouter的hash和history模式">
-<meta property="og:url" content="http://example.com/2022/08/28/VueRouter%E7%9A%84hash%E5%92%8Chistory%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:title" content="pokemon项目">
+<meta property="og:url" content="http://example.com/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="VueRouter的hash和history模式vue-router 在实现单页面前端路由时，提供了两种方式：Hash 模式和 History 模式 vue2 是根据 mode 参数来决定采用哪一种方式 vue3 则是 history 参数 hash简述localhost:8080&#x2F;#&#x2F;home  vue-router 默认 hash 模式 —— 使用 URL 的 hash 来">
+<meta property="og:description" content="数据描述getPokemonApi(id: number) base_experience：击败这只宝可梦获得的经验 abilities: 能力&#x2F;被动 为神奇宝贝在战斗或主世界中提供被动效果。神奇宝贝有多种可能的能力，但一次只能有一种能力 forms：种族？暂时没啥用 game_indices:  游戏不同代 height: 身高 dm held_items：当遭遇到这只宝可梦时，它可能">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022/08/28/VueRouter%E7%9A%84hash%E5%92%8Chistory%E6%A8%A1%E5%BC%8F/image-20220911221416987.png">
-<meta property="article:published_time" content="2022-08-28T08:15:07.000Z">
-<meta property="article:modified_time" content="2022-09-11T14:19:15.332Z">
+<meta property="og:image" content="http://example.com/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/image-20220906222915890.png">
+<meta property="og:image" content="http://example.com/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/image-20220906223103579.png">
+<meta property="article:published_time" content="2022-09-06T14:24:21.000Z">
+<meta property="article:modified_time" content="2022-09-07T12:07:16.855Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="Vue">
-<meta property="article:tag" content="路由">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2022/08/28/VueRouter%E7%9A%84hash%E5%92%8Chistory%E6%A8%A1%E5%BC%8F/image-20220911221416987.png">
+<meta name="twitter:image" content="http://example.com/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/image-20220906222915890.png">
   
   
   
-  <title>VueRouter的hash和history模式 - Hexo</title>
+  <title>pokemon项目 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +196,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="VueRouter的hash和history模式"></span>
+            <span id="subtitle" data-typed-text="pokemon项目"></span>
           
         </div>
 
@@ -208,8 +207,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-08-28 16:15" pubdate>
-          August 28, 2022 pm
+        <time datetime="2022-09-06 22:24" pubdate>
+          September 6, 2022 pm
         </time>
       </span>
     
@@ -220,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k words
+          1.6k words
         
       </span>
     
@@ -231,7 +230,7 @@
         
         
         
-          16 mins
+          14 mins
         
       </span>
     
@@ -277,50 +276,51 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">VueRouter的hash和history模式</h1>
+            <h1 style="display: none">pokemon项目</h1>
             
             <div class="markdown-body">
               
-              <h2 id="VueRouter的hash和history模式"><a href="#VueRouter的hash和history模式" class="headerlink" title="VueRouter的hash和history模式"></a>VueRouter的hash和history模式</h2><p><code>vue-router</code> 在实现单页面前端路由时，提供了两种方式：<code>Hash</code> 模式和 <code>History</code> 模式</p>
-<p>vue2 是根据 <code>mode</code> 参数来决定采用哪一种方式</p>
-<p>vue3 则是 <code>history</code> 参数</p>
-<h3 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h3><h4 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h4><p>localhost:8080&#x2F;#&#x2F;home</p>
-<ul>
-<li><code>vue-router</code> 默认 hash 模式 —— 使用 URL 的 hash 来模拟一个完整的 URL，于是当 URL 改变时，页面不会重新加载。  <code>hash</code>（#）是 <code>URL</code> 的锚点，代表的是网页中的一个位置，单单改变 <code>#</code> 后的部分，浏览器只会滚动到相应位置，不会重新加载网页，也就是说 <code>#</code> 是用来指导浏览器动作的，对服务器端完全无用，<code>HTTP</code> 请求中也不会不包括 <code>#</code> ，同时每一次改变 <code>#</code> 后的部分，都会在浏览器的访问历史中增加一个记录，使用 “后退” 按钮，就可以回到上一个位置，所以说 <code>hash</code> 模式通过锚点值的改变，根据不同的值，渲染指定 <code>DOM</code> 位置的不同数据。</li>
-<li><code>#</code> 符号本身以及它后面的字符称之为 <code>hash</code>，可通过<code> window.location.hash</code> 属性读取。</li>
-<li><code>hash</code> 通过 <code>window.onhashchange</code> 的方式，来监听 <code>hash</code> 的改变，借此实现无刷新跳转的功能。</li>
-</ul>
-<h4 id="设置hash模式"><a href="#设置hash模式" class="headerlink" title="设置hash模式"></a>设置hash模式</h4><p>vue2 中默认为 mode:hash</p>
-<p>vue3 中使用 createWebHashHistory</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs vue3">import &#123; createWebHashHistory &#125; from &#x27;vue-router&#x27;<br><br>const router = createRouter(&#123;<br>  history: createWebHistory(),<br>  routes<br>&#125;);<br></code></pre></td></tr></table></figure>
+              <h1 id="数据描述"><a href="#数据描述" class="headerlink" title="数据描述"></a>数据描述</h1><p>getPokemonApi(id: number)</p>
+<p>base_experience：击败这只宝可梦获得的经验</p>
+<p>abilities: 能力&#x2F;被动 为神奇宝贝在战斗或主世界中提供被动效果。神奇宝贝有多种可能的能力，但一次只能有一种能力</p>
+<p>forms：种族？暂时没啥用</p>
+<p>game_indices:  游戏不同代</p>
+<p>height: 身高 dm</p>
+<p>held_items：当遭遇到这只宝可梦时，它可能携带的物品</p>
+<p>location_area_encounters：可能遭遇的地点</p>
+<p>moves：技能</p>
+<p>name：名字</p>
+<p>order：仅用于排序</p>
+<p>past_types：该宝可梦在前几代拥有的类型的详细信息</p>
+<p>species：一些图片</p>
+<p>status：统计数据(hp attack)。每个神奇宝贝的每个属性都有一个值，随着他们的等级增加而增长，并且可以通过战斗中的效果暂时改变。effort（EV）努力点</p>
+<p>types：类别</p>
+<p>weight：体重</p>
+<h1 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h1><h2 id="保证请求的顺序"><a href="#保证请求的顺序" class="headerlink" title="保证请求的顺序"></a>保证请求的顺序</h2><img src="/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/image-20220906222915890.png" srcset="/img/loading.gif" lazyload class="" title="image-20220906222915890">
 
 
 
-<h3 id="history"><a href="#history" class="headerlink" title="history"></a>history</h3><h4 id="简述-1"><a href="#简述-1" class="headerlink" title="简述"></a>简述</h4><p>localhost:8080&#x2F;home</p>
-<p><code>history</code> 是路由的另一种模式，由于 hash 模式会在 url 中带#，如果不想要带 #的话，我们可以使用路由的 <code>history</code> 模式，只需要在响应的 <code>router</code> 配置规则时加上即可，<code>vue</code> 的路由默认是 <code>hash</code> 模式。</p>
-<p>利用了<code>HTML5 History Interface</code>中新增的 <code>pushState()</code> 和<code> replaceState()</code> 方法。</p>
-<p>这两个方法应用于浏览器的历史记录栈，在当前已有的<code> back、forward、go</code> 的基础之上，它们提供了对历史记录进行修改的功能。只是当它们执行修改时，虽然改变了当前的 URL，但浏览器不会立即向后端发送请求。</p>
-<h4 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h4><p>美观，没有#</p>
-<h4 id="缺陷"><a href="#缺陷" class="headerlink" title="缺陷"></a>缺陷</h4><p><strong>需要后端配置（nginx代理转发，找不到就重定向到项目首页）</strong></p>
-<p>否则刷新页面会报404，因为会重新发请求，而此时的 url 已经改变。</p>
-<p>具体的说：当我们把 history 项目部署到服务器中后,此时我们在浏览器输入一个网址(比如是 <a href="https://link.juejin.cn/?target=http://www.test.com">www.test.com</a> ), 此时会经过 dns 解析，拿到 ip 地址后根据 ip 地址向该服务器发起请求,服务器接受到请求后,然后返回相应的结果(html,css,js)。如果我们在前端设置了重定向，此时页面会进行跳转到  <a href="https://link.juejin.cn/?target=http://www.test.com/home">www.test.com/home</a> ,在前端会进行匹配对应的组件然后将其渲染到页面上。此时如果我们刷新页面的话，浏览器会发送新的请求 <a href="https://link.juejin.cn/?target=http://www.test.com/home">www.test.com/home</a>, 如果后端服务器没有 &#x2F;home 对应的接口，那么就会返回404。</p>
-<p>hash模式不会404，因为 #及之后的内容并不会放入请求</p>
-<p>注意：开发环境没有这个问题，因为 webpack 处理好了。生产环境才会有问题。</p>
-<h4 id="设置history模式"><a href="#设置history模式" class="headerlink" title="设置history模式"></a>设置history模式</h4><p>vue2 中设置 mode:history</p>
-<p>vue3 中设置 createWebHistory</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs vue3">import &#123; createWebHistory &#125; from &#x27;vue-router&#x27;<br><br>const router = createRouter(&#123;<br>  history: createWebHistory(),<br>  routes<br>&#125;);<br></code></pre></td></tr></table></figure>
+<h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a><strong>问题描述</strong></h3><p>没有获取所有宝可梦数据的请求，一次只能获取一个宝可梦的数据。而我们需要保证获取的顺序。</p>
+<p>也就是说，有很多个请求需要依次发送，待上一个请求完成之后再发送下一个请求，发生异常时也要能够继续后面的请求。</p>
+<p><strong>如果直接循环发请求，会乱序。</strong></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">const</span> <span class="hljs-title function_">getPokemon</span> = (<span class="hljs-params">id: <span class="hljs-built_in">number</span></span>) =&gt; &#123;<br>    <span class="hljs-title function_">getPokemonApi</span>(id).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;<br>        <span class="hljs-keyword">const</span> &#123; data &#125; = res<br>        pokemons.<span class="hljs-title function_">push</span>(data)<br>    &#125;)<br>&#125;<br><br><span class="hljs-title function_">onBeforeMount</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; <span class="hljs-number">21</span>; i++) &#123;<br>        <span class="hljs-title function_">getPokemon</span>(i)<br>    &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<img src="/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/image-20220906223103579.png" srcset="/img/loading.gif" lazyload class="" title="image-20220906223103579">
 
 
 
-<h3 id="实际项目中对两种模式的使用"><a href="#实际项目中对两种模式的使用" class="headerlink" title="实际项目中对两种模式的使用"></a>实际项目中对两种模式的使用</h3><img src="/2022/08/28/VueRouter%E7%9A%84hash%E5%92%8Chistory%E6%A8%A1%E5%BC%8F/image-20220911221416987.png" srcset="/img/loading.gif" lazyload class="" title="image-20220911221416987">
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a><a target="_blank" rel="noopener" href="http://t.zoukankan.com/jyughynj-p-14429662.html">解决方案</a></h3><p><strong>1.使用生成器</strong></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-comment">// 生成器 用来保证请求的顺序</span><br><span class="hljs-keyword">function</span>* <span class="hljs-title function_">generator</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; <span class="hljs-number">21</span>; i++) &#123;<br>        <span class="hljs-keyword">yield</span> <span class="hljs-title function_">getPokemonApi</span>(i)<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 处理请求结果并发送下一次请求</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">run</span>(<span class="hljs-params">res: <span class="hljs-built_in">any</span></span>) &#123;<br>    <span class="hljs-keyword">if</span> (!res.<span class="hljs-property">done</span>) &#123;<br>        res.<span class="hljs-property">value</span><br>            .<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">response: <span class="hljs-built_in">any</span></span>) =&gt;</span> &#123;<br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(response)<br>            pokemons.<span class="hljs-title function_">push</span>(response.<span class="hljs-property">data</span>)<br>            <span class="hljs-title function_">run</span>(gen.<span class="hljs-title function_">next</span>())<br>        &#125;)<br>            .<span class="hljs-title function_">catch</span>(<span class="hljs-function">(<span class="hljs-params">err: <span class="hljs-built_in">any</span></span>) =&gt;</span> &#123; <span class="hljs-comment">// 处理一下异常</span><br>            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">info</span>(err)<br>            <span class="hljs-title function_">run</span>(gen.<span class="hljs-title function_">next</span>())<br>        &#125;)<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 开始执行</span><br><span class="hljs-keyword">let</span> gen = <span class="hljs-title function_">generator</span>()<br><span class="hljs-title function_">run</span>(gen.<span class="hljs-title function_">next</span>())<br></code></pre></td></tr></table></figure>
 
-<p>我们看 vue3 的官网</p>
-<p>点击左侧的章节，中间部分会被整体替换，使用的是 history 模式。url 如下</p>
-<p><a target="_blank" rel="noopener" href="https://cn.vuejs.org/guide/introduction.html">https://cn.vuejs.org/guide/introduction.html</a></p>
-<p>点击右侧的本页目录，中间部分不会替换，而是滚动到对应位置，使用的是 hash 模式。url 如下</p>
-<p><a target="_blank" rel="noopener" href="https://cn.vuejs.org/guide/typescript/composition-api.html#typing-component-props">https://cn.vuejs.org/guide/typescript/composition-api.html#typing-component-props</a></p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7116336664540086286#heading-7">https://juejin.cn/post/7116336664540086286#heading-7</a></p>
-<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7096034733649297421">https://juejin.cn/post/7096034733649297421</a></p>
+<p>一个请求完成之后再发送下一个请求，关键在于发送一个之后先停下来等待该请求完成，处理之后再继续下一个请求。生成器generator里面的yield语句可以分割代码，程序遇到yield会停住，通过next语句可以一次执行一个yield分割的语句，本文尝试使用生成器完成依次发送多个请求的功能。</p>
+<p><strong>2.await</strong></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">getPokemon</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; <span class="hljs-number">101</span>; i++) &#123;<br>        <span class="hljs-keyword">await</span> <span class="hljs-title function_">getPokemonApi</span>(i)<br>            .<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">response</span>) =&gt;</span> &#123;<br>            pokemons.<span class="hljs-title function_">push</span>(response.<span class="hljs-property">data</span>)<br>        &#125;)<br>    &#125;<br>&#125;<br><br><span class="hljs-title function_">getPokemon</span>()<br></code></pre></td></tr></table></figure>
+
+<p>await会强制其他代码等待，直到后面的promise执行完毕</p>
+<h1 id="待做"><a href="#待做" class="headerlink" title="待做"></a>待做</h1><p>hover渐变</p>
+<p>类似 <a target="_blank" rel="noopener" href="https://50projects50days.com/#projects">https://50projects50days.com/#projects</a></p>
+<p>详情card</p>
+<p>搜索框换成精灵球</p>
 
               
             </div>
@@ -338,7 +338,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Vue/" class="category-chain-item">Vue</a>
+  <a href="/categories/%E9%A1%B9%E7%9B%AE/" class="category-chain-item">项目</a>
   
   
 
@@ -350,15 +350,6 @@
     </div>
   
   
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/Vue/">#Vue</a>
-      
-        <a href="/tags/%E8%B7%AF%E7%94%B1/">#路由</a>
-      
-    </div>
-  
 </div>
 
 
@@ -367,8 +358,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>VueRouter的hash和history模式</div>
-      <div>http://example.com/2022/08/28/VueRouter的hash和history模式/</div>
+      <div>pokemon项目</div>
+      <div>http://example.com/2022/09/06/pokemon项目/</div>
     </div>
     <div class="license-meta">
       
@@ -380,7 +371,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>August 28, 2022</div>
+          <div>September 6, 2022</div>
         </div>
       
       
@@ -410,9 +401,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/08/28/%E6%89%8B%E5%86%99%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" title="手写常用函数">
+                      <a href="/2022/09/10/%E9%A2%84%E6%B8%B2%E6%9F%93/" title="服务端渲染 客户端渲染 预渲染">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">手写常用函数</span>
+                        <span class="hidden-mobile">服务端渲染 客户端渲染 预渲染</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -420,8 +411,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/08/12/declare/" title="declare">
-                        <span class="hidden-mobile">declare</span>
+                      <a href="/2022/09/05/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/" title="JavaScript设计模式与开发实践">
+                        <span class="hidden-mobile">JavaScript设计模式与开发实践</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

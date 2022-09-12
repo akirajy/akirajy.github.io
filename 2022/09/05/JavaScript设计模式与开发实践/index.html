@@ -16,25 +16,22 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="VueRouter的hash和history模式vue-router 在实现单页面前端路由时，提供了两种方式：Hash 模式和 History 模式 vue2 是根据 mode 参数来决定采用哪一种方式 vue3 则是 history 参数 hash简述localhost:8080&#x2F;#&#x2F;home  vue-router 默认 hash 模式 —— 使用 URL 的 hash 来">
+    <meta name="description" content="面向对象的JS鸭子类型如果它走起路来像鸭子，叫起来也是鸭子，那么它就是鸭子 只关注对象的行为，而不关注对象本身 多态同一操作作用于不同对象上时，可以产生不同的解释和结果。 多态背后的思想是将 “做什么” 和 “谁去做以及怎样去做，也就是将 ”不变的事物“ 与 ”可能改变的事物” 分类开来。这样后续再增加新的对象时，仅仅增加代码即可，不用再去修改之前的代码。 使用继承来得到多态效果，是让对象表现出多">
 <meta property="og:type" content="article">
-<meta property="og:title" content="VueRouter的hash和history模式">
-<meta property="og:url" content="http://example.com/2022/08/28/VueRouter%E7%9A%84hash%E5%92%8Chistory%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:title" content="JavaScript设计模式与开发实践">
+<meta property="og:url" content="http://example.com/2022/09/05/JavaScript%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%BC%80%E5%8F%91%E5%AE%9E%E8%B7%B5/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="VueRouter的hash和history模式vue-router 在实现单页面前端路由时，提供了两种方式：Hash 模式和 History 模式 vue2 是根据 mode 参数来决定采用哪一种方式 vue3 则是 history 参数 hash简述localhost:8080&#x2F;#&#x2F;home  vue-router 默认 hash 模式 —— 使用 URL 的 hash 来">
+<meta property="og:description" content="面向对象的JS鸭子类型如果它走起路来像鸭子，叫起来也是鸭子，那么它就是鸭子 只关注对象的行为，而不关注对象本身 多态同一操作作用于不同对象上时，可以产生不同的解释和结果。 多态背后的思想是将 “做什么” 和 “谁去做以及怎样去做，也就是将 ”不变的事物“ 与 ”可能改变的事物” 分类开来。这样后续再增加新的对象时，仅仅增加代码即可，不用再去修改之前的代码。 使用继承来得到多态效果，是让对象表现出多">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022/08/28/VueRouter%E7%9A%84hash%E5%92%8Chistory%E6%A8%A1%E5%BC%8F/image-20220911221416987.png">
-<meta property="article:published_time" content="2022-08-28T08:15:07.000Z">
-<meta property="article:modified_time" content="2022-09-11T14:19:15.332Z">
+<meta property="article:published_time" content="2022-09-05T13:47:32.000Z">
+<meta property="article:modified_time" content="2022-09-05T14:38:38.640Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="Vue">
-<meta property="article:tag" content="路由">
+<meta property="article:tag" content="设计模式">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2022/08/28/VueRouter%E7%9A%84hash%E5%92%8Chistory%E6%A8%A1%E5%BC%8F/image-20220911221416987.png">
   
   
   
-  <title>VueRouter的hash和history模式 - Hexo</title>
+  <title>JavaScript设计模式与开发实践 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +194,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="VueRouter的hash和history模式"></span>
+            <span id="subtitle" data-typed-text="JavaScript设计模式与开发实践"></span>
           
         </div>
 
@@ -208,8 +205,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-08-28 16:15" pubdate>
-          August 28, 2022 pm
+        <time datetime="2022-09-05 21:47" pubdate>
+          September 5, 2022 pm
         </time>
       </span>
     
@@ -220,7 +217,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k words
+          198 words
         
       </span>
     
@@ -231,7 +228,7 @@
         
         
         
-          16 mins
+          2 mins
         
       </span>
     
@@ -277,50 +274,15 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">VueRouter的hash和history模式</h1>
+            <h1 style="display: none">JavaScript设计模式与开发实践</h1>
             
             <div class="markdown-body">
               
-              <h2 id="VueRouter的hash和history模式"><a href="#VueRouter的hash和history模式" class="headerlink" title="VueRouter的hash和history模式"></a>VueRouter的hash和history模式</h2><p><code>vue-router</code> 在实现单页面前端路由时，提供了两种方式：<code>Hash</code> 模式和 <code>History</code> 模式</p>
-<p>vue2 是根据 <code>mode</code> 参数来决定采用哪一种方式</p>
-<p>vue3 则是 <code>history</code> 参数</p>
-<h3 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h3><h4 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h4><p>localhost:8080&#x2F;#&#x2F;home</p>
-<ul>
-<li><code>vue-router</code> 默认 hash 模式 —— 使用 URL 的 hash 来模拟一个完整的 URL，于是当 URL 改变时，页面不会重新加载。  <code>hash</code>（#）是 <code>URL</code> 的锚点，代表的是网页中的一个位置，单单改变 <code>#</code> 后的部分，浏览器只会滚动到相应位置，不会重新加载网页，也就是说 <code>#</code> 是用来指导浏览器动作的，对服务器端完全无用，<code>HTTP</code> 请求中也不会不包括 <code>#</code> ，同时每一次改变 <code>#</code> 后的部分，都会在浏览器的访问历史中增加一个记录，使用 “后退” 按钮，就可以回到上一个位置，所以说 <code>hash</code> 模式通过锚点值的改变，根据不同的值，渲染指定 <code>DOM</code> 位置的不同数据。</li>
-<li><code>#</code> 符号本身以及它后面的字符称之为 <code>hash</code>，可通过<code> window.location.hash</code> 属性读取。</li>
-<li><code>hash</code> 通过 <code>window.onhashchange</code> 的方式，来监听 <code>hash</code> 的改变，借此实现无刷新跳转的功能。</li>
-</ul>
-<h4 id="设置hash模式"><a href="#设置hash模式" class="headerlink" title="设置hash模式"></a>设置hash模式</h4><p>vue2 中默认为 mode:hash</p>
-<p>vue3 中使用 createWebHashHistory</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs vue3">import &#123; createWebHashHistory &#125; from &#x27;vue-router&#x27;<br><br>const router = createRouter(&#123;<br>  history: createWebHistory(),<br>  routes<br>&#125;);<br></code></pre></td></tr></table></figure>
-
-
-
-<h3 id="history"><a href="#history" class="headerlink" title="history"></a>history</h3><h4 id="简述-1"><a href="#简述-1" class="headerlink" title="简述"></a>简述</h4><p>localhost:8080&#x2F;home</p>
-<p><code>history</code> 是路由的另一种模式，由于 hash 模式会在 url 中带#，如果不想要带 #的话，我们可以使用路由的 <code>history</code> 模式，只需要在响应的 <code>router</code> 配置规则时加上即可，<code>vue</code> 的路由默认是 <code>hash</code> 模式。</p>
-<p>利用了<code>HTML5 History Interface</code>中新增的 <code>pushState()</code> 和<code> replaceState()</code> 方法。</p>
-<p>这两个方法应用于浏览器的历史记录栈，在当前已有的<code> back、forward、go</code> 的基础之上，它们提供了对历史记录进行修改的功能。只是当它们执行修改时，虽然改变了当前的 URL，但浏览器不会立即向后端发送请求。</p>
-<h4 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h4><p>美观，没有#</p>
-<h4 id="缺陷"><a href="#缺陷" class="headerlink" title="缺陷"></a>缺陷</h4><p><strong>需要后端配置（nginx代理转发，找不到就重定向到项目首页）</strong></p>
-<p>否则刷新页面会报404，因为会重新发请求，而此时的 url 已经改变。</p>
-<p>具体的说：当我们把 history 项目部署到服务器中后,此时我们在浏览器输入一个网址(比如是 <a href="https://link.juejin.cn/?target=http://www.test.com">www.test.com</a> ), 此时会经过 dns 解析，拿到 ip 地址后根据 ip 地址向该服务器发起请求,服务器接受到请求后,然后返回相应的结果(html,css,js)。如果我们在前端设置了重定向，此时页面会进行跳转到  <a href="https://link.juejin.cn/?target=http://www.test.com/home">www.test.com/home</a> ,在前端会进行匹配对应的组件然后将其渲染到页面上。此时如果我们刷新页面的话，浏览器会发送新的请求 <a href="https://link.juejin.cn/?target=http://www.test.com/home">www.test.com/home</a>, 如果后端服务器没有 &#x2F;home 对应的接口，那么就会返回404。</p>
-<p>hash模式不会404，因为 #及之后的内容并不会放入请求</p>
-<p>注意：开发环境没有这个问题，因为 webpack 处理好了。生产环境才会有问题。</p>
-<h4 id="设置history模式"><a href="#设置history模式" class="headerlink" title="设置history模式"></a>设置history模式</h4><p>vue2 中设置 mode:history</p>
-<p>vue3 中设置 createWebHistory</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs vue3">import &#123; createWebHistory &#125; from &#x27;vue-router&#x27;<br><br>const router = createRouter(&#123;<br>  history: createWebHistory(),<br>  routes<br>&#125;);<br></code></pre></td></tr></table></figure>
-
-
-
-<h3 id="实际项目中对两种模式的使用"><a href="#实际项目中对两种模式的使用" class="headerlink" title="实际项目中对两种模式的使用"></a>实际项目中对两种模式的使用</h3><img src="/2022/08/28/VueRouter%E7%9A%84hash%E5%92%8Chistory%E6%A8%A1%E5%BC%8F/image-20220911221416987.png" srcset="/img/loading.gif" lazyload class="" title="image-20220911221416987">
-
-<p>我们看 vue3 的官网</p>
-<p>点击左侧的章节，中间部分会被整体替换，使用的是 history 模式。url 如下</p>
-<p><a target="_blank" rel="noopener" href="https://cn.vuejs.org/guide/introduction.html">https://cn.vuejs.org/guide/introduction.html</a></p>
-<p>点击右侧的本页目录，中间部分不会替换，而是滚动到对应位置，使用的是 hash 模式。url 如下</p>
-<p><a target="_blank" rel="noopener" href="https://cn.vuejs.org/guide/typescript/composition-api.html#typing-component-props">https://cn.vuejs.org/guide/typescript/composition-api.html#typing-component-props</a></p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7116336664540086286#heading-7">https://juejin.cn/post/7116336664540086286#heading-7</a></p>
-<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7096034733649297421">https://juejin.cn/post/7096034733649297421</a></p>
+              <h2 id="面向对象的JS"><a href="#面向对象的JS" class="headerlink" title="面向对象的JS"></a>面向对象的JS</h2><h3 id="鸭子类型"><a href="#鸭子类型" class="headerlink" title="鸭子类型"></a>鸭子类型</h3><p>如果它走起路来像鸭子，叫起来也是鸭子，那么它就是鸭子</p>
+<p>只关注对象的行为，而不关注对象本身</p>
+<h3 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h3><p>同一操作作用于不同对象上时，可以产生不同的解释和结果。</p>
+<p>多态背后的思想是将 “做什么” 和 “谁去做以及怎样去做，也就是将 ”不变的事物“ 与 ”可能改变的事物” 分类开来。这样后续再增加新的对象时，仅仅增加代码即可，不用再去修改之前的代码。</p>
+<p>使用继承来得到多态效果，是让对象表现出多态性的最常用手段。</p>
 
               
             </div>
@@ -338,7 +300,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Vue/" class="category-chain-item">Vue</a>
+  <a href="/categories/%E4%B9%A6%E7%B1%8D/" class="category-chain-item">书籍</a>
   
   
 
@@ -353,9 +315,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Vue/">#Vue</a>
-      
-        <a href="/tags/%E8%B7%AF%E7%94%B1/">#路由</a>
+        <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">#设计模式</a>
       
     </div>
   
@@ -367,8 +327,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>VueRouter的hash和history模式</div>
-      <div>http://example.com/2022/08/28/VueRouter的hash和history模式/</div>
+      <div>JavaScript设计模式与开发实践</div>
+      <div>http://example.com/2022/09/05/JavaScript设计模式与开发实践/</div>
     </div>
     <div class="license-meta">
       
@@ -380,7 +340,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>August 28, 2022</div>
+          <div>September 5, 2022</div>
         </div>
       
       
@@ -410,9 +370,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/08/28/%E6%89%8B%E5%86%99%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" title="手写常用函数">
+                      <a href="/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/" title="pokemon项目">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">手写常用函数</span>
+                        <span class="hidden-mobile">pokemon项目</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -420,8 +380,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/08/12/declare/" title="declare">
-                        <span class="hidden-mobile">declare</span>
+                      <a href="/2022/09/04/vue%E7%9A%84%E4%BA%8B%E4%BB%B6%E4%BF%AE%E9%A5%B0%E7%AC%A6/" title="vue的事件修饰符">
+                        <span class="hidden-mobile">vue的事件修饰符</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
