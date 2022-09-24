@@ -16,21 +16,23 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="项目启动npm install 失败 将 package-lock.json 文件删去后，再 install 才成功 原因大概是团队中的 node 版本不同 package-lock.json package-lock.json 会在 npm 更改 node_modules 目录树 或者 package.json 时自动生成 ，它准确的描述了当前项目npm包的依赖树，并且在随后的安装中会根据 pa">
+    <meta name="description" content="文档碎片什么是文档碎片它被作为一个轻量版的 Document 使用，就像标准的 document 一样，存储由节点（nodes）组成的文档结构。与 document 相比，最大的区别是它不是真实 DOM 树的一部分，它的变化不会触发 DOM 树的重新渲染（重绘重排），且不会对性能产生影响。 使用最常用的方法是使用 DocumentFragment 创建并组成一个 DOM 子树，然后使用 Node">
 <meta property="og:type" content="article">
-<meta property="og:title" content="实习记录">
-<meta property="og:url" content="http://example.com/2022/08/01/%E5%AE%9E%E4%B9%A0%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:title" content="DocumentFragment">
+<meta property="og:url" content="http://example.com/2022/09/23/DocumentFragment/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="项目启动npm install 失败 将 package-lock.json 文件删去后，再 install 才成功 原因大概是团队中的 node 版本不同 package-lock.json package-lock.json 会在 npm 更改 node_modules 目录树 或者 package.json 时自动生成 ，它准确的描述了当前项目npm包的依赖树，并且在随后的安装中会根据 pa">
+<meta property="og:description" content="文档碎片什么是文档碎片它被作为一个轻量版的 Document 使用，就像标准的 document 一样，存储由节点（nodes）组成的文档结构。与 document 相比，最大的区别是它不是真实 DOM 树的一部分，它的变化不会触发 DOM 树的重新渲染（重绘重排），且不会对性能产生影响。 使用最常用的方法是使用 DocumentFragment 创建并组成一个 DOM 子树，然后使用 Node">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-08-01T09:52:36.000Z">
-<meta property="article:modified_time" content="2022-09-23T09:07:01.716Z">
+<meta property="og:image" content="http://example.com/2022/09/23/DocumentFragment/image-20220923172037861.png">
+<meta property="article:published_time" content="2022-09-23T09:15:32.000Z">
+<meta property="article:modified_time" content="2022-09-23T09:23:32.577Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2022/09/23/DocumentFragment/image-20220923172037861.png">
   
   
   
-  <title>实习记录 - Hexo</title>
+  <title>DocumentFragment - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -193,7 +195,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="实习记录"></span>
+            <span id="subtitle" data-typed-text="DocumentFragment"></span>
           
         </div>
 
@@ -204,8 +206,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-08-01 17:52" pubdate>
-          August 1, 2022 pm
+        <time datetime="2022-09-23 17:15" pubdate>
+          September 23, 2022 pm
         </time>
       </span>
     
@@ -216,7 +218,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k words
+          981 words
         
       </span>
     
@@ -227,7 +229,7 @@
         
         
         
-          16 mins
+          9 mins
         
       </span>
     
@@ -273,64 +275,21 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">实习记录</h1>
+            <h1 style="display: none">DocumentFragment</h1>
             
             <div class="markdown-body">
               
-              <h2 id="项目启动"><a href="#项目启动" class="headerlink" title="项目启动"></a>项目启动</h2><p>npm install 失败</p>
-<p>将 package-lock.json 文件删去后，再 install 才成功</p>
-<p>原因大概是团队中的 node 版本不同</p>
-<p><strong><a target="_blank" rel="noopener" href="https://juejin.cn/post/7078233610683170824">package-lock.json</a></strong></p>
-<p>package-lock.json 会<strong>在 npm 更改 node_modules 目录树 或者 package.json 时自动生成</strong> ，它准确的描述了当前项目npm包的依赖树，并且在随后的安装中会根据 package-lock.json 来安装，保证是相同的一个依赖树，不考虑这个过程中是否有某个依赖有小版本的更新。（安装依赖时，优先 package-lock.json ，没有时再看 package.json）</p>
-<p>它的产生就是来对整个依赖树进行版本固定的（锁死）。</p>
-<p>注意，使用<code>cnpm install</code>时候，并不会生成 <code>package-lock.json</code> 文件，也不会根据 <code>package-lock.json</code> 来安装依赖包，还是会使用 <code>package.json</code> 来安装。</p>
-<h2 id="修复漏洞"><a href="#修复漏洞" class="headerlink" title="修复漏洞"></a>修复漏洞</h2><p>修复上线前检测出的漏洞，主要是<strong>基于 DOM 的 XSS 攻击的安全隐患</strong>。</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lgxzzz/article/details/125010336">https://blog.csdn.net/lgxzzz/article/details/125010336</a></p>
-<p>相关插件 xss &#x2F; vue-xss(只支持 js) &#x2F; vue-dompurify-html</p>
-<p>发现问题主要是因为使用了 v-html</p>
-<p><strong>1.通过 vue-dompurify-html 插件 实现</strong></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">npm <span class="hljs-selector-tag">i</span> vue-dompurify-<span class="hljs-selector-tag">html</span><br></code></pre></td></tr></table></figure>
+              <h1 id="文档碎片"><a href="#文档碎片" class="headerlink" title="文档碎片"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/DocumentFragment">文档碎片</a></h1><h2 id="什么是文档碎片"><a href="#什么是文档碎片" class="headerlink" title="什么是文档碎片"></a>什么是文档碎片</h2><p>它被作为一个轻量版的 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Document"><code>Document</code></a> 使用，就像标准的 document 一样，存储由节点（nodes）组成的文档结构。与 document 相比，最大的区别是<strong>它不是真实 DOM 树的一部分，它的变化不会触发 DOM 树的重新渲染（重绘重排），且不会对性能产生影响。</strong></p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>最常用的方法是使用 <code>DocumentFragment</code> 创建并组成一个 DOM 子树，然后使用 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Node"><code>Node</code></a> 接口方法（如：<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Node/appendChild"><code>appendChild()</code></a> 或 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Node/insertBefore"><code>insertBefore()</code></a>）将其插入到 DOM 中。这种情况下<strong>会插入片段的所有子节点，并留下一个空的 DocumentFragment</strong>。因为<strong>所有的节点会被一次插入到文档中，所以仅会发生一个重渲染的操作，而不是每个节点分别被插入到文档中从而发生多次重渲染的操作</strong>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> list = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;#list&#x27;</span>)<br><span class="hljs-keyword">const</span> fruits = [<span class="hljs-string">&#x27;Apple&#x27;</span>, <span class="hljs-string">&#x27;Orange&#x27;</span>, <span class="hljs-string">&#x27;Banana&#x27;</span>, <span class="hljs-string">&#x27;Melon&#x27;</span>]<br><br><span class="hljs-keyword">const</span> fragment = <span class="hljs-keyword">new</span> <span class="hljs-title class_">DocumentFragment</span>()<br><br>fruits.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">fruit</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">const</span> li = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;li&#x27;</span>)<br>  li.<span class="hljs-property">textContent</span> = fruit<br>  fragment.<span class="hljs-title function_">appendChild</span>(li)<br>&#125;)<br><br>list.<span class="hljs-title function_">appendChild</span>(fragment)<br></code></pre></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs vue">import VueDOMPurifyHTML from &#x27;vue-dopurify-html&#x27;<br><br>app.use(VueDOMPurifyHTML)<br></code></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">v-dompurify-html = <span class="hljs-string">&quot;rawHtml&quot;</span><br></code></pre></td></tr></table></figure>
+<img src="/2022/09/23/DocumentFragment/image-20220923172037861.png" srcset="/img/loading.gif" lazyload class="" title="image-20220923172037861">
 
 
 
-<p><strong>2.通过 xss 插件实现</strong></p>
-<p><a target="_blank" rel="noopener" href="https://github.com/leizongmin/js-xss">https://github.com/leizongmin/js-xss</a></p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">npm <span class="hljs-keyword">install</span> xss<br></code></pre></td></tr></table></figure>
+<h2 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h2><p>文档片段节点的三个node属性——nodeType、nodeName、nodeValue分别是11、’#document-fragment’和null，文档片段节点没有父节点parentNode</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> frag = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createDocumentFragment</span>();<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(frag.<span class="hljs-property">nodeType</span>);<span class="hljs-comment">//11</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(frag.<span class="hljs-property">nodeValue</span>);<span class="hljs-comment">//null</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(frag.<span class="hljs-property">nodeName</span>);<span class="hljs-comment">//&#x27;#document-fragment&#x27;</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(frag.<span class="hljs-property">parentNode</span>);<span class="hljs-comment">//null</span><br></code></pre></td></tr></table></figure>
 
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 设置白名单</span><br><span class="hljs-keyword">var</span> options = &#123;<br>    <span class="hljs-attr">whiteList</span>: &#123;<br>        <span class="hljs-attr">a</span>: [<span class="hljs-string">&quot;href&quot;</span>, <span class="hljs-string">&quot;title&quot;</span>, <span class="hljs-string">&quot;target&quot;</span>],<br>    &#125;,<br>&#125;<br><br><span class="hljs-comment">// 实例化</span><br>myxss = <span class="hljs-keyword">new</span> xss.<span class="hljs-title class_">FilterXSS</span>(options);<br><br><span class="hljs-comment">// 对需要转义的部分调用myxss.process()</span><br>html = myxss.<span class="hljs-title function_">process</span>(<span class="hljs-string">&#x27;&lt;script&gt;alert(&quot;xss&quot;);&lt;/script&gt;&#x27;</span>);<br></code></pre></td></tr></table></figure>
-
-
-
-<h2 id="后台管理系统新增页面"><a href="#后台管理系统新增页面" class="headerlink" title="后台管理系统新增页面"></a>后台管理系统新增页面</h2><h3 id="曲库管理"><a href="#曲库管理" class="headerlink" title="曲库管理"></a>曲库管理</h3><h4 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h4><p>用于从后台管理系统将音乐资源导入数据库，从而显示在 APP 中。</p>
-<h4 id="主要需求"><a href="#主要需求" class="headerlink" title="主要需求"></a>主要需求</h4><p>资源有三个级别：教材 &gt; 专辑 &gt; 单曲，每个级别都可以新增（上传）或删除。</p>
-<p>输入框用于搜索教材，单选框用于固定乐器</p>
-<p>可以下载教材到本地</p>
-<h3 id="APP版本管理"><a href="#APP版本管理" class="headerlink" title="APP版本管理"></a>APP版本管理</h3><h4 id="作用-1"><a href="#作用-1" class="headerlink" title="作用"></a>作用</h4><p>用于记录与管理 APP 版本的迭代信息。</p>
-<p>两个 APP ：调音器 &#x2F; 好乐器</p>
-<p>两个 os：ios &#x2F; 安卓</p>
-<h4 id="主要需求-1"><a href="#主要需求-1" class="headerlink" title="主要需求"></a>主要需求</h4><p>新增版本</p>
-<p>查看版本详情</p>
-<h3 id="难点"><a href="#难点" class="headerlink" title="难点"></a>难点</h3><p>技术上没什么太难的地方</p>
-<p>但是当时有两个问题花了我比较久的时间。</p>
-<p>一个问题是在上传资源的时候，资源会丢失，我找了很久问题的原因，后面问了 leader 才知道是被平安拦截掉了，平安的安全措施比较严格，不能从内网向外网传稍大的资源。这个问题要完全解决非常麻烦，可能架构上要改，所以就没有从技术层面去解决，而是在上传资源的时候切到外网。</p>
-<h2 id="音乐基础新增试唱功能"><a href="#音乐基础新增试唱功能" class="headerlink" title="音乐基础新增试唱功能"></a>音乐基础新增试唱功能</h2><h3 id="作用-2"><a href="#作用-2" class="headerlink" title="作用"></a>作用</h3><p>一种新题型，原先的题型主要都是选择题。</p>
-<h3 id="主要需求-2"><a href="#主要需求-2" class="headerlink" title="主要需求"></a>主要需求</h3><p>给一个谱子，用户点击 button 倒计时后开始清唱，用户开始唱的时候会录音，同时会有一个小方块来提示用户唱到哪一个音符了。这个小方块会随着时间移动，当它移动到某个音符的上面，就说明应该唱到这个音了。唱完之后会将录音传给后端，使用算法比对进行打分，然后返回一个分数给用户。</p>
-<p>两种谱子：五线谱 &#x2F; 简谱</p>
-<p>两种谱子给的资源不一致</p>
-<p>五线谱有 xml 文件，将其转为 json 后，解构获得有效信息，主要是每个音符的 起始时间、终止时间、和在谱子中的位置</p>
-<p>简谱没有 xml 文件，因此需要 解析 mid 文件来获取每个音符的时间信息，而位置信息要根据谱子来计算，因为谱子的制定是有规则的，谱子里的距离和时间是线性的，我们可以通过音符的时间信息计算出他们的位置。</p>
-<p>而有每个音符触发的时间有音符在谱子中所处的位置，我们就可以控制方块在正确的时间处于正确的位置上来提醒用户。</p>
-<h3 id="零碎的需求"><a href="#零碎的需求" class="headerlink" title="零碎的需求"></a>零碎的需求</h3><p>五线谱 &#x2F; 简谱 的切换</p>
-<p>播放录音</p>
-<p>播放范唱（midi，人声）</p>
-<p>控制速度</p>
-<p>节拍器</p>
-<h3 id="难点-1"><a href="#难点-1" class="headerlink" title="难点"></a>难点</h3><p>控制方块的位置，花了些时间计算</p>
-<p>对于 midi 文件的理解与处理，npm 上找了很多包来解析 midi 和播放 midi</p>
 
               
             </div>
@@ -348,7 +307,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%AE%9E%E4%B9%A0/" class="category-chain-item">实习</a>
+  <a href="/categories/%E4%BC%98%E5%8C%96/" class="category-chain-item">优化</a>
   
   
 
@@ -368,8 +327,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>实习记录</div>
-      <div>http://example.com/2022/08/01/实习记录/</div>
+      <div>DocumentFragment</div>
+      <div>http://example.com/2022/09/23/DocumentFragment/</div>
     </div>
     <div class="license-meta">
       
@@ -381,7 +340,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>August 1, 2022</div>
+          <div>September 23, 2022</div>
         </div>
       
       
@@ -411,9 +370,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/08/08/%E4%B8%BA%E4%BB%80%E4%B9%88React%E5%AE%98%E7%BD%91%E9%82%A3%E4%B9%88%E5%BF%AB/" title="为什么React官网那么快">
+                      <a href="/2022/09/24/npm-run-xxx/" title="npm run xxx">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">为什么React官网那么快</span>
+                        <span class="hidden-mobile">npm run xxx</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -421,8 +380,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/07/21/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3ES6/" title="深入理解ES6">
-                        <span class="hidden-mobile">深入理解ES6</span>
+                      <a href="/2022/09/10/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93%20%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%B8%B2%E6%9F%93%20%E9%A2%84%E6%B8%B2%E6%9F%93/" title="服务端渲染 客户端渲染 预渲染">
+                        <span class="hidden-mobile">服务端渲染 客户端渲染 预渲染</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
