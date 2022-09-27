@@ -1,0 +1,881 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="grid布局概念Grid 布局将容器划分成”行”和”列”，产生单元格，然后指定”项目所在”的单元格，可以看作是二维布局。     容器属性行数行宽&#x2F;列数列宽使用grid-template-columns 定义每一列列宽 grid-template-rows 定义每一行行宽 12345.container &amp;#123;  display: grid;  grid-template-colu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2022/09/27/grid%E5%B8%83%E5%B1%80/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="grid布局概念Grid 布局将容器划分成”行”和”列”，产生单元格，然后指定”项目所在”的单元格，可以看作是二维布局。     容器属性行数行宽&#x2F;列数列宽使用grid-template-columns 定义每一列列宽 grid-template-rows 定义每一行行宽 12345.container &amp;#123;  display: grid;  grid-template-colu">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2022/09/27/grid%E5%B8%83%E5%B1%80/20210126105810167.png">
+<meta property="og:image" content="http://example.com/2022/09/27/grid%E5%B8%83%E5%B1%80/image-20220927170918911.png">
+<meta property="og:image" content="http://example.com/2022/09/27/grid%E5%B8%83%E5%B1%80/image-20220927171621426.png">
+<meta property="og:image" content="http://example.com/2022/09/27/grid%E5%B8%83%E5%B1%80/image-20220927171812596.png">
+<meta property="og:image" content="http://example.com/2022/09/27/grid%E5%B8%83%E5%B1%80/image-20220927173417160.png">
+<meta property="og:image" content="http://example.com/2022/09/27/grid%E5%B8%83%E5%B1%80/image-20220927174250065.png">
+<meta property="og:image" content="http://example.com/2022/09/27/grid%E5%B8%83%E5%B1%80/image-20220927174425864.png">
+<meta property="og:image" content="http://example.com/2022/09/27/grid%E5%B8%83%E5%B1%80/image-20220927174512952.png">
+<meta property="og:image" content="http://example.com/2022/09/27/grid%E5%B8%83%E5%B1%80/image-20220927175053534.png">
+<meta property="og:image" content="http://example.com/2022/09/27/grid%E5%B8%83%E5%B1%80/image-20220927175150874.png">
+<meta property="og:image" content="http://example.com/2022/09/27/grid%E5%B8%83%E5%B1%80/image-20220927175720883.png">
+<meta property="og:image" content="http://example.com/2022/09/27/grid%E5%B8%83%E5%B1%80/image-20220927223440294.png">
+<meta property="og:image" content="http://example.com/2022/09/27/grid%E5%B8%83%E5%B1%80/image-20220927223748443.png">
+<meta property="og:image" content="http://example.com/2022/09/27/grid%E5%B8%83%E5%B1%80/image-20220927224801964.png">
+<meta property="article:published_time" content="2022-09-27T09:03:19.000Z">
+<meta property="article:modified_time" content="2022-09-27T14:48:30.190Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2022/09/27/grid%E5%B8%83%E5%B1%80/20210126105810167.png">
+  
+  
+  
+  <title>Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"qPzYEpTngSrzQtV1XpsPSmPm-gzGzoHsz","app_key":"kf4lqne4FqonWhpUQzS1Ffrx","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>JY BLOG</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text=""></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-09-27 17:03" pubdate>
+          September 27, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.8k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          32 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span>次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none"></h1>
+            
+            <div class="markdown-body">
+              
+              <h1 id="grid布局"><a href="#grid布局" class="headerlink" title="grid布局"></a>grid布局</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>Grid 布局将容器划分成”行”和”列”，产生单元格，然后指定”项目所在”的单元格，可以看作是<strong>二维布局</strong>。</p>
+<img src="/2022/09/27/grid%E5%B8%83%E5%B1%80/20210126105810167.png" srcset="/img/loading.gif" lazyload class="" title="img">
+
+
+
+<h2 id="容器属性"><a href="#容器属性" class="headerlink" title="容器属性"></a>容器属性</h2><h3 id="行数行宽-x2F-列数列宽"><a href="#行数行宽-x2F-列数列宽" class="headerlink" title="行数行宽&#x2F;列数列宽"></a>行数行宽&#x2F;列数列宽</h3><h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>grid-template-columns 定义每一列列宽</p>
+<p>grid-template-rows 定义每一行行宽</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">display</span>: grid;<br>  <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-number">100px</span> <span class="hljs-number">100px</span> <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">grid-template-rows</span>: <span class="hljs-number">100px</span> <span class="hljs-number">100px</span> <span class="hljs-number">100px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<img src="/2022/09/27/grid%E5%B8%83%E5%B1%80/image-20220927170918911.png" srcset="/img/loading.gif" lazyload class="" title="image-20220927170918911">
+
+<p>值可以是绝对单位&#x2F;百分比，也有一些额外的属性和方法来简化代码</p>
+<h4 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h4><h5 id="repeat"><a href="#repeat" class="headerlink" title="repeat()"></a>repeat()</h5><p>用于简化重复的值&#x2F;模式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">display</span>: grid;<br>  <span class="hljs-comment">/* 6列 */</span><br>  <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-built_in">repeat</span>(<span class="hljs-number">2</span>, <span class="hljs-number">100px</span> <span class="hljs-number">20px</span> <span class="hljs-number">80px</span>);<br>  <span class="hljs-attribute">grid-template-rows</span>: <span class="hljs-built_in">repeat</span>(<span class="hljs-number">3</span>, <span class="hljs-number">33.33%</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h5 id="auto-fill"><a href="#auto-fill" class="headerlink" title="auto-fill"></a>auto-fill</h5><p>自动填充，每一行（或每一列）容纳尽可能多的单元格。</p>
+<p>一般用于单元格大小固定，但容器大小不确定时。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">display</span>: grid;<br>  <span class="hljs-comment">/* 每列宽度 100px 自动填充 */</span><br>  <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-built_in">repeat</span>(auto-fill, <span class="hljs-number">100px</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<img src="/2022/09/27/grid%E5%B8%83%E5%B1%80/image-20220927171621426.png" srcset="/img/loading.gif" lazyload class="" title="image-20220927171621426">
+
+
+
+<h5 id="fr"><a href="#fr" class="headerlink" title="fr"></a>fr</h5><p>fraction 的缩写，意为”片段”</p>
+<p>不给具体数值，但给定比例。可以和绝对单位混用。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">display</span>: grid;<br>  <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-number">150px</span> <span class="hljs-number">1</span>fr <span class="hljs-number">2</span>fr;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<img src="/2022/09/27/grid%E5%B8%83%E5%B1%80/image-20220927171812596.png" srcset="/img/loading.gif" lazyload class="" title="image-20220927171812596">
+
+
+
+<h5 id="minmax"><a href="#minmax" class="headerlink" title="minmax()"></a>minmax()</h5><p>minmax() 函数产生一个长度范围，表示长度就在这个范围之中。它接受两个参数，分别为最小值和最大值。</p>
+<blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-number">1</span>fr <span class="hljs-number">1</span>fr <span class="hljs-built_in">minmax</span>(<span class="hljs-number">100px</span>, <span class="hljs-number">1</span>fr);<br></code></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><p>两栏式布局非常简单</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.wrapper</span> &#123;<br>  <span class="hljs-attribute">display</span>: grid;<br>  <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-number">70%</span> <span class="hljs-number">30%</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="间距-gap"><a href="#间距-gap" class="headerlink" title="间距 gap"></a>间距 gap</h3><p><strong>row-gap 属性设置行间距</strong></p>
+<p><strong>column-gap 属性设置列间距</strong></p>
+<p><strong>gap 是两者的简写形式，</strong>如果 gap 省略了第二个值，浏览器认为第二个值等于第一个值。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">grid-gap</span>: <span class="hljs-number">20px</span> <span class="hljs-number">20px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<img src="/2022/09/27/grid%E5%B8%83%E5%B1%80/image-20220927173417160.png" srcset="/img/loading.gif" lazyload class="" title="image-20220927173417160">
+
+
+
+<h3 id="区域-area"><a href="#区域-area" class="headerlink" title="区域 area"></a>区域 area</h3><p><strong>grid-template-areas 属性用于定义区域</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">grid-template-areas</span>: <span class="hljs-string">&quot;header header header&quot;</span><br>                     <span class="hljs-string">&quot;main main sidebar&quot;</span><br>                     <span class="hljs-string">&quot;footer footer footer&quot;</span>;<br></code></pre></td></tr></table></figure>
+
+<p>顶部是页眉区域 header，底部是页脚区域 footer，中间部分则为 main 和 sidebar。</p>
+<p>如果某些区域不需要利用，则使用 . 表示</p>
+<p>区域的命名会影响到网格线。每个区域的起始网格线，会自动命名为<code>区域名-start</code>，终止网格线自动命名为<code>区域名-end</code>。</p>
+<h3 id="控制单元格排列方式"><a href="#控制单元格排列方式" class="headerlink" title="控制单元格排列方式"></a>控制单元格排列方式</h3><p><strong>grid-auto-flow 控制子元素排列方式，默认为 row</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">grid-auto-flow</span>: column;<br></code></pre></td></tr></table></figure>
+
+<img src="/2022/09/27/grid%E5%B8%83%E5%B1%80/image-20220927174250065.png" srcset="/img/loading.gif" lazyload class="" title="image-20220927174250065">
+
+
+
+<p><strong>dense 关键字用于让元素排列更加紧密</strong></p>
+<p>不加 dense</p>
+<img src="/2022/09/27/grid%E5%B8%83%E5%B1%80/image-20220927174425864.png" srcset="/img/loading.gif" lazyload class="" title="image-20220927174425864">
+
+<p>加 dense</p>
+<img src="/2022/09/27/grid%E5%B8%83%E5%B1%80/image-20220927174512952.png" srcset="/img/loading.gif" lazyload class="" title="image-20220927174512952">
+
+
+
+<h3 id="控制内容在单元格中的位置"><a href="#控制内容在单元格中的位置" class="headerlink" title="控制内容在单元格中的位置"></a>控制内容在单元格中的位置</h3><p><strong>justify-items 属性设置单元格内容的水平位置（左中右）</strong></p>
+<p><strong>align-items 属性设置单元格内容的垂直位置（上中下）</strong></p>
+<p><strong>place-items 属性是 align-items 属性和 justify-items 属性的合并简写形式</strong>，如果省略第二个值，则浏览器认为与第一个值相等。</p>
+<p>可选值：</p>
+<ul>
+<li>start：对齐单元格的起始边缘。</li>
+<li>end：对齐单元格的结束边缘。</li>
+<li>center：单元格内部居中。</li>
+<li>stretch：拉伸，占满单元格的整个宽度（默认值）。</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  justify-items: start;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<img src="/2022/09/27/grid%E5%B8%83%E5%B1%80/image-20220927175053534.png" srcset="/img/loading.gif" lazyload class="" title="image-20220927175053534">
+
+
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">align-items</span>: start;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<img src="/2022/09/27/grid%E5%B8%83%E5%B1%80/image-20220927175150874.png" srcset="/img/loading.gif" lazyload class="" title="image-20220927175150874">
+
+
+
+<h3 id="控制整个内容区在容器中的位置"><a href="#控制整个内容区在容器中的位置" class="headerlink" title="控制整个内容区在容器中的位置"></a>控制整个内容区在容器中的位置</h3><p><strong>justify-content 属性是整个内容区域在容器里面的水平位置（左中右）</strong></p>
+<p><strong>align-content 属性是整个内容区域的垂直位置（上中下）</strong></p>
+<p><strong>place-content 属性是 align-content 属性和 justify-content 属性的合并简写形式。</strong>如果省略第二个值，浏览器就会假定第二个值等于第一个值。</p>
+<p>可选值：</p>
+<ul>
+<li><p>start - 对齐容器的起始边框</p>
+</li>
+<li><p>end - 对齐容器的结束边框</p>
+</li>
+<li><p>center - 容器内部居中</p>
+</li>
+<li><p>stretch - 项目大小没有指定时，拉伸占据整个网格容器。</p>
+</li>
+<li><p>space-around - 每个项目两侧的间隔相等。所以，项目之间的间隔比项目与容器边框的间隔大一倍。</p>
+</li>
+<li><p>space-between - 项目与项目的间隔相等，项目与容器边框之间没有间隔。</p>
+</li>
+<li><p>space-evenly - 项目与项目的间隔相等，项目与容器边框之间也是同样长度的间隔。</p>
+</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">justify-content</span>: space-around;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<img src="/2022/09/27/grid%E5%B8%83%E5%B1%80/image-20220927175720883.png" srcset="/img/loading.gif" lazyload class="" title="image-20220927175720883">
+
+
+
+<h3 id="控制网格外部项目的宽高"><a href="#控制网格外部项目的宽高" class="headerlink" title="控制网格外部项目的宽高"></a>控制网格外部项目的宽高</h3><p>grid-auto-columns 属性和 grid-auto-rows 属性用来设置，浏览器自动创建的多余网格的列宽和行高。</p>
+<p>如果不指定这两个属性，浏览器完全根据单元格内容的大小，决定新增网格的列宽和行高。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* 划分好的网格是3行 x 3列，但是，8号项目指定在第4行，9号项目指定在第5行。 */</span><br><span class="hljs-selector-class">.container</span> &#123;<br>  <span class="hljs-attribute">display</span>: grid;<br>  <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-number">100px</span> <span class="hljs-number">100px</span> <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">grid-template-rows</span>: <span class="hljs-number">100px</span> <span class="hljs-number">100px</span> <span class="hljs-number">100px</span>;<br>  <span class="hljs-attribute">grid-auto-rows</span>: <span class="hljs-number">50px</span>; <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<img src="/2022/09/27/grid%E5%B8%83%E5%B1%80/image-20220927223440294.png" srcset="/img/loading.gif" lazyload class="" title="image-20220927223440294">
+
+
+
+<h3 id="合并属性-grid-template"><a href="#合并属性-grid-template" class="headerlink" title="合并属性 grid-template"></a>合并属性 grid-template</h3><p><code>grid-template</code>属性是<code>grid-template-columns</code>、<code>grid-template-rows</code>和<code>grid-template-areas</code>这三个属性的合并简写形式。</p>
+<p><code>grid</code>属性是<code>grid-template-rows</code>、<code>grid-template-columns</code>、<code>grid-template-areas</code>、 <code>grid-auto-rows</code>、<code>grid-auto-columns</code>、<code>grid-auto-flow</code>这六个属性的合并简写形式。</p>
+<h2 id="项目属性"><a href="#项目属性" class="headerlink" title="项目属性"></a>项目属性</h2><h3 id="指定项目位置"><a href="#指定项目位置" class="headerlink" title="指定项目位置"></a>指定项目位置</h3><ul>
+<li>grid-column-start 属性：左边框所在的垂直网格线</li>
+<li>grid-column-end 属性：右边框所在的垂直网格线</li>
+<li>grid-row-start 属性：上边框所在的水平网格线</li>
+<li>grid-row-end 属性：下边框所在的水平网格线</li>
+</ul>
+<p>值可以是 数字 左右边框的名字 span关键字(表示左右边框&#x2F;上下边框跨越了多少个网格)</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.item-1</span> &#123;<br>  <span class="hljs-attribute">grid-column-start</span>: <span class="hljs-number">2</span>;<br>  <span class="hljs-attribute">grid-column-end</span>: <span class="hljs-number">4</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<img src="/2022/09/27/grid%E5%B8%83%E5%B1%80/image-20220927223748443.png" srcset="/img/loading.gif" lazyload class="" title="image-20220927223748443">
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.item-1</span> &#123;<br>  <span class="hljs-attribute">grid-column-start</span>: header-start;<br>  <span class="hljs-attribute">grid-column-end</span>: header-end;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.item-1</span> &#123;<br>  <span class="hljs-attribute">grid-column-start</span>: span <span class="hljs-number">2</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p><code>grid-column</code>属性是<code>grid-column-start</code>和<code>grid-column-end</code>的合并简写形式</p>
+<p><code>grid-row</code>属性是<code>grid-row-start</code>属性和<code>grid-row-end</code>的合并简写形式。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* 中间有个 / */</span><br><span class="hljs-selector-class">.item</span> &#123;<br>  <span class="hljs-attribute">grid-column</span>: &lt;start-line&gt; / &lt;end-line&gt;;<br>  <span class="hljs-attribute">grid-row</span>: &lt;start-line&gt; / &lt;end-line&gt;;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="指定项目放在哪个区域"><a href="#指定项目放在哪个区域" class="headerlink" title="指定项目放在哪个区域"></a>指定项目放在哪个区域</h3><p>grid-area 可以直接指定区域，也可以用作<code>grid-row-start</code>、<code>grid-column-start</code>、<code>grid-row-end</code>、<code>grid-column-end</code>的合并简写形式，直接指定项目的位置。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.item-1</span> &#123;<br>  <span class="hljs-attribute">grid-area</span>: e;<br>&#125;<br><br><span class="hljs-selector-class">.item-1</span> &#123;<br>  <span class="hljs-attribute">grid-area</span>: <span class="hljs-number">1</span> / <span class="hljs-number">1</span> / <span class="hljs-number">3</span> / <span class="hljs-number">3</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="设置单个项目的在单元格中的位置"><a href="#设置单个项目的在单元格中的位置" class="headerlink" title="设置单个项目的在单元格中的位置"></a>设置单个项目的在单元格中的位置</h3><p><code>justify-self</code>属性设置单元格内容的水平位置（左中右），跟<code>justify-items</code>属性的用法完全一致，但只作用于单个项目。</p>
+<p><code>align-self</code>属性设置单元格内容的垂直位置（上中下），跟<code>align-items</code>属性的用法完全一致，也是只作用于单个项目。</p>
+<p><code>place-self</code>属性是<code>align-self</code>属性和<code>justify-self</code>属性的合并简写形式。</p>
+<p>可选值：</p>
+<blockquote>
+<ul>
+<li>start：对齐单元格的起始边缘。</li>
+<li>end：对齐单元格的结束边缘。</li>
+<li>center：单元格内部居中。</li>
+<li>stretch：拉伸，占满单元格的整个宽度（默认值）。</li>
+</ul>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.item-1</span>  &#123;<br>  justify-self: start;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<img src="/2022/09/27/grid%E5%B8%83%E5%B1%80/image-20220927224801964.png" srcset="/img/loading.gif" lazyload class="" title="image-20220927224801964">
+
+
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2019/03/grid-layout-tutorial.html">https://www.ruanyifeng.com/blog/2019/03/grid-layout-tutorial.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/starof/p/15627296.html">https://www.cnblogs.com/starof/p/15627296.html</a></p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/CSS/" class="category-chain-item">CSS</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div></div>
+      <div>http://example.com/2022/09/27/grid布局/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 27, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/09/24/npm-run-xxx/" title="npm run xxx">
+                        <span class="hidden-mobile">npm run xxx</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+    
+      
+            
+                  
+</div>
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

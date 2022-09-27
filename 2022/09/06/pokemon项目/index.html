@@ -16,12 +16,12 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="数据描述getPokemonApi(id: number) base_experience：击败这只宝可梦获得的经验 abilities: 能力&#x2F;被动 为神奇宝贝在战斗或主世界中提供被动效果。神奇宝贝有多种可能的能力，但一次只能有一种能力 forms：种族？暂时没啥用 game_indices:  游戏不同代 height: 身高 dm held_items：当遭遇到这只宝可梦时，它可能">
+    <meta name="description" content="为什么要做这个项目1.练习 vue3+ts，学习一些 css 技巧（布局&#x2F;动画效果） 2.网页版的宝可梦图鉴很少，大都是app。并且宝可梦图鉴大都很丑，让人没有使用的欲望。 3.其实更想做篮球和足球的数据图鉴，但是没找到免费的开源接口 数据描述getPokemonApi(id: number) base_experience：击败这只宝可梦获得的经验 abilities: 能力&amp;#x2F">
 <meta property="og:type" content="article">
 <meta property="og:title" content="pokemon项目">
 <meta property="og:url" content="http://example.com/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="数据描述getPokemonApi(id: number) base_experience：击败这只宝可梦获得的经验 abilities: 能力&#x2F;被动 为神奇宝贝在战斗或主世界中提供被动效果。神奇宝贝有多种可能的能力，但一次只能有一种能力 forms：种族？暂时没啥用 game_indices:  游戏不同代 height: 身高 dm held_items：当遭遇到这只宝可梦时，它可能">
+<meta property="og:description" content="为什么要做这个项目1.练习 vue3+ts，学习一些 css 技巧（布局&#x2F;动画效果） 2.网页版的宝可梦图鉴很少，大都是app。并且宝可梦图鉴大都很丑，让人没有使用的欲望。 3.其实更想做篮球和足球的数据图鉴，但是没找到免费的开源接口 数据描述getPokemonApi(id: number) base_experience：击败这只宝可梦获得的经验 abilities: 能力&amp;#x2F">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/image-20220906222915890.png">
 <meta property="og:image" content="http://example.com/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/image-20220906223103579.png">
@@ -30,8 +30,12 @@
 <meta property="og:image" content="http://example.com/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/image-20220916210837353.png">
 <meta property="og:image" content="http://example.com/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/image-20220916210928338.png">
 <meta property="og:image" content="http://example.com/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/image-20220916211113363.png">
+<meta property="og:image" content="http://example.com/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/image-20220925194954595.png">
+<meta property="og:image" content="http://example.com/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/image-20220925183438206.png">
+<meta property="og:image" content="http://example.com/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/image-20220926141821034.png">
+<meta property="og:image" content="http://example.com/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/image-20220924191406689.png">
 <meta property="article:published_time" content="2022-09-06T14:24:21.000Z">
-<meta property="article:modified_time" content="2022-09-21T12:15:41.287Z">
+<meta property="article:modified_time" content="2022-09-26T06:23:26.202Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/image-20220906222915890.png">
@@ -224,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.8k words
+          5.6k words
         
       </span>
     
@@ -235,7 +239,7 @@
         
         
         
-          32 mins
+          47 mins
         
       </span>
     
@@ -285,7 +289,10 @@
             
             <div class="markdown-body">
               
-              <h1 id="数据描述"><a href="#数据描述" class="headerlink" title="数据描述"></a>数据描述</h1><p>getPokemonApi(id: number)</p>
+              <h1 id="为什么要做这个项目"><a href="#为什么要做这个项目" class="headerlink" title="为什么要做这个项目"></a>为什么要做这个项目</h1><p>1.练习 vue3+ts，学习一些 css 技巧（布局&#x2F;动画效果）</p>
+<p>2.网页版的宝可梦图鉴很少，大都是app。并且宝可梦图鉴大都很丑，让人没有使用的欲望。</p>
+<p>3.其实更想做篮球和足球的数据图鉴，但是没找到免费的开源接口</p>
+<h1 id="数据描述"><a href="#数据描述" class="headerlink" title="数据描述"></a>数据描述</h1><p>getPokemonApi(id: number)</p>
 <p>base_experience：击败这只宝可梦获得的经验</p>
 <p>abilities: 能力&#x2F;被动 为神奇宝贝在战斗或主世界中提供被动效果。神奇宝贝有多种可能的能力，但一次只能有一种能力</p>
 <p>forms：种族？暂时没啥用</p>
@@ -327,7 +334,6 @@
 <p>linear-gradient() 函数用于创建一个表示两种或多种颜色线性渐变的图片。</p>
 <h2 id="card-模糊效果"><a href="#card-模糊效果" class="headerlink" title="card 模糊效果"></a>card 模糊效果</h2><img src="/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/image-20220916140510192.png" srcset="/img/loading.gif" lazyload class="" title="image-20220916140510192">
 
-<p>灵感来源：<a target="_blank" rel="noopener" href="https://codepen.io/akirajy/pen/JjvEzjj">https://codepen.io/akirajy/pen/JjvEzjj</a></p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-selector-tag">h4</span> &#123;<br>    <span class="hljs-attribute">padding</span>: <span class="hljs-number">5px</span> <span class="hljs-number">10px</span> <span class="hljs-number">5px</span> <span class="hljs-number">10px</span>;<br>    <span class="hljs-comment">// 阴影</span><br>    <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">0.3px</span> <span class="hljs-number">0.7px</span> rgba(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.126</span>),<br>        <span class="hljs-number">0</span> <span class="hljs-number">0.9px</span> <span class="hljs-number">1.7px</span> rgba(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.179</span>), <span class="hljs-number">0</span> <span class="hljs-number">1.8px</span> <span class="hljs-number">3.5px</span> rgba(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.224</span>),<br>        <span class="hljs-number">0</span> <span class="hljs-number">3.7px</span> <span class="hljs-number">7.3px</span> rgba(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.277</span>), <span class="hljs-number">0</span> <span class="hljs-number">10px</span> <span class="hljs-number">20px</span> rgba(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.4</span>);<br>    <span class="hljs-comment">// 模糊</span><br>    backdrop-<span class="hljs-attribute">filter</span>: blur(<span class="hljs-number">20px</span>);<br>    <span class="hljs-attribute">transition</span>: <span class="hljs-number">0.5s</span> ease;<br><br>    <span class="hljs-selector-tag">&amp;</span><span class="hljs-selector-pseudo">:hover</span> &#123;<br>        <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">0.7px</span> <span class="hljs-number">1px</span> rgba(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.157</span>),<br>            <span class="hljs-number">0</span> <span class="hljs-number">1.7px</span> <span class="hljs-number">2.6px</span> rgba(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.224</span>), <span class="hljs-number">0</span> <span class="hljs-number">3.5px</span> <span class="hljs-number">5.3px</span> rgba(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.28</span>),<br>            <span class="hljs-number">0</span> <span class="hljs-number">7.3px</span> <span class="hljs-number">11px</span> rgba(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.346</span>), <span class="hljs-number">0</span> <span class="hljs-number">20px</span> <span class="hljs-number">30px</span> rgba(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.5</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>backdrop-filter 和 filter 的区别：</p>
@@ -335,7 +341,6 @@
 <p>filter 会使整部分都模糊</p>
 <h2 id="head-动画效果"><a href="#head-动画效果" class="headerlink" title="head 动画效果"></a>head 动画效果</h2><img src="/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/image-20220916204520003.png" srcset="/img/loading.gif" lazyload class="" title="image-20220916204520003">
 
-<p>灵感来源：<a target="_blank" rel="noopener" href="https://codepen.io/akirajy/pen/vYjgMyr">https://codepen.io/akirajy/pen/vYjgMyr</a></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;head&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./img/back.gif&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Pokemon<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-keyword">@font-face</span> &#123;<br>    <span class="hljs-attribute">font-family</span>: Biko;<br>    <span class="hljs-attribute">src</span>: url(<span class="hljs-string">&quot;https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/biko-black.woff&quot;</span>);<br>&#125;<br><span class="hljs-selector-class">.head</span> &#123;<br>    <span class="hljs-attribute">position</span>: relative;<br>    <span class="hljs-comment">// app.vue 中给 Head 组件设了高度, 因此这里才能 100%</span><br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;<br>    <span class="hljs-attribute">display</span>: flex;<br>    <span class="hljs-attribute">justify-content</span>: center;<br>    <span class="hljs-attribute">align-items</span>: center;<br>    <span class="hljs-comment">// gif 可能过大, 所以溢出隐藏掉 </span><br>    <span class="hljs-attribute">overflow</span>: hidden;<br>    <span class="hljs-selector-tag">img</span>,<br>    <span class="hljs-selector-tag">h1</span> &#123;<br>        <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;<br>        <span class="hljs-attribute">position</span>: absolute;<br>        <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;<br>        <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;<br>        <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;<br>        <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;<br>    &#125;<br>    <span class="hljs-selector-tag">img</span> &#123;<br>        <span class="hljs-comment">// object-fit 属性指定元素的内容应该如何去适应指定容器的高度与宽度。</span><br>        <span class="hljs-comment">// cover: 保持原有尺寸比例。但部分内容可能被剪切。</span><br>        <span class="hljs-attribute">object-fit</span>: cover;<br>    &#125;<br>    <span class="hljs-selector-tag">h1</span> &#123;<br>        <span class="hljs-attribute">font-size</span>: <span class="hljs-number">10vw</span>;<br>        <span class="hljs-attribute">font-family</span>: Biko, sans-serif;<br>        <span class="hljs-attribute">font-weight</span>: bold;<br>        <span class="hljs-attribute">text-transform</span>: uppercase;<br>        <span class="hljs-attribute">text-align</span>: center;<br>        <span class="hljs-attribute">background</span>: white;<br>        <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0.7</span>;<br>        <span class="hljs-comment">// 滤色模式</span><br>        <span class="hljs-attribute">mix-blend-mode</span>: screen;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
@@ -363,6 +368,36 @@
 <p>最后选择路由，因为想将组件拆小，并且逻辑更清晰些</p>
 <p><a target="_blank" rel="noopener" href="https://lol.qq.com/tft/#/champion">云顶官网</a>也是这样做的</p>
 <p>点卡片跳转路由 哈希模式，路由传参 params (传id)，显示在路径上</p>
+<h2 id="多图绕中心旋转"><a href="#多图绕中心旋转" class="headerlink" title="多图绕中心旋转"></a>多图绕中心旋转</h2><img src="/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/image-20220925194954595.png" srcset="/img/loading.gif" lazyload class="" title="image-20220925194954595">
+
+<p>灵感来源：<a target="_blank" rel="noopener" href="https://codepen.io/sparshgupta007/pen/gOeypaj">https://codepen.io/sparshgupta007/pen/gOeypaj</a></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;info-imgs&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;info-imgs-box&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">template</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;(value, , index) in pokemonImgs&quot;</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">:style</span>=<span class="hljs-string">&quot;`--i:$&#123;index&#125;`&quot;</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">&quot;typeof value === &#x27;string&#x27; &amp;&amp; value&quot;</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">:src</span>=<span class="hljs-string">&quot;value&quot;</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-keyword">@keyframes</span> rotate&#123;<br>    <span class="hljs-selector-tag">from</span>&#123;<br>        <span class="hljs-comment">// perspective 设定物体到屏幕的距离</span><br>        <span class="hljs-attribute">transform</span>:perspective(<span class="hljs-number">1200px</span>) rotateY(<span class="hljs-number">0deg</span>);<br>    &#125;<br>    <span class="hljs-selector-tag">to</span>&#123;<br>        <span class="hljs-attribute">transform</span>:perspective(<span class="hljs-number">1200px</span>) rotateY(<span class="hljs-number">360deg</span>);<br>    &#125;<br>&#125;<br><span class="hljs-selector-tag">&amp;</span><span class="hljs-selector-tag">-imgs</span> &#123;<br>    <span class="hljs-attribute">display</span>: flex;<br>    <span class="hljs-attribute">justify-content</span>: center;<br>    <span class="hljs-attribute">align-items</span>: center;<br>    <span class="hljs-selector-tag">&amp;</span><span class="hljs-selector-tag">-box</span> &#123;<br>        <span class="hljs-attribute">position</span>: relative;<br>        <span class="hljs-attribute">width</span>: <span class="hljs-number">10vw</span>;<br>        <span class="hljs-attribute">height</span>: <span class="hljs-number">10vw</span>;<br>        <span class="hljs-attribute">transform-style</span>: preserve-<span class="hljs-number">3</span>d;<br>        <span class="hljs-attribute">animation</span>: rotate <span class="hljs-number">20s</span> linear infinite;<br>        <span class="hljs-selector-tag">span</span> &#123;<br>            <span class="hljs-attribute">position</span>: absolute;<br>            <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;<br>            <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;<br>            <span class="hljs-comment">// 设置元素的子元素是位于 3D 空间中还是平面中。</span><br>            <span class="hljs-attribute">transform-style</span>:preserve-<span class="hljs-number">3</span>d;<br>            <span class="hljs-comment">// 让每张图片 y 方向上旋转一些角度; z 方向上移动一些距离(不然会叠在一起) </span><br>            <span class="hljs-attribute">transform</span>:rotateY(calc(var(--i) * <span class="hljs-number">45deg</span>)) translateZ(<span class="hljs-number">10vw</span>);<br>            <span class="hljs-selector-tag">img</span> &#123;<br>                <span class="hljs-attribute">width</span>:<span class="hljs-number">100%</span>;<br>                <span class="hljs-attribute">height</span>:<span class="hljs-number">100%</span>;<br>                <span class="hljs-attribute">object-fit</span>:cover;<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>核心就是利用</p>
+<p>transform-style:preserve-3d	和	ransform:rotateY(calc(var(–i) * 45deg)) translateZ(10vw)	构造一个三维立方体，可以想象在立方体的前后左右四个面各贴一张图片。</p>
+<p>然后 利用动画 rotateY 从 0 到 360 度 让立方体 自转</p>
+<p><strong>补充知识：</strong></p>
+<p><strong><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/perspective">perspective</a></strong></p>
+<p>指定了观察者与 z&#x3D;0 平面的距离，使具有三维位置变换的元素产生透视效果。</p>
+<p>perspective 越大，观察者与平面的距离越远，物体越小。</p>
+<img src="/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/image-20220925183438206.png" srcset="/img/loading.gif" lazyload class="" title="image-20220925183438206">
+
+
+
+<p><strong>html 向 css 传参</strong></p>
+<p>html 中写内联样式 :style&#x3D;”`–i:${index}`“</p>
+<p>css 利用 var 接收 var(–i) </p>
+<h2 id="路由不跳转问题"><a href="#路由不跳转问题" class="headerlink" title="路由不跳转问题"></a>路由不跳转问题</h2><p>同一页面下，query 参数不同，router.push 后页面不跳转。如下图，点击妙蛙花时，路由不跳转。</p>
+<img src="/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/image-20220926141821034.png" srcset="/img/loading.gif" lazyload class="" title="image-20220926141821034">
+
+<p>原因：vue官网详细解释说明<strong>使用同一路由携带不同参数，本质上是重用相同的组件实例，默认在跳转路由时会采用缓存策略,并不会刷新当前路由组件</strong>，因此不会调用组件的生命周期挂钩。</p>
+<p>解决：监听 router 的动作</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs vue3">watch: &#123;<br>    &#x27;$route&#x27; (to, from) &#123;<br>        this.$router.go(0);<br>    &#125;<br>&#125;,<br></code></pre></td></tr></table></figure>
+
+
+
 <h1 id="待做"><a href="#待做" class="headerlink" title="待做"></a>待做</h1><p>类似 <a target="_blank" rel="noopener" href="https://50projects50days.com/#projects">https://50projects50days.com/#projects</a></p>
 <p>分页器</p>
 <p>api 等待时，放皮卡丘跑步的 gif</p>
@@ -374,6 +409,14 @@
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_63677099/article/details/124259762">https://blog.csdn.net/m0_63677099/article/details/124259762</a></p>
 <p><strong>一个很好的参考</strong></p>
 <p><a target="_blank" rel="noopener" href="https://codepen.io/tiffachoo/pen/omowyX">https://codepen.io/tiffachoo/pen/omowyX</a></p>
+<h1 id="暂时做不到的"><a href="#暂时做不到的" class="headerlink" title="暂时做不到的"></a>暂时做不到的</h1><p><strong>1.每张卡要有自己的专属图片（最好是炫酷一点的），替代下方统一的图片</strong></p>
+<p>开源 api 中没有</p>
+<img src="/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/image-20220924191406689.png" srcset="/img/loading.gif" lazyload class="" title="image-20220924191406689">
+
+
+
+<p><strong>2.不同种族的 card 应该有不同的配色方案</strong></p>
+<p>没有 ui，十几个种族，自己设计太麻烦</p>
 
               
             </div>

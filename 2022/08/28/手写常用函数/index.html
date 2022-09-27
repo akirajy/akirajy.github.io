@@ -16,15 +16,15 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="once实现一个 once 函数，记忆返回结果只执行一次 类似于 lodash.once 12345678910&#x2F;&#x2F; f 是一个函数const f &#x3D; (x) &#x3D;&gt; x;const onceF &#x3D; once(f);&#x2F;&#x2F;&#x3D;&gt; 3console.log(onceF(3))&#x2F;&#x2F;&#x3D;&gt; 3console.log(onceF(100))    1234567891011function on">
+    <meta name="description" content="一次的once只执行一次的 once实现一个 once 函数，记忆返回结果只执行一次 类似于 lodash.once 12345678910&#x2F;&#x2F; f 是一个函数const f &#x3D; (x) &#x3D;&gt; x;const onceF &#x3D; once(f);&#x2F;&#x2F;&#x3D;&gt; 3console.log(onceF(3))&#x2F;&#x2F;&#x3D;&gt; 3console.log(onceF(100))    1234567891">
 <meta property="og:type" content="article">
 <meta property="og:title" content="手写常用函数">
 <meta property="og:url" content="http://example.com/2022/08/28/%E6%89%8B%E5%86%99%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="once实现一个 once 函数，记忆返回结果只执行一次 类似于 lodash.once 12345678910&#x2F;&#x2F; f 是一个函数const f &#x3D; (x) &#x3D;&gt; x;const onceF &#x3D; once(f);&#x2F;&#x2F;&#x3D;&gt; 3console.log(onceF(3))&#x2F;&#x2F;&#x3D;&gt; 3console.log(onceF(100))    1234567891011function on">
+<meta property="og:description" content="一次的once只执行一次的 once实现一个 once 函数，记忆返回结果只执行一次 类似于 lodash.once 12345678910&#x2F;&#x2F; f 是一个函数const f &#x3D; (x) &#x3D;&gt; x;const onceF &#x3D; once(f);&#x2F;&#x2F;&#x3D;&gt; 3console.log(onceF(3))&#x2F;&#x2F;&#x3D;&gt; 3console.log(onceF(100))    1234567891">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-08-28T09:46:55.000Z">
-<meta property="article:modified_time" content="2022-08-29T08:28:59.330Z">
+<meta property="article:modified_time" content="2022-09-24T08:40:34.923Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="JS">
 <meta property="article:tag" content="手写函数">
@@ -218,7 +218,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          609 words
+          1.3k words
         
       </span>
     
@@ -229,7 +229,7 @@
         
         
         
-          6 mins
+          11 mins
         
       </span>
     
@@ -279,7 +279,7 @@
             
             <div class="markdown-body">
               
-              <h2 id="once"><a href="#once" class="headerlink" title="once"></a>once</h2><p>实现一个 once 函数，记忆返回结果只执行一次</p>
+              <h2 id="一次的once"><a href="#一次的once" class="headerlink" title="一次的once"></a>一次的once</h2><h2 id="只执行一次的-once"><a href="#只执行一次的-once" class="headerlink" title="只执行一次的 once"></a>只执行一次的 once</h2><p>实现一个 once 函数，记忆返回结果只执行一次</p>
 <p>类似于 lodash.once</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// f 是一个函数</span><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">f</span> = (<span class="hljs-params">x</span>) =&gt; x;<br><br><span class="hljs-keyword">const</span> onceF = <span class="hljs-title function_">once</span>(f);<br><br><span class="hljs-comment">//=&gt; 3</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">onceF</span>(<span class="hljs-number">3</span>))<br><br><span class="hljs-comment">//=&gt; 3</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">onceF</span>(<span class="hljs-number">100</span>))<br></code></pre></td></tr></table></figure>
 
@@ -289,13 +289,32 @@
 
 
 
-<h2 id="无限累加的-sum-函数"><a href="#无限累加的-sum-函数" class="headerlink" title="无限累加的 sum 函数"></a>无限累加的 sum 函数</h2><p>参数无限，调用次数无限</p>
+<h2 id="无限累加的-sum"><a href="#无限累加的-sum" class="headerlink" title="无限累加的 sum"></a>无限累加的 sum</h2><p>参数无限，调用次数无限</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">sum</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>).<span class="hljs-title function_">valueOf</span>(); <span class="hljs-comment">//6</span><br><span class="hljs-title function_">sum</span>(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>)(<span class="hljs-number">2</span>, <span class="hljs-number">4</span>).<span class="hljs-title function_">valueOf</span>(); <span class="hljs-comment">//11</span><br><span class="hljs-title function_">sum</span>(<span class="hljs-number">1</span>)(<span class="hljs-number">2</span>)(<span class="hljs-number">3</span>)(<span class="hljs-number">4</span>).<span class="hljs-title function_">valueOf</span>(); <span class="hljs-comment">//10</span><br><span class="hljs-title function_">sum</span>(<span class="hljs-number">2</span>)(<span class="hljs-number">4</span>, <span class="hljs-number">1</span>)(<span class="hljs-number">2</span>).<span class="hljs-title function_">valueOf</span>(); <span class="hljs-comment">//9</span><br><span class="hljs-title function_">sum</span>(<span class="hljs-number">1</span>)(<span class="hljs-number">2</span>)(<span class="hljs-number">3</span>)(<span class="hljs-number">4</span>)(<span class="hljs-number">5</span>)(<span class="hljs-number">6</span>).<span class="hljs-title function_">valueOf</span>(); <span class="hljs-comment">// 21</span><br></code></pre></td></tr></table></figure>
 
 
 
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">sum</span>(<span class="hljs-params">...args</span>) &#123;<br>  <span class="hljs-keyword">const</span> <span class="hljs-title function_">f</span> = (<span class="hljs-params">...rest</span>) =&gt; <span class="hljs-title function_">sum</span>(...args, ...rest)<br>  f.<span class="hljs-property">valueOf</span> = <span class="hljs-function">() =&gt;</span> args.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">x, y</span>) =&gt;</span> x + y, <span class="hljs-number">0</span>)<br>  <span class="hljs-keyword">return</span> f<br>&#125;<br></code></pre></td></tr></table></figure>
 
+
+
+<h2 id="用于函数合成的-compose"><a href="#用于函数合成的-compose" class="headerlink" title="用于函数合成的 compose"></a>用于函数合成的 compose</h2><p>实现一个 compose 函数，进行函数合成，比如 redux 中的 compose，react 高阶组件连续调用时的 compose</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> <span class="hljs-title function_">add10</span> = (<span class="hljs-params">x</span>) =&gt; x + <span class="hljs-number">10</span>;<br><span class="hljs-keyword">const</span> <span class="hljs-title function_">mul10</span> = (<span class="hljs-params">x</span>) =&gt; x * <span class="hljs-number">10</span>;<br><span class="hljs-keyword">const</span> <span class="hljs-title function_">add100</span> = (<span class="hljs-params">x</span>) =&gt; x + <span class="hljs-number">100</span>;<br><br><span class="hljs-comment">// (10 + 100) * 10 + 10 = 1110</span><br><span class="hljs-title function_">compose</span>(add10, mul10, add100)(<span class="hljs-number">10</span>);<br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>错误的(我最初写的)</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">compose</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> funcs = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(<span class="hljs-variable language_">arguments</span>).<span class="hljs-title function_">reverse</span>()<br>  <span class="hljs-keyword">const</span> n = funcs.<span class="hljs-property">length</span><br>  <span class="hljs-keyword">return</span> <span class="hljs-function">(<span class="hljs-params">num</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>      num = funcs[i](num)<br>    &#125;<br>    <span class="hljs-keyword">return</span> num<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>显然没有考虑函数的参数个数与返回值个数的问题，只用了一个num，默认一个参数了。</p>
+<p><strong>正确版</strong></p>
+<p>利用 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce">array.reduce</a> 函数</p>
+<p>上一次的返回结果会作为下一次的参数，a 为上一个值，b为当前值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">compose</span>(<span class="hljs-params">...funcs</span>) &#123;<br>    <span class="hljs-keyword">return</span> funcs.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">a,b</span>) =&gt;</span> <span class="hljs-function">(<span class="hljs-params">...args</span>) =&gt;</span> <span class="hljs-title function_">a</span>(<span class="hljs-title function_">b</span>(...args)))<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>是一个正向的，从左向右递推的过程。</p>
+<p>如果 a 是函数，b是参数，就是 (a,b) &#x3D;&gt; a(b)</p>
+<p>但是要考虑到 b 也是函数，所以 b 也得调用一下，得到返回值后再作为 a 的参数传入</p>
 
               
             </div>
