@@ -1,0 +1,750 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="vue 整体流程    vue 的三个 coreReactivity Module创建 JS 响应对象，并观察其变化，当使用这些对象的代码运行时，他们会被跟踪，当响应式对象变化时，代码会运行。 Compiler Module将 HTML 模板编译成渲染函数 Render Module三个阶段  Render Phase  渲染阶段，调用 render 函数，返回一个虚拟DOM节点  Mount P">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mini Vue">
+<meta property="og:url" content="http://example.com/2022/09/28/Mini-Vue/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="vue 整体流程    vue 的三个 coreReactivity Module创建 JS 响应对象，并观察其变化，当使用这些对象的代码运行时，他们会被跟踪，当响应式对象变化时，代码会运行。 Compiler Module将 HTML 模板编译成渲染函数 Render Module三个阶段  Render Phase  渲染阶段，调用 render 函数，返回一个虚拟DOM节点  Mount P">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2022/09/28/Mini-Vue/13429147-32832d6b08b108c4.jpg">
+<meta property="article:published_time" content="2022-09-28T15:00:15.000Z">
+<meta property="article:modified_time" content="2022-09-28T15:01:18.845Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2022/09/28/Mini-Vue/13429147-32832d6b08b108c4.jpg">
+  
+  
+  
+  <title>Mini Vue - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"qPzYEpTngSrzQtV1XpsPSmPm-gzGzoHsz","app_key":"kf4lqne4FqonWhpUQzS1Ffrx","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>JY BLOG</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Mini Vue"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-09-28 23:00" pubdate>
+          September 28, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.3k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          28 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span>次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Mini Vue</h1>
+            
+            <div class="markdown-body">
+              
+              <h2 id="vue-整体流程"><a href="#vue-整体流程" class="headerlink" title="vue 整体流程"></a>vue 整体流程</h2><img src="/2022/09/28/Mini-Vue/13429147-32832d6b08b108c4.jpg" srcset="/img/loading.gif" lazyload class="" title="img">
+
+
+
+<h2 id="vue-的三个-core"><a href="#vue-的三个-core" class="headerlink" title="vue 的三个 core"></a>vue 的三个 core</h2><h3 id="Reactivity-Module"><a href="#Reactivity-Module" class="headerlink" title="Reactivity Module"></a>Reactivity Module</h3><p>创建 JS 响应对象，并观察其变化，当使用这些对象的代码运行时，他们会被跟踪，当响应式对象变化时，代码会运行。</p>
+<h3 id="Compiler-Module"><a href="#Compiler-Module" class="headerlink" title="Compiler Module"></a>Compiler Module</h3><p>将 HTML 模板编译成渲染函数</p>
+<h3 id="Render-Module"><a href="#Render-Module" class="headerlink" title="Render Module"></a>Render Module</h3><p>三个阶段</p>
+<ol>
+<li>Render Phase</li>
+</ol>
+<p>渲染阶段，调用 render 函数，返回一个虚拟DOM节点</p>
+<ol start="2">
+<li>Mount Phase</li>
+</ol>
+<p>挂载阶段，使用 虚拟DOM节点并调用 DOM API 来创建网页</p>
+<ol start="3">
+<li>Patch Phase</li>
+</ol>
+<p>补丁阶段，新旧虚拟节点对比，并更新网页变化部分</p>
+<h3 id="总的流程"><a href="#总的流程" class="headerlink" title="总的流程"></a>总的流程</h3><p>我们拥有 html template 和 设定的响应式对象</p>
+<ol>
+<li><p>Compiler Module 会将 template 转换为一个 render 函数</p>
+</li>
+<li><p>Reactivity Module 初始化响应式对象</p>
+</li>
+<li><p>Renderer Module （渲染）会调用 render 函数（而 render 函数引用了响应式对象），观察响应式对象的变化，render 函数返回一个虚拟 DOM 节点</p>
+</li>
+<li><p>Renderer Module（挂载）调用 mount 函数，使用虚拟 DOM 创建 页面</p>
+</li>
+<li><p>如果响应式对象发生任何变化，render 会再次调用 render 函数，创建一个新的虚拟 DOM，新旧虚拟节点传入 Patch 函数，新旧虚拟节点对比，根据需要更新网页</p>
+</li>
+</ol>
+<h2 id="compiler-和-render"><a href="#compiler-和-render" class="headerlink" title="compiler 和 render"></a>compiler 和 render</h2><h3 id="在-js-中使用-render"><a href="#在-js-中使用-render" class="headerlink" title="在 js 中使用 render"></a>在 js 中使用 render</h3><p>在 js 中使用 render 创建元素</p>
+<p>h 函数会调用 vnode函数 从而创建 vnode 对象</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">    <span class="hljs-keyword">import</span> &#123;h&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span></span><br><span class="language-javascript">    <span class="hljs-title function_">render</span>(<span class="hljs-params"></span>) &#123;</span><br><span class="language-javascript">        <span class="hljs-keyword">return</span> <span class="hljs-title function_">h</span>(<span class="hljs-string">&#x27;div&#x27;</span>, &#123;</span><br><span class="language-javascript">            <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;foo&#x27;</span></span><br><span class="language-javascript">            <span class="hljs-attr">onClick</span>: <span class="hljs-variable language_">this</span>.<span class="hljs-property">onClick</span></span><br><span class="language-javascript">        &#125;, <span class="hljs-string">&#x27;hello&#x27;</span>)</span><br><span class="language-javascript">    &#125;</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="从-template-到-页面实例"><a href="#从-template-到-页面实例" class="headerlink" title="从 template 到 页面实例"></a>从 template 到 页面实例</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;red&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>hello<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>vue 在内部做的是：</p>
+<ol>
+<li>compiler 将 template 转为 render 函数，renderer 调用 render 函数，返回一个虚拟 DOM</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; h &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span><br><br><span class="hljs-title function_">render</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-title function_">h</span>(<span class="hljs-string">&#x27;div&#x27;</span>, &#123; <span class="hljs-attr">class</span>: <span class="hljs-string">&#x27;red&#x27;</span> &#125;, [<br>        <span class="hljs-title function_">h</span>(<span class="hljs-string">&#x27;span&#x27;</span>, <span class="hljs-literal">null</span>, [<span class="hljs-string">&#x27;hello&#x27;</span>])<br>    ])<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>虚拟 DOM 转为真实 DOM 并挂载到容器(父组件)上</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vue3">mount(vdom, document.getElementById(&#x27;app&#x27;))<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="写一个简单的-mount"><a href="#写一个简单的-mount" class="headerlink" title="写一个简单的 mount"></a>写一个简单的 mount</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">mount</span>(<span class="hljs-params">vnode, container</span>) &#123;<br>    <span class="hljs-comment">// 根据 虚拟DOM 创建 真实DOM</span><br>    <span class="hljs-keyword">const</span> el = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(vnode.<span class="hljs-property">tag</span>)<br>    <span class="hljs-comment">// props</span><br>    <span class="hljs-keyword">if</span> (vnode.<span class="hljs-property">props</span>) &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">in</span> vnode.<span class="hljs-property">props</span>) &#123;<br>            <span class="hljs-keyword">const</span> value = vnode.<span class="hljs-property">props</span>[key]<br>            el.<span class="hljs-title function_">setAttribute</span>(key, value)<br>        &#125;<br>    &#125;<br>    <span class="hljs-comment">// children (假设要么是 字符串 要么是 vnode 的数组；实际在 vue 中是 字符串和 vnode 的混合数组)</span><br>    <span class="hljs-keyword">if</span> (vnode.<span class="hljs-property">children</span>) &#123;<br>        vnode.<span class="hljs-property">children</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">child</span> =&gt;</span> &#123;<br>            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> vnode.<span class="hljs-property">children</span> === <span class="hljs-string">&#x27;string&#x27;</span>) &#123;<br>                el.<span class="hljs-property">textContent</span> = vnode.<span class="hljs-property">children</span><br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                vnode.<span class="hljs-property">children</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">child</span> =&gt;</span> &#123;<br>                    <span class="hljs-title function_">mount</span>(child, el)<br>                &#125;)<br>            &#125;<br>        &#125;)<br>    &#125;<br>    container.<span class="hljs-title function_">appendChild</span>(el)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="写一个简单的-patch"><a href="#写一个简单的-patch" class="headerlink" title="写一个简单的 patch"></a>写一个简单的 patch</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">patch</span>(<span class="hljs-params">n1, n2</span>) &#123;<br>    <span class="hljs-keyword">if</span> (n1.<span class="hljs-property">tag</span> === n2.<span class="hljs-property">tag</span>) &#123;<br>        <span class="hljs-keyword">const</span> el = n2.<span class="hljs-property">el</span> = n1.<span class="hljs-property">el</span><br>        <span class="hljs-comment">// props</span><br>        <span class="hljs-keyword">const</span> oldProps = n1.<span class="hljs-property">props</span> || &#123;&#125;<br>        <span class="hljs-keyword">const</span> newProps = n2.<span class="hljs-property">props</span> || &#123;&#125;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">in</span> newProps) &#123;<br>            <span class="hljs-keyword">const</span> oldValue = oldProps[key]<br>            <span class="hljs-keyword">const</span> newValue = newProps[key]<br>            <span class="hljs-keyword">if</span> (newValue !== oldValue) &#123;<br>                el.<span class="hljs-title function_">setAttribute</span>(key, newValue)<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">in</span> oldProps) &#123;<br>            <span class="hljs-keyword">if</span> (!(key <span class="hljs-keyword">in</span> newProps)) &#123;<br>                el.<span class="hljs-title function_">removeAttribute</span>(key)<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-comment">// children</span><br>        <span class="hljs-keyword">const</span> oldChildren = n1.<span class="hljs-property">children</span><br>        <span class="hljs-keyword">const</span> newChildren = n2.<span class="hljs-property">children</span><br>        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> newChildren === <span class="hljs-string">&#x27;string&#x27;</span>) &#123;<br>            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> oldChildren === <span class="hljs-string">&#x27;string&#x27;</span>) &#123;<br>                <span class="hljs-keyword">if</span> (newChildren !== oldChildren) &#123;<br>                    el.<span class="hljs-property">textcontent</span> = newChildren<br>                &#125;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                el.<span class="hljs-property">textContent</span> = newChildren<br>                <span class="hljs-comment">// oldChildren 的孩子怎么办？ 不用删掉吗？</span><br>            &#125;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> oldChildren === <span class="hljs-string">&#x27;string&#x27;</span>) &#123;<br>                el.<span class="hljs-property">innerHTML</span> = <span class="hljs-string">&#x27;&#x27;</span><br>                newChildren.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">child</span> =&gt;</span> &#123;<br>                    <span class="hljs-title function_">mount</span>(child, el)<br>                &#125;)<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-comment">// 这里写的是没有 key 的简单的 diff 算法; 带 key 的 diff 算法看源码</span><br>                <span class="hljs-keyword">const</span> commonLength = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">min</span>(newChildren.<span class="hljs-property">length</span>, oldChildren.<span class="hljs-property">length</span>)<br>                <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; commonLength; i++) &#123;<br>                    <span class="hljs-title function_">patch</span>(oldChildren[i], newChildren[i])<br>                &#125;<br>                <span class="hljs-keyword">if</span> (newChildren.<span class="hljs-property">length</span> &gt; oldChildren.<span class="hljs-property">length</span>) &#123;<br>                    newChildren.<span class="hljs-title function_">slice</span>(oldChildren.<span class="hljs-property">length</span>).<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">child</span> =&gt;</span> &#123;<br>                        <span class="hljs-title function_">mount</span>(el, child)<br>                    &#125;)<br>                &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (newChildren.<span class="hljs-property">length</span> &lt; oldChildren.<span class="hljs-property">length</span>) &#123;<br>                    oldChildren.<span class="hljs-title function_">slice</span>(newChildren.<span class="hljs-property">length</span>).<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">child</span> =&gt;</span> &#123;<br>                        el.<span class="hljs-title function_">removeChild</span>(child)<br>                    &#125;)<br>                &#125;<br>            &#125;<br>        &#125;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-comment">// replace</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Vue/" class="category-chain-item">Vue</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Mini Vue</div>
+      <div>http://example.com/2022/09/28/Mini-Vue/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 28, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/09/27/grid%E5%B8%83%E5%B1%80/" title="grid布局">
+                        <span class="hidden-mobile">grid布局</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+    
+      
+            
+                  
+</div>
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
