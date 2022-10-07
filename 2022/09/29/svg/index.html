@@ -1,0 +1,964 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="什么是 svgsvg 是矢量图的一种格式。用 xml 来描述图形。  位图：放大会失真图像边缘有锯齿；是由像素点组成； Canvas 就是位图效果。 矢量图：放大不会失真；使用 XML 描述图形。      和 html 的关系使用时可以将其理解为 html 的新标签 1&lt;svg&gt;&lt;&#x2F;svg&gt;  在不给 &lt;svg&gt; 设置宽高时，它的默认宽度是 300px ，默认">
+<meta property="og:type" content="article">
+<meta property="og:title" content="svg">
+<meta property="og:url" content="http://example.com/2022/09/29/svg/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="什么是 svgsvg 是矢量图的一种格式。用 xml 来描述图形。  位图：放大会失真图像边缘有锯齿；是由像素点组成； Canvas 就是位图效果。 矢量图：放大不会失真；使用 XML 描述图形。      和 html 的关系使用时可以将其理解为 html 的新标签 1&lt;svg&gt;&lt;&#x2F;svg&gt;  在不给 &lt;svg&gt; 设置宽高时，它的默认宽度是 300px ，默认">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2022/09/29/svg/image-20220929170313597.png">
+<meta property="og:image" content="http://example.com/2022/09/29/svg/image-20221004143318141.png">
+<meta property="og:image" content="http://example.com/2022/09/29/svg/image-20221004150911891.png">
+<meta property="og:image" content="http://example.com/2022/09/29/svg/image-20221004151324300.png">
+<meta property="og:image" content="http://example.com/2022/09/29/svg/image-20221004151434115.png">
+<meta property="og:image" content="http://example.com/2022/09/29/svg/image-20221004151525017.png">
+<meta property="og:image" content="http://example.com/2022/09/29/svg/image-20221004152141491.png">
+<meta property="og:image" content="http://example.com/2022/09/29/svg/image-20221004152225332.png">
+<meta property="og:image" content="http://example.com/2022/09/29/svg/image-20221004153240544.png">
+<meta property="og:image" content="http://example.com/2022/09/29/svg/image-20221004153539272.png">
+<meta property="og:image" content="http://example.com/2022/09/29/svg/2014-08-27_105046-viewbox.gif">
+<meta property="og:image" content="http://example.com/2022/09/29/svg/image-20221004170313319.png">
+<meta property="article:published_time" content="2022-09-29T08:59:49.000Z">
+<meta property="article:modified_time" content="2022-10-04T09:08:21.477Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2022/09/29/svg/image-20220929170313597.png">
+  
+  
+  
+  <title>svg - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"qPzYEpTngSrzQtV1XpsPSmPm-gzGzoHsz","app_key":"kf4lqne4FqonWhpUQzS1Ffrx","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>JY BLOG</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="svg"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-09-29 16:59" pubdate>
+          September 29, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.8k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          66 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span>次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">svg</h1>
+            
+            <div class="markdown-body">
+              
+              <h2 id="什么是-svg"><a href="#什么是-svg" class="headerlink" title="什么是 svg"></a>什么是 svg</h2><p>svg 是矢量图的一种格式。用 xml 来描述图形。</p>
+<ul>
+<li>位图：放大会失真图像边缘有锯齿；是由像素点组成； <code>Canvas</code> 就是位图效果。</li>
+<li>矢量图：放大不会失真；使用 <code>XML</code> 描述图形。</li>
+</ul>
+<img src="/2022/09/29/svg/image-20220929170313597.png" srcset="/img/loading.gif" lazyload class="" title="image-20220929170313597">
+
+
+
+<h2 id="和-html-的关系"><a href="#和-html-的关系" class="headerlink" title="和 html 的关系"></a>和 html 的关系</h2><p>使用时可以将其理解为 html 的新标签</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>在不给 <code>&lt;svg&gt;</code> 设置宽高时，它的默认宽度是 <code>300px</code> ，默认高度是 <code>150px</code> 。和 canvas 一致</p>
+<p><code>HTML</code> 的元素大多数默认都是矩形，<code>SVG</code> 在形状上更加丰富。</p>
+<h2 id="基础图形"><a href="#基础图形" class="headerlink" title="基础图形"></a>基础图形</h2><h3 id="矩形-rect"><a href="#矩形-rect" class="headerlink" title="矩形 rect"></a>矩形 rect</h3><p>矩形使用 <code>&lt;rect&gt;</code> 标签，默认填充色是黑色，当只设置宽高时，渲染出来的矩形就是黑色的矩形。</p>
+<p>稍后还会说明如何设置样式（比如边框、填充色等），这里只列出矩形基础属性：</p>
+<ul>
+<li><code>x</code>: 左上角x轴坐标</li>
+<li><code>y</code>: 左上角y轴坐标</li>
+<li><code>width</code>: 宽度</li>
+<li><code>height</code>: 高度</li>
+<li><code>rx</code>: 圆角，x轴的半径</li>
+<li><code>ry</code>: 圆角，y轴的半径</li>
+</ul>
+<h3 id="圆形-circle"><a href="#圆形-circle" class="headerlink" title="圆形 circle"></a>圆形 circle</h3><p>圆形使用 <code>&lt;circle&gt;</code> 标签，基础属性有：</p>
+<ul>
+<li><code>cx</code>: 圆心在x轴的坐标</li>
+<li><code>cy</code>: 圆心在y轴的坐标</li>
+<li><code>r</code>: 半径</li>
+</ul>
+<h3 id="椭圆-ellipse"><a href="#椭圆-ellipse" class="headerlink" title="椭圆 ellipse"></a>椭圆 ellipse</h3><p>椭圆使用 <code>&lt;ellipse&gt;</code> 标签，基础属性有：</p>
+<ul>
+<li><code>cx</code>: 圆心在x轴的坐标</li>
+<li><code>cy</code>: 圆心在y轴的坐标</li>
+<li><code>rx</code>: x轴的半径</li>
+<li><code>ry</code>: y轴的半径</li>
+</ul>
+<p><code>&lt;ellipse&gt;</code> 和 <code>&lt;circle&gt;</code> 差不多，只是将半径拆成x轴和y轴的。</p>
+<h3 id="直线-line"><a href="#直线-line" class="headerlink" title="直线 line"></a>直线 line</h3><p>直线使用 <code>&lt;line&gt;</code> 标签，基础属性有：</p>
+<ul>
+<li><code>x1</code>: 起始点x坐标</li>
+<li><code>y1</code>: 起始点y坐标</li>
+<li><code>x2</code>: 结束点x坐标</li>
+<li><code>y2</code>: 结束点y坐标</li>
+<li><code>stroke</code>: 描边颜色</li>
+</ul>
+<h3 id="折线-polyline"><a href="#折线-polyline" class="headerlink" title="折线 polyline"></a>折线 polyline</h3><p>使用 <code>&lt;polyline&gt;</code> 可以绘制折线，基础属性有：</p>
+<ul>
+<li><code>points</code>: 一串点集，点集是两两一组表示一个坐标。</li>
+<li><code>stroke</code>: 描边颜色</li>
+<li><code>fill</code>: 填充颜色</li>
+</ul>
+<h3 id="多边形-polygon"><a href="#多边形-polygon" class="headerlink" title="多边形 polygon"></a>多边形 polygon</h3><p>多边形使用 <code>&lt;polygon&gt;</code> 标签，基础属性和 <code>&lt;polyline&gt;</code> 差不多：</p>
+<ul>
+<li><code>points</code>: 点集</li>
+<li><code>stroke</code>: 描边颜色</li>
+<li><code>fill</code>: 填充颜色</li>
+</ul>
+<p><code>&lt;polygon&gt;</code> 会自动闭合（自动将起始点和结束点链接起来）。</p>
+<h3 id="直线路径-path"><a href="#直线路径-path" class="headerlink" title="直线路径 path"></a>直线路径 path</h3><p>其实在 <code>SVG</code> 里，所有基本图形都是 <code>&lt;path&gt;</code> 的简写。所有描述轮廓的数据都放在 <code>d</code> 属性里，<code>d</code> 是 <code>data</code> 的简写。</p>
+<p><code>d</code> 属性又包括以下主要的关键字（注意大小写！）：</p>
+<ul>
+<li>M: 起始点坐标，<code>moveto</code> 的意思。每个路径都必须以 <code>M</code> 开始。<code>M</code> 传入 <code>x</code> 和 <code>y</code> 坐标，用逗号或者空格隔开。</li>
+<li><code>L</code>: 轮廓坐标，<code>lineto</code> 的意思。<code>L</code> 是跟在 <code>M</code> 后面的。它也是可以传入一个或多个坐标。大写的 <code>L</code> 是一个<strong>绝对位置</strong>。</li>
+<li>l: 这是小写 <code>L</code>，和 <code>L</code> 的作用差不多，但 <code>l</code> 是一个<strong>相对位置</strong>。</li>
+<li><code>H</code>: 和上一个点的Y坐标相等，是 <code>horizontal lineto</code> 的意思。它是一个<strong>绝对位置</strong>。</li>
+<li><code>h</code>: 和 <code>H</code> 差不多，但 <code>h</code> 使用的是<strong>相对定位</strong>。</li>
+<li><code>V</code>: 和上一个点的X坐标相等，是<code>vertical lineto</code> 的意思。它是一个<strong>绝对位置</strong>。</li>
+<li><code>v</code>: 这是一个小写的 <code>v</code> ，和大写 <code>V</code> 的差不多，但小写 <code>v</code> 是一个相对定位。</li>
+<li><code>Z</code>: 关闭当前路径，<code>closepath</code> 的意思。它会绘制一条直线回到当前子路径的起点。</li>
+</ul>
+<p>概念说了一堆，还是用写 <code>demo</code> 的方式来展示会更加直观。</p>
+<h3 id="曲线-椭圆弧路径-path"><a href="#曲线-椭圆弧路径-path" class="headerlink" title="曲线 - 椭圆弧路径 path"></a>曲线 - 椭圆弧路径 path</h3><p>如果只用两个点，可以产生无数条曲线。所以需要添加更多的参数来确定如何绘制一条曲线。而在种种方法中， <strong>椭圆弧曲线</strong> 是最简单的。</p>
+<p>在 <code>SVG</code> 中可以使用 <code>path</code> 配合 <code>A属性</code> 绘制椭圆弧。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">A</span>(rx, ry, xr, laf, sf, x, y)<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><code>rx</code>: 椭圆X轴半径</li>
+<li><code>ry</code>: 椭圆Y轴半径</li>
+<li><code>xr</code>: 椭圆旋转角度</li>
+<li><code>laf</code>: 是否选择弧长较长的那一段。0: 短边（小于180度）; 1: 长边（大于等于180度）</li>
+<li><code>sf</code>: 是否顺时针绘制。0: 逆时针; 1: 顺时针</li>
+<li><code>x</code>: 终点X轴坐标</li>
+<li><code>y</code>: 终点Y轴坐标</li>
+</ul>
+<p>上面的公式中并没有开始点，<strong>开始点是由 <code>M</code> 决定的</strong>。</p>
+<p>也就是说，<strong>M和x, y确定2个点，再由rx,ry,xr确定两个椭圆</strong>。两个椭圆被切割为4条曲线段，通过 las 和 sf 确定要的是哪条。</p>
+<img src="/2022/09/29/svg/image-20221004143318141.png" srcset="/img/loading.gif" lazyload class="" title="image-20221004143318141">
+
+<p>绘制弧线是比较抽象的，可以使用 <strong>Illustrator</strong> 绘制，然后生成 <code>SVG</code> 来使用。</p>
+<h2 id="常用样式"><a href="#常用样式" class="headerlink" title="常用样式"></a>常用样式</h2><h3 id="填充-fill"><a href="#填充-fill" class="headerlink" title="填充 fill"></a>填充 fill</h3><p>填充图案颜色，<code>fill</code> 默认是 <code>#000000</code>  黑色。</p>
+<p>也可以使用 <code>none</code> 或者 <code>transparent</code> 将填充色设置成透明。</p>
+<h3 id="填充色的不透明度-fill-opacity"><a href="#填充色的不透明度-fill-opacity" class="headerlink" title="填充色的不透明度 fill-opacity"></a>填充色的不透明度 fill-opacity</h3><p>和 css 的 opacity 一样</p>
+<h3 id="描边颜色-stroke"><a href="#描边颜色-stroke" class="headerlink" title="描边颜色 stroke"></a>描边颜色 stroke</h3><p>可以通过 <code>stroke</code> 属性设置描边的颜色。如果不设置 <code>stroke</code> ，图形默认是没有描边颜色的。</p>
+<h3 id="描边颜色的不透明度-stroke-opacity"><a href="#描边颜色的不透明度-stroke-opacity" class="headerlink" title="描边颜色的不透明度 stroke-opacity"></a>描边颜色的不透明度 stroke-opacity</h3><p>和 <code>fill-opacity</code> 差不多，只不过 <code>stroke-opacity</code> 是设置描边的不透明度</p>
+<h3 id="描边宽度-stroke-width"><a href="#描边宽度-stroke-width" class="headerlink" title="描边宽度 stroke-width"></a>描边宽度 stroke-width</h3><p>如果需要调整描边的宽度，可以使用 <code>stroke-width</code>，它接收一个数值</p>
+<h3 id="虚线描边-stroke-dasharray"><a href="#虚线描边-stroke-dasharray" class="headerlink" title="虚线描边 stroke-dasharray"></a>虚线描边 stroke-dasharray</h3><p><code>stroke-dasharray</code> 接收一串数字，这串数字可以用来代表 <strong>线的长度和空隙的长度</strong>，数字之间用逗号或者空格分隔。</p>
+<p>建议传入偶数个数字。但如果你传入了奇数个数字，<code>SVG</code> 会将这串数字重复一遍，使它的数量变成 <strong>偶数个</strong> 。</p>
+<img src="/2022/09/29/svg/image-20221004150911891.png" srcset="/img/loading.gif" lazyload class="" title="image-20221004150911891">
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;400&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;400&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;border: 1px solid red;&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">line</span></span><br><span class="hljs-tag">    <span class="hljs-attr">x1</span>=<span class="hljs-string">&quot;30&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">y1</span>=<span class="hljs-string">&quot;30&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">x2</span>=<span class="hljs-string">&quot;300&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">y2</span>=<span class="hljs-string">&quot;30&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">stroke</span>=<span class="hljs-string">&quot;blue&quot;</span></span><br><span class="hljs-tag">  /&gt;</span><br><br>  <span class="hljs-comment">&lt;!--  线长20 空隙长10  --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">line</span></span><br><span class="hljs-tag">    <span class="hljs-attr">x1</span>=<span class="hljs-string">&quot;30&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">y1</span>=<span class="hljs-string">&quot;70&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">x2</span>=<span class="hljs-string">&quot;300&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">y2</span>=<span class="hljs-string">&quot;70&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">stroke</span>=<span class="hljs-string">&quot;blue&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">stroke-dasharray</span>=<span class="hljs-string">&quot;20 10&quot;</span></span><br><span class="hljs-tag">  /&gt;</span><br><br>  <span class="hljs-comment">&lt;!--  线长20 空隙长10 线长30 空隙长20 线长10 空隙长30  --&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">line</span></span><br><span class="hljs-tag">    <span class="hljs-attr">x1</span>=<span class="hljs-string">&quot;30&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">y1</span>=<span class="hljs-string">&quot;110&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">x2</span>=<span class="hljs-string">&quot;300&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">y2</span>=<span class="hljs-string">&quot;110&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">stroke</span>=<span class="hljs-string">&quot;blue&quot;</span></span><br><span class="hljs-tag">    <span class="hljs-attr">stroke-dasharray</span>=<span class="hljs-string">&quot;20 10 30&quot;</span></span><br><span class="hljs-tag">  /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="虚线偏移量-stroke-dashoffset"><a href="#虚线偏移量-stroke-dashoffset" class="headerlink" title="虚线偏移量 stroke-dashoffset"></a>虚线偏移量 stroke-dashoffset</h3><p>虚线还可以通过 <code>stroke-dashoffset</code> 属性设置偏移量，它接收一个数值类型的值。</p>
+<img src="/2022/09/29/svg/image-20221004151324300.png" srcset="/img/loading.gif" lazyload class="" title="image-20221004151324300">
+
+<figure class="highlight svg"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs svg">stroke-dashoffset=&quot;10&quot;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="线帽-stroke-linecap"><a href="#线帽-stroke-linecap" class="headerlink" title="线帽 stroke-linecap"></a>线帽 stroke-linecap</h3><p>线帽就是线的起始点和结束点的位置，用 <code>stroke-linecap</code> 属性可以设置线帽样式。</p>
+<p>线帽有3个值：</p>
+<ul>
+<li><code>butt</code>: 平头（默认值）</li>
+<li><code>round</code>: 圆头</li>
+<li><code>square</code>: 方头</li>
+</ul>
+<img src="/2022/09/29/svg/image-20221004151434115.png" srcset="/img/loading.gif" lazyload class="" title="image-20221004151434115">
+
+
+
+<h3 id="拐角-stroke-linejoin"><a href="#拐角-stroke-linejoin" class="headerlink" title="拐角 stroke-linejoin"></a>拐角 stroke-linejoin</h3><p>拐角就是折线的交接点，可以使用 <code>stroke-linejoin</code> 设置，它接收以下属性：</p>
+<ul>
+<li><code>miter</code>: 尖角（默认）</li>
+<li><code>round</code>: 圆角</li>
+<li><code>bevel</code>: 平角</li>
+</ul>
+<img src="/2022/09/29/svg/image-20221004151525017.png" srcset="/img/loading.gif" lazyload class="" title="image-20221004151525017">
+
+
+
+<h3 id="消除锯齿-shape-rendering"><a href="#消除锯齿-shape-rendering" class="headerlink" title="消除锯齿 shape-rendering"></a>消除锯齿 shape-rendering</h3><p>如果 <code>SVG</code> 在浏览器显示出来的图像有点模糊，那可能是开启了 <strong>反锯齿</strong> 功能，可以通过 <code>CSS</code> 属性关闭该功能。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css">// 开启反锯齿<br>shape-rendering: geometricPrecision<br>// 关闭反锯齿<br>shape-rendering: crispEdges<br></code></pre></td></tr></table></figure>
+
+<p>将该属性设置到对应的 <code>svg</code> 元素上，就会关闭反锯齿功能，突显看起来就会清晰很对，但在某些情况关闭了该功能会让图像看起来有点毛躁的感觉。</p>
+<h2 id="文本元素"><a href="#文本元素" class="headerlink" title="文本元素"></a>文本元素</h2><p><code>SVG</code> 可以使用 <code>&lt;text&gt;</code> 标签渲染文本。</p>
+<h3 id="基础版"><a href="#基础版" class="headerlink" title="基础版"></a>基础版</h3><p>和 <code>Canvas</code> 一样，<code>SVG</code> 的文本对齐方式是以第一个字基线的左下角为基准。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;400&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;400&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;border: 1px solid red;&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">text</span>&gt;</span>雷猴啊<span class="hljs-tag">&lt;/<span class="hljs-name">text</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>所以如果不设置 text 的位置，那么 text 会跑到左上角，第一个字基线的左下角和 svg 顶部对齐。</p>
+<img src="/2022/09/29/svg/image-20221004152141491.png" srcset="/img/loading.gif" lazyload class="" title="image-20221004152141491">
+
+
+
+<p>假设字体为 16px 大小，可以设置 text 向下移16px，这样就能完整看到了</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;400&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;400&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;border: 1px solid red;&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">text</span> <span class="hljs-attr">y</span>=<span class="hljs-string">&quot;16&quot;</span>&gt;</span>雷猴啊<span class="hljs-tag">&lt;/<span class="hljs-name">text</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<img src="/2022/09/29/svg/image-20221004152225332.png" srcset="/img/loading.gif" lazyload class="" title="image-20221004152225332">
+
+
+
+<h3 id="设置字号-font-size"><a href="#设置字号-font-size" class="headerlink" title="设置字号 font-size"></a>设置字号 font-size</h3><h3 id="粗体-font-weight"><a href="#粗体-font-weight" class="headerlink" title="粗体 font-weight"></a>粗体 font-weight</h3><p>使用 <code>font-weight</code> 可以将文本设置成粗体。</p>
+<ul>
+<li><code>normal</code>: 默认（非粗体）</li>
+<li><code>bold</code>: 粗体</li>
+</ul>
+<h3 id="装饰线-text-decoration"><a href="#装饰线-text-decoration" class="headerlink" title="装饰线 text-decoration"></a>装饰线 text-decoration</h3><p>和 <code>CSS</code> 一样，可以使用 <code>text-decoration</code> 设置装饰线</p>
+<ul>
+<li><code>none</code>：默认</li>
+<li><code>underline</code>: 下划线</li>
+<li><code>overline</code>: 上划线</li>
+<li><code>line-through</code>: 删除线</li>
+</ul>
+<h3 id="水平对齐方式-text-anchor"><a href="#水平对齐方式-text-anchor" class="headerlink" title="水平对齐方式 text-anchor"></a>水平对齐方式 text-anchor</h3><p>可以通过 <code>text-anchor</code> 属性设置文本水平对齐方式。</p>
+<p>如果文本是从左向右书写，那这几个参数的意思就是：</p>
+<ul>
+<li><code>start</code>: 左对齐</li>
+<li><code>middle</code>: 居中对齐</li>
+<li><code>end</code>: 右对齐</li>
+</ul>
+<p>text 会有坐标 x y，左对齐指文本最左侧和坐标重叠，右对齐指文本最右侧和坐标重叠。</p>
+<img src="/2022/09/29/svg/image-20221004153240544.png" srcset="/img/loading.gif" lazyload class="" title="image-20221004153240544">
+
+<p>从上到下依次是，左对齐、居中对齐、右对齐</p>
+<h3 id="多行文本"><a href="#多行文本" class="headerlink" title="多行文本"></a>多行文本</h3><p>多行文可以使用 <code>&lt;tspan&gt;</code> 标签辅助实现</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;400&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;400&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;border: 1px solid red;&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">text</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">&quot;blue&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">tspan</span> <span class="hljs-attr">x</span>=<span class="hljs-string">&quot;10&quot;</span> <span class="hljs-attr">y</span>=<span class="hljs-string">&quot;30&quot;</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">&quot;red&quot;</span>&gt;</span>111<span class="hljs-tag">&lt;/<span class="hljs-name">tspan</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">tspan</span> <span class="hljs-attr">x</span>=<span class="hljs-string">&quot;10&quot;</span> <span class="hljs-attr">y</span>=<span class="hljs-string">&quot;60&quot;</span>&gt;</span>222<span class="hljs-tag">&lt;/<span class="hljs-name">tspan</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">tspan</span> <span class="hljs-attr">x</span>=<span class="hljs-string">&quot;10&quot;</span> <span class="hljs-attr">y</span>=<span class="hljs-string">&quot;90&quot;</span>&gt;</span>333<span class="hljs-tag">&lt;/<span class="hljs-name">tspan</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">tspan</span> <span class="hljs-attr">x</span>=<span class="hljs-string">&quot;10&quot;</span> <span class="hljs-attr">y</span>=<span class="hljs-string">&quot;120&quot;</span>&gt;</span>444<span class="hljs-tag">&lt;/<span class="hljs-name">tspan</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">text</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><code>&lt;tspan&gt;</code> 要放在 <code>&lt;text&gt;</code> 里，而且会继承 <code>&lt;text&gt;</code> 设置的样式。</p>
+<h3 id="垂直对齐方式-dominant-baseline"><a href="#垂直对齐方式-dominant-baseline" class="headerlink" title="垂直对齐方式 dominant-baseline"></a>垂直对齐方式 dominant-baseline</h3><p>可以通过 <code>dominant-baseline</code> 属性设置文本垂直对齐方式</p>
+<ul>
+<li><code>auto</code>: 默认的对齐方式，保持与父元素相同的配置。</li>
+<li><code>text-after-edge</code>: 在基线上方</li>
+<li><code>middle</code>: 居中基线</li>
+<li><code>text-before-edge</code>: 在基线下方</li>
+</ul>
+<img src="/2022/09/29/svg/image-20221004153539272.png" srcset="/img/loading.gif" lazyload class="" title="image-20221004153539272">
+
+
+
+<h3 id="纵向文字-writing-mode"><a href="#纵向文字-writing-mode" class="headerlink" title="纵向文字 writing-mode"></a>纵向文字 writing-mode</h3><p>将 <code>writing-mode</code> 设置成 <code>tb</code> 就可以让文字纵向排列。</p>
+<h2 id="超链接"><a href="#超链接" class="headerlink" title="超链接"></a>超链接</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;400&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;400&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;border: 1px solid red;&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">xlink:href</span>=<span class="hljs-string">&quot;https://juejin.cn/post/7116784455561248775&quot;</span> <span class="hljs-attr">xlink:title</span>=<span class="hljs-string">&quot;canvas&quot;</span> <span class="hljs-attr">target</span>=<span class="hljs-string">&quot;_blank&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">text</span> <span class="hljs-attr">x</span>=<span class="hljs-string">&quot;20&quot;</span> <span class="hljs-attr">y</span>=<span class="hljs-string">&quot;20&quot;</span>&gt;</span>也学学Canvas吧<span class="hljs-tag">&lt;/<span class="hljs-name">text</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>超链接也是 a 标签</p>
+<p>xlink:href	链接 </p>
+<p>xlink:title	鼠标放到链接上的提示信息</p>
+<p>target&#x3D;&quot;_blank&quot;	需要在新窗口打开链接</p>
+<p><a> 标签里除了可以包裹文本外，还可以包裹各种图形和图片等元素。</p>
+<h2 id="图片-image"><a href="#图片-image" class="headerlink" title="图片 image"></a>图片 image</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;400&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;400&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;border: 1px solid red;&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">image</span> <span class="hljs-attr">xlink:href</span>=<span class="hljs-string">&quot;./img.jpg&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">image</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="结构元素"><a href="#结构元素" class="headerlink" title="结构元素"></a>结构元素</h2><h3 id="分组-g"><a href="#分组-g" class="headerlink" title="分组 g"></a>分组 g</h3><p>它能把多个元素放在一组里，对<g>标记实施的样式和渲染会作用到这个分组内的所有元素上。组内的所有元素都会继承<g>标记上的所有属性。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">viewBox</span>=<span class="hljs-string">&quot;-10 -10 220 220&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">g</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">&quot;none&quot;</span> <span class="hljs-attr">stroke-width</span>=<span class="hljs-string">&quot;9&quot;</span> <span class="hljs-attr">transform</span>=<span class="hljs-string">&quot;translate(100,100)&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">d</span>=<span class="hljs-string">&quot;M 0,-100 A 100,100 0 0,1 86.6,-50&quot;</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">&quot;url(#cl1)&quot;</span>/&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">d</span>=<span class="hljs-string">&quot;M 86.6,-50 A 100,100 0 0,1 86.6,50&quot;</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">&quot;url(#cl2)&quot;</span>/&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">d</span>=<span class="hljs-string">&quot;M 86.6,50 A 100,100 0 0,1 0,100&quot;</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">&quot;url(#cl3)&quot;</span>/&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">d</span>=<span class="hljs-string">&quot;M 0,100 A 100,100 0 0,1 -86.6,50&quot;</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">&quot;url(#cl4)&quot;</span>/&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">d</span>=<span class="hljs-string">&quot;M -86.6,50 A 100,100 0 0,1 -86.6,-50&quot;</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">&quot;url(#cl5)&quot;</span>/&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">path</span> <span class="hljs-attr">d</span>=<span class="hljs-string">&quot;M -86.6,-50 A 100,100 0 0,1 0,-100&quot;</span> <span class="hljs-attr">stroke</span>=<span class="hljs-string">&quot;url(#cl6)&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">g</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="defs-定义可重用部分"><a href="#defs-定义可重用部分" class="headerlink" title="defs 定义可重用部分"></a>defs 定义可重用部分</h3><p>defs 用于嵌入可在 SVG 映像内重用的定义。</p>
+<p>使用 defs 元素, 可以将 SVG 形状组合在一起, 并将其作为单个形状重复使用。（mixin?）</p>
+<p>通过 use 元素引用 defs 元素中定义的形状时, 将显示该形状。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><br>   <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>   <br><span class="hljs-tag">&lt;<span class="hljs-name">svg</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">defs</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">g</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;shape&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">rect</span> <span class="hljs-attr">x</span>=<span class="hljs-string">&quot;40&quot;</span> <span class="hljs-attr">y</span>=<span class="hljs-string">&quot;40&quot;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;40&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;40&quot;</span> /&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">circle</span> <span class="hljs-attr">cx</span>=<span class="hljs-string">&quot;40&quot;</span> <span class="hljs-attr">cy</span>=<span class="hljs-string">&quot;40&quot;</span> <span class="hljs-attr">r</span>=<span class="hljs-string">&quot;40&quot;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">g</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">defs</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">use</span> <span class="hljs-attr">xlink:href</span>=<span class="hljs-string">&quot;#shape&quot;</span> <span class="hljs-attr">x</span>=<span class="hljs-string">&quot;40&quot;</span> <span class="hljs-attr">y</span>=<span class="hljs-string">&quot;40&quot;</span> /&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">use</span> <span class="hljs-attr">xlink:href</span>=<span class="hljs-string">&quot;#shape&quot;</span> <span class="hljs-attr">x</span>=<span class="hljs-string">&quot;160&quot;</span> <span class="hljs-attr">y</span>=<span class="hljs-string">&quot;40&quot;</span> /&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="重要属性"><a href="#重要属性" class="headerlink" title="重要属性"></a>重要属性</h2><h3 id="viewBox-视区盒子"><a href="#viewBox-视区盒子" class="headerlink" title="viewBox 视区盒子"></a>viewBox 视区盒子</h3><figure class="highlight svg"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs svg">viewBox=&quot;x, y, width, height&quot;  // x:左上角横坐标，y:左上角纵坐标，width:宽度，height:高度<br></code></pre></td></tr></table></figure>
+
+<p>svg 的宽高也许很大，但设定了 viewBox，就只显示 viewBox 这一块区域。</p>
+<p>下图为 不设置 viewBox 到设置 <code>viewBox=&quot;0,0,40,30&quot;</code></p>
+<img src="/2022/09/29/svg/2014-08-27_105046-viewbox.gif" srcset="/img/loading.gif" lazyload class="" title="gif演示区域面积扩大">
+
+
+
+<h2 id="渐变"><a href="#渐变" class="headerlink" title="渐变"></a>渐变</h2><p>渐变色(gradient)是指从一种颜色平滑的过渡到另外一种颜色。而且，我们可以将多种渐变色应用到同一个网页元素上。</p>
+<p>在SVG里，有两种主要的渐变色类型：</p>
+<ul>
+<li>线性渐变色 Linear</li>
+<li>辐射式(放射式)渐变色 Radial</li>
+</ul>
+<h3 id="SVG线性渐变色-–-linearGradient"><a href="#SVG线性渐变色-–-linearGradient" class="headerlink" title="SVG线性渐变色 – linearGradient"></a>SVG线性渐变色 – linearGradient</h3><p>linearGradient 标记就是用来定义渐变色的。</p>
+<p>linearGradient 标记必须放在 defs 标记内。defs 标记就是“definitions”单词的简写，用来容纳其它各种 SVG 标记。</p>
+<p>线性渐变色可以定义成水平渐变色，垂直渐变色和斜向渐变色：</p>
+<ul>
+<li>当<code>y1</code>和<code>y2</code>相等，而<code>x1</code>和<code>x2</code>不等时，就形成了水平渐变色</li>
+<li>当<code>y1</code>和<code>y2</code>不等，而<code>x1</code>和<code>x2</code>相等时，就形成了垂直渐变色</li>
+<li>当<code>y1</code>和<code>y2</code>不等，而<code>x1</code>和<code>x2</code>也不等时，就形成了斜向渐变色</li>
+</ul>
+<img src="/2022/09/29/svg/image-20221004170313319.png" srcset="/img/loading.gif" lazyload class="" title="image-20221004170313319">
+
+<p><strong>示例：</strong></p>
+<figure class="highlight svg"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs svg"><span class="hljs-tag">&lt;<span class="hljs-name">svg</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;150&quot;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;400&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">defs</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">linearGradient</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;grad1&quot;</span> <span class="hljs-attr">x1</span>=<span class="hljs-string">&quot;0%&quot;</span> <span class="hljs-attr">y1</span>=<span class="hljs-string">&quot;0%&quot;</span> <span class="hljs-attr">x2</span>=<span class="hljs-string">&quot;100%&quot;</span> <span class="hljs-attr">y2</span>=<span class="hljs-string">&quot;0%&quot;</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">stop</span> <span class="hljs-attr">offset</span>=<span class="hljs-string">&quot;0%&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;stop-color:rgb(255,255,0);stop-opacity:1&quot;</span> /&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">stop</span> <span class="hljs-attr">offset</span>=<span class="hljs-string">&quot;100%&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;stop-color:rgb(255,0,0);stop-opacity:1&quot;</span> /&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">linearGradient</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">defs</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">ellipse</span> <span class="hljs-attr">cx</span>=<span class="hljs-string">&quot;200&quot;</span> <span class="hljs-attr">cy</span>=<span class="hljs-string">&quot;70&quot;</span> <span class="hljs-attr">rx</span>=<span class="hljs-string">&quot;85&quot;</span> <span class="hljs-attr">ry</span>=<span class="hljs-string">&quot;55&quot;</span> <span class="hljs-attr">fill</span>=<span class="hljs-string">&quot;url(#grad1)&quot;</span> /&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">svg</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>linearGradient 标记的<code>id</code>属性定义了这个渐变色的唯一标志</li>
+<li>linearGradient 标记的<code>x1, x2, y1,y2</code>四个属性定义了渐变色的起始位置和终止位置</li>
+<li>渐变色的颜色组成可以是2个或2个以上的颜色。每种颜色都使用一个 stop 标记定义。<code>offset</code>属性用来定义渐变色的开始和结束位置。</li>
+<li><code>fill</code>属性定义了需要引用的渐变色的ID</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7118985770408345630">https://juejin.cn/post/7118985770408345630</a> 本篇内容主要来源于这篇文章</p>
+<p><a target="_blank" rel="noopener" href="http://know.webhek.com/svg/svg-home.html">http://know.webhek.com/svg/svg-home.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.srcmini.com/37390.html">https://www.srcmini.com/37390.html</a></p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%8F%AF%E8%A7%86%E5%8C%96/" class="category-chain-item">可视化</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/svg/">#svg</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>svg</div>
+      <div>http://example.com/2022/09/29/svg/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 29, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/10/07/%E6%95%B0%E6%A8%A1%E8%AE%B0%E5%BD%95/" title="数模记录">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">数模记录</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/09/28/Mini-Vue/" title="Mini Vue">
+                        <span class="hidden-mobile">Mini Vue</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+    
+      
+            
+                  
+</div>
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
