@@ -16,30 +16,21 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="问题1不同放牧策略（放牧方式和放牧强度）对锡林郭勒草原土壤物理性质（主要是土壤湿度）和植被生物量影响的数学模型 自变量： 放牧方式 全年连续放牧、禁牧、选择划区轮牧、轻度放牧、生长季放牧 禁牧 &#x3D; 对照；轻度放牧 &#x3D; 轻度放牧强度 选择划区轮牧是空间上的影响 不考虑 暂时也无法考虑 因此 仅考虑 全年连续放牧和生长季放牧 分时放牧，加一个比例系数 放牧强度 对照（NG， 0羊&amp;">
+    <meta name="description" content="问题来源实习时的项目有一个节拍器的需求（根据谱子打节拍） 考虑了两种方式，当然可以使用一个简短的音频文件，在每个拍子到来时播放。抱着不增加额外资源的原则，我便提出了这样一个问题：JS 能不能创造声音？ 查阅资料HTML5 Web Audio API 是一个非常强大的 API，但因为在实习之前极少接触音频文件，所以我对其并不了解。 我们需要利用其中的 AudioContext 实现方式1234567">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数模记录">
-<meta property="og:url" content="http://example.com/2022/10/07/%E6%95%B0%E6%A8%A1%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:title" content="如何用js创建声音">
+<meta property="og:url" content="http://example.com/2022/10/14/%E5%A6%82%E4%BD%95%E7%94%A8js%E5%88%9B%E5%BB%BA%E5%A3%B0%E9%9F%B3/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="问题1不同放牧策略（放牧方式和放牧强度）对锡林郭勒草原土壤物理性质（主要是土壤湿度）和植被生物量影响的数学模型 自变量： 放牧方式 全年连续放牧、禁牧、选择划区轮牧、轻度放牧、生长季放牧 禁牧 &#x3D; 对照；轻度放牧 &#x3D; 轻度放牧强度 选择划区轮牧是空间上的影响 不考虑 暂时也无法考虑 因此 仅考虑 全年连续放牧和生长季放牧 分时放牧，加一个比例系数 放牧强度 对照（NG， 0羊&amp;">
+<meta property="og:description" content="问题来源实习时的项目有一个节拍器的需求（根据谱子打节拍） 考虑了两种方式，当然可以使用一个简短的音频文件，在每个拍子到来时播放。抱着不增加额外资源的原则，我便提出了这样一个问题：JS 能不能创造声音？ 查阅资料HTML5 Web Audio API 是一个非常强大的 API，但因为在实习之前极少接触音频文件，所以我对其并不了解。 我们需要利用其中的 AudioContext 实现方式1234567">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022/10/07/%E6%95%B0%E6%A8%A1%E8%AE%B0%E5%BD%95/image-20221007095116065.png">
-<meta property="og:image" content="http://example.com/2022/10/07/%E6%95%B0%E6%A8%A1%E8%AE%B0%E5%BD%95/image-20221007095126394.png">
-<meta property="og:image" content="http://example.com/2022/10/07/%E6%95%B0%E6%A8%A1%E8%AE%B0%E5%BD%95/image-20221007095146093.png">
-<meta property="og:image" content="http://example.com/2022/10/07/%E6%95%B0%E6%A8%A1%E8%AE%B0%E5%BD%95/image-20221007095156121.png">
-<meta property="og:image" content="http://example.com/2022/10/07/%E6%95%B0%E6%A8%A1%E8%AE%B0%E5%BD%95/image-20221007095205548.png">
-<meta property="og:image" content="http://example.com/2022/10/07/%E6%95%B0%E6%A8%A1%E8%AE%B0%E5%BD%95/image-20221007095213493.png">
-<meta property="og:image" content="http://example.com/2022/10/07/%E6%95%B0%E6%A8%A1%E8%AE%B0%E5%BD%95/image-20221007095224253.png">
-<meta property="og:image" content="http://example.com/2022/10/07/%E6%95%B0%E6%A8%A1%E8%AE%B0%E5%BD%95/image-20221007095231326.png">
-<meta property="article:published_time" content="2022-10-07T01:50:40.000Z">
-<meta property="article:modified_time" content="2022-10-07T01:53:18.569Z">
+<meta property="article:published_time" content="2022-10-14T09:10:08.000Z">
+<meta property="article:modified_time" content="2022-10-14T09:41:37.921Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2022/10/07/%E6%95%B0%E6%A8%A1%E8%AE%B0%E5%BD%95/image-20221007095116065.png">
   
   
   
-  <title>数模记录 - Hexo</title>
+  <title>如何用js创建声音 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -202,7 +193,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="数模记录"></span>
+            <span id="subtitle" data-typed-text="如何用js创建声音"></span>
           
         </div>
 
@@ -213,8 +204,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-10-07 09:50" pubdate>
-          October 7, 2022 am
+        <time datetime="2022-10-14 17:10" pubdate>
+          October 14, 2022 pm
         </time>
       </span>
     
@@ -225,7 +216,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k words
+          846 words
         
       </span>
     
@@ -236,7 +227,7 @@
         
         
         
-          11 mins
+          8 mins
         
       </span>
     
@@ -282,79 +273,22 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">数模记录</h1>
+            <h1 style="display: none">如何用js创建声音</h1>
             
             <div class="markdown-body">
               
-              <h2 id="问题1"><a href="#问题1" class="headerlink" title="问题1"></a>问题1</h2><p>不同放牧策略（放牧方式和放牧强度）对锡林郭勒草原土壤物理性质（主要是土壤湿度）和植被生物量影响的数学模型</p>
-<p><strong>自变量：</strong></p>
-<p><strong>放牧方式</strong></p>
-<p>全年连续放牧、禁牧、选择划区轮牧、轻度放牧、生长季放牧</p>
-<p>禁牧 &#x3D; 对照；轻度放牧 &#x3D; 轻度放牧强度</p>
-<p>选择划区轮牧是空间上的影响 不考虑 暂时也无法考虑</p>
-<p>因此 仅考虑 全年连续放牧和生长季放牧</p>
-<p>分时放牧，加一个比例系数</p>
-<p><strong>放牧强度</strong></p>
-<p>对照（NG， 0羊&#x2F;天&#x2F;公顷 ）、轻度放牧强度（LGI， 2羊&#x2F;天&#x2F;公顷 ）、中度放牧强度（MGI，4羊&#x2F;天&#x2F;公顷 ）和重度放牧强度（HGI，8羊&#x2F;天&#x2F;公顷 ）</p>
-<p>S 表示 每平方米牧羊数，羊是牲畜单位</p>
-<p>牛、马、骆驼 &#x3D; 6羊</p>
-<p>牛、马、骆驼幼崽 &#x3D; 3羊</p>
-<p>羊羔 &#x3D; 0.5羊</p>
-<p><strong>因变量：</strong></p>
-<p><strong>土壤湿度</strong></p>
-<p>土壤湿度（附件3）受降水（附件8）、土壤蒸发量（附件4）、放牧情况的影响</p>
-<p>附件15中有植被生物量的数据，因此我们可以通过下方公式推出放牧情况</p>
-<p>从而建立土壤湿度和放牧情况的模型，如何去除降水、土壤蒸发量的影响？</p>
-<p><strong>植被生物量</strong></p>
-<img src="/2022/10/07/%E6%95%B0%E6%A8%A1%E8%AE%B0%E5%BD%95/image-20221007095116065.png" srcset="/img/loading.gif" lazyload class="" title="image-20221007095116065">
+              <h2 id="问题来源"><a href="#问题来源" class="headerlink" title="问题来源"></a>问题来源</h2><p>实习时的项目有一个节拍器的需求（根据谱子打节拍）</p>
+<p>考虑了两种方式，当然可以使用一个简短的音频文件，在每个拍子到来时播放。抱着不增加额外资源的原则，我便提出了这样一个问题：JS 能不能创造声音？</p>
+<h2 id="查阅资料"><a href="#查阅资料" class="headerlink" title="查阅资料"></a>查阅资料</h2><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Audio_API">HTML5 Web Audio API</a> 是一个非常强大的 API，但因为在实习之前极少接触音频文件，所以我对其并不了解。</p>
+<p>我们需要利用其中的 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/AudioContext">AudioContext</a></p>
+<h2 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> <span class="hljs-title function_">tick</span> = (<span class="hljs-params"></span>) =&gt; &#123;<br>    <span class="hljs-comment">// 兼容 webkit</span><br>    <span class="hljs-keyword">const</span> context = <span class="hljs-keyword">new</span> (<span class="hljs-variable language_">window</span>.<span class="hljs-property">AudioContext</span> || <span class="hljs-variable language_">window</span>.<span class="hljs-property">webkitAudioContext</span>)();<br>    <span class="hljs-comment">// 创建一个振荡器(声音源于震动)</span><br>    <span class="hljs-keyword">const</span> osc = context.<span class="hljs-title function_">createOscillator</span>();<br>    <span class="hljs-comment">// 指定波形 sine/square/triangle/sawtooth </span><br>    osc.<span class="hljs-property">type</span> = <span class="hljs-string">&#x27;square&#x27;</span>;<br>    <span class="hljs-comment">// 指定 频率(与音调/音高有关)</span><br>    osc.<span class="hljs-property">frequency</span>.<span class="hljs-property">value</span> = <span class="hljs-number">500</span>; <span class="hljs-comment">// Hz</span><br>    <span class="hljs-comment">// 和音频设备关联(通常为扬声器)</span><br>    osc.<span class="hljs-title function_">connect</span>(context.<span class="hljs-property">destination</span>);<br>    <span class="hljs-comment">// 播放声音</span><br>    osc.<span class="hljs-title function_">start</span>();<br>    <span class="hljs-comment">// 声音停止(在0.1s后)</span><br>    osc.<span class="hljs-title function_">stop</span>(context.<span class="hljs-property">currentTime</span> + <span class="hljs-number">0.1</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
-<p><strong>绿植覆盖率</strong></p>
-<p>附件3</p>
-<p>只有 2018-2020 的数据 且有缺失值</p>
-<p><strong>植被指数 NDVI</strong></p>
-<p>附件6</p>
-<img src="/2022/10/07/%E6%95%B0%E6%A8%A1%E8%AE%B0%E5%BD%95/image-20221007095126394.png" srcset="/img/loading.gif" lazyload class="" title="image-20221007095126394">
-
-
-
-<p><strong>叶面积指数 LAI</strong></p>
-<p>附件10</p>
-<img src="/2022/10/07/%E6%95%B0%E6%A8%A1%E8%AE%B0%E5%BD%95/image-20221007095146093.png" srcset="/img/loading.gif" lazyload class="" title="image-20221007095146093">
-
-
-
-<h2 id="问题2"><a href="#问题2" class="headerlink" title="问题2"></a>问题2</h2><p><strong>注：湿度、土壤蒸发量的数据从2012-2022.3；气候的数据从2012-2022.7；我们要预测的是2022.4-2023.12的湿度(10&#x2F;40&#x2F;100&#x2F;200cm)</strong></p>
-<h3 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h3><p>根据年份与日期把附件3（湿度）、4（土壤蒸发量）、8（气候）的数据拼在一起。</p>
-<p>拼接完的数据长这个样子：</p>
-<img src="/2022/10/07/%E6%95%B0%E6%A8%A1%E8%AE%B0%E5%BD%95/image-20221007095156121.png" srcset="/img/loading.gif" lazyload class="" title="image-20221007095156121">
-
-<p>后续做了一个方差过滤（阈值为0），过滤掉无用特征</p>
-<h3 id="网上的想法"><a href="#网上的想法" class="headerlink" title="网上的想法"></a>网上的想法</h3><img src="/2022/10/07/%E6%95%B0%E6%A8%A1%E8%AE%B0%E5%BD%95/image-20221007095205548.png" srcset="/img/loading.gif" lazyload class="" title="image-20221007095205548">
-
-<p>网上的思路是分成12个月，但是本来就只有127行数据，如果分成12个月的话，每个月只有10&#x2F;11行数据。能训练好吗？可以先试一下看看效果。</p>
-<h3 id="我目前的想法"><a href="#我目前的想法" class="headerlink" title="我目前的想法"></a>我目前的想法</h3><p>之前 提到湿度、土壤蒸发量的数据从2012-2022.3；气候的数据从2012-2022.7；要预测的是2022.4-2023.12的湿度。</p>
-<p>一种方法是我们直接舍去2022.4-2022.7的气候数据，但本身数据量就小，最好不要再舍弃了。</p>
-<p>另一种方法就是将时间段分成2022.4-2022.7和2022.8-2013.12。</p>
-<p>2022.4-2022.7的土壤蒸发量以及其他零零散散的缺失值都用KNN填补，这个时间段每一行数据可以做一个简单明了的回归。</p>
-<p>2022.7-2023.12没有任何数据，我们就可以使用网上的思路做一个类时序的回归，将前两天的数据作为当前行的数据。</p>
-<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p>我对2022.4-2022.7做了回归，效果是很差的。（感觉是数据量太小了，像lasso和ridge这种模型非常简单的算法效果反而好）</p>
-<img src="/2022/10/07/%E6%95%B0%E6%A8%A1%E8%AE%B0%E5%BD%95/image-20221007095213493.png" srcset="/img/loading.gif" lazyload class="" title="image-20221007095213493">
-
-
-
-<p>2022.7-2023.12正在做</p>
-<h2 id="问题3"><a href="#问题3" class="headerlink" title="问题3"></a>问题3</h2><p>和问题1、2类似</p>
-<h2 id="问题4"><a href="#问题4" class="headerlink" title="问题4"></a>问题4</h2><p><strong>沙漠化程度</strong></p>
-<img src="/2022/10/07/%E6%95%B0%E6%A8%A1%E8%AE%B0%E5%BD%95/image-20221007095224253.png" srcset="/img/loading.gif" lazyload class="" title="image-20221007095224253">
-
-<p><strong>土壤板结化</strong></p>
-<img src="/2022/10/07/%E6%95%B0%E6%A8%A1%E8%AE%B0%E5%BD%95/image-20221007095231326.png" srcset="/img/loading.gif" lazyload class="" title="image-20221007095231326">
-
-<p>如何建立该模型，土壤板结化数据在哪？</p>
-<p>结合问题3，给出放牧策略</p>
-<h2 id="问题5"><a href="#问题5" class="headerlink" title="问题5"></a>问题5</h2><p>优化或者分类问题</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>1.不能创建一个声音然后反复的播放这个声音。播放完毕后会自动销毁，再播放需要重新创建。针对于我的需求，很浪费性能，因为我需要短时间内播放很多次。</p>
+<p>2.经过测试，短时间好像只能创建50个，但实际要打的拍子很可能不止50个。（短时间创建限制50个是我的推测，每次都打到一半不出声了，我看好像是停在了50个拍子）</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>没有实际解决项目中的需求，但也算增加了一个知识点</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.zhangxinxu.com/wordpress/2017/06/html5-web-audio-api-js-ux-voice/">https://www.zhangxinxu.com/wordpress/2017/06/html5-web-audio-api-js-ux-voice/</a></p>
 
               
             </div>
@@ -372,7 +306,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" class="category-chain-item">数学建模</a>
+  <a href="/categories/JS/" class="category-chain-item">JS</a>
   
   
 
@@ -392,8 +326,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>数模记录</div>
-      <div>http://example.com/2022/10/07/数模记录/</div>
+      <div>如何用js创建声音</div>
+      <div>http://example.com/2022/10/14/如何用js创建声音/</div>
     </div>
     <div class="license-meta">
       
@@ -405,7 +339,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>October 7, 2022</div>
+          <div>October 14, 2022</div>
         </div>
       
       
