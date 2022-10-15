@@ -16,15 +16,15 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="一次的once只执行一次的 once实现一个 once 函数，记忆返回结果只执行一次 类似于 lodash.once 12345678910&#x2F;&#x2F; f 是一个函数const f &#x3D; (x) &#x3D;&gt; x;const onceF &#x3D; once(f);&#x2F;&#x2F;&#x3D;&gt; 3console.log(onceF(3))&#x2F;&#x2F;&#x3D;&gt; 3console.log(onceF(100))    1234567891">
+    <meta name="description" content="&#x3D;&#x3D;扁平数据结构转Tree&#x3D;&#x3D;总的来说就两步：  创建当前 id 的 map  将当前 id 的 map 放入 pid 的 map 的 children 中   12345678910111213141516171819202122232425262728293031323334353637383940414243444546let arr &#x3D; [  &amp;#1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="手写常用函数">
 <meta property="og:url" content="http://example.com/2022/08/28/%E6%89%8B%E5%86%99%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="一次的once只执行一次的 once实现一个 once 函数，记忆返回结果只执行一次 类似于 lodash.once 12345678910&#x2F;&#x2F; f 是一个函数const f &#x3D; (x) &#x3D;&gt; x;const onceF &#x3D; once(f);&#x2F;&#x2F;&#x3D;&gt; 3console.log(onceF(3))&#x2F;&#x2F;&#x3D;&gt; 3console.log(onceF(100))    1234567891">
+<meta property="og:description" content="&#x3D;&#x3D;扁平数据结构转Tree&#x3D;&#x3D;总的来说就两步：  创建当前 id 的 map  将当前 id 的 map 放入 pid 的 map 的 children 中   12345678910111213141516171819202122232425262728293031323334353637383940414243444546let arr &#x3D; [  &amp;#1">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-08-28T09:46:55.000Z">
-<meta property="article:modified_time" content="2022-09-24T08:40:34.923Z">
+<meta property="article:modified_time" content="2022-10-15T13:37:33.060Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="JS">
 <meta property="article:tag" content="手写函数">
@@ -218,7 +218,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.3k words
+          2.2k words
         
       </span>
     
@@ -229,7 +229,7 @@
         
         
         
-          11 mins
+          19 mins
         
       </span>
     
@@ -279,7 +279,18 @@
             
             <div class="markdown-body">
               
-              <h2 id="一次的once"><a href="#一次的once" class="headerlink" title="一次的once"></a>一次的once</h2><h2 id="只执行一次的-once"><a href="#只执行一次的-once" class="headerlink" title="只执行一次的 once"></a>只执行一次的 once</h2><p>实现一个 once 函数，记忆返回结果只执行一次</p>
+              <h2 id="x3D-x3D-扁平数据结构转Tree-x3D-x3D"><a href="#x3D-x3D-扁平数据结构转Tree-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;扁平数据结构转Tree&#x3D;&#x3D;"></a>&#x3D;&#x3D;扁平数据结构转Tree&#x3D;&#x3D;</h2><p>总的来说就两步：</p>
+<ol>
+<li><p>创建当前 id 的 map</p>
+</li>
+<li><p>将当前 id 的 map 放入 pid 的 map 的 children 中</p>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> arr = [<br>  &#123;<span class="hljs-attr">id</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;部门1&#x27;</span>, <span class="hljs-attr">pid</span>: <span class="hljs-number">0</span>&#125;,<br>  &#123;<span class="hljs-attr">id</span>: <span class="hljs-number">2</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;部门2&#x27;</span>, <span class="hljs-attr">pid</span>: <span class="hljs-number">1</span>&#125;,<br>  &#123;<span class="hljs-attr">id</span>: <span class="hljs-number">3</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;部门3&#x27;</span>, <span class="hljs-attr">pid</span>: <span class="hljs-number">1</span>&#125;,<br>  &#123;<span class="hljs-attr">id</span>: <span class="hljs-number">4</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;部门4&#x27;</span>, <span class="hljs-attr">pid</span>: <span class="hljs-number">3</span>&#125;,<br>  &#123;<span class="hljs-attr">id</span>: <span class="hljs-number">5</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;部门5&#x27;</span>, <span class="hljs-attr">pid</span>: <span class="hljs-number">4</span>&#125;,<br>]<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">arrayToTree</span>(<span class="hljs-params">arr</span>) &#123;<br>  <span class="hljs-keyword">const</span> result = []<br>  <span class="hljs-keyword">const</span> map = &#123;&#125;<br><br>  arr.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">item, index</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">const</span> &#123; id, pid &#125; = item<br>    <span class="hljs-comment">// 1.创建当前 id 的 map</span><br><br>    <span class="hljs-comment">// 还没有生成的话就生成一个, 避免下面报错</span><br>    <span class="hljs-keyword">if</span> (!map[id]) &#123;<br>      map[id] = &#123;<br>        <span class="hljs-attr">children</span>: [],<br>      &#125;<br>    &#125;<br><br>    <span class="hljs-comment">// 生成当前 id 的 树结构, 部分 children 可能已经在之前通过 pid 生成了</span><br>    map[id] = &#123;<br>      ...item,<br>      <span class="hljs-attr">children</span>: map[id][<span class="hljs-string">&#x27;children&#x27;</span>]<br>    &#125;<br><br>    <span class="hljs-keyword">const</span> treeItem = map[id]<br><br>    <span class="hljs-comment">// 2.将当前 id 的 map 放入 pid 的 map 的 children 中</span><br>    <span class="hljs-keyword">if</span> (pid === <span class="hljs-number">0</span>) &#123;<br>      result.<span class="hljs-title function_">push</span>(treeItem)<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      <span class="hljs-keyword">if</span> (!map[pid]) &#123;<br>        map[pid] = &#123;<br>          <span class="hljs-attr">children</span>: []<br>        &#125;<br>      &#125;<br>      map[pid].<span class="hljs-property">children</span>.<span class="hljs-title function_">push</span>(treeItem)<br>    &#125;<br>  &#125;)<br><br>  <span class="hljs-keyword">return</span> result<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="只执行一次的-once"><a href="#只执行一次的-once" class="headerlink" title="只执行一次的 once"></a>只执行一次的 once</h2><p>实现一个 once 函数，记忆返回结果只执行一次</p>
 <p>类似于 lodash.once</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// f 是一个函数</span><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">f</span> = (<span class="hljs-params">x</span>) =&gt; x;<br><br><span class="hljs-keyword">const</span> onceF = <span class="hljs-title function_">once</span>(f);<br><br><span class="hljs-comment">//=&gt; 3</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">onceF</span>(<span class="hljs-number">3</span>))<br><br><span class="hljs-comment">//=&gt; 3</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">onceF</span>(<span class="hljs-number">100</span>))<br></code></pre></td></tr></table></figure>
 
