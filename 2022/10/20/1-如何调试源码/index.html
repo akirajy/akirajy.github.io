@@ -16,26 +16,21 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Vite（未完）参考官方文档 Vite的优势更快的服务器启动Vite 通过在一开始将应用中的模块区分为 依赖 和 源码 两类，改进了开发服务器启动时间 依赖 大多为在开发时不会变动的纯 JavaScript。 Vite 将会使用 **esbuild 预构建依赖**。Esbuild 使用 Go 编写，并且比以 JavaScript 编写的打包器预构建依赖快 10-100 倍。 源码 通常包含一些并非">
+    <meta name="description" content="记录一下步骤 下载源码  https:&#x2F;&#x2F;github.com&#x2F;vuejs&#x2F;vue&#x2F;tree&#x2F;dev  安装依赖  使用 npm 会报错，使用 yarn 不会 12npm i -g yarnyarn install   添加 sourcemap  package.json 中添加 –sourcemap 12345&amp;#123;  &quot;scripts&quot;: &amp;#123;    &amp;quo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vite">
-<meta property="og:url" content="http://example.com/2022/06/30/Vite/index.html">
+<meta property="og:title" content="1.如何调试源码">
+<meta property="og:url" content="http://example.com/2022/10/20/1-%E5%A6%82%E4%BD%95%E8%B0%83%E8%AF%95%E6%BA%90%E7%A0%81/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Vite（未完）参考官方文档 Vite的优势更快的服务器启动Vite 通过在一开始将应用中的模块区分为 依赖 和 源码 两类，改进了开发服务器启动时间 依赖 大多为在开发时不会变动的纯 JavaScript。 Vite 将会使用 **esbuild 预构建依赖**。Esbuild 使用 Go 编写，并且比以 JavaScript 编写的打包器预构建依赖快 10-100 倍。 源码 通常包含一些并非">
+<meta property="og:description" content="记录一下步骤 下载源码  https:&#x2F;&#x2F;github.com&#x2F;vuejs&#x2F;vue&#x2F;tree&#x2F;dev  安装依赖  使用 npm 会报错，使用 yarn 不会 12npm i -g yarnyarn install   添加 sourcemap  package.json 中添加 –sourcemap 12345&amp;#123;  &quot;scripts&quot;: &amp;#123;    &amp;quo">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2022/06/30/Vite/bundler.37740380.png">
-<meta property="og:image" content="http://example.com/2022/06/30/Vite/esm.3070012d.png">
-<meta property="og:image" content="http://example.com/2022/06/30/Vite/image-20220701002419270.png">
-<meta property="article:published_time" content="2022-06-30T06:04:41.000Z">
-<meta property="article:modified_time" content="2022-10-23T03:45:58.509Z">
+<meta property="article:published_time" content="2022-10-20T14:25:04.000Z">
+<meta property="article:modified_time" content="2022-10-21T08:36:56.332Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="vite">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2022/06/30/Vite/bundler.37740380.png">
   
   
   
-  <title>Vite - Hexo</title>
+  <title>1.如何调试源码 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -198,7 +193,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Vite"></span>
+            <span id="subtitle" data-typed-text="1.如何调试源码"></span>
           
         </div>
 
@@ -209,8 +204,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-06-30 14:04" pubdate>
-          June 30, 2022 pm
+        <time datetime="2022-10-20 22:25" pubdate>
+          October 20, 2022 pm
         </time>
       </span>
     
@@ -221,7 +216,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          925 words
+          1.1k words
         
       </span>
     
@@ -232,7 +227,7 @@
         
         
         
-          8 mins
+          10 mins
         
       </span>
     
@@ -278,40 +273,42 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Vite</h1>
+            <h1 style="display: none">1.如何调试源码</h1>
             
             <div class="markdown-body">
               
-              <h1 id="Vite（未完）"><a href="#Vite（未完）" class="headerlink" title="Vite（未完）"></a>Vite（未完）</h1><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://vitejs.cn/guide/why.html#the-problems">官方文档</a></p>
-<h2 id="Vite的优势"><a href="#Vite的优势" class="headerlink" title="Vite的优势"></a>Vite的优势</h2><h3 id="更快的服务器启动"><a href="#更快的服务器启动" class="headerlink" title="更快的服务器启动"></a><strong>更快的服务器启动</strong></h3><p>Vite 通过在一开始将应用中的模块区分为 <strong>依赖</strong> 和 <strong>源码</strong> 两类，改进了开发服务器启动时间</p>
-<p><strong>依赖</strong> 大多为在开发时不会变动的纯 JavaScript。</p>
-<p>Vite 将会使用 **<a target="_blank" rel="noopener" href="https://esbuild.github.io/">esbuild</a> <a target="_blank" rel="noopener" href="https://vitejs.cn/guide/dep-pre-bundling.html">预构建依赖</a>**。Esbuild 使用 Go 编写，并且比以 JavaScript 编写的打包器预构建依赖快 10-100 倍。</p>
-<p><strong>源码</strong> 通常包含一些并非直接是 JavaScript 的文件，需要转换（例如 JSX，CSS 或者 Vue&#x2F;Svelte 组件），时常会被编辑。同时，并不是所有的源码都需要同时被加载（例如基于路由拆分的代码模块）。</p>
-<p>Vite 以 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules"><strong>原生 ESM</strong></a> 方式提供源码。这实际上是<strong>让浏览器接管了打包程序的部分工作</strong>：Vite 只需要在浏览器请求源码时进行转换并按需提供源码。根据情景<strong>动态导入</strong>代码，即只在当前屏幕上实际使用时才会被处理。</p>
-<h3 id="更快的更新"><a href="#更快的更新" class="headerlink" title="更快的更新"></a>更快的更新</h3><p>轻量快速的 HMR</p>
-<p>在 Vite 中，HMR 是在原生 ESM 上执行的。当编辑一个文件时，Vite 只需要精确地使已编辑的模块与其最近的 HMR 边界之间的链失活（大多数时候只是模块本身），使得无论应用大小如何，HMR 始终能保持快速更新。</p>
-<h3 id="传统构建与-vite-构建对比图"><a href="#传统构建与-vite-构建对比图" class="headerlink" title="传统构建与 vite 构建对比图"></a>传统构建与 vite 构建对比图</h3><p>一次全部打包</p>
-<img src="/2022/06/30/Vite/bundler.37740380.png" srcset="/img/loading.gif" lazyload class="" title="基于打包器的开发服务器">
+              <h2 id="记录一下步骤"><a href="#记录一下步骤" class="headerlink" title="记录一下步骤"></a>记录一下步骤</h2><ol>
+<li>下载源码</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://github.com/vuejs/vue/tree/dev">https://github.com/vuejs/vue/tree/dev</a></p>
+<ol start="2">
+<li>安装依赖</li>
+</ol>
+<p>使用 npm 会报错，使用 yarn 不会</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cmake">npm i -g yarn<br>yarn <span class="hljs-keyword">install</span><br></code></pre></td></tr></table></figure>
 
-<p>按需动态引入</p>
-<img src="/2022/06/30/Vite/esm.3070012d.png" srcset="/img/loading.gif" lazyload class="" title="基于 ESM 的开发服务器">
+<ol start="3">
+<li>添加 sourcemap</li>
+</ol>
+<p>package.json 中添加 –sourcemap</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;scripts&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;dev&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;rollup -w -c scripts/config.js --sourcemap --environment TARGET:web-full-dev&quot;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>启动开发环境</li>
+</ol>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">npm <span class="hljs-built_in">run</span> dev<br></code></pre></td></tr></table></figure>
+
+<p>如果报类似错误，就 yarn add 装一下包</p>
+<p>Cannot find module ‘@vue&#x2F;consolidate&#x2F;package.json’</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">yarn <span class="hljs-built_in">add</span> consolidate<br></code></pre></td></tr></table></figure>
 
 
 
-<h2 id="快速搭建一个项目"><a href="#快速搭建一个项目" class="headerlink" title="快速搭建一个项目"></a>快速搭建一个项目</h2><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript"><span class="hljs-number">1.</span>初始化<br><span class="hljs-regexp">//</span> yarn create vite<br><span class="hljs-built_in">npm</span> init vite@latest<br><br><span class="hljs-number">2.</span>进入文件夹后安装依赖包<br><span class="hljs-built_in">npm</span> install<br><br><span class="hljs-number">3.</span>启动()<br><span class="hljs-built_in">npm</span> run dev<br></code></pre></td></tr></table></figure>
+<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs smali">├── benchmarks                  性能、基准测试<br>├── dist                        构建打包的输出目录<br>├── examples                    案例目录<br>├── flow                        flow 语法的类型声明<br>├── packages                    一些额外的包，比如：负责服务端渲染的包 vue-server-renderer、配合 vue-loader 使用的的 vue-template-compiler，还有 weex 相关的<br>│   ├── vue-server-renderer<br>│   ├── vue-template-compiler<br>│   ├── weex-template-compiler<br>│   └── weex-vue-framework<br>├── scripts                     所有的配置文件的存放位置，比如 rollup 的配置文件<br>├── src                         vue 源码目录<br>│   ├── compiler                编译器<br>│   ├── core                    运行时的核心包<br>│   │   ├── components          全局组件，比如 keep-alive<br>│   │   ├── config.js           一些默认配置项<br>│   │   ├── global-api          全局 API，比如熟悉的：Vue.use()、Vue.component() 等<br>│   │   ├──<span class="hljs-built_in"> instance </span>           Vue 实例相关的，比如 Vue 构造函数就在这个目录下<br>│   │   ├── observer            响应式原理<br>│   │   ├── util                工具方法<br>│   │   └── vdom                虚拟 DOM 相关，比如熟悉的 patch 算法就在这儿<br>│   ├── platforms               平台相关的编译器代码<br>│   │   ├── web<br>│   │   └── weex<br>│   ├── server                  服务端渲染相关<br>├── test                        测试目录<br>├── types                       TS 类型声明<br></code></pre></td></tr></table></figure>
 
 
 
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-comment">// package.json 命令解析</span><br><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;scripts&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;dev&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;vite&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// 启动开发服务器，别名：`vite dev`，`vite serve`</span><br>    <span class="hljs-attr">&quot;build&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;vite build&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">// 为生产环境构建产物</span><br>    <span class="hljs-attr">&quot;preview&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;vite preview&quot;</span> <span class="hljs-comment">// 本地预览生产构建产物</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
-
-
-
-<p>项目目录</p>
-<img src="/2022/06/30/Vite/image-20220701002419270.png" srcset="/img/loading.gif" lazyload class="" title="image-20220701002419270">
-
-<p>public 下放无需编译的静态资源（图片 &#x2F; js）</p>
-<p>assets 放可被编译的静态资源（图片 -&gt; base64）</p>
-<p>components 公共组件</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/user/1028798616461326/posts">https://juejin.cn/user/1028798616461326/posts</a></p>
 
               
             </div>
@@ -329,8 +326,15 @@
     
       <span class="category-chain">
         
-  <a href="/categories/vite/" class="category-chain-item">vite</a>
+  <a href="/categories/Vue/" class="category-chain-item">Vue</a>
   
+  
+    <span>></span>
+    
+  <a href="/categories/Vue/Vue%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/" class="category-chain-item">Vue源码解读</a>
+  
+  
+
   
 
       </span>
@@ -341,13 +345,6 @@
     </div>
   
   
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/vite/">#vite</a>
-      
-    </div>
-  
 </div>
 
 
@@ -356,8 +353,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Vite</div>
-      <div>http://example.com/2022/06/30/Vite/</div>
+      <div>1.如何调试源码</div>
+      <div>http://example.com/2022/10/20/1-如何调试源码/</div>
     </div>
     <div class="license-meta">
       
@@ -369,7 +366,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>June 30, 2022</div>
+          <div>October 20, 2022</div>
         </div>
       
       
@@ -399,9 +396,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/30/npm-nvm-nrm/" title="npm nvm nrm">
+                      <a href="/2022/10/21/2-Vue%E5%88%9D%E5%A7%8B%E5%8C%96%E8%BF%87%E7%A8%8B/" title="2.Vue初始化过程">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">npm nvm nrm</span>
+                        <span class="hidden-mobile">2.Vue初始化过程</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -409,8 +406,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/28/pinia/" title="pinia">
-                        <span class="hidden-mobile">pinia</span>
+                      <a href="/2022/10/19/nextTick/" title="nextTick">
+                        <span class="hidden-mobile">nextTick</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

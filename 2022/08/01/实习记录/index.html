@@ -23,10 +23,12 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="项目启动npm install 失败 将 package-lock.json 文件删去后，再 install 才成功 原因大概是团队中的 node 版本不同 package-lock.json package-lock.json 会在 npm 更改 node_modules 目录树 或者 package.json 时自动生成 ，它准确的描述了当前项目npm包的依赖树，并且在随后的安装中会根据 pa">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2022/08/01/%E5%AE%9E%E4%B9%A0%E8%AE%B0%E5%BD%95/实习记录/image-20221020134042416.png">
 <meta property="article:published_time" content="2022-08-01T09:52:36.000Z">
-<meta property="article:modified_time" content="2022-09-27T08:53:28.485Z">
+<meta property="article:modified_time" content="2022-10-20T09:33:47.696Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2022/08/01/%E5%AE%9E%E4%B9%A0%E8%AE%B0%E5%BD%95/实习记录/image-20221020134042416.png">
   
   
   
@@ -216,7 +218,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k words
+          3.8k words
         
       </span>
     
@@ -227,7 +229,7 @@
         
         
         
-          17 mins
+          32 mins
         
       </span>
     
@@ -332,6 +334,80 @@
 <p>节拍器</p>
 <h3 id="难点-1"><a href="#难点-1" class="headerlink" title="难点"></a>难点</h3><p>控制方块的位置，花了些时间计算</p>
 <p>对于 midi 文件的理解与处理，npm 上找了很多包来解析 midi 和播放 midi</p>
+<p>节拍器</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><strong>情景，任务，行动，结果</strong></p>
+<p>实习期间，我完成的最主要的一个工作是在我们已有的一个app上新增一个功能，首先介绍一下这个app，这个app一方面它是一个调音器，是一个乐器的辅助工具；另一方面，它是一个音乐题库，这个题库里面只有比较老套的选择判断题，我的任务就是要给这个题库加一种新题型，题干是一首歌的谱子(可以选择五线谱和简谱），题目要求用户跟着谱子哼唱，前端会进行录音，在哼唱完毕后传给后端，后端结合算法做一个评分，再返回给前端。这是整个的一个流程。这个流程其实很简单，有难度的是一些辅助功能。</p>
+<p>1.在录音时谱子上面会有一个指示器，实时指向当前应该被唱到的音符，避免用户漏拍子或者唱着唱着不知道唱到哪了。</p>
+<p>2.实现了一个类似于全民k歌的功能，首先会根据谱子的数据利用svg绘制一个音高线图，这个音高线图会随着时间向左移动，用户在哼唱时会有一个小球根据用户哼唱的音高上下跳动，用于辅助用户控制自己的音准。</p>
+<p>3.实现了一个节拍器控件，节拍器就是在录音时会根据谱子规律的发出哒哒哒哒哒哒的音效，用来辅助用户更好地跟紧节奏。这个问题我想到两种解决方案，一是利用一个很短的音频文件，每当指示器指到一个新的音符就播放它。二是利用 H5 的 Web Audio API 的 Audio Context 来创造声音，原理就是创建振荡器，制定波形和频率，然后将其和电脑的扬声器连接就可以了。因为声音本质就是通过震动产生的嘛。考虑到我没有现成的音频资源，也秉持着不额外增加资源的原则，就选择了第二种方案。在测试第二种方案的时候也遇到了问题，就是 Audio Context 所创建的音频并不是一个可以被反复利用的音频，它会在播放完毕后被销毁。而因为在我们的场景下需要短时间反复播放该音频，反复的创建销毁实例肯定不是一个好的选择，而且 Audio Context 因为需要声卡中的资源，所以硬件上会有限制，不能同时创建太多的音频。我最后的解决方案是在开始录音的时候创建一个不设终止时间的音频，但是断开和扬声器的连接，根据谱子需要打节拍的时候就短暂连接上音频发出一声哒，直到录音终止再销毁这个音频实例，这样我们每次录音就只需要创建一个音频。</p>
+<p>这是几个最主要的功能，还有一些零零散散的比较简单的，比如说控制录音时的速度控件，这个速度实际会影响三个部分，谱子上的指示器移动的速度，音高线图移动的速度，还有节拍器哒哒哒的速度。我是将速度转成了时间，因为一首歌的时间是固定的嘛，每个音符也是固定的，所以不管是哪个部分，到了规定的时间就去做规定的事情。</p>
+<h3 id="关于封装组件"><a href="#关于封装组件" class="headerlink" title="关于封装组件"></a>关于封装组件</h3><h4 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h4><p>按功能和位置分（主要是按功能）</p>
+<img src="实习记录/image-20221020134042416.png" srcset="/img/loading.gif" lazyload alt="image-20221020134042416" style="zoom:67%;" />
+
+
+
+<h4 id="引入并使用子组件"><a href="#引入并使用子组件" class="headerlink" title="引入并使用子组件"></a>引入并使用子组件</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">Tempo</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Tempo</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-title class_">Tempo</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;&#x27;</span><br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>	<span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Testing&#x27;</span>,<br>    <span class="hljs-attr">components</span>: &#123;<br>        <span class="hljs-title class_">SingQuestion</span>,<br>        <span class="hljs-title class_">Tempo</span>,<br>        <span class="hljs-title class_">ChangeQuestion</span>,<br>        ...<br>    &#125;<br>    <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) &#123;&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="学习到了什么"><a href="#学习到了什么" class="headerlink" title="学习到了什么"></a>学习到了什么</h2><ul>
+<li><p>git</p>
+<p>git add .</p>
+<p>git commit -m “…”</p>
+<p>git push</p>
+<p>git stash</p>
+<p>git stash pop</p>
+</li>
+<li><p>vue3 + ts 实操</p>
+<ul>
+<li>vue3<ul>
+<li>组件间通信（全局事件总线 emitBus 较多）</li>
+<li>nextTick</li>
+</ul>
+</li>
+<li>ts<ul>
+<li>interface</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>代码规范</p>
+<ul>
+<li>宏观上</li>
+</ul>
+<p>代码分块明确，同一功能的代码尽量放在一起提升可维护性，当然 vue3 的组合式 api 意义就在这里；</p>
+<p>抽离函数逻辑，不要把一块东西写的太复杂。同样的，组件也是；</p>
+<ul>
+<li>微观上</li>
+</ul>
+<p>变量命名不要太长、要尽量能够顾名思义；</p>
+<p>减少魔法数字的出现，用变量替代；</p>
+<p>项目开启了 eslint，对于是否书写分号这些细节也有要求；</p>
+</li>
+<li><p>独立解决未知问题的能力</p>
+<ul>
+<li>领域未知</li>
+</ul>
+<p>之前从未接触过音乐领域，乐理也是一窍不通。但在做需求的过程中需要一定的音乐基础，主要是在对于数据的理解上（比如数据中时间的单位我一开始以为是 ms，后面才知道是跟节拍有关，那么要将节拍转成 s，又涉及一个新的名词叫 bpm）以及一些插件的使用上（如 midi 音频文件的播放插件 &#x2F; 解析 midi 的插件 &#x2F; 读取用户声音频率的插件），读取到频率后怎么转成数字音高，数字音高怎么转成符号音高。</p>
+<ul>
+<li>从未接触过的需求</li>
+</ul>
+<p>刚拿到需求还是比较迷茫的，因为里面有一些东西是之前没有接触过的。</p>
+<p>通过努力一步一步的解决了</p>
+</li>
+<li><p>沟通能力</p>
+<ul>
+<li>与产品和后端的沟通非常重要</li>
+</ul>
+<p>理解有参差的话会事倍功半，在写后台管理项目时就遇到了问题</p>
+<ul>
+<li>不懂要问</li>
+</ul>
+<p>不要僵着浪费时间</p>
+</li>
+</ul>
 
               
             </div>

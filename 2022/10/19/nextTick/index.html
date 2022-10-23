@@ -1,0 +1,725 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="nextTick作用nextTick 接收一个回调函数作为参数，并将这个回调函数延迟到DOM更新后才执行； 使用场景：想要操作 基于最新数据生成的DOM 时，就将这个操作放在 nextTick 的回调中； 为什么需要nextTick因为 vue 采用的异步更新策略，当监听到数据发生变化的时候不会立即去更新DOM，而是开启一个任务队列，并缓存在同一事件循环中发生的所有数据变更。 这种做法带来的好处就">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nextTick">
+<meta property="og:url" content="http://example.com/2022/10/19/nextTick/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="nextTick作用nextTick 接收一个回调函数作为参数，并将这个回调函数延迟到DOM更新后才执行； 使用场景：想要操作 基于最新数据生成的DOM 时，就将这个操作放在 nextTick 的回调中； 为什么需要nextTick因为 vue 采用的异步更新策略，当监听到数据发生变化的时候不会立即去更新DOM，而是开启一个任务队列，并缓存在同一事件循环中发生的所有数据变更。 这种做法带来的好处就">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-10-19T09:43:46.000Z">
+<meta property="article:modified_time" content="2022-10-20T08:46:39.181Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>nextTick - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"qPzYEpTngSrzQtV1XpsPSmPm-gzGzoHsz","app_key":"kf4lqne4FqonWhpUQzS1Ffrx","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>JY BLOG</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="nextTick"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-10-19 17:43" pubdate>
+          October 19, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.5k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          38 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span>次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">nextTick</h1>
+            
+            <div class="markdown-body">
+              
+              <h1 id="nextTick"><a href="#nextTick" class="headerlink" title="nextTick"></a>nextTick</h1><h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>nextTick 接收一个回调函数作为参数，并将这个回调函数延迟到DOM更新后才执行；</p>
+<p><strong>使用场景</strong>：想要<strong>操作 基于最新数据生成的DOM 时</strong>，就将这个操作放在 nextTick 的回调中；</p>
+<h2 id="为什么需要nextTick"><a href="#为什么需要nextTick" class="headerlink" title="为什么需要nextTick"></a>为什么需要nextTick</h2><p>因为 vue 采用的<strong>异步更新策略</strong>，当监听到数据发生变化的时候不会立即去更新DOM，而是开启一个任务队列，并缓存在同一事件循环中发生的所有数据变更。</p>
+<p>这种做法带来的好处就是可以将多次数据更新合并成一次，<strong>减少操作DOM的次数</strong>，如果不采用这种方法，假设数据改变100次就要去更新100次DOM，而频繁的DOM更新是很耗性能的。举个例子，如果同一个 <code>Watcher</code> 被多次触发，只会被推入到队列中一次。这种在缓冲时去除重复数据对于避免不必要的计算和 DOM 操作是非常重要的。</p>
+<p>然后，在下一个的事件循环“tick”中，Vue 刷新队列并执行实际 (已去重的) 工作。Vue 在内部对异步队列尝试使用原生的 <code>Promise.then</code>、<code>MutationObserver</code> 和 <code>setImmediate</code>，如果执行环境不支持，则会采用 <code>setTimeout(fn, 0)</code> 代替。</p>
+<h2 id="nextTick-实现原理"><a href="#nextTick-实现原理" class="headerlink" title="nextTick 实现原理"></a>nextTick 实现原理</h2><p><strong>将传入的回调函数包装成异步任务</strong>，异步任务又分微任务和宏任务，<strong>为了尽快执行所以优先选择微任务</strong>；</p>
+<p>nextTick 提供了四种异步方法 Promise.then、MutationObserver、setImmediate、setTimeout(fn,0)</p>
+<h2 id="源码解读"><a href="#源码解读" class="headerlink" title="源码解读"></a>源码解读</h2><p><strong>vue3 源码位置:</strong> CORE&#x2F;packages&#x2F;runtime-core&#x2F;src&#x2F;scheduler.ts</p>
+<p><strong>vue2 源码位置:</strong> src&#x2F;core&#x2F;util&#x2F;next-tick.js</p>
+<h3 id="nextTick-1"><a href="#nextTick-1" class="headerlink" title="nextTick"></a>nextTick</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 以 vue2 源码为例</span><br><span class="hljs-keyword">import</span> &#123; noop &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;shared/util&#x27;</span><br><span class="hljs-keyword">import</span> &#123; handleError &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./error&#x27;</span><br><span class="hljs-keyword">import</span> &#123; isIE, isIOS, isNative &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./env&#x27;</span><br><br><span class="hljs-comment">//  上面三行与核心代码关系不大，了解即可</span><br><span class="hljs-comment">//  noop 表示一个无操作空函数，用作函数默认值，防止传入 undefined 导致报错</span><br><span class="hljs-comment">//  handleError 错误处理函数</span><br><span class="hljs-comment">//  isIE, isIOS, isNative 环境判断函数，</span><br><span class="hljs-comment">//  isNative 判断是否原生支持，如果通过第三方实现支持也会返回 false</span><br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> isUsingMicroTask = <span class="hljs-literal">false</span>     <span class="hljs-comment">// nextTick 最终是否以微任务执行</span><br><br><span class="hljs-keyword">const</span> callbacks = []     <span class="hljs-comment">// 存放调用 nextTick 时传入的回调函数</span><br><span class="hljs-keyword">let</span> pending = <span class="hljs-literal">false</span>     <span class="hljs-comment">// 标识当前是否有 nextTick 在执行，同一时间只能有一个执行</span><br><br><span class="hljs-comment">// 声明 nextTick 函数，接收一个回调函数和一个执行上下文作为参数</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">nextTick</span>(<span class="hljs-params">cb?: <span class="hljs-built_in">Function</span>, ctx?: <span class="hljs-built_in">Object</span></span>) &#123;<br>    <span class="hljs-keyword">let</span> _resolve<br>    <span class="hljs-comment">// 将传入的回调函数存放到数组中，后面会遍历执行其中的回调</span><br>    callbacks.<span class="hljs-title function_">push</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>        <span class="hljs-keyword">if</span> (cb) &#123;   <span class="hljs-comment">// 对传入的回调进行 try catch 错误捕获</span><br>            <span class="hljs-keyword">try</span> &#123;<br>                cb.<span class="hljs-title function_">call</span>(ctx)<br>            &#125; <span class="hljs-keyword">catch</span> (e) &#123;<br>                <span class="hljs-title function_">handleError</span>(e, ctx, <span class="hljs-string">&#x27;nextTick&#x27;</span>)<br>            &#125;<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (_resolve) &#123;<br>            <span class="hljs-title function_">_resolve</span>(ctx)<br>        &#125;<br>    &#125;)<br>    <br>    <span class="hljs-comment">// 如果当前没有在 pending 的回调，就执行 timeFunc 函数选择当前环境优先支持的异步方法</span><br>    <span class="hljs-keyword">if</span> (!pending) &#123;<br>        pending = <span class="hljs-literal">true</span><br>        <span class="hljs-title function_">timerFunc</span>()<br>    &#125;<br>    <br>    <span class="hljs-comment">// 如果没有传入回调，并且当前环境支持 promise，就返回一个 promise</span><br>    <span class="hljs-keyword">if</span> (!cb &amp;&amp; <span class="hljs-keyword">typeof</span> <span class="hljs-title class_">Promise</span> !== <span class="hljs-string">&#x27;undefined&#x27;</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> &#123;<br>            _resolve = resolve<br>        &#125;)<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="timerFunc"><a href="#timerFunc" class="headerlink" title="timerFunc"></a>timerFunc</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 判断当前环境优先支持的异步方法，优先选择微任务</span><br><span class="hljs-comment">// 优先级：Promise---&gt; MutationObserver---&gt; setImmediate---&gt; setTimeout</span><br><span class="hljs-comment">// setTimeOut 最小延迟也要4ms，而 setImmediate 会在主线程执行完后立刻执行</span><br><span class="hljs-comment">// setImmediate 在 IE10 和 node 中支持</span><br><br><span class="hljs-comment">// 多次调用 nextTick 时 ,timerFunc 只会执行一次</span><br><br><span class="hljs-keyword">let</span> timerFunc   <br><span class="hljs-comment">// 1.判断当前环境是否支持 promise</span><br><span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> <span class="hljs-title class_">Promise</span> !== <span class="hljs-string">&#x27;undefined&#x27;</span> &amp;&amp; <span class="hljs-title function_">isNative</span>(<span class="hljs-title class_">Promise</span>)) &#123;  <span class="hljs-comment">// 支持 promise</span><br>    <span class="hljs-keyword">const</span> p = <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>()<br>    timerFunc = <span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-comment">// 用 promise.then 把 flushCallbacks 函数包裹成一个异步微任务</span><br>        p.<span class="hljs-title function_">then</span>(flushCallbacks)<br>        <span class="hljs-keyword">if</span> (isIOS) <span class="hljs-built_in">setTimeout</span>(noop)<br>    &#125;<br>    <span class="hljs-comment">// 标记当前 nextTick 使用的微任务</span><br>    isUsingMicroTask = <span class="hljs-literal">true</span><br>    <br>    <span class="hljs-comment">// 2.如果不支持 promise，就判断是否支持 MutationObserver</span><br>    <span class="hljs-comment">// 不是IE环境，并且原生支持 MutationObserver，那也是一个微任务</span><br>&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!isIE &amp;&amp; <span class="hljs-keyword">typeof</span> <span class="hljs-title class_">MutationObserver</span> !== <span class="hljs-string">&#x27;undefined&#x27;</span> &amp;&amp; (<br>    <span class="hljs-title function_">isNative</span>(<span class="hljs-title class_">MutationObserver</span>) ||<br>    <span class="hljs-title class_">MutationObserver</span>.<span class="hljs-title function_">toString</span>() === <span class="hljs-string">&#x27;[object MutationObserverConstructor]&#x27;</span><br>)) &#123;<br>    <span class="hljs-keyword">let</span> counter = <span class="hljs-number">1</span><br>    <span class="hljs-comment">// new 一个 MutationObserver 类</span><br>    <span class="hljs-keyword">const</span> observer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">MutationObserver</span>(flushCallbacks) <br>    <span class="hljs-comment">// 创建一个文本节点</span><br>    <span class="hljs-keyword">const</span> textNode = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createTextNode</span>(<span class="hljs-title class_">String</span>(counter))   <br>    <span class="hljs-comment">// 监听这个文本节点，当数据发生变化就执行 flushCallbacks </span><br>    observer.<span class="hljs-title function_">observe</span>(textNode, &#123; <span class="hljs-attr">characterData</span>: <span class="hljs-literal">true</span> &#125;)<br>    timerFunc = <span class="hljs-function">() =&gt;</span> &#123;<br>        counter = (counter + <span class="hljs-number">1</span>) % <span class="hljs-number">2</span><br>        textNode.<span class="hljs-property">data</span> = <span class="hljs-title class_">String</span>(counter)  <span class="hljs-comment">// 数据更新</span><br>    &#125;<br>    isUsingMicroTask = <span class="hljs-literal">true</span>    <span class="hljs-comment">// 标记当前 nextTick 使用的微任务</span><br>    <br>    <span class="hljs-comment">// 3.判断当前环境是否原生支持 setImmediate</span><br>&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> setImmediate !== <span class="hljs-string">&#x27;undefined&#x27;</span> &amp;&amp; <span class="hljs-title function_">isNative</span>(setImmediate)) &#123;<br>    timerFunc = <span class="hljs-function">() =&gt;</span> &#123; <span class="hljs-title function_">setImmediate</span>(flushCallbacks)  &#125;<br>&#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-comment">// 4.以上三种都不支持就选择 setTimeout</span><br>    timerFunc = <span class="hljs-function">() =&gt;</span> &#123; <span class="hljs-built_in">setTimeout</span>(flushCallbacks, <span class="hljs-number">0</span>) &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>timerFunc</code> 函数就是用各种异步执行的方法调用 <code>flushCallbacks</code> 函数。</p>
+<h3 id="flushCallbacks"><a href="#flushCallbacks" class="headerlink" title="flushCallbacks"></a>flushCallbacks</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 如果多次调用 nextTick，会依次执行上面的方法，将 nextTick 的回调放在 callbacks 数组中</span><br><span class="hljs-comment">// 最后通过 flushCallbacks 函数遍历 callbacks 数组的拷贝并执行其中的回调</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">flushCallbacks</span>(<span class="hljs-params"></span>) &#123;<br>    pending = <span class="hljs-literal">false</span><br>    <span class="hljs-keyword">const</span> copies = callbacks.<span class="hljs-title function_">slice</span>(<span class="hljs-number">0</span>)    <span class="hljs-comment">// 拷贝一份</span><br>    callbacks.<span class="hljs-property">length</span> = <span class="hljs-number">0</span>    <span class="hljs-comment">// 清空 callbacks</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; copies.<span class="hljs-property">length</span>; i++) &#123;    <span class="hljs-comment">// 遍历执行传入的回调</span><br>        copies[i]()<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 为什么要拷贝一份 callbacks</span><br><br><span class="hljs-comment">// callbacks.slice(0) 将 callbacks 拷贝出来一份，</span><br><span class="hljs-comment">// 是因为考虑到 nextTick 回调中可能还会调用 nextTick 的情况,</span><br><span class="hljs-comment">// 如果 nextTick 回调中又调用了一次 nextTick，则又会向 callbacks 中添加回调，</span><br><span class="hljs-comment">// nextTick 回调中的 nextTick 应该放在下一轮执行，</span><br><span class="hljs-comment">// 如果不将 callbacks 复制一份就可能一直循环</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="x3D-x3D-流程总结-x3D-x3D"><a href="#x3D-x3D-流程总结-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;流程总结&#x3D;&#x3D;"></a><strong>&#x3D;&#x3D;流程总结&#x3D;&#x3D;</strong></h2><p>1.nextTick 会将传入的函数做一个包装然后放到 callbacks 数组里，这个包装主要是针对没传入回调以及回调错误捕获。</p>
+<p>2.如果当前没有其它 nextTick 在执行的话，就会调用 timerFunc 函数，会根据环境，做一个兼容性判断，选择某一种异步执行的方法调用 flushCallbacks 函数。优先级是 promise.then &gt; object.observe &gt; setImmediate &gt; setTimeout。（因为 timerFunc 是异步的，同时只能执行一个）</p>
+<p>3.flushCallbacks 遍历 callbacks 执行其中每一个回调。这里注意，源码里对 callbacks 做了一个拷贝，因为执行回调的过程中，可能会触发新的 nextTick，会将新的回调 push 入 callbacks，这样可能就会一直循环下去。因此nextTick 回调中的 nextTick 应该放在下一轮执行。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7102750403418128391">https://juejin.cn/post/7102750403418128391</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7087866362785169416">https://juejin.cn/post/7087866362785169416</a></p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Vue/" class="category-chain-item">Vue</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Vue/Vue%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/" class="category-chain-item">Vue源码解读</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>nextTick</div>
+      <div>http://example.com/2022/10/19/nextTick/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>October 19, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/10/20/1-%E5%A6%82%E4%BD%95%E8%B0%83%E8%AF%95%E6%BA%90%E7%A0%81/" title="1.如何调试源码">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">1.如何调试源码</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/10/16/DOM%E4%BA%8B%E4%BB%B6%E7%BA%A7%E5%88%AB/" title="DOM事件级别">
+                        <span class="hidden-mobile">DOM事件级别</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+    
+      
+            
+                  
+</div>
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
