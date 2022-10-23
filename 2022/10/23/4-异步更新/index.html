@@ -16,25 +16,21 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="npm2npm2 的 node_modules 是嵌套的，包自己的依赖就在包自己的 node_modules 中。 两个问题： 1.如果多个包之间有公共依赖，那这个依赖就会复制很多次，多次占用空间。 2.windows 的文件路径最长是 260 多个字符，这样嵌套是会超过 windows 路径的长度限制的。  yarn所有的依赖不再一层层嵌套了，而是全部在同一层，这样也就没有依赖重复多次的问题了，">
+    <meta name="description" content="dep.notify()1234567891011&#x2F;** * 通知 dep 中的所有 watcher，执行 watcher.update() 方法 *&#x2F;notify () &amp;#123;  &#x2F;&#x2F; stabilize the subscriber list first  const subs &#x3D; this.subs.slice()  &#x2F;&#x2F; 遍历 dep 中存储的 watcher，执行 watcher.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="pnpm的优势">
-<meta property="og:url" content="http://example.com/2022/10/23/pnpm%E7%9A%84%E4%BC%98%E5%8A%BF/index.html">
+<meta property="og:title" content="4.异步更新">
+<meta property="og:url" content="http://example.com/2022/10/23/4-%E5%BC%82%E6%AD%A5%E6%9B%B4%E6%96%B0/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="npm2npm2 的 node_modules 是嵌套的，包自己的依赖就在包自己的 node_modules 中。 两个问题： 1.如果多个包之间有公共依赖，那这个依赖就会复制很多次，多次占用空间。 2.windows 的文件路径最长是 260 多个字符，这样嵌套是会超过 windows 路径的长度限制的。  yarn所有的依赖不再一层层嵌套了，而是全部在同一层，这样也就没有依赖重复多次的问题了，">
+<meta property="og:description" content="dep.notify()1234567891011&#x2F;** * 通知 dep 中的所有 watcher，执行 watcher.update() 方法 *&#x2F;notify () &amp;#123;  &#x2F;&#x2F; stabilize the subscriber list first  const subs &#x3D; this.subs.slice()  &#x2F;&#x2F; 遍历 dep 中存储的 watcher，执行 watcher.">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5ff1d1c0cab14b65b905fe1e74db59a1~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image">
-<meta property="og:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/52e6392c33f04f7a949c07fa7d65d358~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image">
-<meta property="og:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/326a2090786e4d16b2d6fce25e876680~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image">
-<meta property="article:published_time" content="2022-10-23T02:52:07.000Z">
-<meta property="article:modified_time" content="2022-10-23T03:41:46.986Z">
+<meta property="article:published_time" content="2022-10-23T09:33:31.000Z">
+<meta property="article:modified_time" content="2022-10-23T12:04:41.164Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5ff1d1c0cab14b65b905fe1e74db59a1~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image">
   
   
   
-  <title>pnpm的优势 - Hexo</title>
+  <title>4.异步更新 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +193,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="pnpm的优势"></span>
+            <span id="subtitle" data-typed-text="4.异步更新"></span>
           
         </div>
 
@@ -208,8 +204,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-10-23 10:52" pubdate>
-          October 23, 2022 am
+        <time datetime="2022-10-23 17:33" pubdate>
+          October 23, 2022 pm
         </time>
       </span>
     
@@ -220,7 +216,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          905 words
+          2.1k words
         
       </span>
     
@@ -231,7 +227,7 @@
         
         
         
-          8 mins
+          18 mins
         
       </span>
     
@@ -277,34 +273,31 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">pnpm的优势</h1>
+            <h1 style="display: none">4.异步更新</h1>
             
             <div class="markdown-body">
               
-              <h2 id="npm2"><a href="#npm2" class="headerlink" title="npm2"></a>npm2</h2><p>npm2 的 node_modules 是嵌套的，包自己的依赖就在包自己的 node_modules 中。</p>
-<p>两个问题：</p>
-<p>1.如果多个包之间有公共依赖，那这个依赖就会复制很多次，多次占用空间。</p>
-<p>2.windows 的文件路径最长是 260 多个字符，这样嵌套是会超过 windows 路径的长度限制的。</p>
-<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5ff1d1c0cab14b65b905fe1e74db59a1~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image" srcset="/img/loading.gif" lazyload alt="img"></p>
-<h2 id="yarn"><a href="#yarn" class="headerlink" title="yarn"></a>yarn</h2><p>所有的依赖不再一层层嵌套了，而是全部在同一层，这样也就没有<strong>依赖重复</strong>多次的问题了，也就没有<strong>路径过长</strong>的问题了。</p>
-<p>全部铺平在了一层，展开下面的包大部分是没有二层 node_modules 的：</p>
-<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/52e6392c33f04f7a949c07fa7d65d358~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p>因为一个包是可能有多个版本的，提升只能提升一个，所以后面再遇到相同包的不同版本，依然还是用嵌套的方式。不过，可以通过 yarn.lock 来锁定依赖版本。</p>
-<h2 id="npm3"><a href="#npm3" class="headerlink" title="npm3+"></a>npm3+</h2><p>npm3+ 和 yarn 很类似，也是铺平，也可以通过 package-lock.json 来锁定版本。</p>
-<p>问题在于，铺平会产生<strong>幽灵依赖</strong>的问题。（当然，幽灵依赖问题不是很大，很多 ide 都会提示）</p>
-<p>因为所有依赖都铺平在了 node_modules 里，那对一些子依赖，我们虽然没有单独安装，但也可以直接引入。但是一旦父依赖不再依赖子依赖，那代码就跑不了了，因为没有显示依赖，子依赖不会再被安装。（我的理解是 package.json 里没有子依赖，npm i 时不会安装）</p>
-<h2 id="pnpm"><a href="#pnpm" class="headerlink" title="pnpm"></a>pnpm</h2><p>link，也就是软硬连接，这是操作系统提供的机制，硬连接就是同一个文件的不同引用，而软链接是新建一个文件，文件内容指向另一个路径。当然，这俩链接使用起来是差不多的。</p>
-<p>所有的依赖都是从全局 store 硬连接到了 node_modules&#x2F;.pnpm 下，然后之间通过软链接来相互依赖。</p>
-<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/326a2090786e4d16b2d6fce25e876680~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p><strong>优势</strong></p>
-<p>1.只有1份全局包，其余都是链接，依赖不会多余复制，也不会有长度限制。</p>
-<p>2.没有幽灵依赖，因为没有铺平</p>
-<p>3.速度快，链接的方式而不是复制</p>
-<p><strong>缺陷</strong></p>
-<p>装一个包，所有依赖都会装到全局，如果项目删除，依赖仍在全局目录中</p>
-<p>可以通过执行 pnpm store prune 删除不再被引用的包</p>
-<p>原理在于 硬链接会记录被引用了几次。当没有被的引用的时候就可以删除。（有点像垃圾回收的引用计数吧）</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7127295203177676837">https://juejin.cn/post/7127295203177676837</a></p>
+              <h2 id="dep-notify"><a href="#dep-notify" class="headerlink" title="dep.notify()"></a>dep.notify()</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 通知 dep 中的所有 watcher，执行 watcher.update() 方法</span><br><span class="hljs-comment"> */</span><br>notify () &#123;<br>  <span class="hljs-comment">// stabilize the subscriber list first</span><br>  <span class="hljs-keyword">const</span> subs = <span class="hljs-variable language_">this</span>.<span class="hljs-property">subs</span>.<span class="hljs-title function_">slice</span>()<br>  <span class="hljs-comment">// 遍历 dep 中存储的 watcher，执行 watcher.update()</span><br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, l = subs.<span class="hljs-property">length</span>; i &lt; l; i++) &#123;<br>    subs[i].<span class="hljs-title function_">update</span>()<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="watcher-update"><a href="#watcher-update" class="headerlink" title="watcher.update()"></a>watcher.update()</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 根据 watcher 配置项，决定接下来怎么走，一般是 queueWatcher</span><br><span class="hljs-comment"> */</span><br>update () &#123;<br>  <span class="hljs-comment">/* istanbul ignore else */</span><br>  <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">lazy</span>) &#123;<br>    <span class="hljs-comment">// 懒执行时走这里，比如 computed</span><br>    <span class="hljs-comment">// 将 dirty 置为 true，可以让 computedGetter 执行时重新计算 computed 回调函数的执行结果</span><br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">dirty</span> = <span class="hljs-literal">true</span><br>  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">sync</span>) &#123;<br>    <span class="hljs-comment">// 同步执行，在使用 vm.$watch 或者 watch 选项时可以传一个 sync 选项，</span><br>    <span class="hljs-comment">// 当为 true 时在数据更新时该 watcher 就不走异步更新队列，直接执行 this.run </span><br>    <span class="hljs-comment">// 方法进行更新</span><br>    <span class="hljs-comment">// 这个属性在官方文档中没有出现</span><br>    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">run</span>()<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-comment">// 更新时一般都这里，将 watcher 放入 watcher 队列</span><br>    <span class="hljs-title function_">queueWatcher</span>(<span class="hljs-variable language_">this</span>)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><h3 id="Vue-的异步更新机制是如何实现的？"><a href="#Vue-的异步更新机制是如何实现的？" class="headerlink" title="Vue 的异步更新机制是如何实现的？"></a>Vue 的异步更新机制是如何实现的？</h3><p>Vue 的异步更新机制的核心是利用了浏览器的异步任务队列来实现的，首选微任务队列，宏任务队列次之。</p>
+<p>当响应式数据更新后，会调用 dep.notify 方法，通知 dep 中收集的 watcher 去执行 update 方法，watcher.update 将 watcher 自己放入一个 watcher 队列（全局的 queue 数组）。</p>
+<p>然后通过 nextTick 方法将一个刷新 watcher 队列的方法（flushSchedulerQueue）放入一个全局的 callbacks 数组中。</p>
+<p>如果此时浏览器的异步任务队列中没有一个叫 flushCallbacks 的函数，则执行 timerFunc 函数，将 flushCallbacks 函数放入异步任务队列。如果异步任务队列中已经存在 flushCallbacks 函数，等待其执行完成以后再放入下一个 flushCallbacks 函数。</p>
+<p>flushCallbacks 函数负责执行 callbacks 数组中的所有 flushSchedulerQueue 函数。</p>
+<p>flushSchedulerQueue 函数负责刷新 watcher 队列，即执行 queue 数组中每一个 watcher 的 run 方法，从而进入更新阶段，比如执行组件更新函数或者执行用户 watch 的回调函数。</p>
+<h2 id="Vue-的-nextTick-API-是如何实现的？"><a href="#Vue-的-nextTick-API-是如何实现的？" class="headerlink" title="Vue 的 nextTick API 是如何实现的？"></a>Vue 的 nextTick API 是如何实现的？</h2><p>Vue.nextTick 或者 vm.$nextTick 的原理其实很简单，就做了两件事：</p>
+<ul>
+<li>将传递的回调函数用 <code>try catch</code> 包裹然后放入 callbacks 数组</li>
+<li>执行 timerFunc 函数，在浏览器的异步任务队列放入一个刷新 callbacks 数组的函数</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>异步更新的入口点就是 setter 中最后调用的 dep.notify() 方法。dep.notify() 会遍历 dep 中的 watcher，并执行 watcher.update()。在 update 中，如果 watcher.lazy 是 true，那么将 dirty 也置为 true，就是控制懒执行。如果 watcher.sync 为 true，就直接调用 run 函数同步更新，否则走异步更新，调用 queueWatcher，将 watcher 放入 watcher 队列，在 queueWatcher 中会根据 id 判断 watcher 是否已经入过队了，入过了直接跳过。然后再根据 flushing 判断队列是否处于刷新状态，如果没有的话就将 watcher 就直接入队，否则需要做一定处理，根据 id 保证队列中的有序性。最后再根据 waiting 判断队列中是否有刷新函数（flushSchedulerQueue），如果没有的话，使用 nextTick 将该函数放入 callbacks 数组里。如果当前没有其它 nextTick 在执行的话，就会调用 timerFunc 函数，会根据环境，做一个兼容性判断，选择某一种异步执行的方法调用 flushCallbacks 函数。优先级是 promise.then &gt; object.observe &gt; setImmediate &gt; setTimeout。flushCallbacks 遍历 callbacks 执行其中每一个刷新函数，刷新函数实际就是在调用 watcher.run 从而执行组件更新函数或者 watch 的回调函数。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6951568091893465102">https://juejin.cn/post/6951568091893465102</a></p>
 
               
             </div>
@@ -322,8 +315,15 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/" class="category-chain-item">包管理工具</a>
+  <a href="/categories/Vue/" class="category-chain-item">Vue</a>
   
+  
+    <span>></span>
+    
+  <a href="/categories/Vue/Vue%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/" class="category-chain-item">Vue源码解读</a>
+  
+  
+
   
 
       </span>
@@ -342,8 +342,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>pnpm的优势</div>
-      <div>http://example.com/2022/10/23/pnpm的优势/</div>
+      <div>4.异步更新</div>
+      <div>http://example.com/2022/10/23/4-异步更新/</div>
     </div>
     <div class="license-meta">
       
@@ -385,18 +385,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/10/23/4-%E5%BC%82%E6%AD%A5%E6%9B%B4%E6%96%B0/" title="4.异步更新">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">4.异步更新</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/10/21/3-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/" title="3.响应式原理">
-                        <span class="hidden-mobile">3.响应式原理</span>
+                      <a href="/2022/10/23/pnpm%E7%9A%84%E4%BC%98%E5%8A%BF/" title="pnpm的优势">
+                        <span class="hidden-mobile">pnpm的优势</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
