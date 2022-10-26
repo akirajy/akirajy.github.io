@@ -1,0 +1,820 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="入口文件&#x2F;src&#x2F;core&#x2F;instance&#x2F;index.js 1234567891011121314151617181920212223242526272829303132333435363738394041424344import &amp;#123; initMixin, ... &amp;#125; from &amp;#x27;.&#x2F;init&amp;#x27;&#x2F;&#x2F; Vue 的构造">
+<meta property="og:type" content="article">
+<meta property="og:title" content="6.【转载】实例方法">
+<meta property="og:url" content="http://example.com/2022/10/25/6-%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="入口文件&#x2F;src&#x2F;core&#x2F;instance&#x2F;index.js 1234567891011121314151617181920212223242526272829303132333435363738394041424344import &amp;#123; initMixin, ... &amp;#125; from &amp;#x27;.&#x2F;init&amp;#x27;&#x2F;&#x2F; Vue 的构造">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-10-25T07:08:50.000Z">
+<meta property="article:modified_time" content="2022-10-26T01:36:04.234Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>6.【转载】实例方法 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"qPzYEpTngSrzQtV1XpsPSmPm-gzGzoHsz","app_key":"kf4lqne4FqonWhpUQzS1Ffrx","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>JY BLOG</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="6.【转载】实例方法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-10-25 15:08" pubdate>
+          October 25, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          11k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          95 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span>次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">6.【转载】实例方法</h1>
+            
+            <div class="markdown-body">
+              
+              <h2 id="入口文件"><a href="#入口文件" class="headerlink" title="入口文件"></a>入口文件</h2><p>&#x2F;src&#x2F;core&#x2F;instance&#x2F;index.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; initMixin, ... &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./init&#x27;</span><br><br><span class="hljs-comment">// Vue 的构造函数</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Vue</span> (options) &#123;<br>  <span class="hljs-comment">// 调用 Vue.prototype._init 方法，该方法是在 initMixin 中定义的</span><br>  <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">_init</span>(options)<br>&#125;<br><br><span class="hljs-comment">// 定义 Vue.prototype._init 方法</span><br><span class="hljs-title function_">initMixin</span>(<span class="hljs-title class_">Vue</span>)<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 定义：</span><br><span class="hljs-comment"> *   Vue.prototype.$data</span><br><span class="hljs-comment"> *   Vue.prototype.$props</span><br><span class="hljs-comment"> *   Vue.prototype.$set</span><br><span class="hljs-comment"> *   Vue.prototype.$delete</span><br><span class="hljs-comment"> *   Vue.prototype.$watch</span><br><span class="hljs-comment"> */</span><br><span class="hljs-title function_">stateMixin</span>(<span class="hljs-title class_">Vue</span>)<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 定义 事件相关的 方法：</span><br><span class="hljs-comment"> *   Vue.prototype.$on</span><br><span class="hljs-comment"> *   Vue.prototype.$once</span><br><span class="hljs-comment"> *   Vue.prototype.$off</span><br><span class="hljs-comment"> *   Vue.prototype.$emit</span><br><span class="hljs-comment"> */</span><br><span class="hljs-title function_">eventsMixin</span>(<span class="hljs-title class_">Vue</span>)<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 定义：</span><br><span class="hljs-comment"> *   Vue.prototype._update</span><br><span class="hljs-comment"> *   Vue.prototype.$forceUpdate</span><br><span class="hljs-comment"> *   Vue.prototype.$destroy</span><br><span class="hljs-comment"> */</span><br><span class="hljs-title function_">lifecycleMixin</span>(<span class="hljs-title class_">Vue</span>)<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 执行 installRenderHelpers，在 Vue.prototype 对象上安装运行时便利程序</span><br><span class="hljs-comment"> * </span><br><span class="hljs-comment"> * 定义：</span><br><span class="hljs-comment"> *   Vue.prototype.$nextTick</span><br><span class="hljs-comment"> *   Vue.prototype._render</span><br><span class="hljs-comment"> */</span><br><span class="hljs-title function_">renderMixin</span>(<span class="hljs-title class_">Vue</span>)<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">Vue</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="vm-data-x2F-vm-props"><a href="#vm-data-x2F-vm-props" class="headerlink" title="vm.$data &#x2F; vm.$props"></a>vm.$data &#x2F; vm.$props</h2><p>src&#x2F;core&#x2F;instance&#x2F;state.js</p>
+<p>这是两个实例属性，不是实例方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// data</span><br><span class="hljs-keyword">const</span> dataDef = &#123;&#125;<br>dataDef.<span class="hljs-property">get</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123; <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">_data</span> &#125;<br><span class="hljs-comment">// props</span><br><span class="hljs-keyword">const</span> propsDef = &#123;&#125;<br>propsDef.<span class="hljs-property">get</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123; <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">_props</span> &#125;<br><span class="hljs-comment">// 将 data 属性和 props 属性挂载到 Vue.prototype 对象上</span><br><span class="hljs-comment">// 这样在程序中就可以通过 this.$data 和 this.$props 来访问 data 和 props 对象了</span><br><span class="hljs-title class_">Object</span>.<span class="hljs-title function_">defineProperty</span>(<span class="hljs-title class_">Vue</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>, <span class="hljs-string">&#x27;$data&#x27;</span>, dataDef)<br><span class="hljs-title class_">Object</span>.<span class="hljs-title function_">defineProperty</span>(<span class="hljs-title class_">Vue</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>, <span class="hljs-string">&#x27;$props&#x27;</span>, propsDef)<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="vm-set"><a href="#vm-set" class="headerlink" title="vm.$set"></a>vm.$set</h2><p>&#x2F;src&#x2F;core&#x2F;instance&#x2F;state.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title class_">Vue</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">$set</span> = set<br></code></pre></td></tr></table></figure>
+
+<p>这个 set 函数和 5-全局API 里的 set 是一样的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 全局 API</span><br><span class="hljs-title class_">Vue</span>.<span class="hljs-property">set</span> = set<br><span class="hljs-comment">// 实例方法</span><br><span class="hljs-title class_">Vue</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">$set</span> = set<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="vm-delete"><a href="#vm-delete" class="headerlink" title="vm.$delete"></a>vm.$delete</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title class_">Vue</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">$delete</span> = del<br></code></pre></td></tr></table></figure>
+
+<p>delete 也和 5-全局API 里的 delete 一致</p>
+<h2 id="vm-watch"><a href="#vm-watch" class="headerlink" title="vm.$watch"></a>vm.$watch</h2><p>见 4-异步更新 的 initWatch</p>
+<h2 id="vm-on"><a href="#vm-on" class="headerlink" title="vm.$on"></a>vm.$on</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> hookRE = <span class="hljs-regexp">/^hook:/</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 监听实例上的自定义事件，vm._event = &#123; eventName: [fn1, ...], ... &#125;</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> &#123;<span class="hljs-type">*</span>&#125; event 单个的事件名称或者有多个事件名组成的数组</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> &#123;<span class="hljs-type">*</span>&#125; fn 当 event 被触发时执行的回调函数</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@returns</span> </span><br><span class="hljs-comment"> */</span><br><span class="hljs-title class_">Vue</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">$on</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">event: string | <span class="hljs-built_in">Array</span>&lt;string&gt;, fn: <span class="hljs-built_in">Function</span></span>): <span class="hljs-title class_">Component</span> &#123;<br>  <span class="hljs-keyword">const</span> <span class="hljs-attr">vm</span>: <span class="hljs-title class_">Component</span> = <span class="hljs-variable language_">this</span><br>  <span class="hljs-keyword">if</span> (<span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(event)) &#123;<br>    <span class="hljs-comment">// event 是有多个事件名组成的数组，则遍历这些事件，依次递归调用 $on</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, l = event.<span class="hljs-property">length</span>; i &lt; l; i++) &#123;<br>      vm.$on(event[i], fn)<br>    &#125;<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-comment">// 将注册的事件和回调以键值对的形式存储到 vm._event 对象中 vm._event = &#123; eventName: [fn1, ...] &#125;</span><br>    (vm.<span class="hljs-property">_events</span>[event] || (vm.<span class="hljs-property">_events</span>[event] = [])).<span class="hljs-title function_">push</span>(fn)<br>    <span class="hljs-comment">// hookEvent，提供从外部为组件实例注入声明周期方法的机会</span><br>    <span class="hljs-comment">// 比如从组件外部为组件的 mounted 方法注入额外的逻辑</span><br>    <span class="hljs-comment">// 该能力是结合 callhook 方法实现的</span><br>    <span class="hljs-keyword">if</span> (hookRE.<span class="hljs-title function_">test</span>(event)) &#123;<br>      vm.<span class="hljs-property">_hasHookEvent</span> = <span class="hljs-literal">true</span><br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">return</span> vm<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="vm-emit"><a href="#vm-emit" class="headerlink" title="vm.$emit"></a>vm.$emit</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 触发实例上的指定事件，vm._event[event] =&gt; cbs =&gt; loop cbs =&gt; cb(args)</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> &#123;<span class="hljs-type">*</span>&#125; event 事件名</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@returns</span> </span><br><span class="hljs-comment"> */</span><br><span class="hljs-title class_">Vue</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">$emit</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">event: string</span>): <span class="hljs-title class_">Component</span> &#123;<br>  <span class="hljs-keyword">const</span> <span class="hljs-attr">vm</span>: <span class="hljs-title class_">Component</span> = <span class="hljs-variable language_">this</span><br>  <span class="hljs-keyword">if</span> (process.<span class="hljs-property">env</span>.<span class="hljs-property">NODE_ENV</span> !== <span class="hljs-string">&#x27;production&#x27;</span>) &#123;<br>    <span class="hljs-comment">// 将事件名转换为小些</span><br>    <span class="hljs-keyword">const</span> lowerCaseEvent = event.<span class="hljs-title function_">toLowerCase</span>()<br>    <span class="hljs-comment">// 意思是说，HTML 属性不区分大小写，所以你不能使用 v-on 监听小驼峰形式的事件名（eventName），而应该使用连字符形式的事件名（event-name)</span><br>    <span class="hljs-keyword">if</span> (lowerCaseEvent !== event &amp;&amp; vm.<span class="hljs-property">_events</span>[lowerCaseEvent]) &#123;<br>      <span class="hljs-title function_">tip</span>(<br>        <span class="hljs-string">`Event &quot;<span class="hljs-subst">$&#123;lowerCaseEvent&#125;</span>&quot; is emitted in component `</span> +<br>        <span class="hljs-string">`<span class="hljs-subst">$&#123;formatComponentName(vm)&#125;</span> but the handler is registered for &quot;<span class="hljs-subst">$&#123;event&#125;</span>&quot;. `</span> +<br>        <span class="hljs-string">`Note that HTML attributes are case-insensitive and you cannot use `</span> +<br>        <span class="hljs-string">`v-on to listen to camelCase events when using in-DOM templates. `</span> +<br>        <span class="hljs-string">`You should probably use &quot;<span class="hljs-subst">$&#123;hyphenate(event)&#125;</span>&quot; instead of &quot;<span class="hljs-subst">$&#123;event&#125;</span>&quot;.`</span><br>      )<br>    &#125;<br>  &#125;<br>  <span class="hljs-comment">// 从 vm._event 对象上拿到当前事件的回调函数数组，并一次调用数组中的回调函数，并且传递提供的参数</span><br>  <span class="hljs-keyword">let</span> cbs = vm.<span class="hljs-property">_events</span>[event]<br>  <span class="hljs-keyword">if</span> (cbs) &#123;<br>    cbs = cbs.<span class="hljs-property">length</span> &gt; <span class="hljs-number">1</span> ? <span class="hljs-title function_">toArray</span>(cbs) : cbs<br>    <span class="hljs-keyword">const</span> args = <span class="hljs-title function_">toArray</span>(<span class="hljs-variable language_">arguments</span>, <span class="hljs-number">1</span>)<br>    <span class="hljs-keyword">const</span> info = <span class="hljs-string">`event handler for &quot;<span class="hljs-subst">$&#123;event&#125;</span>&quot;`</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, l = cbs.<span class="hljs-property">length</span>; i &lt; l; i++) &#123;<br>      <span class="hljs-title function_">invokeWithErrorHandling</span>(cbs[i], vm, args, vm, info)<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">return</span> vm<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="vm-off"><a href="#vm-off" class="headerlink" title="vm.$off"></a>vm.$off</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 移除自定义事件监听器，即从 vm._event 对象中找到对应的事件，移除所有事件 或者 移除指定事件的回调函数</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> &#123;<span class="hljs-type">*</span>&#125; event </span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> &#123;<span class="hljs-type">*</span>&#125; fn </span><br><span class="hljs-comment"> * <span class="hljs-doctag">@returns</span> </span><br><span class="hljs-comment"> */</span><br><span class="hljs-title class_">Vue</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">$off</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">event?: string | <span class="hljs-built_in">Array</span>&lt;string&gt;, fn?: <span class="hljs-built_in">Function</span></span>): <span class="hljs-title class_">Component</span> &#123;<br>  <span class="hljs-keyword">const</span> <span class="hljs-attr">vm</span>: <span class="hljs-title class_">Component</span> = <span class="hljs-variable language_">this</span><br>  <span class="hljs-comment">// 1.vm.$off() 移除实例上的所有监听器 =&gt; vm._events = &#123;&#125;</span><br>  <span class="hljs-keyword">if</span> (!<span class="hljs-variable language_">arguments</span>.<span class="hljs-property">length</span>) &#123;<br>    vm.<span class="hljs-property">_events</span> = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">create</span>(<span class="hljs-literal">null</span>)<br>    <span class="hljs-keyword">return</span> vm<br>  &#125;<br>  <span class="hljs-comment">// 2.移除一些事件 event = [event1, ...]，遍历 event 数组，递归调用 vm.$off</span><br>  <span class="hljs-keyword">if</span> (<span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(event)) &#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, l = event.<span class="hljs-property">length</span>; i &lt; l; i++) &#123;<br>      vm.$off(event[i], fn)<br>    &#125;<br>    <span class="hljs-keyword">return</span> vm<br>  &#125;<br>  <span class="hljs-comment">// 3.除了 vm.$off() 之外，最终都会走到这里，移除指定事件</span><br>  <span class="hljs-keyword">const</span> cbs = vm.<span class="hljs-property">_events</span>[event]<br>  <span class="hljs-keyword">if</span> (!cbs) &#123;<br>    <span class="hljs-comment">// 4.表示没有注册过该事件</span><br>    <span class="hljs-keyword">return</span> vm<br>  &#125;<br>  <span class="hljs-keyword">if</span> (!fn) &#123;<br>    <span class="hljs-comment">// 5.没有提供 fn 回调函数，则移除该事件的所有回调函数，vm._event[event] = null</span><br>    vm.<span class="hljs-property">_events</span>[event] = <span class="hljs-literal">null</span><br>    <span class="hljs-keyword">return</span> vm<br>  &#125;<br>  <span class="hljs-comment">// 6.移除指定事件的指定回调函数，就是从事件的回调数组中找到该回调函数，然后删除</span><br>  <span class="hljs-keyword">let</span> cb<br>  <span class="hljs-keyword">let</span> i = cbs.<span class="hljs-property">length</span><br>  <span class="hljs-keyword">while</span> (i--) &#123;<br>    cb = cbs[i]<br>    <span class="hljs-keyword">if</span> (cb === fn || cb.<span class="hljs-property">fn</span> === fn) &#123;<br>      cbs.<span class="hljs-title function_">splice</span>(i, <span class="hljs-number">1</span>)<br>      <span class="hljs-keyword">break</span><br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">return</span> vm<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="vm-once"><a href="#vm-once" class="headerlink" title="vm.$once"></a>vm.$once</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 监听一个自定义事件，但是只触发一次。一旦触发之后，监听器就会被移除</span><br><span class="hljs-comment"> * vm.$on + vm.$off</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> &#123;<span class="hljs-type">*</span>&#125; event </span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> &#123;<span class="hljs-type">*</span>&#125; fn </span><br><span class="hljs-comment"> * <span class="hljs-doctag">@returns</span> </span><br><span class="hljs-comment"> */</span><br><span class="hljs-title class_">Vue</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">$once</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">event: string, fn: <span class="hljs-built_in">Function</span></span>): <span class="hljs-title class_">Component</span> &#123;<br>  <span class="hljs-keyword">const</span> <span class="hljs-attr">vm</span>: <span class="hljs-title class_">Component</span> = <span class="hljs-variable language_">this</span><br><br>  <span class="hljs-comment">// 调用 $on，只是 $on 的回调函数被特殊处理了，触发时，执行回调函数，先移除事件监听，然后执行你设置的回调函数</span><br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">on</span>(<span class="hljs-params"></span>) &#123;<br>    vm.$off(event, on)<br>    fn.<span class="hljs-title function_">apply</span>(vm, <span class="hljs-variable language_">arguments</span>)<br>  &#125;<br>  on.<span class="hljs-property">fn</span> = fn<br>  vm.$on(event, on)<br>  <span class="hljs-keyword">return</span> vm<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="vm-update"><a href="#vm-update" class="headerlink" title="vm._update"></a>vm._update</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 负责更新页面，页面首次渲染和后续更新的入口位置，也是 patch 的入口位置 </span><br><span class="hljs-comment"> */</span><br><span class="hljs-title class_">Vue</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">_update</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">vnode: VNode, hydrating?: boolean</span>) &#123;<br>  <span class="hljs-keyword">const</span> <span class="hljs-attr">vm</span>: <span class="hljs-title class_">Component</span> = <span class="hljs-variable language_">this</span><br>  <span class="hljs-keyword">const</span> prevEl = vm.<span class="hljs-property">$el</span><br>  <span class="hljs-keyword">const</span> prevVnode = vm.<span class="hljs-property">_vnode</span><br>  <span class="hljs-keyword">const</span> restoreActiveInstance = <span class="hljs-title function_">setActiveInstance</span>(vm)<br>  vm.<span class="hljs-property">_vnode</span> = vnode<br>  <span class="hljs-comment">// Vue.prototype.__patch__ is injected in entry points</span><br>  <span class="hljs-comment">// based on the rendering backend used.</span><br>  <span class="hljs-keyword">if</span> (!prevVnode) &#123;<br>    <span class="hljs-comment">// 首次渲染，即初始化页面时走这里</span><br>    vm.<span class="hljs-property">$el</span> = vm.<span class="hljs-title function_">__patch__</span>(vm.<span class="hljs-property">$el</span>, vnode, hydrating, <span class="hljs-literal">false</span> <span class="hljs-comment">/* removeOnly */</span>)<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-comment">// 响应式数据更新时，即更新页面时走这里</span><br>    vm.<span class="hljs-property">$el</span> = vm.<span class="hljs-title function_">__patch__</span>(prevVnode, vnode)<br>  &#125;<br>  <span class="hljs-title function_">restoreActiveInstance</span>()<br>  <span class="hljs-comment">// update __vue__ reference</span><br>  <span class="hljs-keyword">if</span> (prevEl) &#123;<br>    prevEl.<span class="hljs-property">__vue__</span> = <span class="hljs-literal">null</span><br>  &#125;<br>  <span class="hljs-keyword">if</span> (vm.<span class="hljs-property">$el</span>) &#123;<br>    vm.<span class="hljs-property">$el</span>.<span class="hljs-property">__vue__</span> = vm<br>  &#125;<br>  <span class="hljs-comment">// if parent is an HOC, update its $el as well</span><br>  <span class="hljs-keyword">if</span> (vm.<span class="hljs-property">$vnode</span> &amp;&amp; vm.<span class="hljs-property">$parent</span> &amp;&amp; vm.<span class="hljs-property">$vnode</span> === vm.<span class="hljs-property">$parent</span>.<span class="hljs-property">_vnode</span>) &#123;<br>    vm.<span class="hljs-property">$parent</span>.<span class="hljs-property">$el</span> = vm.<span class="hljs-property">$el</span><br>  &#125;<br>  <span class="hljs-comment">// updated hook is called by the scheduler to ensure that children are</span><br>  <span class="hljs-comment">// updated in a parent&#x27;s updated hook.</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="vm-forceUpdate"><a href="#vm-forceUpdate" class="headerlink" title="vm.$forceUpdate"></a>vm.$forceUpdate</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 直接调用 watcher.update 方法，迫使组件重新渲染。</span><br><span class="hljs-comment"> * 它仅仅影响实例本身和插入插槽内容的子组件，而不是所有子组件</span><br><span class="hljs-comment"> */</span><br><span class="hljs-title class_">Vue</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">$forceUpdate</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> <span class="hljs-attr">vm</span>: <span class="hljs-title class_">Component</span> = <span class="hljs-variable language_">this</span><br>  <span class="hljs-keyword">if</span> (vm.<span class="hljs-property">_watcher</span>) &#123;<br>    vm.<span class="hljs-property">_watcher</span>.<span class="hljs-title function_">update</span>()<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="vm-destroy"><a href="#vm-destroy" class="headerlink" title="vm.$destroy"></a>vm.$destroy</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 完全销毁一个实例。清理它与其它实例的连接，解绑它的全部指令及事件监听器。</span><br><span class="hljs-comment"> */</span><br><span class="hljs-title class_">Vue</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">$destroy</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> <span class="hljs-attr">vm</span>: <span class="hljs-title class_">Component</span> = <span class="hljs-variable language_">this</span><br>  <span class="hljs-keyword">if</span> (vm.<span class="hljs-property">_isBeingDestroyed</span>) &#123;<br>    <span class="hljs-comment">// 表示实例已经销毁</span><br>    <span class="hljs-keyword">return</span><br>  &#125;<br>  <span class="hljs-comment">// 调用 beforeDestroy 钩子</span><br>  <span class="hljs-title function_">callHook</span>(vm, <span class="hljs-string">&#x27;beforeDestroy&#x27;</span>)<br>  <span class="hljs-comment">// 标识实例已经销毁</span><br>  vm.<span class="hljs-property">_isBeingDestroyed</span> = <span class="hljs-literal">true</span><br>  <span class="hljs-comment">// 把自己从老爹（$parent)的肚子里（$children）移除</span><br>  <span class="hljs-keyword">const</span> parent = vm.<span class="hljs-property">$parent</span><br>  <span class="hljs-keyword">if</span> (parent &amp;&amp; !parent.<span class="hljs-property">_isBeingDestroyed</span> &amp;&amp; !vm.<span class="hljs-property">$options</span>.<span class="hljs-property">abstract</span>) &#123;<br>    <span class="hljs-title function_">remove</span>(parent.<span class="hljs-property">$children</span>, vm)<br>  &#125;<br>  <span class="hljs-comment">// 移除依赖监听</span><br>  <span class="hljs-keyword">if</span> (vm.<span class="hljs-property">_watcher</span>) &#123;<br>    vm.<span class="hljs-property">_watcher</span>.<span class="hljs-title function_">teardown</span>()<br>  &#125;<br>  <span class="hljs-keyword">let</span> i = vm.<span class="hljs-property">_watchers</span>.<span class="hljs-property">length</span><br>  <span class="hljs-keyword">while</span> (i--) &#123;<br>    vm.<span class="hljs-property">_watchers</span>[i].<span class="hljs-title function_">teardown</span>()<br>  &#125;<br>  <span class="hljs-comment">// remove reference from data ob</span><br>  <span class="hljs-comment">// frozen object may not have observer.</span><br>  <span class="hljs-keyword">if</span> (vm.<span class="hljs-property">_data</span>.<span class="hljs-property">__ob__</span>) &#123;<br>    vm.<span class="hljs-property">_data</span>.<span class="hljs-property">__ob__</span>.<span class="hljs-property">vmCount</span>--<br>  &#125;<br>  <span class="hljs-comment">// call the last hook...</span><br>  vm.<span class="hljs-property">_isDestroyed</span> = <span class="hljs-literal">true</span><br>  <span class="hljs-comment">// 调用 __patch__，销毁节点</span><br>  vm.<span class="hljs-title function_">__patch__</span>(vm.<span class="hljs-property">_vnode</span>, <span class="hljs-literal">null</span>)<br>  <span class="hljs-comment">// 调用 destroyed 钩子</span><br>  <span class="hljs-title function_">callHook</span>(vm, <span class="hljs-string">&#x27;destroyed&#x27;</span>)<br>  <span class="hljs-comment">// 关闭实例的所有事件监听</span><br>  vm.$off()<br>  <span class="hljs-comment">// remove __vue__ reference</span><br>  <span class="hljs-keyword">if</span> (vm.<span class="hljs-property">$el</span>) &#123;<br>    vm.<span class="hljs-property">$el</span>.<span class="hljs-property">__vue__</span> = <span class="hljs-literal">null</span><br>  &#125;<br>  <span class="hljs-comment">// release circular reference (#6759)</span><br>  <span class="hljs-keyword">if</span> (vm.<span class="hljs-property">$vnode</span>) &#123;<br>    vm.<span class="hljs-property">$vnode</span>.<span class="hljs-property">parent</span> = <span class="hljs-literal">null</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="vm-nextTick"><a href="#vm-nextTick" class="headerlink" title="vm.$nextTick"></a>vm.$nextTick</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title class_">Vue</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">$nextTick</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">fn: <span class="hljs-built_in">Function</span></span>) &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-title function_">nextTick</span>(fn, <span class="hljs-variable language_">this</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="vm-render"><a href="#vm-render" class="headerlink" title="vm._render"></a>vm._render</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 通过执行 render 函数生成 VNode</span><br><span class="hljs-comment"> * 不过里面加了大量的异常处理代码</span><br><span class="hljs-comment"> */</span><br><span class="hljs-title class_">Vue</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">_render</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>): <span class="hljs-title class_">VNode</span> &#123;<br>  <span class="hljs-keyword">const</span> <span class="hljs-attr">vm</span>: <span class="hljs-title class_">Component</span> = <span class="hljs-variable language_">this</span><br>  <span class="hljs-keyword">const</span> &#123; render, _parentVnode &#125; = vm.<span class="hljs-property">$options</span><br><br>  <span class="hljs-keyword">if</span> (_parentVnode) &#123;<br>    vm.<span class="hljs-property">$scopedSlots</span> = <span class="hljs-title function_">normalizeScopedSlots</span>(<br>      _parentVnode.<span class="hljs-property">data</span>.<span class="hljs-property">scopedSlots</span>,<br>      vm.<span class="hljs-property">$slots</span>,<br>      vm.<span class="hljs-property">$scopedSlots</span><br>    )<br>  &#125;<br><br>  <span class="hljs-comment">// 设置父 vnode。这使得渲染函数可以访问占位符节点上的数据。</span><br>  vm.<span class="hljs-property">$vnode</span> = _parentVnode<br>  <span class="hljs-comment">// render self</span><br>  <span class="hljs-keyword">let</span> vnode<br>  <span class="hljs-keyword">try</span> &#123;<br>    currentRenderingInstance = vm<br>    <span class="hljs-comment">// 执行 render 函数，生成 vnode</span><br>    vnode = render.<span class="hljs-title function_">call</span>(vm.<span class="hljs-property">_renderProxy</span>, vm.<span class="hljs-property">$createElement</span>)<br>  &#125; <span class="hljs-keyword">catch</span> (e) &#123;<br>    <span class="hljs-title function_">handleError</span>(e, vm, <span class="hljs-string">`render`</span>)<br>    <span class="hljs-comment">// 到这儿，说明执行 render 函数时出错了</span><br>    <span class="hljs-comment">// 开发环境渲染错误信息，生产环境返回之前的 vnode，以防止渲染错误导致组件空白</span><br>    <span class="hljs-comment">/* istanbul ignore else */</span><br>    <span class="hljs-keyword">if</span> (process.<span class="hljs-property">env</span>.<span class="hljs-property">NODE_ENV</span> !== <span class="hljs-string">&#x27;production&#x27;</span> &amp;&amp; vm.<span class="hljs-property">$options</span>.<span class="hljs-property">renderError</span>) &#123;<br>      <span class="hljs-keyword">try</span> &#123;<br>        vnode = vm.<span class="hljs-property">$options</span>.<span class="hljs-property">renderError</span>.<span class="hljs-title function_">call</span>(vm.<span class="hljs-property">_renderProxy</span>, vm.<span class="hljs-property">$createElement</span>, e)<br>      &#125; <span class="hljs-keyword">catch</span> (e) &#123;<br>        <span class="hljs-title function_">handleError</span>(e, vm, <span class="hljs-string">`renderError`</span>)<br>        vnode = vm.<span class="hljs-property">_vnode</span><br>      &#125;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      vnode = vm.<span class="hljs-property">_vnode</span><br>    &#125;<br>  &#125; <span class="hljs-keyword">finally</span> &#123;<br>    currentRenderingInstance = <span class="hljs-literal">null</span><br>  &#125;<br>  <span class="hljs-comment">// 如果返回的 vnode 是数组，并且只包含了一个元素，则直接打平</span><br>  <span class="hljs-keyword">if</span> (<span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(vnode) &amp;&amp; vnode.<span class="hljs-property">length</span> === <span class="hljs-number">1</span>) &#123;<br>    vnode = vnode[<span class="hljs-number">0</span>]<br>  &#125;<br>  <span class="hljs-comment">// render 函数出错时，返回一个空的 vnode</span><br>  <span class="hljs-keyword">if</span> (!(vnode <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">VNode</span>)) &#123;<br>    <span class="hljs-keyword">if</span> (process.<span class="hljs-property">env</span>.<span class="hljs-property">NODE_ENV</span> !== <span class="hljs-string">&#x27;production&#x27;</span> &amp;&amp; <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(vnode)) &#123;<br>      <span class="hljs-title function_">warn</span>(<br>        <span class="hljs-string">&#x27;Multiple root nodes returned from render function. Render function &#x27;</span> +<br>        <span class="hljs-string">&#x27;should return a single root node.&#x27;</span>,<br>        vm<br>      )<br>    &#125;<br>    vnode = <span class="hljs-title function_">createEmptyVNode</span>()<br>  &#125;<br>  <span class="hljs-comment">// set parent</span><br>  vnode.<span class="hljs-property">parent</span> = _parentVnode<br>  <span class="hljs-keyword">return</span> vnode<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><h3 id="vm-set-obj-key-val"><a href="#vm-set-obj-key-val" class="headerlink" title="vm.$set(obj, key, val)"></a>vm.$set(obj, key, val)</h3><p>vm.$set 用于向响应式对象添加一个新的 property，并确保这个新的 property 同样是响应式的，并触发视图更新。由于 Vue 无法探测对象新增属性或者通过索引为数组新增一个元素，比如：<code>this.obj.newProperty = &#39;val&#39;</code>、<code>this.arr[3] = &#39;val&#39;</code>。所以这才有了 vm.$set，它是 Vue.set 的别名。</p>
+<ul>
+<li>为对象添加一个新的响应式数据：调用 defineReactive 方法为对象增加响应式数据，然后执行 dep.notify 进行依赖通知，更新视图</li>
+<li>为数组添加一个新的响应式数据：通过 splice 方法实现</li>
+</ul>
+<h3 id="vm-delete-obj-key"><a href="#vm-delete-obj-key" class="headerlink" title="vm.$delete(obj, key)"></a>vm.$delete(obj, key)</h3><p>vm.$delete 用于删除对象上的属性。如果对象是响应式的，且能确保能触发视图更新。该方法主要用于避开 Vue 不能检测属性被删除的情况。它是 Vue.delete 的别名。</p>
+<ul>
+<li>删除数组指定下标的元素，内部通过 splice 方法来完成</li>
+<li>删除对象上的指定属性，则是先通过 delete 运算符删除该属性，然后执行 dep.notify 进行依赖通知，更新视图</li>
+</ul>
+<h3 id="vm-watch-expOrFn-callback-options"><a href="#vm-watch-expOrFn-callback-options" class="headerlink" title="vm.$watch(expOrFn, callback, [options])"></a>vm.$watch(expOrFn, callback, [options])</h3><p>vm.$watch 负责观察 Vue 实例上的一个表达式或者一个函数计算结果的变化。当其发生变化时，回调函数就会被执行，并为回调函数传递两个参数，第一个为更新后的新值，第二个为老值。</p>
+<p>这里需要 <strong>注意</strong> 一点的是：如果观察的是一个对象，比如：数组，当你用数组方法，比如 push 为数组新增一个元素时，回调函数被触发时传递的新值和老值相同，因为它们指向同一个引用，所以在观察一个对象并且在回调函数中有新老值是否相等的判断时需要注意。</p>
+<p>vm.$watch 的第一个参数只接收简单的响应式数据的键路径，对于更复杂的表达式建议使用函数作为第一个参数。</p>
+<p>至于 vm.$watch 的内部原理是：</p>
+<ul>
+<li>设置 options.user &#x3D; true，标志是一个用户 watcher</li>
+<li>实例化一个 Watcher 实例，当检测到数据更新时，通过 watcher 去触发回调函数的执行，并传递新老值作为回调函数的参数</li>
+<li>返回一个 unwatch 函数，用于取消观察</li>
+</ul>
+<h3 id="vm-on-event-callback"><a href="#vm-on-event-callback" class="headerlink" title="vm.$on(event, callback)"></a>vm.$on(event, callback)</h3><p>监听当前实例上的自定义事件，事件可由 vm.$emit 触发，回调函数会接收所有传入事件触发函数（vm.$emit）的额外参数。</p>
+<p>vm.$on 的原理很简单，就是处理传递的 event 和 callback 两个参数，将注册的事件和回调函数以键值对的形式存储到 vm._event 对象中，vm._events &#x3D; { eventName: [cb1, cb2, …], … }。</p>
+<h3 id="vm-emit-eventName-…args"><a href="#vm-emit-eventName-…args" class="headerlink" title="vm.$emit(eventName, […args])"></a>vm.$emit(eventName, […args])</h3><p>触发当前实例上的指定事件，附加参数都会传递给事件的回调函数。</p>
+<p>其内部原理就是执行 <code>vm._events[eventName]</code> 中所有的回调函数。</p>
+<h3 id="vm-off-event-callback"><a href="#vm-off-event-callback" class="headerlink" title="vm.$off([event, callback])"></a>vm.$off([event, callback])</h3><p>移除自定义事件监听器，即移除 vm._events 对象上相关数据。</p>
+<ul>
+<li>如果没有提供参数，则移除实例的所有事件监听</li>
+<li>如果只提供了 event 参数，则移除实例上该事件的所有监听器</li>
+<li>如果两个参数都提供了，则移除实例上该事件对应的监听器</li>
+</ul>
+<h3 id="vm-once-event-callback"><a href="#vm-once-event-callback" class="headerlink" title="vm.$once(event, callback)"></a>vm.$once(event, callback)</h3><p>监听一个自定义事件，但是该事件只会被触发一次。一旦触发以后监听器就会被移除。</p>
+<p>其内部的实现原理是：</p>
+<ul>
+<li>包装用户传递的回调函数，当包装函数执行的时候，除了会执行用户回调函数之外还会执行 <code>vm.$off(event, 包装函数)</code> 移除该事件</li>
+<li>用 <code>vm.$on(event, 包装函数)</code> 注册事件</li>
+</ul>
+<h3 id="vm-update-vnode-hydrating"><a href="#vm-update-vnode-hydrating" class="headerlink" title="vm._update(vnode, hydrating)"></a>vm._update(vnode, hydrating)</h3><p>官方文档没有说明该 API，这是一个用于源码内部的实例方法，负责更新页面，是页面渲染的入口，其内部根据是否存在 prevVnode 来决定是首次渲染，还是页面更新，从而在调用 <strong>patch</strong> 函数时传递不同的参数。该方法在业务开发中不会用到。</p>
+<h3 id="vm-forceUpdate-1"><a href="#vm-forceUpdate-1" class="headerlink" title="vm.$forceUpdate()"></a>vm.$forceUpdate()</h3><p>迫使 Vue 实例重新渲染，它仅仅影响组件实例本身和插入插槽内容的子组件，而不是所有子组件。其内部原理到也简单，就是直接调用 <code>vm._watcher.update()</code>，它就是 <code>watcher.update()</code> 方法，执行该方法触发组件更新。</p>
+<h3 id="vm-destroy-1"><a href="#vm-destroy-1" class="headerlink" title="vm.$destroy()"></a>vm.$destroy()</h3><p>负责完全销毁一个实例。清理它与其它实例的连接，解绑它的全部指令和事件监听器。在执行过程中会调用 <code>beforeDestroy</code> 和 <code>destroy</code> 两个钩子函数。在大多数业务开发场景下用不到该方法，一般都通过 v-if 指令来操作。其内部原理是：</p>
+<ul>
+<li>调用 beforeDestroy 钩子函数</li>
+<li>将自己从老爹肚子里（$parent）移除，从而销毁和老爹的关系</li>
+<li>通过 watcher.teardown() 来移除依赖监听</li>
+<li>通过 vm.<strong>patch</strong>(vnode, null) 方法来销毁节点</li>
+<li>调用 destroyed 钩子函数</li>
+<li>通过 <code>vm.$off</code> 方法移除所有的事件监听</li>
+</ul>
+<h3 id="vm-nextTick-cb"><a href="#vm-nextTick-cb" class="headerlink" title="vm.$nextTick(cb)"></a>vm.$nextTick(cb)</h3><p>vm.$nextTick 是 Vue.nextTick 的别名，其作用是延迟回调函数 cb 的执行，一般用于 <code>this.key = newVal</code> 更改数据后，想立即获取更改过后的 DOM 数据：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">this</span>.<span class="hljs-property">key</span> = <span class="hljs-string">&#x27;new val&#x27;</span><br><br><span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">nextTick</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-comment">// DOM 更新了</span><br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>其内部的执行过程是：</p>
+<ul>
+<li><code>this.key = &#39;new val&#39;</code>，触发依赖通知更新，将负责更新的 watcher 放入 watcher 队列</li>
+<li>将刷新 watcher 队列的函数放到 callbacks 数组中</li>
+<li>在浏览器的异步任务队列中放入一个刷新 callbacks 数组的函数</li>
+<li><strong>vm.$nextTick(cb)</strong> 来插队，直接将 cb 函数放入 callbacks 数组</li>
+<li>待将来的某个时刻执行刷新 callbacks 数组的函数</li>
+<li>然后执行 callbacks 数组中的众多函数，触发 watcher.run 的执行，更新 DOM</li>
+<li>由于 cb 函数是在后面放到 callbacks 数组，所以这就保证了先完成的 DOM 更新，再执行 cb 函数</li>
+</ul>
+<h3 id="vm-render-1"><a href="#vm-render-1" class="headerlink" title="vm._render"></a>vm._render</h3><p>官方文档没有提供该方法，它是一个用于源码内部的实例方法，负责生成 vnode。其关键代码就一行，执行 render 函数生成 vnode。不过其中加了大量的异常处理代码。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6953503236254859294">https://juejin.cn/post/6953503236254859294</a></p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Vue/" class="category-chain-item">Vue</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Vue/Vue%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/" class="category-chain-item">Vue源码解读</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>6.【转载】实例方法</div>
+      <div>http://example.com/2022/10/25/6-实例方法/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>October 25, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/10/25/7-Hook-Event/" title="7.【转载】Hook Event">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">7.【转载】Hook Event</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/10/24/5-%E5%85%A8%E5%B1%80API/" title="5.【转载】全局API">
+                        <span class="hidden-mobile">5.【转载】全局API</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+    
+      
+            
+                  
+</div>
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

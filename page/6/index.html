@@ -18,7 +18,7 @@
   
     <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:url" content="http://example.com/page/6/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="John Doe">
@@ -221,15 +221,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/10/26/10-patch/" target="_self">
-          10.patch
+        <a href="/2022/06/14/%E6%B7%B1%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B5%85%E6%8B%B7%E8%B4%9D/" target="_self">
+          深拷贝与浅拷贝
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/10/26/10-patch/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/06/14/%E6%B7%B1%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B5%85%E6%8B%B7%E8%B4%9D/" target="_self">
         <div>
-          patch历史Vue1.x 中没有 VNode 和 diff 算法，响应式数据的 key 和 watcher 一一对应，模板中每引用一次响应式数据，就会生成一个 watcher。因此，项目一旦较大，一个页面会有大量 watcher，非常耗资源。 Vue2.0 中引入VNode 和 diff 算法解决上述问题。将 watcher 的颗粒度放大，一个组件一个 watcher，也就是渲染 watcher
+          对象的深拷贝与浅拷贝什么是浅拷贝只拷贝了数据对象的第一层，深层次的数据值与原始数据会互相影响（拷贝后的数据与原始数据还存有关联） 常见浅拷贝的方式：Object.assign()、扩展运算符 123456789const obj1 &#x3D; &amp;#123; name: &amp;#x27;dog&amp;#x27;, info: &amp;#123; age: 3 &amp;#125; &amp;#125;const obj2 &#x3D; Object
         </div>
       </a>
 
@@ -237,8 +237,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-10-26 14:28" pubdate>
-              2022-10-26
+            <time datetime="2022-06-14 12:53" pubdate>
+              2022-06-14
             </time>
           </div>
         
@@ -253,12 +253,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Vue/" class="category-chain-item">Vue</a>
+  <a href="/categories/JS/" class="category-chain-item">JS</a>
   
   
     <span>></span>
     
-  <a href="/categories/Vue/Vue%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/" class="category-chain-item">Vue源码解读</a>
+  <a href="/categories/JS/%E5%9F%BA%E7%A1%80/" class="category-chain-item">基础</a>
   
   
 
@@ -271,6 +271,17 @@
 
           </div>
         
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/JS/">#JS</a>
+            
+              <a href="/tags/%E6%B7%B1%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B5%85%E6%8B%B7%E8%B4%9D/">#深拷贝与浅拷贝</a>
+            
+              <a href="/tags/%E6%89%8B%E6%92%95%E4%BB%A3%E7%A0%81/">#手撕代码</a>
+            
+          </div>
         
       </div>
     </article>
@@ -282,15 +293,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/10/26/9-render-helper/" target="_self">
-          9.【转载】render helper
+        <a href="/2022/06/11/%E4%B8%A4%E6%A0%8F%E5%B8%83%E5%B1%80-%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80-%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80/" target="_self">
+          两栏布局/圣杯布局/双飞翼布局
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/10/26/9-render-helper/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/06/11/%E4%B8%A4%E6%A0%8F%E5%B8%83%E5%B1%80-%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80-%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80/" target="_self">
         <div>
-          render helper什么是 render helper在 编译器 中我们说到，编译器最后会生成渲染函数。组件更新时，执行渲染函数，就可以得到组件的 vnode。 渲染函数之所以能生成 vnode 是通过其中的 _c、_l、_v、_s 等方法实现的，在 编译后 的代码中我们能看到很多类似函数的调用  普通的节点被编译成了可执行 _c 函数 v-for 节点被编译成了可执行的 _l 函数 …
+          两栏布局HTML 结构 1234&lt;div class&#x3D;&quot;container&quot;&gt;    &lt;div class&#x3D;&quot;left&quot;&gt;左&lt;&#x2F;div&gt;    &lt;div class&#x3D;&quot;right&quot;&gt;右&lt;&#x2F;div&gt;&lt;&#x2F;div&gt;    1.浮动 + margin-left 左边元素宽度固
         </div>
       </a>
 
@@ -298,8 +309,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-10-26 13:52" pubdate>
-              2022-10-26
+            <time datetime="2022-06-11 18:22" pubdate>
+              2022-06-11
             </time>
           </div>
         
@@ -314,15 +325,8 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Vue/" class="category-chain-item">Vue</a>
+  <a href="/categories/CSS/" class="category-chain-item">CSS</a>
   
-  
-    <span>></span>
-    
-  <a href="/categories/Vue/Vue%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/" class="category-chain-item">Vue源码解读</a>
-  
-  
-
   
 
       </span>
@@ -332,6 +336,15 @@
 
           </div>
         
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/CSS/">#CSS</a>
+            
+              <a href="/tags/%E5%B8%83%E5%B1%80/">#布局</a>
+            
+          </div>
         
       </div>
     </article>
@@ -343,15 +356,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/10/26/8-%E7%BC%96%E8%AF%91%E5%99%A8/" target="_self">
-          8.编译器
+        <a href="/2022/06/10/Promise/" target="_self">
+          Promise
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/10/26/8-%E7%BC%96%E8%AF%91%E5%99%A8/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/06/10/Promise/" target="_self">
         <div>
-          注编译器源码过于复杂，其中包含过多边界处理和平台构建的代码，直接放上我看的他人解读的链接。 https:&#x2F;&#x2F;juejin.cn&#x2F;post&#x2F;6959019076983209992 https:&#x2F;&#x2F;juejin.cn&#x2F;post&#x2F;6959019174215548935 https:&#x2F;&#x2F;juejin.cn&#x2F;post&#x2F;6960465810682806308 https:&#x2F;&#x2F;juejin.cn&#x2F;post&#x2F;69
+          Promise是什么Promise 是 JS 中进行异步编程的新解决方案（旧方案是单纯使用回调函数） 从语法上来说: Promise 是一个构造函数 从功能上来说: promise 对象用来封装一个异步操作并可以获取其成功&#x2F;失败的结果值 状态pending resolved&#x2F;fulfilled rejected 无论变为成功还是失败, 都会有一个结果数据 成功的结果数据一般称为
         </div>
       </a>
 
@@ -359,8 +372,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-10-26 09:56" pubdate>
-              2022-10-26
+            <time datetime="2022-06-10 22:02" pubdate>
+              2022-06-10
             </time>
           </div>
         
@@ -375,12 +388,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Vue/" class="category-chain-item">Vue</a>
+  <a href="/categories/JS/" class="category-chain-item">JS</a>
   
   
     <span>></span>
     
-  <a href="/categories/Vue/Vue%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/" class="category-chain-item">Vue源码解读</a>
+  <a href="/categories/JS/AJAX/" class="category-chain-item">AJAX</a>
   
   
 
@@ -393,6 +406,15 @@
 
           </div>
         
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">#异步编程</a>
+            
+              <a href="/tags/Promise/">#Promise</a>
+            
+          </div>
         
       </div>
     </article>
@@ -404,15 +426,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/10/25/7-Hook-Event/" target="_self">
-          7.【转载】Hook Event
+        <a href="/2022/06/10/%E8%BE%93%E5%85%A5url%E5%90%8E%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%E5%8F%98%E5%8C%96/" target="_self">
+          输入URL后浏览器发生了什么变化
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/10/25/7-Hook-Event/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/06/10/%E8%BE%93%E5%85%A5url%E5%90%8E%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%E5%8F%98%E5%8C%96/" target="_self">
         <div>
-          Hook Event什么是 Hook EventHook Event 是 Vue 的自定义事件结合生命周期钩子实现的一种从组件外部为组件注入额外生命周期方法的功能。 原理callHookVue 的生命周期函数是通过一个叫 callHook 的方法来执行的 1234567891011121314151617181920212223242526272829&#x2F;** * callHook(vm, &amp;#x2
+          输入 url 后浏览器发生了什么变化步骤简单总结 网络请求   DNS 查询（得到 IP），建立 TCP 连接（三次握手） 浏览器发送 HTTP 请求 收到请求响应，得到 HTML（解析 HTML 过程中，遇到静态资源还会继续发起网络请求）   解析（字符串 -&gt; 结构化数据）   HTML 构建 DOM 树 CSS 构建 CSSOM 树 两者结合形成 render tree   渲染
         </div>
       </a>
 
@@ -420,8 +442,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2022-10-25 17:40" pubdate>
-              2022-10-25
+            <time datetime="2022-06-10 09:10" pubdate>
+              2022-06-10
             </time>
           </div>
         
@@ -436,15 +458,8 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Vue/" class="category-chain-item">Vue</a>
+  <a href="/categories/HTTP/" class="category-chain-item">HTTP</a>
   
-  
-    <span>></span>
-    
-  <a href="/categories/Vue/Vue%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/" class="category-chain-item">Vue源码解读</a>
-  
-  
-
   
 
       </span>
@@ -455,364 +470,20 @@
           </div>
         
         
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/10/25/6-%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95/" target="_self">
-          6.【转载】实例方法
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/10/25/6-%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95/" target="_self">
-        <div>
-          入口文件&#x2F;src&#x2F;core&#x2F;instance&#x2F;index.js 1234567891011121314151617181920212223242526272829303132333435363738394041424344import &amp;#123; initMixin, ... &amp;#125; from &amp;#x27;.&#x2F;init&amp;#x27;&#x2F;&#x2F; Vue 的构造
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-10-25 15:08" pubdate>
-              2022-10-25
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
             
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Vue/" class="category-chain-item">Vue</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/Vue/Vue%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/" class="category-chain-item">Vue源码解读</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/10/24/5-%E5%85%A8%E5%B1%80API/" target="_self">
-          5.【转载】全局API
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/10/24/5-%E5%85%A8%E5%B1%80API/" target="_self">
-        <div>
-          入口文件&#x2F;src&#x2F;core&#x2F;global-api&#x2F;index.js 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172&#x2F;** * 初始化 V
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-10-24 09:35" pubdate>
-              2022-10-24
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
+              <a href="/tags/HTTP/">#HTTP</a>
             
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Vue/" class="category-chain-item">Vue</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/Vue/Vue%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/" class="category-chain-item">Vue源码解读</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/10/23/4-%E5%BC%82%E6%AD%A5%E6%9B%B4%E6%96%B0/" target="_self">
-          4.异步更新
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/10/23/4-%E5%BC%82%E6%AD%A5%E6%9B%B4%E6%96%B0/" target="_self">
-        <div>
-          dep.notify()1234567891011&#x2F;** * 通知 dep 中的所有 watcher，执行 watcher.update() 方法 *&#x2F;notify () &amp;#123;  &#x2F;&#x2F; stabilize the subscriber list first  const subs &#x3D; this.subs.slice()  &#x2F;&#x2F; 遍历 dep 中存储的 watcher，执行 watcher.
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-10-23 17:33" pubdate>
-              2022-10-23
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
+              <a href="/tags/DNS/">#DNS</a>
             
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Vue/" class="category-chain-item">Vue</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/Vue/Vue%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/" class="category-chain-item">Vue源码解读</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/10/23/pnpm%E7%9A%84%E4%BC%98%E5%8A%BF/" target="_self">
-          pnpm的优势
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/10/23/pnpm%E7%9A%84%E4%BC%98%E5%8A%BF/" target="_self">
-        <div>
-          npm2npm2 的 node_modules 是嵌套的，包自己的依赖就在包自己的 node_modules 中。 两个问题： 1.如果多个包之间有公共依赖，那这个依赖就会复制很多次，多次占用空间。 2.windows 的文件路径最长是 260 多个字符，这样嵌套是会超过 windows 路径的长度限制的。  yarn所有的依赖不再一层层嵌套了，而是全部在同一层，这样也就没有依赖重复多次的问题了，
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-10-23 10:52" pubdate>
-              2022-10-23
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
+              <a href="/tags/TCP-UDP/">#TCP/UDP</a>
             
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/" class="category-chain-item">包管理工具</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/10/21/3-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/" target="_self">
-          3.响应式原理
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/10/21/3-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/" target="_self">
-        <div>
-          vue 在初始化时会调用 initState(vm) 使当前 vue 实例具有响应式 initState&#x2F;src&#x2F;core&#x2F;instance&#x2F;state.js 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748&#x2F;** * 两件事： *
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-10-21 16:37" pubdate>
-              2022-10-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
+              <a href="/tags/%E7%BC%93%E5%AD%98/">#缓存</a>
             
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Vue/" class="category-chain-item">Vue</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/Vue/Vue%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/" class="category-chain-item">Vue源码解读</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/10/21/2-Vue%E5%88%9D%E5%A7%8B%E5%8C%96%E8%BF%87%E7%A8%8B/" target="_self">
-          2.Vue初始化过程
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/10/21/2-Vue%E5%88%9D%E5%A7%8B%E5%8C%96%E8%BF%87%E7%A8%8B/" target="_self">
-        <div>
-          Vue&#x2F;src&#x2F;core&#x2F;instance&#x2F;index.js 123456789101112import &amp;#123; initMixin &amp;#125; from &amp;#x27;.&#x2F;init&amp;#x27;&#x2F;&#x2F; Vue 构造函数function Vue (options) &amp;#123;  &#x2F;&#x2F; 调用 Vue.prototype._init 方法，该方法是在 ini
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-10-21 13:32" pubdate>
-              2022-10-21
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
+              <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%A7%A3%E6%9E%90/">#浏览器解析</a>
             
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Vue/" class="category-chain-item">Vue</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/Vue/Vue%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/" class="category-chain-item">Vue源码解读</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
           </div>
-        
         
       </div>
     </article>
@@ -822,7 +493,7 @@
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/#board">6</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/page/5/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/#board">4</a><a class="page-number" href="/page/5/#board">5</a><span class="page-number current">6</span>
     </span>
   </nav>
 

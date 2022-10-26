@@ -1,0 +1,805 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="入口文件&#x2F;src&#x2F;core&#x2F;global-api&#x2F;index.js 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172&#x2F;** * 初始化 V">
+<meta property="og:type" content="article">
+<meta property="og:title" content="5.【转载】全局API">
+<meta property="og:url" content="http://example.com/2022/10/24/5-%E5%85%A8%E5%B1%80API/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="入口文件&#x2F;src&#x2F;core&#x2F;global-api&#x2F;index.js 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172&#x2F;** * 初始化 V">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-10-24T01:35:36.000Z">
+<meta property="article:modified_time" content="2022-10-26T01:24:36.930Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>5.【转载】全局API - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"qPzYEpTngSrzQtV1XpsPSmPm-gzGzoHsz","app_key":"kf4lqne4FqonWhpUQzS1Ffrx","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>JY BLOG</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="5.【转载】全局API"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-10-24 09:35" pubdate>
+          October 24, 2022 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          14k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          116 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span>次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">5.【转载】全局API</h1>
+            
+            <div class="markdown-body">
+              
+              <h2 id="入口文件"><a href="#入口文件" class="headerlink" title="入口文件"></a>入口文件</h2><p>&#x2F;src&#x2F;core&#x2F;global-api&#x2F;index.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 初始化 Vue 的众多全局 API，比如：</span><br><span class="hljs-comment"> *   默认配置：Vue.config</span><br><span class="hljs-comment"> *   工具方法：Vue.util.xx</span><br><span class="hljs-comment"> *   Vue.set、Vue.delete、Vue.nextTick、Vue.observable</span><br><span class="hljs-comment"> *   Vue.options.components、Vue.options.directives、Vue.options.filters、Vue.options._base</span><br><span class="hljs-comment"> *   Vue.use、Vue.extend、Vue.mixin、Vue.component、Vue.directive、Vue.filter</span><br><span class="hljs-comment"> *   </span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">initGlobalAPI</span> (<span class="hljs-title class_">Vue</span>: <span class="hljs-title class_">GlobalAPI</span>) &#123;<br>  <span class="hljs-comment">// config</span><br>  <span class="hljs-keyword">const</span> configDef = &#123;&#125;<br>  <span class="hljs-comment">// Vue 的众多默认配置项</span><br>  configDef.<span class="hljs-property">get</span> = <span class="hljs-function">() =&gt;</span> config<br><br>  <span class="hljs-keyword">if</span> (process.<span class="hljs-property">env</span>.<span class="hljs-property">NODE_ENV</span> !== <span class="hljs-string">&#x27;production&#x27;</span>) &#123;<br>    configDef.<span class="hljs-property">set</span> = <span class="hljs-function">() =&gt;</span> &#123;<br>      <span class="hljs-title function_">warn</span>(<br>        <span class="hljs-string">&#x27;Do not replace the Vue.config object, set individual fields instead.&#x27;</span><br>      )<br>    &#125;<br>  &#125;<br><br>  <span class="hljs-comment">// Vue.config</span><br>  <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">defineProperty</span>(<span class="hljs-title class_">Vue</span>, <span class="hljs-string">&#x27;config&#x27;</span>, configDef)<br><br>  <span class="hljs-comment">/**</span><br><span class="hljs-comment">   * 暴露一些工具方法，轻易不要使用这些工具方法，处理你很清楚这些工具方法，以及知道使用的风险</span><br><span class="hljs-comment">   */</span><br>  <span class="hljs-title class_">Vue</span>.<span class="hljs-property">util</span> = &#123;<br>    <span class="hljs-comment">// 警告日志</span><br>    warn,<br>    <span class="hljs-comment">// 类似选项合并</span><br>    extend,<br>    <span class="hljs-comment">// 合并选项</span><br>    mergeOptions,<br>    <span class="hljs-comment">// 设置响应式</span><br>    defineReactive<br>  &#125;<br><br>  <span class="hljs-comment">// Vue.set / delete / nextTick</span><br>  <span class="hljs-title class_">Vue</span>.<span class="hljs-property">set</span> = set<br>  <span class="hljs-title class_">Vue</span>.<span class="hljs-property">delete</span> = del<br>  <span class="hljs-title class_">Vue</span>.<span class="hljs-property">nextTick</span> = nextTick<br><br>  <span class="hljs-comment">// 响应式方法</span><br>  <span class="hljs-title class_">Vue</span>.<span class="hljs-property">observable</span> = &lt;T&gt;(<span class="hljs-attr">obj</span>: T): <span class="hljs-function"><span class="hljs-params">T</span> =&gt;</span> &#123;<br>    <span class="hljs-title function_">observe</span>(obj)<br>    <span class="hljs-keyword">return</span> obj<br>  &#125;<br><br>  <span class="hljs-comment">// Vue.options.compoents/directives/filter</span><br>  <span class="hljs-title class_">Vue</span>.<span class="hljs-property">options</span> = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">create</span>(<span class="hljs-literal">null</span>)<br>  <span class="hljs-variable constant_">ASSET_TYPES</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">type</span> =&gt;</span> &#123;<br>    <span class="hljs-title class_">Vue</span>.<span class="hljs-property">options</span>[type + <span class="hljs-string">&#x27;s&#x27;</span>] = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">create</span>(<span class="hljs-literal">null</span>)<br>  &#125;)<br><br>  <span class="hljs-comment">// 将 Vue 构造函数挂载到 Vue.options._base 上</span><br>  <span class="hljs-title class_">Vue</span>.<span class="hljs-property">options</span>.<span class="hljs-property">_base</span> = <span class="hljs-title class_">Vue</span><br><br>  <span class="hljs-comment">// 在 Vue.options.components 中添加内置组件，比如 keep-alive</span><br>  <span class="hljs-title function_">extend</span>(<span class="hljs-title class_">Vue</span>.<span class="hljs-property">options</span>.<span class="hljs-property">components</span>, builtInComponents)<br><br>  <span class="hljs-comment">// Vue.use</span><br>  <span class="hljs-title function_">initUse</span>(<span class="hljs-title class_">Vue</span>)<br>  <span class="hljs-comment">// Vue.mixin</span><br>  <span class="hljs-title function_">initMixin</span>(<span class="hljs-title class_">Vue</span>)<br>  <span class="hljs-comment">// Vue.extend</span><br>  <span class="hljs-title function_">initExtend</span>(<span class="hljs-title class_">Vue</span>)<br>  <span class="hljs-comment">// Vue.component/directive/filter</span><br>  <span class="hljs-title function_">initAssetRegisters</span>(<span class="hljs-title class_">Vue</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>主要就是挂载 api</p>
+<h2 id="Vue-use"><a href="#Vue-use" class="headerlink" title="Vue.use"></a>Vue.use</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 定义 Vue.use，负责为 Vue 安装插件，做了以下两件事：</span><br><span class="hljs-comment"> *   1、判断插件是否已经被安装，如果安装则直接结束</span><br><span class="hljs-comment"> *   2、安装插件，执行插件的 install 方法</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> &#123;<span class="hljs-type">*</span>&#125; plugin install 方法 或者 包含 install 方法的对象</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@returns</span> Vue 实例</span><br><span class="hljs-comment"> */</span><br><span class="hljs-title class_">Vue</span>.<span class="hljs-property">use</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">plugin: <span class="hljs-built_in">Function</span> | <span class="hljs-built_in">Object</span></span>) &#123;<br>  <span class="hljs-comment">// 已经安装过的插件列表</span><br>  <span class="hljs-keyword">const</span> installedPlugins = (<span class="hljs-variable language_">this</span>.<span class="hljs-property">_installedPlugins</span> || (<span class="hljs-variable language_">this</span>.<span class="hljs-property">_installedPlugins</span> = []))<br>  <span class="hljs-comment">// 判断 plugin 是否已经安装，保证不重复安装</span><br>  <span class="hljs-keyword">if</span> (installedPlugins.<span class="hljs-title function_">indexOf</span>(plugin) &gt; -<span class="hljs-number">1</span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span><br>  &#125;<br><br>  <span class="hljs-comment">// 将 Vue 构造函数放到第一个参数位置，然后将这些参数传递给 install 方法</span><br>  <span class="hljs-keyword">const</span> args = <span class="hljs-title function_">toArray</span>(<span class="hljs-variable language_">arguments</span>, <span class="hljs-number">1</span>)<br>  args.<span class="hljs-title function_">unshift</span>(<span class="hljs-variable language_">this</span>)<br><br>  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> plugin.<span class="hljs-property">install</span> === <span class="hljs-string">&#x27;function&#x27;</span>) &#123;<br>    <span class="hljs-comment">// plugin 是一个对象，则执行其 install 方法安装插件</span><br>    plugin.<span class="hljs-property">install</span>.<span class="hljs-title function_">apply</span>(plugin, args)<br>  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> plugin === <span class="hljs-string">&#x27;function&#x27;</span>) &#123;<br>    <span class="hljs-comment">// 执行直接 plugin 方法安装插件</span><br>    plugin.<span class="hljs-title function_">apply</span>(<span class="hljs-literal">null</span>, args)<br>  &#125;<br>  <span class="hljs-comment">// 在 插件列表中 添加新安装的插件</span><br>  installedPlugins.<span class="hljs-title function_">push</span>(plugin)<br>  <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="Vue-mixin"><a href="#Vue-mixin" class="headerlink" title="Vue.mixin"></a>Vue.mixin</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 定义 Vue.mixin，负责全局混入选项，影响之后所有创建的 Vue 实例，这些实例会合并全局混入的选项</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> &#123;<span class="hljs-type">*</span>&#125; mixin Vue 配置对象</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@returns</span> 返回 Vue 实例</span><br><span class="hljs-comment"> */</span><br><span class="hljs-title class_">Vue</span>.<span class="hljs-property">mixin</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">mixin: <span class="hljs-built_in">Object</span></span>) &#123;<br>  <span class="hljs-comment">// 在 Vue 的默认配置项上合并 mixin 对象</span><br>  <span class="hljs-variable language_">this</span>.<span class="hljs-property">options</span> = <span class="hljs-title function_">mergeOptions</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">options</span>, mixin)<br>  <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="mergeOptions"><a href="#mergeOptions" class="headerlink" title="mergeOptions"></a>mergeOptions</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 合并两个选项，出现相同配置项时，子选项会覆盖父选项的配置</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">mergeOptions</span> (<br>  <span class="hljs-attr">parent</span>: <span class="hljs-title class_">Object</span>,<br>  <span class="hljs-attr">child</span>: <span class="hljs-title class_">Object</span>,<br>  vm?: <span class="hljs-title class_">Component</span><br>): <span class="hljs-title class_">Object</span> &#123;<br>  <span class="hljs-keyword">if</span> (process.<span class="hljs-property">env</span>.<span class="hljs-property">NODE_ENV</span> !== <span class="hljs-string">&#x27;production&#x27;</span>) &#123;<br>    <span class="hljs-title function_">checkComponents</span>(child)<br>  &#125;<br><br>  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> child === <span class="hljs-string">&#x27;function&#x27;</span>) &#123;<br>    child = child.<span class="hljs-property">options</span><br>  &#125;<br><br>  <span class="hljs-comment">// 标准化 props、inject、directive 选项，方便后续程序的处理</span><br>  <span class="hljs-title function_">normalizeProps</span>(child, vm)<br>  <span class="hljs-title function_">normalizeInject</span>(child, vm)<br>  <span class="hljs-title function_">normalizeDirectives</span>(child)<br><br>  <span class="hljs-comment">// 处理原始 child 对象上的 extends 和 mixins，分别执行 mergeOptions，将这些继承而来的选项合并到 parent</span><br>  <span class="hljs-comment">// mergeOptions 处理过的对象会含有 _base 属性</span><br>  <span class="hljs-keyword">if</span> (!child.<span class="hljs-property">_base</span>) &#123;<br>    <span class="hljs-keyword">if</span> (child.<span class="hljs-property">extends</span>) &#123;<br>      parent = <span class="hljs-title function_">mergeOptions</span>(parent, child.<span class="hljs-property">extends</span>, vm)<br>    &#125;<br>    <span class="hljs-keyword">if</span> (child.<span class="hljs-property">mixins</span>) &#123;<br>      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, l = child.<span class="hljs-property">mixins</span>.<span class="hljs-property">length</span>; i &lt; l; i++) &#123;<br>        parent = <span class="hljs-title function_">mergeOptions</span>(parent, child.<span class="hljs-property">mixins</span>[i], vm)<br>      &#125;<br>    &#125;<br>  &#125;<br><br>  <span class="hljs-keyword">const</span> options = &#123;&#125;<br>  <span class="hljs-keyword">let</span> key<br>  <span class="hljs-comment">// 遍历 父选项</span><br>  <span class="hljs-keyword">for</span> (key <span class="hljs-keyword">in</span> parent) &#123;<br>    <span class="hljs-title function_">mergeField</span>(key)<br>  &#125;<br><br>  <span class="hljs-comment">// 遍历 子选项，如果父选项不存在该配置，则合并，否则跳过，因为父子拥有同一个属性的情况在上面处理父选项时已经处理过了，用的子选项的值</span><br>  <span class="hljs-keyword">for</span> (key <span class="hljs-keyword">in</span> child) &#123;<br>    <span class="hljs-keyword">if</span> (!<span class="hljs-title function_">hasOwn</span>(parent, key)) &#123;<br>      <span class="hljs-title function_">mergeField</span>(key)<br>    &#125;<br>  &#125;<br><br>  <span class="hljs-comment">// 合并选项，childVal 优先级高于 parentVal</span><br>  <span class="hljs-keyword">function</span> <span class="hljs-title function_">mergeField</span> (key) &#123;<br>    <span class="hljs-comment">// strat 是合并策略函数，如果 key 冲突，则 childVal 会 覆盖 parentVal</span><br>    <span class="hljs-keyword">const</span> strat = strats[key] || defaultStrat<br>    <span class="hljs-comment">// 值为如果 childVal 存在则优先使用 childVal，否则使用 parentVal</span><br>    options[key] = <span class="hljs-title function_">strat</span>(parent[key], child[key], vm, key)<br>  &#125;<br>  <span class="hljs-keyword">return</span> options<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="Vue-component-x2F-filter-x2F-directive"><a href="#Vue-component-x2F-filter-x2F-directive" class="headerlink" title="Vue.component&#x2F;filter&#x2F;directive"></a>Vue.component&#x2F;filter&#x2F;directive</h2><p>这三个方法放在一起，因为用法类似</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 1. 添加全局过滤器</span><br><span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">filter</span>(....)<br><br><span class="hljs-comment">// 2. 添加全局指令</span><br><span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">directive</span>(....)<br><br><span class="hljs-comment">// 3. 配置全局混入(合)</span><br><span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">mixin</span>(....)<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> <span class="hljs-variable constant_">ASSET_TYPES</span> = [<span class="hljs-string">&#x27;component&#x27;</span>, <span class="hljs-string">&#x27;directive&#x27;</span>, <span class="hljs-string">&#x27;filter&#x27;</span>]<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 定义 Vue.component、Vue.filter、Vue.directive 这三个方法</span><br><span class="hljs-comment"> * 这三个方法所做的事情是类似的，就是在 this.options.xx 上存放对应的配置</span><br><span class="hljs-comment"> * 比如 Vue.component(compName, &#123;xx&#125;) 结果是 this.options.components.compName = 组件构造函数</span><br><span class="hljs-comment"> * ASSET_TYPES = [&#x27;component&#x27;, &#x27;directive&#x27;, &#x27;filter&#x27;]</span><br><span class="hljs-comment"> */</span><br><span class="hljs-variable constant_">ASSET_TYPES</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">type</span> =&gt;</span> &#123;<br>  <span class="hljs-comment">/**</span><br><span class="hljs-comment">   * 比如：Vue.component(name, definition)</span><br><span class="hljs-comment">   * <span class="hljs-doctag">@param</span> &#123;<span class="hljs-type">*</span>&#125; id name</span><br><span class="hljs-comment">   * <span class="hljs-doctag">@param</span> &#123;<span class="hljs-type">*</span>&#125; definition 组件构造函数或者配置对象 </span><br><span class="hljs-comment">   * <span class="hljs-doctag">@returns</span> 返回组件构造函数</span><br><span class="hljs-comment">   */</span><br>  <span class="hljs-title class_">Vue</span>[type] = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span><br><span class="hljs-params">    id: string,</span><br><span class="hljs-params">    definition: <span class="hljs-built_in">Function</span> | <span class="hljs-built_in">Object</span></span><br><span class="hljs-params">  </span>): <span class="hljs-title class_">Function</span> | <span class="hljs-title class_">Object</span> | <span class="hljs-keyword">void</span> &#123;<br>    <span class="hljs-keyword">if</span> (!definition) &#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">options</span>[type + <span class="hljs-string">&#x27;s&#x27;</span>][id]<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      <span class="hljs-keyword">if</span> (type === <span class="hljs-string">&#x27;component&#x27;</span> &amp;&amp; <span class="hljs-title function_">isPlainObject</span>(definition)) &#123;<br>        <span class="hljs-comment">// 如果组件配置中存在 name，则使用，否则直接使用 id</span><br>        definition.<span class="hljs-property">name</span> = definition.<span class="hljs-property">name</span> || id<br>        <span class="hljs-comment">// extend 就是 Vue.extend，所以这时的 definition 就变成了 组件构造函数，使用时可直接 new Definition()</span><br>        definition = <span class="hljs-variable language_">this</span>.<span class="hljs-property">options</span>.<span class="hljs-property">_base</span>.<span class="hljs-title function_">extend</span>(definition)<br>      &#125;<br>      <span class="hljs-keyword">if</span> (type === <span class="hljs-string">&#x27;directive&#x27;</span> &amp;&amp; <span class="hljs-keyword">typeof</span> definition === <span class="hljs-string">&#x27;function&#x27;</span>) &#123;<br>        definition = &#123; <span class="hljs-attr">bind</span>: definition, <span class="hljs-attr">update</span>: definition &#125;<br>      &#125;<br>      <span class="hljs-comment">// this.options.components[id] = definition</span><br>      <span class="hljs-comment">// 在实例化时通过 mergeOptions 将全局注册的组件合并到每个组件的配置对象的 components 中</span><br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">options</span>[type + <span class="hljs-string">&#x27;s&#x27;</span>][id] = definition<br>      <span class="hljs-keyword">return</span> definition<br>    &#125;<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="Vue-extend"><a href="#Vue-extend" class="headerlink" title="Vue.extend"></a>Vue.extend</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Each instance constructor, including Vue, has a unique</span><br><span class="hljs-comment"> * cid. This enables us to create wrapped &quot;child</span><br><span class="hljs-comment"> * constructors&quot; for prototypal inheritance and cache them.</span><br><span class="hljs-comment"> */</span><br><span class="hljs-title class_">Vue</span>.<span class="hljs-property">cid</span> = <span class="hljs-number">0</span><br><span class="hljs-keyword">let</span> cid = <span class="hljs-number">1</span><br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 基于 Vue 去扩展子类，该子类同样支持进一步的扩展</span><br><span class="hljs-comment"> * 扩展时可以传递一些默认配置，就像 Vue 也会有一些默认配置</span><br><span class="hljs-comment"> * 默认配置如果和基类有冲突则会进行选项合并（mergeOptions)</span><br><span class="hljs-comment"> */</span><br><span class="hljs-title class_">Vue</span>.<span class="hljs-property">extend</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">extendOptions: <span class="hljs-built_in">Object</span></span>): <span class="hljs-title class_">Function</span> &#123;<br>  extendOptions = extendOptions || &#123;&#125;<br>  <span class="hljs-keyword">const</span> <span class="hljs-title class_">Super</span> = <span class="hljs-variable language_">this</span><br>  <span class="hljs-keyword">const</span> <span class="hljs-title class_">SuperId</span> = <span class="hljs-title class_">Super</span>.<span class="hljs-property">cid</span><br><br>  <span class="hljs-comment">/**</span><br><span class="hljs-comment">   * 利用缓存，如果存在则直接返回缓存中的构造函数</span><br><span class="hljs-comment">   * 什么情况下可以利用到这个缓存？</span><br><span class="hljs-comment">   *   如果你在多次调用 Vue.extend 时使用了同一个配置项（extendOptions），这时就会启用该缓存</span><br><span class="hljs-comment">   */</span><br>  <span class="hljs-keyword">const</span> cachedCtors = extendOptions.<span class="hljs-property">_Ctor</span> || (extendOptions.<span class="hljs-property">_Ctor</span> = &#123;&#125;)<br>  <span class="hljs-keyword">if</span> (cachedCtors[<span class="hljs-title class_">SuperId</span>]) &#123;<br>    <span class="hljs-keyword">return</span> cachedCtors[<span class="hljs-title class_">SuperId</span>]<br>  &#125;<br><br>  <span class="hljs-keyword">const</span> name = extendOptions.<span class="hljs-property">name</span> || <span class="hljs-title class_">Super</span>.<span class="hljs-property">options</span>.<span class="hljs-property">name</span><br>  <span class="hljs-keyword">if</span> (process.<span class="hljs-property">env</span>.<span class="hljs-property">NODE_ENV</span> !== <span class="hljs-string">&#x27;production&#x27;</span> &amp;&amp; name) &#123;<br>    <span class="hljs-title function_">validateComponentName</span>(name)<br>  &#125;<br><br>  <span class="hljs-comment">// 定义 Sub 构造函数，和 Vue 构造函数一样</span><br>  <span class="hljs-keyword">const</span> <span class="hljs-title class_">Sub</span> = <span class="hljs-keyword">function</span> <span class="hljs-title function_">VueComponent</span>(<span class="hljs-params">options</span>) &#123;<br>    <span class="hljs-comment">// 初始化</span><br>    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">_init</span>(options)<br>  &#125;<br>  <span class="hljs-comment">// 通过原型继承的方式继承 Vue</span><br>  <span class="hljs-title class_">Sub</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">create</span>(<span class="hljs-title class_">Super</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>)<br>  <span class="hljs-title class_">Sub</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">constructor</span> = <span class="hljs-title class_">Sub</span><br>  <span class="hljs-title class_">Sub</span>.<span class="hljs-property">cid</span> = cid++<br>  <span class="hljs-comment">// 选项合并，合并 Vue 的配置项到 自己的配置项上来</span><br>  <span class="hljs-title class_">Sub</span>.<span class="hljs-property">options</span> = <span class="hljs-title function_">mergeOptions</span>(<br>    <span class="hljs-title class_">Super</span>.<span class="hljs-property">options</span>,<br>    extendOptions<br>  )<br>  <span class="hljs-comment">// 记录自己的基类</span><br>  <span class="hljs-title class_">Sub</span>[<span class="hljs-string">&#x27;super&#x27;</span>] = <span class="hljs-title class_">Super</span><br><br>  <span class="hljs-comment">// 初始化 props，将 props 配置代理到 Sub.prototype._props 对象上</span><br>  <span class="hljs-comment">// 在组件内通过 this._props 方式可以访问</span><br>  <span class="hljs-keyword">if</span> (<span class="hljs-title class_">Sub</span>.<span class="hljs-property">options</span>.<span class="hljs-property">props</span>) &#123;<br>    <span class="hljs-title function_">initProps</span>(<span class="hljs-title class_">Sub</span>)<br>  &#125;<br><br>  <span class="hljs-comment">// 初始化 computed，将 computed 配置代理到 Sub.prototype 对象上</span><br>  <span class="hljs-comment">// 在组件内可以通过 this.computedKey 的方式访问</span><br>  <span class="hljs-keyword">if</span> (<span class="hljs-title class_">Sub</span>.<span class="hljs-property">options</span>.<span class="hljs-property">computed</span>) &#123;<br>    <span class="hljs-title function_">initComputed</span>(<span class="hljs-title class_">Sub</span>)<br>  &#125;<br><br>  <span class="hljs-comment">// 定义 extend、mixin、use 这三个静态方法，允许在 Sub 基础上再进一步构造子类</span><br>  <span class="hljs-title class_">Sub</span>.<span class="hljs-property">extend</span> = <span class="hljs-title class_">Super</span>.<span class="hljs-property">extend</span><br>  <span class="hljs-title class_">Sub</span>.<span class="hljs-property">mixin</span> = <span class="hljs-title class_">Super</span>.<span class="hljs-property">mixin</span><br>  <span class="hljs-title class_">Sub</span>.<span class="hljs-property">use</span> = <span class="hljs-title class_">Super</span>.<span class="hljs-property">use</span><br><br>  <span class="hljs-comment">// 定义 component、filter、directive 三个静态方法</span><br>  <span class="hljs-variable constant_">ASSET_TYPES</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">type</span>) &#123;<br>    <span class="hljs-title class_">Sub</span>[type] = <span class="hljs-title class_">Super</span>[type]<br>  &#125;)<br><br>  <span class="hljs-comment">// 递归组件的原理，如果组件设置了 name 属性，则将自己注册到自己的 components 选项中</span><br>  <span class="hljs-keyword">if</span> (name) &#123;<br>    <span class="hljs-title class_">Sub</span>.<span class="hljs-property">options</span>.<span class="hljs-property">components</span>[name] = <span class="hljs-title class_">Sub</span><br>  &#125;<br><br>  <span class="hljs-comment">// 在扩展时保留对基类选项的引用。</span><br>  <span class="hljs-comment">// 稍后在实例化时，我们可以检查 Super 的选项是否具有更新</span><br>  <span class="hljs-title class_">Sub</span>.<span class="hljs-property">superOptions</span> = <span class="hljs-title class_">Super</span>.<span class="hljs-property">options</span><br>  <span class="hljs-title class_">Sub</span>.<span class="hljs-property">extendOptions</span> = extendOptions<br>  <span class="hljs-title class_">Sub</span>.<span class="hljs-property">sealedOptions</span> = <span class="hljs-title function_">extend</span>(&#123;&#125;, <span class="hljs-title class_">Sub</span>.<span class="hljs-property">options</span>)<br><br>  <span class="hljs-comment">// 缓存</span><br>  cachedCtors[<span class="hljs-title class_">SuperId</span>] = <span class="hljs-title class_">Sub</span><br>  <span class="hljs-keyword">return</span> <span class="hljs-title class_">Sub</span><br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">initProps</span> (<span class="hljs-title class_">Comp</span>) &#123;<br>  <span class="hljs-keyword">const</span> props = <span class="hljs-title class_">Comp</span>.<span class="hljs-property">options</span>.<span class="hljs-property">props</span><br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">in</span> props) &#123;<br>    <span class="hljs-title function_">proxy</span>(<span class="hljs-title class_">Comp</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>, <span class="hljs-string">`_props`</span>, key)<br>  &#125;<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">initComputed</span> (<span class="hljs-title class_">Comp</span>) &#123;<br>  <span class="hljs-keyword">const</span> computed = <span class="hljs-title class_">Comp</span>.<span class="hljs-property">options</span>.<span class="hljs-property">computed</span><br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">in</span> computed) &#123;<br>    <span class="hljs-title function_">defineComputed</span>(<span class="hljs-title class_">Comp</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>, key, computed[key])<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="Vue-set"><a href="#Vue-set" class="headerlink" title="Vue.set"></a>Vue.set</h2><p>&#x2F;src&#x2F;core&#x2F;global-api&#x2F;index.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title class_">Vue</span>.<span class="hljs-property">set</span> = set<br></code></pre></td></tr></table></figure>
+
+<p>&#x2F;src&#x2F;core&#x2F;observer&#x2F;index.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 通过 Vue.set 或者 this.$set 方法给 target 的指定 key 设置值 val</span><br><span class="hljs-comment"> * 如果 target 是对象，并且 key 原本不存在，则为新 key 设置响应式，然后执行依赖通知</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">set</span> (<span class="hljs-attr">target</span>: <span class="hljs-title class_">Array</span>&lt;any&gt; | <span class="hljs-title class_">Object</span>, <span class="hljs-attr">key</span>: any, <span class="hljs-attr">val</span>: any): any &#123;<br>  <span class="hljs-keyword">if</span> (process.<span class="hljs-property">env</span>.<span class="hljs-property">NODE_ENV</span> !== <span class="hljs-string">&#x27;production&#x27;</span> &amp;&amp;<br>    (<span class="hljs-title function_">isUndef</span>(target) || <span class="hljs-title function_">isPrimitive</span>(target))<br>  ) &#123;<br>    <span class="hljs-title function_">warn</span>(<span class="hljs-string">`Cannot set reactive property on undefined, null, or primitive value: <span class="hljs-subst">$&#123;(target: any)&#125;</span>`</span>)<br>  &#125;<br>  <span class="hljs-comment">// 1.更新数组指定下标的元素，Vue.set(array, idx, val)，通过 splice 方法实现响应式更新</span><br>  <span class="hljs-keyword">if</span> (<span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(target) &amp;&amp; <span class="hljs-title function_">isValidArrayIndex</span>(key)) &#123;<br>    target.<span class="hljs-property">length</span> = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(target.<span class="hljs-property">length</span>, key)<br>    target.<span class="hljs-title function_">splice</span>(key, <span class="hljs-number">1</span>, val)<br>    <span class="hljs-keyword">return</span> val<br>  &#125;<br>  <span class="hljs-comment">// 2。更新对象已有属性，Vue.set(obj, key, val)，执行更新即可</span><br>  <span class="hljs-keyword">if</span> (key <span class="hljs-keyword">in</span> target &amp;&amp; !(key <span class="hljs-keyword">in</span> <span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>)) &#123;<br>    target[key] = val<br>    <span class="hljs-keyword">return</span> val<br>  &#125;<br>  <span class="hljs-keyword">const</span> ob = (<span class="hljs-attr">target</span>: any).<span class="hljs-property">__ob__</span><br>  <span class="hljs-comment">// 不能向 Vue 实例或者 $data 添加动态添加响应式属性，vmCount 的用处之一，</span><br>  <span class="hljs-comment">// this.$data 的 ob.vmCount = 1，表示根组件，其它子组件的 vm.vmCount 都是 0</span><br>  <span class="hljs-keyword">if</span> (target.<span class="hljs-property">_isVue</span> || (ob &amp;&amp; ob.<span class="hljs-property">vmCount</span>)) &#123;<br>    process.<span class="hljs-property">env</span>.<span class="hljs-property">NODE_ENV</span> !== <span class="hljs-string">&#x27;production&#x27;</span> &amp;&amp; <span class="hljs-title function_">warn</span>(<br>      <span class="hljs-string">&#x27;Avoid adding reactive properties to a Vue instance or its root $data &#x27;</span> +<br>      <span class="hljs-string">&#x27;at runtime - declare it upfront in the data option.&#x27;</span><br>    )<br>    <span class="hljs-keyword">return</span> val<br>  &#125;<br>  <span class="hljs-comment">// 3.target 不是响应式对象，新属性会被设置，但是不会做响应式处理</span><br>  <span class="hljs-keyword">if</span> (!ob) &#123;<br>    target[key] = val<br>    <span class="hljs-keyword">return</span> val<br>  &#125;<br>  <span class="hljs-comment">// 4.给对象定义新属性，通过 defineReactive 方法设置响应式，并触发依赖更新</span><br>  <span class="hljs-title function_">defineReactive</span>(ob.<span class="hljs-property">value</span>, key, val)<br>  ob.<span class="hljs-property">dep</span>.<span class="hljs-title function_">notify</span>()<br>  <span class="hljs-keyword">return</span> val<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>1.如果 target 是数组，直接通过 splice 方法响应式更新元素，因为数组方法已重写。</p>
+<p>2.如果 target 是对象并且对象已有该属性(key)，则直接 target[key] &#x3D; val 修改即可，因为 setter 中会做响应式更新。</p>
+<p>3.如果 target 不是响应式对象，直接 target[key] &#x3D; val，但其不是响应式的，因为 target 不是响应式对象，它的 setter 中不会去 notify。</p>
+<p>4.如果 target 是对象且没有该属性(key)，则调用 defineReactive 设置响应式，并调用 dep.notify() 触发依赖更新。</p>
+<h2 id="Vue-delete"><a href="#Vue-delete" class="headerlink" title="Vue.delete"></a>Vue.delete</h2><p>&#x2F;src&#x2F;core&#x2F;global-api&#x2F;index.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title class_">Vue</span>.<span class="hljs-property">delete</span> = del<br></code></pre></td></tr></table></figure>
+
+<p>&#x2F;src&#x2F;core&#x2F;observer&#x2F;index.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 通过 Vue.delete 或者 vm.$delete 删除 target 对象的指定 key</span><br><span class="hljs-comment"> * 数组通过 splice 方法实现，对象则通过 delete 运算符删除指定 key，并执行依赖通知</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">del</span> (<span class="hljs-attr">target</span>: <span class="hljs-title class_">Array</span>&lt;any&gt; | <span class="hljs-title class_">Object</span>, <span class="hljs-attr">key</span>: any) &#123;<br>  <span class="hljs-keyword">if</span> (process.<span class="hljs-property">env</span>.<span class="hljs-property">NODE_ENV</span> !== <span class="hljs-string">&#x27;production&#x27;</span> &amp;&amp;<br>    (<span class="hljs-title function_">isUndef</span>(target) || <span class="hljs-title function_">isPrimitive</span>(target))<br>  ) &#123;<br>    <span class="hljs-title function_">warn</span>(<span class="hljs-string">`Cannot delete reactive property on undefined, null, or primitive value: <span class="hljs-subst">$&#123;(target: any)&#125;</span>`</span>)<br>  &#125;<br><br>  <span class="hljs-comment">// target 为数组，则通过 splice 方法删除指定下标的元素</span><br>  <span class="hljs-keyword">if</span> (<span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(target) &amp;&amp; <span class="hljs-title function_">isValidArrayIndex</span>(key)) &#123;<br>    target.<span class="hljs-title function_">splice</span>(key, <span class="hljs-number">1</span>)<br>    <span class="hljs-keyword">return</span><br>  &#125;<br>  <span class="hljs-keyword">const</span> ob = (<span class="hljs-attr">target</span>: any).<span class="hljs-property">__ob__</span><br><br>  <span class="hljs-comment">// 避免删除 Vue 实例的属性或者 $data 的数据</span><br>  <span class="hljs-keyword">if</span> (target.<span class="hljs-property">_isVue</span> || (ob &amp;&amp; ob.<span class="hljs-property">vmCount</span>)) &#123;<br>    process.<span class="hljs-property">env</span>.<span class="hljs-property">NODE_ENV</span> !== <span class="hljs-string">&#x27;production&#x27;</span> &amp;&amp; <span class="hljs-title function_">warn</span>(<br>      <span class="hljs-string">&#x27;Avoid deleting properties on a Vue instance or its root $data &#x27;</span> +<br>      <span class="hljs-string">&#x27;- just set it to null.&#x27;</span><br>    )<br>    <span class="hljs-keyword">return</span><br>  &#125;<br>  <span class="hljs-comment">// 如果属性不存在直接结束</span><br>  <span class="hljs-keyword">if</span> (!<span class="hljs-title function_">hasOwn</span>(target, key)) &#123;<br>    <span class="hljs-keyword">return</span><br>  &#125;<br>  <span class="hljs-comment">// 通过 delete 运算符删除对象的属性</span><br>  <span class="hljs-keyword">delete</span> target[key]<br>  <span class="hljs-keyword">if</span> (!ob) &#123;<br>    <span class="hljs-keyword">return</span><br>  &#125;<br>  <span class="hljs-comment">// 执行依赖通知</span><br>  ob.<span class="hljs-property">dep</span>.<span class="hljs-title function_">notify</span>()<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>1.如果 target 是数组，和 vue.set() 类似，使用 splice 删除</p>
+<p>2.key 不存在，直接 return</p>
+<p>3.如果 target 是对象，delete target[key] 即可，然后 dep.notify() 触发依赖更新</p>
+<h2 id="Vue-nextTick"><a href="#Vue-nextTick" class="headerlink" title="Vue.nextTick"></a>Vue.nextTick</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> callbacks = []<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 完成两件事：</span><br><span class="hljs-comment"> *   1、用 try catch 包装 flushSchedulerQueue 函数，然后将其放入 callbacks 数组</span><br><span class="hljs-comment"> *   2、如果 pending 为 false，表示现在浏览器的任务队列中没有 flushCallbacks 函数</span><br><span class="hljs-comment"> *     如果 pending 为 true，则表示浏览器的任务队列中已经被放入了 flushCallbacks 函数，</span><br><span class="hljs-comment"> *     待执行 flushCallbacks 函数时，pending 会被再次置为 false，表示下一个 flushCallbacks 函数可以进入</span><br><span class="hljs-comment"> *     浏览器的任务队列了</span><br><span class="hljs-comment"> * pending 的作用：保证在同一时刻，浏览器的任务队列中只有一个 flushCallbacks 函数</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> &#123;<span class="hljs-type">*</span>&#125; cb 接收一个回调函数 =&gt; flushSchedulerQueue</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> &#123;<span class="hljs-type">*</span>&#125; ctx 上下文</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@returns</span> </span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">nextTick</span> (cb?: <span class="hljs-title class_">Function</span>, ctx?: <span class="hljs-title class_">Object</span>) &#123;<br>  <span class="hljs-keyword">let</span> _resolve<br>  <span class="hljs-comment">// 用 callbacks 数组存储经过包装的 cb 函数</span><br>  callbacks.<span class="hljs-title function_">push</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-keyword">if</span> (cb) &#123;<br>      <span class="hljs-comment">// 用 try catch 包装回调函数，便于错误捕获</span><br>      <span class="hljs-keyword">try</span> &#123;<br>        cb.<span class="hljs-title function_">call</span>(ctx)<br>      &#125; <span class="hljs-keyword">catch</span> (e) &#123;<br>        <span class="hljs-title function_">handleError</span>(e, ctx, <span class="hljs-string">&#x27;nextTick&#x27;</span>)<br>      &#125;<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (_resolve) &#123;<br>      <span class="hljs-title function_">_resolve</span>(ctx)<br>    &#125;<br>  &#125;)<br>  <span class="hljs-keyword">if</span> (!pending) &#123;<br>    pending = <span class="hljs-literal">true</span><br>    <span class="hljs-comment">// 执行 timerFunc，在浏览器的任务队列中（首选微任务队列）放入 flushCallbacks 函数</span><br>    <span class="hljs-title function_">timerFunc</span>()<br>  &#125;<br>  <span class="hljs-comment">// $flow-disable-line</span><br>  <span class="hljs-keyword">if</span> (!cb &amp;&amp; <span class="hljs-keyword">typeof</span> <span class="hljs-title class_">Promise</span> !== <span class="hljs-string">&#x27;undefined&#x27;</span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> &#123;<br>      _resolve = resolve<br>    &#125;)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><h3 id="Vue-use-plugin-做了什么？"><a href="#Vue-use-plugin-做了什么？" class="headerlink" title="Vue.use(plugin) 做了什么？"></a>Vue.use(plugin) 做了什么？</h3><p>负责安装 plugin 插件，其实就是执行插件提供的 install 方法。</p>
+<ul>
+<li>首先判断该插件是否已经安装过</li>
+<li>如果没有，则执行插件提供的 install 方法安装插件，具体做什么有插件自己决定</li>
+</ul>
+<h3 id="Vue-mixin-options-做了什么？"><a href="#Vue-mixin-options-做了什么？" class="headerlink" title="Vue.mixin(options) 做了什么？"></a>Vue.mixin(options) 做了什么？</h3><p>负责在 Vue 的全局配置上合并 options 配置。然后在每个组件生成 vnode 时会将全局配置合并到组件自身的配置上来。</p>
+<ul>
+<li>标准化 options 对象上的 props、inject、directive 选项的格式</li>
+<li>处理 options 上的 extends 和 mixins，分别将他们合并到全局配置上</li>
+<li>然后将 options 配置和全局配置进行合并，选项冲突时 options 配置会覆盖全局配置</li>
+</ul>
+<h3 id="Vue-component-compName-Comp-做了什么？"><a href="#Vue-component-compName-Comp-做了什么？" class="headerlink" title="Vue.component(compName, Comp) 做了什么？"></a>Vue.component(compName, Comp) 做了什么？</h3><p>负责注册全局组件。其实就是将组件配置注册到全局配置的 components 选项上（options.components），然后各个子组件在生成 vnode 时会将全局的 components 选项合并到局部的 components 配置项上。</p>
+<ul>
+<li>如果第二个参数为空，则表示获取 compName 的组件构造函数</li>
+<li>如果 Comp 是组件配置对象，则使用 Vue.extend 方法得到组件构造函数，否则直接进行下一步</li>
+<li>在全局配置上设置组件信息，<code>this.options.components.compName = CompConstructor</code></li>
+</ul>
+<h3 id="Vue-directive-‘my-directive’-xx-做了什么？"><a href="#Vue-directive-‘my-directive’-xx-做了什么？" class="headerlink" title="Vue.directive(‘my-directive’, {xx}) 做了什么？"></a>Vue.directive(‘my-directive’, {xx}) 做了什么？</h3><p>在全局注册 my-directive 指令，然后每个子组件在生成 vnode 时会将全局的 directives 选项合并到局部的 directives 选项中。原理同 Vue.component 方法：</p>
+<ul>
+<li>如果第二个参数为空，则获取指定指令的配置对象</li>
+<li>如果不为空，如果第二个参数是一个函数的话，则生成配置对象 { bind: 第二个参数, update: 第二个参数 }</li>
+<li>然后将指令配置对象设置到全局配置上，<code>this.options.directives[&#39;my-directive&#39;] = &#123;xx&#125;</code></li>
+</ul>
+<h3 id="Vue-filter-‘my-filter’-function-val-xx-做了什么？"><a href="#Vue-filter-‘my-filter’-function-val-xx-做了什么？" class="headerlink" title="Vue.filter(‘my-filter’, function(val) {xx}) 做了什么？"></a>Vue.filter(‘my-filter’, function(val) {xx}) 做了什么？</h3><p>负责在全局注册过滤器 my-filter，然后每个子组件在生成 vnode 时会将全局的 filters 选项合并到局部的 filters 选项中。原理是：</p>
+<ul>
+<li>如果没有提供第二个参数，则获取 my-filter 过滤器的回调函数</li>
+<li>如果提供了第二个参数，则是设置 <code>this.options.filters[&#39;my-filter&#39;] = function(val) &#123;xx&#125;</code>。</li>
+</ul>
+<h3 id="Vue-set-target-key-val-做了什么"><a href="#Vue-set-target-key-val-做了什么" class="headerlink" title="Vue.set(target, key, val) 做了什么?"></a>Vue.set(target, key, val) 做了什么?</h3><p>由于 Vue 无法探测普通的新增 property (比如 this.myObject.newProperty &#x3D; ‘hi’)，所以通过 Vue.set 为向响应式对象中添加一个 property，可以确保这个新 property 同样是响应式的，且触发视图更新。</p>
+<ul>
+<li>更新数组指定下标的元素：Vue.set(array, idx, val)，内部通过 splice 方法实现响应式更新</li>
+<li>更新对象已有属性：Vue.set(obj, key ,val)，直接更新即可 &#x3D;&gt; <code>obj[key] = val</code></li>
+<li>不能向 Vue 实例或者 $data 动态添加根级别的响应式数据</li>
+<li>Vue.set(obj, key, val)，如果 obj 不是响应式对象，会执行 <code>obj[key] = val</code>，但是不会做响应式处理</li>
+<li>Vue.set(obj, key, val)，为响应式对象 obj 增加一个新的 key，则通过 defineReactive 方法设置响应式，并触发依赖更新</li>
+</ul>
+<h3 id="Vue-delete-target-key-做了什么？"><a href="#Vue-delete-target-key-做了什么？" class="headerlink" title="Vue.delete(target, key) 做了什么？"></a>Vue.delete(target, key) 做了什么？</h3><p>删除对象的 property。如果对象是响应式的，确保删除能触发更新视图。这个方法主要用于避开 Vue 不能检测到 property 被删除的限制，但是你应该很少会使用它。当然同样不能删除根级别的响应式属性。</p>
+<ul>
+<li>Vue.delete(array, idx)，删除指定下标的元素，内部是通过 splice 方法实现的</li>
+<li>删除响应式对象上的某个属性：Vue.delete(obj, key)，内部是执行 <code>delete obj.key</code>，然后执行依赖更新即可</li>
+</ul>
+<h3 id="Vue-nextTick-cb-做了什么？"><a href="#Vue-nextTick-cb-做了什么？" class="headerlink" title="Vue.nextTick(cb) 做了什么？"></a>Vue.nextTick(cb) 做了什么？</h3><p>Vue.nextTick(cb) 方法的作用是延迟回调函数 cb 的执行，一般用于 <code>this.key = newVal</code> 更改数据后，想立即获取更改过后的 DOM 数据：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-variable language_">this</span>.<span class="hljs-property">key</span> = <span class="hljs-string">&#x27;new val&#x27;</span><br><br><span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">nextTick</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-comment">// DOM 更新了</span><br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>其内部的执行过程是：</p>
+<ul>
+<li><code>this.key = &#39;new val</code>，触发依赖通知更新，将负责更新的 watcher 放入 watcher 队列</li>
+<li>将刷新 watcher 队列的函数放到 callbacks 数组中</li>
+<li>在浏览器的异步任务队列中放入一个刷新 callbacks 数组的函数</li>
+<li><strong>Vue.nextTick(cb)</strong> 来插队，将 cb 函数放入 callbacks 数组</li>
+<li>待将来的某个时刻执行刷新 callbacks 数组的函数</li>
+<li>然后执行 callbacks 数组中的众多函数，触发 watcher.run 的执行，更新 DOM</li>
+<li>由于 cb 函数是在后面放到 callbacks 数组，所以这就保证了先完成的 DOM 更新，再执行 cb 函数</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6952643167715852319">https://juejin.cn/post/6952643167715852319</a></p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Vue/" class="category-chain-item">Vue</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Vue/Vue%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/" class="category-chain-item">Vue源码解读</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>5.【转载】全局API</div>
+      <div>http://example.com/2022/10/24/5-全局API/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>October 24, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/10/25/6-%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95/" title="6.【转载】实例方法">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">6.【转载】实例方法</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/10/23/4-%E5%BC%82%E6%AD%A5%E6%9B%B4%E6%96%B0/" title="4.异步更新">
+                        <span class="hidden-mobile">4.异步更新</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+    
+      
+            
+                  
+</div>
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

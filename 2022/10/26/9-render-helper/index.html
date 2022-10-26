@@ -1,0 +1,762 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="render helper什么是 render helper在 编译器 中我们说到，编译器最后会生成渲染函数。组件更新时，执行渲染函数，就可以得到组件的 vnode。 渲染函数之所以能生成 vnode 是通过其中的 _c、_l、_v、_s 等方法实现的，在 编译后 的代码中我们能看到很多类似函数的调用  普通的节点被编译成了可执行 _c 函数 v-for 节点被编译成了可执行的 _l 函数 …">
+<meta property="og:type" content="article">
+<meta property="og:title" content="9.【转载】render helper">
+<meta property="og:url" content="http://example.com/2022/10/26/9-render-helper/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="render helper什么是 render helper在 编译器 中我们说到，编译器最后会生成渲染函数。组件更新时，执行渲染函数，就可以得到组件的 vnode。 渲染函数之所以能生成 vnode 是通过其中的 _c、_l、_v、_s 等方法实现的，在 编译后 的代码中我们能看到很多类似函数的调用  普通的节点被编译成了可执行 _c 函数 v-for 节点被编译成了可执行的 _l 函数 …">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-10-26T05:52:12.000Z">
+<meta property="article:modified_time" content="2022-10-26T06:27:42.647Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>9.【转载】render helper - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"qPzYEpTngSrzQtV1XpsPSmPm-gzGzoHsz","app_key":"kf4lqne4FqonWhpUQzS1Ffrx","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>JY BLOG</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="9.【转载】render helper"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-10-26 13:52" pubdate>
+          October 26, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.6k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          30 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span>次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">9.【转载】render helper</h1>
+            
+            <div class="markdown-body">
+              
+              <h1 id="render-helper"><a href="#render-helper" class="headerlink" title="render helper"></a>render helper</h1><h2 id="什么是-render-helper"><a href="#什么是-render-helper" class="headerlink" title="什么是 render helper"></a>什么是 render helper</h2><p>在 编译器 中我们说到，编译器最后会生成渲染函数。组件更新时，执行渲染函数，就可以得到组件的 vnode。</p>
+<p>渲染函数之所以能生成 vnode 是通过其中的 <code>_c、_l、_v、_s</code> 等方法实现的，在 编译后 的代码中我们能看到很多类似函数的调用</p>
+<ul>
+<li>普通的节点被编译成了可执行 _c 函数</li>
+<li>v-for 节点被编译成了可执行的 _l 函数</li>
+<li>…</li>
+</ul>
+<p>作用总结：<strong>在 Vue 实例上挂载一些运行时的工具方法，这些方法用在编译器生成的渲染函数中，用于生成组件的 VNode。</strong></p>
+<h2 id="入口"><a href="#入口" class="headerlink" title="入口"></a>入口</h2><p>Vue 实例的入口文件（2-Vue初始化过程），包括 Vue 构造函数的定义、各个实例方法的初始化。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// Vue 的构造函数</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Vue</span> (options) &#123;<br>  <span class="hljs-comment">// 调用 Vue.prototype._init 方法，该方法是在 initMixin 中定义的</span><br>  <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">_init</span>(options)<br>&#125;<br><br><span class="hljs-comment">// 定义 Vue.prototype._init 方法</span><br><span class="hljs-title function_">initMixin</span>(<span class="hljs-title class_">Vue</span>)<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 定义：</span><br><span class="hljs-comment"> *   Vue.prototype.$data</span><br><span class="hljs-comment"> *   Vue.prototype.$props</span><br><span class="hljs-comment"> *   Vue.prototype.$set</span><br><span class="hljs-comment"> *   Vue.prototype.$delete</span><br><span class="hljs-comment"> *   Vue.prototype.$watch</span><br><span class="hljs-comment"> */</span><br><span class="hljs-title function_">stateMixin</span>(<span class="hljs-title class_">Vue</span>)<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 定义 事件相关的 方法：</span><br><span class="hljs-comment"> *   Vue.prototype.$on</span><br><span class="hljs-comment"> *   Vue.prototype.$once</span><br><span class="hljs-comment"> *   Vue.prototype.$off</span><br><span class="hljs-comment"> *   Vue.prototype.$emit</span><br><span class="hljs-comment"> */</span><br><span class="hljs-title function_">eventsMixin</span>(<span class="hljs-title class_">Vue</span>)<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 定义：</span><br><span class="hljs-comment"> *   Vue.prototype._update</span><br><span class="hljs-comment"> *   Vue.prototype.$forceUpdate</span><br><span class="hljs-comment"> *   Vue.prototype.$destroy</span><br><span class="hljs-comment"> */</span><br><span class="hljs-title function_">lifecycleMixin</span>(<span class="hljs-title class_">Vue</span>)<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 执行 installRenderHelpers，在 Vue.prototype 对象上安装运行时便利程序</span><br><span class="hljs-comment"> * </span><br><span class="hljs-comment"> * 定义：</span><br><span class="hljs-comment"> *   Vue.prototype.$nextTick</span><br><span class="hljs-comment"> *   Vue.prototype._render</span><br><span class="hljs-comment"> */</span><br><span class="hljs-title function_">renderMixin</span>(<span class="hljs-title class_">Vue</span>)<br></code></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">renderMixin</span> (<span class="hljs-title class_">Vue</span>: <span class="hljs-title class_">Class</span>&lt;<span class="hljs-title class_">Component</span>&gt;) &#123;<br>  <span class="hljs-comment">// install runtime convenience helpers</span><br>  <span class="hljs-comment">// 在组件实例上挂载一些运行时需要用到的工具方法</span><br>  <span class="hljs-title function_">installRenderHelpers</span>(<span class="hljs-title class_">Vue</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>)<br>  <br>  <span class="hljs-comment">// ...</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>初始化时调用了 renderMixin，renderMixin 中调用了 Install RenderHelpers 挂载一些工具方法，也就是 _o _c 等等</p>
+<h2 id="installRenderHelpers"><a href="#installRenderHelpers" class="headerlink" title="installRenderHelpers"></a>installRenderHelpers</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 在实例上挂载简写的渲染工具函数，这些都是运行时代码</span><br><span class="hljs-comment"> * 这些工具函数在编译器生成的渲染函数中被使用到了</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> &#123;<span class="hljs-type">*</span>&#125; target Vue 实例</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">installRenderHelpers</span>(<span class="hljs-params">target: any</span>) &#123;<br>  <span class="hljs-comment">/**</span><br><span class="hljs-comment">   * v-once 指令的运行时帮助程序，为 VNode 加上打上静态标记</span><br><span class="hljs-comment">   * 有点多余，因为含有 v-once 指令的节点都被当作静态节点处理了，所以也不会走这儿</span><br><span class="hljs-comment">   */</span><br>  target.<span class="hljs-property">_o</span> = markOnce<br>  <span class="hljs-comment">// 将值转换为数字</span><br>  target.<span class="hljs-property">_n</span> = toNumber<br>  <span class="hljs-comment">/**</span><br><span class="hljs-comment">   * 将值转换为字符串形式，普通值 =&gt; String(val)，对象 =&gt; JSON.stringify(val)</span><br><span class="hljs-comment">   */</span><br>  target.<span class="hljs-property">_s</span> = toString<br>  <span class="hljs-comment">/**</span><br><span class="hljs-comment">   * 运行时渲染 v-for 列表的帮助函数，循环遍历 val 值，依次为每一项执行 render 方法生成 VNode，最终返回一个 VNode 数组</span><br><span class="hljs-comment">   */</span><br>  target.<span class="hljs-property">_l</span> = renderList<br>  target.<span class="hljs-property">_t</span> = renderSlot<br>  <span class="hljs-comment">/**</span><br><span class="hljs-comment">   * 判断两个值是否相等</span><br><span class="hljs-comment">   */</span><br>  target.<span class="hljs-property">_q</span> = looseEqual<br>  <span class="hljs-comment">/**</span><br><span class="hljs-comment">   * 相当于 indexOf 方法</span><br><span class="hljs-comment">   */</span><br>  target.<span class="hljs-property">_i</span> = looseIndexOf<br>  <span class="hljs-comment">/**</span><br><span class="hljs-comment">   * 运行时负责生成静态树的 VNode 的帮助程序，完成了以下两件事</span><br><span class="hljs-comment">   *   1、执行 staticRenderFns 数组中指定下标的渲染函数，生成静态树的 VNode 并缓存，下次在渲染时从缓存中直接读取（isInFor 必须为 true）</span><br><span class="hljs-comment">   *   2、为静态树的 VNode 打静态标记</span><br><span class="hljs-comment">   */</span><br>  target.<span class="hljs-property">_m</span> = renderStatic<br>  target.<span class="hljs-property">_f</span> = resolveFilter<br>  target.<span class="hljs-property">_k</span> = checkKeyCodes<br>  target.<span class="hljs-property">_b</span> = bindObjectProps<br>  <span class="hljs-comment">/**</span><br><span class="hljs-comment">   * 为文本节点创建 VNode</span><br><span class="hljs-comment">   */</span><br>  target.<span class="hljs-property">_v</span> = createTextVNode<br>  <span class="hljs-comment">/**</span><br><span class="hljs-comment">   * 为空节点创建 VNode</span><br><span class="hljs-comment">   */</span><br>  target.<span class="hljs-property">_e</span> = createEmptyVNode<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><h3 id="一个组件是如何变成-VNode？"><a href="#一个组件是如何变成-VNode？" class="headerlink" title="一个组件是如何变成 VNode？"></a>一个组件是如何变成 VNode？</h3><ul>
+<li>组件实例初始化，最后执行 $mount 进入挂载阶段</li>
+<li>如果是只包含运行时的 vue.js，只直接进入挂载阶段，因为这时候的组件已经变成了渲染函数，编译过程通过模块打包器 + vue-loader + vue-template-compiler 完成的</li>
+<li>如果没有使用预编译，则必须使用全量的 vue.js</li>
+<li>挂载时如果发现组件配置项上没有 render 选项，则进入编译阶段</li>
+<li>将模版字符串编译成 AST 语法树，其实就是一个普通的 JS 对象</li>
+<li>然后优化 AST，遍历 AST 对象，标记每一个节点是否为静态静态；然后再进一步标记出静态根节点，在组件后续更新时会跳过这些静态节点的更新，以提高性能</li>
+<li>接下来从 AST 生成渲染函数，生成的渲染函数有两部分组成：<ul>
+<li>负责生成动态节点 VNode 的 render 函数</li>
+<li>还有一个 staticRenderFns 数组，里面每一个元素都是一个生成静态节点 VNode 的函数，这些函数会作为 render 函数的组成部分，负责生成静态节点的 VNode</li>
+</ul>
+</li>
+<li>接下来将渲染函数放到组件的配置对象上，进入挂载阶段，即执行 mountComponent 方法</li>
+<li>最终负责渲染组件和更新组件的是一个叫 updateComponent 方法，该方法每次执行前首先需要执行 vm._render 函数，该函数负责执行编译器生成的 render，得到组件的 VNode</li>
+<li>将一个组件生成 VNode 的具体工作是由 render 函数中的 <code>_c、_o、_l、_m</code> 等方法完成的，这些方法都被挂载到 Vue 实例上面，负责在运行时生成组件 VNode</li>
+</ul>
+<blockquote>
+<p>下面说的有点多，其实记住一句就可以了，设置组件配置信息，然后通过 <code>new VNode(组件信息)</code> 生成组件的 VNode</p>
+</blockquote>
+<ul>
+<li>_c，负责生成组件或 HTML 元素的 VNode，_c 是所有 render helper 方法中最复杂，也是最核心的一个方法，其它的 _xx 都是它的组成部分<ul>
+<li>接收标签、属性 JSON 字符串、子节点数组、节点规范化类型作为参数</li>
+<li>如果标签是平台保留标签或者一个未知的元素，则直接 <code>new VNode(标签信息)</code> 得到 VNode</li>
+<li>如果标签是一个组件，则执行 createComponent 方法生成 VNode<ul>
+<li>函数式组件执行自己的 render 函数生成 VNode</li>
+<li>普通组件则实例化一个 VNode，并且在在 data.hook 对象上设置 4 个方法，在组件的 patch 阶段会被调用，从而进入子组件的实例化、挂载阶段，然后进行编译生成渲染函数，直至完成渲染</li>
+<li>当然生成 VNode 之前会进行一些配置处理比如：<ul>
+<li>子组件选项合并，合并全局配置项到组件配置项上</li>
+<li>处理自定义组件的 v-model</li>
+<li>处理组件的 props，提取组件的 props 数据，以组件的 props 配置中的属性为 key，父组件中对应的数据为 value 生成一个 propsData 对象；当组件更新时生成新的 VNode，又会进行这一步，这就是 props 响应式的原理</li>
+<li>处理其它数据，比如监听器</li>
+<li>安装内置的 init、prepatch、insert、destroy 钩子到 data.hooks 对象上，组件 patch 阶段会用到这些钩子方法</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>_l，运行时渲染 v-for 列表的帮助函数，循环遍历 val 值，依次为每一项执行 render 方法生成 VNode，最终返回一个 VNode 数组</li>
+<li>_m，负责生成静态节点的 VNode，即执行 staticRenderFns 数组中指定下标的函数</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6963048982079602696">https://juejin.cn/post/6963048982079602696</a></p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Vue/" class="category-chain-item">Vue</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Vue/Vue%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/" class="category-chain-item">Vue源码解读</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>9.【转载】render helper</div>
+      <div>http://example.com/2022/10/26/9-render-helper/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>October 26, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/10/26/10-patch/" title="10.patch">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">10.patch</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/10/26/8-%E7%BC%96%E8%AF%91%E5%99%A8/" title="8.编译器">
+                        <span class="hidden-mobile">8.编译器</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+    
+      
+            
+                  
+</div>
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
