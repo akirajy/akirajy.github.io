@@ -24,7 +24,7 @@
 <meta property="og:description" content="dep.notify()1234567891011&#x2F;** * 通知 dep 中的所有 watcher，执行 watcher.update() 方法 *&#x2F;notify () &amp;#123;  &#x2F;&#x2F; stabilize the subscriber list first  const subs &#x3D; this.subs.slice()  &#x2F;&#x2F; 遍历 dep 中存储的 watcher，执行 watcher.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-10-23T09:33:31.000Z">
-<meta property="article:modified_time" content="2022-10-26T01:54:58.973Z">
+<meta property="article:modified_time" content="2022-10-28T01:52:08.564Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -291,7 +291,7 @@
 <p>如果此时浏览器的异步任务队列中没有一个叫 flushCallbacks 的函数，则执行 timerFunc 函数，将 flushCallbacks 函数放入异步任务队列。如果异步任务队列中已经存在 flushCallbacks 函数，等待其执行完成以后再放入下一个 flushCallbacks 函数。</p>
 <p>flushCallbacks 函数负责执行 callbacks 数组中的所有 flushSchedulerQueue 函数。</p>
 <p>flushSchedulerQueue 函数负责刷新 watcher 队列，即执行 queue 数组中每一个 watcher 的 run 方法，从而进入更新阶段，比如执行组件更新函数或者执行用户 watch 的回调函数。</p>
-<h2 id="Vue-的-nextTick-API-是如何实现的？"><a href="#Vue-的-nextTick-API-是如何实现的？" class="headerlink" title="Vue 的 nextTick API 是如何实现的？"></a>Vue 的 nextTick API 是如何实现的？</h2><p>Vue.nextTick 或者 vm.$nextTick 的原理其实很简单，就做了两件事：</p>
+<h3 id="Vue-的-nextTick-API-是如何实现的？"><a href="#Vue-的-nextTick-API-是如何实现的？" class="headerlink" title="Vue 的 nextTick API 是如何实现的？"></a>Vue 的 nextTick API 是如何实现的？</h3><p>Vue.nextTick 或者 vm.$nextTick 的原理其实很简单，就做了两件事：</p>
 <ul>
 <li>将传递的回调函数用 <code>try catch</code> 包裹然后放入 callbacks 数组</li>
 <li>执行 timerFunc 函数，在浏览器的异步任务队列放入一个刷新 callbacks 数组的函数</li>

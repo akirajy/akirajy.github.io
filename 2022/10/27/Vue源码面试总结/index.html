@@ -1,0 +1,775 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="new Vue 阶段做了什么回答首先执行 vue.prototype._init，这个方法在 initMixin 中被绑定到 vue 原型上。在 _init 方法中，vue 实例首先会进行配置合并，然后进行一系列的初始化，包括 initLifeCycle，initEvents，initRender，然后执行 beforeCreate 生命周期钩子，之后再进行数据的初始化，包括 initInject">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue源码面试总结">
+<meta property="og:url" content="http://example.com/2022/10/27/Vue%E6%BA%90%E7%A0%81%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="new Vue 阶段做了什么回答首先执行 vue.prototype._init，这个方法在 initMixin 中被绑定到 vue 原型上。在 _init 方法中，vue 实例首先会进行配置合并，然后进行一系列的初始化，包括 initLifeCycle，initEvents，initRender，然后执行 beforeCreate 生命周期钩子，之后再进行数据的初始化，包括 initInject">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/460de18afa1a42a898fdc0bb66e13d30~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image">
+<meta property="og:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5fab17ec93a14bd68ac207bbec32b45d~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image">
+<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/193dd5f84d0c4b7b8031e1091780ea97~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image">
+<meta property="og:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/da708cef420e484083aa9ff09bf27858~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image">
+<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/44ed5229550e4bff980cf5b91f725136~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image">
+<meta property="og:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0d7934355e944f7a9413946bc0092eba~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image">
+<meta property="og:image" content="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6cbc1e33d2634d9b88357aed5bda3ba8~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/eb6fb861ba10489aa68c6d783b699d38~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image">
+<meta property="og:image" content="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/574c7331004b4ffb9c97afd5428cdff0~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4232c7cb54ed4755941311a749270cdf~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8de98b5850214a24a461d1a7e9824ea1~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image">
+<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6c8135411a0640a5adb5cf5844afd5f7~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image">
+<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c214208f8d564816b36cbab7d7c02d6b~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d3d35dcd6ec1495181f86f039066fde3~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4138a76c14fe48aabc3fddb2adea2436~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="article:published_time" content="2022-10-27T09:37:22.000Z">
+<meta property="article:modified_time" content="2022-10-28T08:03:51.746Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/460de18afa1a42a898fdc0bb66e13d30~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image">
+  
+  
+  
+  <title>Vue源码面试总结 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"qPzYEpTngSrzQtV1XpsPSmPm-gzGzoHsz","app_key":"kf4lqne4FqonWhpUQzS1Ffrx","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>JY BLOG</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Vue源码面试总结"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-10-27 17:37" pubdate>
+          October 27, 2022 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.1k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          43 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span>次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Vue源码面试总结</h1>
+            
+            <div class="markdown-body">
+              
+              <h2 id="new-Vue-阶段做了什么"><a href="#new-Vue-阶段做了什么" class="headerlink" title="new Vue 阶段做了什么"></a>new Vue 阶段做了什么</h2><h3 id="回答"><a href="#回答" class="headerlink" title="回答"></a>回答</h3><p>首先执行 vue.prototype._init，这个方法在 initMixin 中被绑定到 vue 原型上。在 _init 方法中，vue 实例首先会进行配置合并，然后进行一系列的初始化，包括 initLifeCycle，initEvents，initRender，然后执行 beforeCreate 生命周期钩子，之后再进行数据的初始化，包括 initInjections，initState，initProvide，再调用 created 钩子，这也就是为什么无法在 beforeCreate 时还没有数据响应式的原因。之后就进入挂载阶段，如果有 el ，就自动调用 $mount 进入挂载阶段，否则需要手动挂载。(见 2-Vue初始化 )</p>
+<p>挂载时，如果是运行时的 Vue 包，会通过打包器结合 vue-loader 进行预编译，将模板编译成 render 函数，所以它是可以直接去挂载的，因为它有 render 函数。而如果是全量包，并且组件配置项上没有 render, 那么就会先进入编译阶段，编译阶段只做一件事，就是编译得到 render 函数，并将其设置到 this.$options 上。核心函数叫 baseCompile，里面调用了三个函数，parse&#x2F;optimize&#x2F;generate，parse 将 html 模板解析成 ast，optimize 对 ast 进行静态标记，主要是用来优化 patch 或者说是优化 diff 算法的，因为静态的节点不会改变，没有必要走一遍对比新旧节点。generate 通过 ast 生成渲染函数。组件的配置对象上有 render 函数了，就可以真正进入挂载阶段了，挂载阶段会调用 mountComponent 函数，这个函数实例化了渲染 watcher，定义了一个 updateComponent 函数并传给了渲染 watcher，渲染 watcher 中执行 get 触发了 updateComponent 函数，而 updateComponent 这个方法它会调用 vm._update ，而且第一个参数就会执行 _render，_render 中会执行 createElement，生成 vnode，所以 vnode 就有了，而且作为参数传给了 _update，这个函数就是用来渲染页面的，它会调用 patch 函数，实现页面的首次渲染或者页面的更新。在 patch 函数中，注意如果有子组件的话，就需要再走一边 new Vue 的流程，生成子组件。而有子节点的话，就要递归的调用 createElm 和 createChildren，去创建节点。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> <span class="hljs-title function_">updateComponent</span> = (<span class="hljs-params"></span>) =&gt; &#123;<br>  <span class="hljs-comment">// 执行 vm._render() 函数，得到 VNode，并将 VNode 传递给 _update 方法，接下来就该到 patch 阶段了</span><br>  vm.<span class="hljs-title function_">_update</span>(vm.<span class="hljs-title function_">_render</span>(), hydrating)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a><strong>流程图</strong></h3><h4 id="普通-DOM-元素渲染到页面"><a href="#普通-DOM-元素渲染到页面" class="headerlink" title="普通 DOM 元素渲染到页面"></a><strong>普通 DOM 元素渲染到页面</strong></h4><p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/460de18afa1a42a898fdc0bb66e13d30~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image" srcset="/img/loading.gif" lazyload alt="patch.png"></p>
+<h4 id="组件相比普通-DOM-元素不一样的两步"><a href="#组件相比普通-DOM-元素不一样的两步" class="headerlink" title="组件相比普通 DOM 元素不一样的两步"></a><strong>组件相比普通 DOM 元素不一样的两步</strong></h4><ol>
+<li>执行 render，render 执行 createElement，根据传入的 tag 参数辨别，是普通 DOM 元素还是组件，调用不同的方法。</li>
+</ol>
+<ul>
+<li>普通 DOM 元素：tag是html的保留标签，如<code>tag: &#39;div&#39;</code></li>
+<li>组件：tag是以<code>vue-component</code>开头，如<code>tag: &#39;vue-component-1-App&#39;</code></li>
+</ul>
+<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5fab17ec93a14bd68ac207bbec32b45d~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image" srcset="/img/loading.gif" lazyload alt="组件VNode.png"></p>
+<p>2.如果是子组件的话，需要 new 子组件，再重新走一遍整个过程</p>
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/193dd5f84d0c4b7b8031e1091780ea97~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image" srcset="/img/loading.gif" lazyload alt="patch组件.png"></p>
+<h4 id="简单版流程图"><a href="#简单版流程图" class="headerlink" title="简单版流程图"></a><strong>简单版流程图</strong></h4><p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/da708cef420e484083aa9ff09bf27858~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image" srcset="/img/loading.gif" lazyload alt="组件化简化.png"></p>
+<h2 id="响应式原理"><a href="#响应式原理" class="headerlink" title="响应式原理"></a>响应式原理</h2><h3 id="回答-1"><a href="#回答-1" class="headerlink" title="回答"></a>回答</h3><p>在 new Vue 时，vue 初始化的时候会调用 initState，在 initState 中会依次调用，initProps、initMethods、initData、initComputed、initWatch，这个顺序是固定的，因为存在优先级，一些属性是不能重复的，后面的函数会做判断，来避免重复的情况。</p>
+<p>在具体的 init 函数中，我主要说一下 data 吧，首先 data 会做一个判重，避免和 props 以及 methods 的属性重复。然后会调用定义好的 proxy 函数将 data 中的数据代理到 vue 实例上，以便于通过 this.key 去访问。最后调用 observe 函数，传入data，给数据设置响应式。observe 函数就是数据响应式的入口，在 observe 函数里面会 new 一个 Observer，Observer 是一个观察者类，在构造函数中，会判断传进来的是数组还是对象。</p>
+<p>如果是对象的话，会调用 walk 函数，遍历所有键，调用 defineReactive，在 defineReactive 中，首先会做一个递归处理，因为响应式是深层的嘛，不过不是递归调用自身 （defineReactive）而是调用 observe，传入值，再 new Observer，再调用 defineReactive，可以说是三个函数的循环递归。defineReactive 递归后，通过 object.defineProperty 设置 getter 和 setter，这也是真正响应式的核心，getter 中 会通过 dep.depend 做依赖收集，dep 添加到 watcher 中，watcher 也添加到 dep 中，dep 实际上就是 object.key。setter 中首先做一些处理，判断新值和老值是不是一样，判断属性是不是只读，处理完毕才会设置新值，然后对新值调用 observe，让新值也是响应式的，然后调用 dep.notify 通知依赖更新。</p>
+<p>如果是数组的话，首先会改写数组原型上的方法，因为这些方法都可以改变数组。然后会调用 observeArray 函数，对数组的每一项调用 observe，总归是又回到了 observe，后面的流程其实和对象差不多。对于数组原型方法的改写其实也比较简单，再执行原生的方法之后，需要判断该方法，是不是 push&#x2F;unshift&#x2F;splice，如果是的话，就代表插入了新元素，需要调用 observeArray 对新元素做响应式处理，然后notify 通知更新。</p>
+<h3 id="依赖收集"><a href="#依赖收集" class="headerlink" title="依赖收集"></a>依赖收集</h3><h4 id="1-三个核心对象-Observer、Dep、Watcher"><a href="#1-三个核心对象-Observer、Dep、Watcher" class="headerlink" title="1.三个核心对象 Observer、Dep、Watcher"></a>1.三个核心对象 Observer、Dep、Watcher</h4><p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/44ed5229550e4bff980cf5b91f725136~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image" srcset="/img/loading.gif" lazyload alt="依赖收集三大OBject.png"></p>
+<h4 id="2-依赖收集准备阶段——Observer、Dep的实例化"><a href="#2-依赖收集准备阶段——Observer、Dep的实例化" class="headerlink" title="2.依赖收集准备阶段——Observer、Dep的实例化"></a>2.依赖收集准备阶段——Observer、Dep的实例化</h4><p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0d7934355e944f7a9413946bc0092eba~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image" srcset="/img/loading.gif" lazyload alt="依赖收集-新.png"></p>
+<h4 id="依赖收集触发阶段——Wather实例化、访问数据、触发依赖收集"><a href="#依赖收集触发阶段——Wather实例化、访问数据、触发依赖收集" class="headerlink" title="依赖收集触发阶段——Wather实例化、访问数据、触发依赖收集"></a>依赖收集触发阶段——Wather实例化、访问数据、触发依赖收集</h4><p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6cbc1e33d2634d9b88357aed5bda3ba8~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image" srcset="/img/loading.gif" lazyload alt="依赖收集触发阶段.png"></p>
+<h4 id="整体流程"><a href="#整体流程" class="headerlink" title="整体流程"></a>整体流程</h4><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/eb6fb861ba10489aa68c6d783b699d38~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image" srcset="/img/loading.gif" lazyload alt="依赖收集宏观.png"></p>
+<h3 id="派发更新"><a href="#派发更新" class="headerlink" title="派发更新"></a>派发更新</h3><p>1.对象属性修改触发set，派发更新。<code>this.msg = &#39;new val&#39;</code></p>
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/574c7331004b4ffb9c97afd5428cdff0~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image" srcset="/img/loading.gif" lazyload alt="obj派发更新.png"></p>
+<p>2.数组调用方法。<code>this.arr.push(4)</code></p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4232c7cb54ed4755941311a749270cdf~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image" srcset="/img/loading.gif" lazyload alt="数组派发更新.png"></p>
+<h2 id="computed-和-watcher"><a href="#computed-和-watcher" class="headerlink" title="computed 和 watcher"></a>computed 和 watcher</h2><h2 id="nextTick-的原理"><a href="#nextTick-的原理" class="headerlink" title="nextTick 的原理"></a>nextTick 的原理</h2><p>首先讲一下流程：</p>
+<p>1.nextTick 会将传入的函数做一个包装然后放到 callbacks 数组里，这个包装主要是针对没传入回调以及回调错误捕获。</p>
+<p>2.如果当前没有其它 nextTick 在执行的话，就会调用 timerFunc 函数，会根据环境，做一个兼容性判断，选择某一种异步执行的方法调用 flushCallbacks 函数。优先级是 promise.then &gt; object.observe &gt; setImmediate &gt; setTimeout。（因为 timerFunc 是异步的，同时只能执行一个）</p>
+<p>3.flushCallbacks 遍历 callbacks 执行其中每一个回调。这里注意，源码里对 callbacks 做了一个拷贝，因为执行回调的过程中，可能会触发新的 nextTick，会将新的回调 push 入 callbacks，这样可能就会一直循环下去。因此nextTick 回调中的 nextTick 应该放在下一轮执行。</p>
+<p>然后注意，并不是只有手动调用 vm.$nextTick 时才会触发 nextTick。实际上 vue 采用的是异步更新策略，也就是说当监听到数据变化的时候不会立即更新 DOM。更新后会调用 setter 里的 dep.notify()，dep.notify() 会遍历 dep 中的 watcher，执行 watcher.update()。在 update 中，会判断 watcher.sync，如果是 true，就调用 run 函数，直接同步更新，否则走异步更新，调用 queueWatcher，将 watcher 入队，然后判断队内是否有刷新函数，如果没有的话，就是用 nextTick 将 watcher 的更新函数放入 callbacks 数组里。然后就是 nextTick 的流程了。</p>
+<h3 id="流程图-1"><a href="#流程图-1" class="headerlink" title="流程图"></a>流程图</h3><h4 id="nextTick"><a href="#nextTick" class="headerlink" title="nextTick"></a>nextTick</h4><p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8de98b5850214a24a461d1a7e9824ea1~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image" srcset="/img/loading.gif" lazyload alt="tick——pending.png"></p>
+<h4 id="Vue-异步更新"><a href="#Vue-异步更新" class="headerlink" title="Vue 异步更新"></a>Vue 异步更新</h4><h5 id="改变一个属性值会发生什么"><a href="#改变一个属性值会发生什么" class="headerlink" title="改变一个属性值会发生什么"></a>改变一个属性值会发生什么</h5><p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6c8135411a0640a5adb5cf5844afd5f7~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image" srcset="/img/loading.gif" lazyload alt="obj派发更新.png"></p>
+<h5 id="异步更新流程"><a href="#异步更新流程" class="headerlink" title="异步更新流程"></a>异步更新流程</h5><p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c214208f8d564816b36cbab7d7c02d6b~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image" srcset="/img/loading.gif" lazyload alt="异步更新.png"></p>
+<h2 id="patch-x2F-diff-算法"><a href="#patch-x2F-diff-算法" class="headerlink" title="patch &#x2F; diff 算法"></a>patch &#x2F; diff 算法</h2><p>diff 算法只是一种寻找差异的算法，不同框架有不同实现。</p>
+<p>Vue2 使用的是修改版的 snabbdom 算法，</p>
+<p>首先，patch 是在 _update 方法中被调用的，它有三个作用，首次渲染、页面更新、销毁组件。会将 新老 VNode 传给 patch，进行一些判断，如果新 VNode 不存在，老 VNode 存在，那么就销毁老节点。如果新 VNode 存在 而 老 VNode 不存在，那就是首次渲染，创建 DOM 树。如果老 VNode 存在，新 VNode 也存在，那么就进入更新阶段，执行 <strong>patchVNode</strong>，首先全量更新所有的属性，然后会进行一些判断，新 VNode 有没有 text，新 VNode 有没有孩子，老 VNode 有没有孩子，不同情况处理方式不一样，比较核心的是新老节点都有孩子的情况，要执行 <strong>updateChildren</strong>，在这个函数中基于前端一般不会完全打乱节点顺序的情况做了一些小优化，会有首尾双指针做双端比较，比较首首、尾尾、首尾、尾首是不是相同节点，通过 <strong>sameVNode</strong> 函数，在其中会进行判断，包括但不仅限于 key，还有 tag 、包括 input 标签 的 type 属性是不是一样等等。如果命中的话，就可以节省一次遍历的开销，如果没有命中，就建一个哈希表，将老孩子首指针和尾指针之间的元素的 key 和 index 存到这个哈希表里 ，然后就可以通过这个哈希表来找相同节点，找到相同节点再递归 patchVNode。</p>
+<p>patch 或者说 diff 算法的流程就是这样，其中核心就在两点，一个就是 sameVNode 用于节点复用，一个就是 updateChildren，因为一棵组件树有大量的子元素，所以 updateChildren 这个方法是会被反复调用的，那这个双端比较的优化其实是非常关键的。此外，key 也很关键，它是判断节点是否能复用的核心标识。</p>
+<p>Vue3 使用 inferno 算法代替了 snabbdom，我没有具体去读过源码，但是知道它是基于最长上升子序列的思想，所以它的复杂度是 O(nlogn) 的，低于 snabbdom 的 O(n)，但是它可以节省不少 DOM 移动操作，因为在算法中会去考虑怎么移动才能使操作次数最少。</p>
+<p>inferno 的例子</p>
+<p>abc<br>cab<br>其实我们发现新的vdom的index数组是[2,0,1],<br>我们求出递增子序列，发现我们只需要移动2这个index就行。</p>
+<p><strong>patchVNode</strong></p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d3d35dcd6ec1495181f86f039066fde3~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>updateChildren</strong></p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4138a76c14fe48aabc3fddb2adea2436~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p><strong>sameVNode</strong></p>
+<p><code>sameVnode</code> 函数中包含了两个节点属于相同类型的条件，这是节点能够复用的门槛。Vue2 将 key 作为判断的标识之一，这也是为什么我们说 v-for 一定也写上 key。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// Vue2 中 sameVnode 源码</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">sameVnode</span> (a, b) &#123;<br>  <span class="hljs-keyword">return</span> (<br>    a.<span class="hljs-property">key</span> === b.<span class="hljs-property">key</span> &amp;&amp; <span class="hljs-comment">// key 值的判断</span><br>    a.<span class="hljs-property">asyncFactory</span> === b.<span class="hljs-property">asyncFactory</span> &amp;&amp; (<br>      (<br>        a.<span class="hljs-property">tag</span> === b.<span class="hljs-property">tag</span> &amp;&amp; <span class="hljs-comment">// 标签名的判断</span><br>        a.<span class="hljs-property">isComment</span> === b.<span class="hljs-property">isComment</span> &amp;&amp;<br>        <span class="hljs-title function_">isDef</span>(a.<span class="hljs-property">data</span>) === <span class="hljs-title function_">isDef</span>(b.<span class="hljs-property">data</span>) &amp;&amp;<br>        <span class="hljs-title function_">sameInputType</span>(a, b) <span class="hljs-comment">// input 标签 type 的判断</span><br>      ) || (<br>        <span class="hljs-title function_">isTrue</span>(a.<span class="hljs-property">isAsyncPlaceholder</span>) &amp;&amp;<br>        <span class="hljs-title function_">isUndef</span>(b.<span class="hljs-property">asyncFactory</span>.<span class="hljs-property">error</span>)<br>      )<br>    )<br>  )<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>vue 响应式原理</p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7074422512318152718">https://juejin.cn/post/7074422512318152718</a></p>
+<p>nextTick</p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7077181211029798942">https://juejin.cn/post/7077181211029798942</a></p>
+<p>patch&#x2F;diff</p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7143172056211783688">https://juejin.cn/post/7143172056211783688</a></p>
+<p>Inferno</p>
+<p><a target="_blank" rel="noopener" href="https://www.proyy.com/6960514069065531405.html">https://www.proyy.com/6960514069065531405.html</a></p>
+<p>不同 diff 算法</p>
+<p><a target="_blank" rel="noopener" href="https://www.wangt.cc/2021/03/%E5%87%A0%E7%A7%8Ddiff%E7%AE%97%E6%B3%95/">https://www.wangt.cc/2021/03/%E5%87%A0%E7%A7%8Ddiff%E7%AE%97%E6%B3%95/</a></p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Vue/" class="category-chain-item">Vue</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Vue/Vue%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/" class="category-chain-item">Vue源码解读</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Vue源码面试总结</div>
+      <div>http://example.com/2022/10/27/Vue源码面试总结/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>October 27, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/10/26/10-patch/" title="10.patch">
+                        <span class="hidden-mobile">10.patch</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+    
+      
+            
+                  
+</div>
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
