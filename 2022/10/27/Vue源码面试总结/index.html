@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d3d35dcd6ec1495181f86f039066fde3~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
 <meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4138a76c14fe48aabc3fddb2adea2436~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
 <meta property="article:published_time" content="2022-10-27T09:37:22.000Z">
-<meta property="article:modified_time" content="2022-10-28T08:03:51.746Z">
+<meta property="article:modified_time" content="2022-10-30T04:08:34.377Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/460de18afa1a42a898fdc0bb66e13d30~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image">
@@ -232,7 +232,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.1k words
+          5.2k words
         
       </span>
     
@@ -243,7 +243,7 @@
         
         
         
-          43 mins
+          44 mins
         
       </span>
     
@@ -323,7 +323,8 @@
 <p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/574c7331004b4ffb9c97afd5428cdff0~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image" srcset="/img/loading.gif" lazyload alt="obj派发更新.png"></p>
 <p>2.数组调用方法。<code>this.arr.push(4)</code></p>
 <p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4232c7cb54ed4755941311a749270cdf~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.image" srcset="/img/loading.gif" lazyload alt="数组派发更新.png"></p>
-<h2 id="computed-和-watcher"><a href="#computed-和-watcher" class="headerlink" title="computed 和 watcher"></a>computed 和 watcher</h2><h2 id="nextTick-的原理"><a href="#nextTick-的原理" class="headerlink" title="nextTick 的原理"></a>nextTick 的原理</h2><p>首先讲一下流程：</p>
+<h2 id="computed-和-watcher"><a href="#computed-和-watcher" class="headerlink" title="computed 和 watcher"></a>computed 和 watcher</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7074422512318152718#heading-8">https://juejin.cn/post/7074422512318152718#heading-8</a></p>
+<h2 id="nextTick-的原理"><a href="#nextTick-的原理" class="headerlink" title="nextTick 的原理"></a>nextTick 的原理</h2><p>首先讲一下流程：</p>
 <p>1.nextTick 会将传入的函数做一个包装然后放到 callbacks 数组里，这个包装主要是针对没传入回调以及回调错误捕获。</p>
 <p>2.如果当前没有其它 nextTick 在执行的话，就会调用 timerFunc 函数，会根据环境，做一个兼容性判断，选择某一种异步执行的方法调用 flushCallbacks 函数。优先级是 promise.then &gt; object.observe &gt; setImmediate &gt; setTimeout。（因为 timerFunc 是异步的，同时只能执行一个）</p>
 <p>3.flushCallbacks 遍历 callbacks 执行其中每一个回调。这里注意，源码里对 callbacks 做了一个拷贝，因为执行回调的过程中，可能会触发新的 nextTick，会将新的回调 push 入 callbacks，这样可能就会一直循环下去。因此nextTick 回调中的 nextTick 应该放在下一轮执行。</p>
@@ -444,6 +445,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2022/11/01/%E4%BD%BF%E7%94%A8ui%E5%BA%93%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/" title="使用组件库时遇到的一些问题">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">使用组件库时遇到的一些问题</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

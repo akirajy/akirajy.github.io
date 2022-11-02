@@ -1,0 +1,1047 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Blob什么是 Blobbinary large object 二进制大对象 Blob 对象表示一个不可变、原始数据的类文件对象。它的数据可以按文本或二进制的格式进行读取，也可以转换成 ReadableStream 来用于数据操作。 简单来说，Blob 对象就是一个不可修改的二进制文件。     创建 BlobAPI1new Blob(array, options);  array：由 Array">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二进制及文件">
+<meta property="og:url" content="http://example.com/2022/11/02/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%8F%8A%E6%96%87%E4%BB%B6/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Blob什么是 Blobbinary large object 二进制大对象 Blob 对象表示一个不可变、原始数据的类文件对象。它的数据可以按文本或二进制的格式进行读取，也可以转换成 ReadableStream 来用于数据操作。 简单来说，Blob 对象就是一个不可修改的二进制文件。     创建 BlobAPI1new Blob(array, options);  array：由 Array">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2022/11/02/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%8F%8A%E6%96%87%E4%BB%B6/image-20221102144258008.png">
+<meta property="og:image" content="http://example.com/2022/11/02/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%8F%8A%E6%96%87%E4%BB%B6/image-20221102100344363.png">
+<meta property="og:image" content="http://example.com/2022/11/02/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%8F%8A%E6%96%87%E4%BB%B6/image-20221102143245073.png">
+<meta property="og:image" content="http://example.com/2022/11/02/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%8F%8A%E6%96%87%E4%BB%B6/image-20221102104821408.png">
+<meta property="og:image" content="http://example.com/2022/11/02/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%8F%8A%E6%96%87%E4%BB%B6/image-20221102142709530.png">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a7177d40eb374b09bb6413dd44a9212f~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f7f21bcf752940199d5985065baacb92~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/aa83846a988842ad8656a68331207bef~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="og:image" content="http://example.com/2022/11/02/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%8F%8A%E6%96%87%E4%BB%B6/v2-b46fd4abb0531fa97c60c693d3cd0a46_720w.webp">
+<meta property="article:published_time" content="2022-11-02T01:20:45.000Z">
+<meta property="article:modified_time" content="2022-11-02T07:45:31.866Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2022/11/02/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%8F%8A%E6%96%87%E4%BB%B6/image-20221102144258008.png">
+  
+  
+  
+  <title>二进制及文件 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"qPzYEpTngSrzQtV1XpsPSmPm-gzGzoHsz","app_key":"kf4lqne4FqonWhpUQzS1Ffrx","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>JY BLOG</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="二进制及文件"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-11-02 09:20" pubdate>
+          November 2, 2022 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          12k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          101 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span>次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">二进制及文件</h1>
+            
+            <div class="markdown-body">
+              
+              <h2 id="Blob"><a href="#Blob" class="headerlink" title="Blob"></a>Blob</h2><h3 id="什么是-Blob"><a href="#什么是-Blob" class="headerlink" title="什么是 Blob"></a>什么是 Blob</h3><p>binary large object 二进制大对象</p>
+<p>Blob 对象表示一个不可变、原始数据的类文件对象。它的数据可以按文本或二进制的格式进行读取，也可以转换成 <a href="https://link.juejin.cn/?target=https://developer.mozilla.org/zh-CN/docs/Web/API/ReadableStream">ReadableStream</a> 来用于数据操作。</p>
+<p>简单来说，Blob 对象就是一个不可修改的二进制文件。</p>
+<img src="/2022/11/02/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%8F%8A%E6%96%87%E4%BB%B6/image-20221102144258008.png" srcset="/img/loading.gif" lazyload class="" title="image-20221102144258008">
+
+
+
+<h3 id="创建-Blob"><a href="#创建-Blob" class="headerlink" title="创建 Blob"></a>创建 Blob</h3><h4 id="API"><a href="#API" class="headerlink" title="API"></a>API</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">new</span> <span class="hljs-title class_">Blob</span>(array, options);<br></code></pre></td></tr></table></figure>
+
+<p><code>array</code>：由 <code>ArrayBuffer</code>、<code>ArrayBufferView</code>、<code>Blob</code>、<code>DOMString</code> 等对象构成的，将会被放进 <code>Blob</code>；</p>
+<p><code>options</code>：配置项</p>
+<ul>
+<li><code>type</code>：默认值为 “”，表示将会被放入到 <code>blob</code> 中的数组内容的 <strong>MIME 类型</strong>。</li>
+<li><code>endings</code>：默认值为”<code>transparent</code>“，用于指定包含行结束符<code>\n</code>的字符串如何被写入，不常用。</li>
+</ul>
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> blob = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Blob</span>([<span class="hljs-string">&quot;Hello World&quot;</span>], &#123;<span class="hljs-attr">type</span>: <span class="hljs-string">&quot;text/plain&quot;</span>&#125;);<br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(blob.<span class="hljs-property">size</span>); <span class="hljs-comment">// 11</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(blob.<span class="hljs-property">type</span>); <span class="hljs-comment">// &quot;text/plain&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>这里可以成为动态文件创建，其正在创建一个类似文件的对象。这个 blob 对象上有两个属性：</p>
+<ul>
+<li><code>size</code>：Blob对象中所包含数据的大小（字节）；</li>
+<li><code>type</code>：字符串，认为该Blob对象所包含的 MIME 类型。如果类型未知，则为空字符串。</li>
+</ul>
+<p>字符串”Hello World”是 UTF-8 编码的，因此它的每个字符占用 1 个字节。</p>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>可以使用 URL.createObjectURL() 方法将将其转化为一个 URL，并在 Iframe 中加载：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">iframe</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">iframe</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> iframe = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementsByTagName</span>(<span class="hljs-string">&quot;iframe&quot;</span>)[<span class="hljs-number">0</span>];<br><br><span class="hljs-keyword">const</span> blob = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Blob</span>([<span class="hljs-string">&quot;Hello World&quot;</span>], &#123;<span class="hljs-attr">type</span>: <span class="hljs-string">&quot;text/plain&quot;</span>&#125;);<br><br>iframe.<span class="hljs-property">src</span> = <span class="hljs-variable constant_">URL</span>.<span class="hljs-title function_">createObjectURL</span>(blob);<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="Blob-切片"><a href="#Blob-切片" class="headerlink" title="Blob 切片"></a>Blob 切片</h3><p>Blob 对象内置了 slice() 方法用来将 blob 对象分片。</p>
+<p>我们无法直接在 <code>Blob</code> 中更改数据，但我们可以通过 <code>slice</code> 获得 <code>Blob</code> 的多个部分，从这些部分创建新的 <code>Blob</code> 对象，将它们组成新的 <code>Blob</code>。类似 js 字符串。</p>
+<h4 id="API-1"><a href="#API-1" class="headerlink" title="API"></a>API</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> blob = instanceOfBlob.<span class="hljs-title function_">slice</span>([start [, end [, contentType]]]&#125;;<br></code></pre></td></tr></table></figure>
+
+<p><code>start</code>：设置切片的起点，即切片开始位置。默认值为 0，这意味着切片应该从第一个字节开始；</p>
+<p><code>end</code>：设置切片的结束点，会对该位置之前的数据进行切片。默认值为<code>blob.size</code>；</p>
+<p><code>contentType</code>：设置新 blob 的 MIME 类型。如果省略 type，则默认为 blob 的原始值。</p>
+<h4 id="实例-1"><a href="#实例-1" class="headerlink" title="实例"></a>实例</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> iframe = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementsByTagName</span>(<span class="hljs-string">&quot;iframe&quot;</span>)[<span class="hljs-number">0</span>];<br><br><span class="hljs-keyword">const</span> blob = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Blob</span>([<span class="hljs-string">&quot;Hello World&quot;</span>], &#123;<span class="hljs-attr">type</span>: <span class="hljs-string">&quot;text/plain&quot;</span>&#125;);<br><br><span class="hljs-keyword">const</span> subBlob = blob.<span class="hljs-title function_">slice</span>(<span class="hljs-number">0</span>, <span class="hljs-number">5</span>);<br><br>iframe.<span class="hljs-property">src</span> = <span class="hljs-variable constant_">URL</span>.<span class="hljs-title function_">createObjectURL</span>(subBlob);<br></code></pre></td></tr></table></figure>
+
+<p>页面显示 Hello</p>
+<h2 id="File"><a href="#File" class="headerlink" title="File"></a>File</h2><h3 id="什么是-File"><a href="#什么是-File" class="headerlink" title="什么是 File"></a>什么是 File</h3><p>文件（File）接口提供有关文件的信息，并允许网页中的 JavaScript 访问其内容。</p>
+<p>实际上，<strong>File 对象是特殊类型的 Blob</strong>，且可以用在任意的 Blob 类型的 context 中。Blob 的属性和方法都可以用于 File 对象。</p>
+<p>File 对象中只存在于浏览器环境中，在 Node.js 环境中不存在。</p>
+<p>在 JavaScript 中，主要有两种方法来获取 File 对象：</p>
+<ul>
+<li><code>&lt;input&gt;</code> 元素上选择文件后返回的 FileList 对象；</li>
+<li>文件拖放操作生成的 <code>DataTransfer</code> 对象；</li>
+</ul>
+<p>需要注意的是：<strong>前端无法像原生 APP 一样直接操作本地文件</strong>，否则的话打开个网页就能把用户电脑上的文件偷光了，只能通过用户触发。</p>
+<h3 id="input"><a href="#input" class="headerlink" title="input"></a>input</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;file&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;fileInput&quot;</span> <span class="hljs-attr">multiple</span>=<span class="hljs-string">&quot;multiple&quot;</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>这里给 <code>input</code> 标签添加了三个属性：</p>
+<ul>
+<li><code>type=&quot;file&quot;</code>：指定 <code>input</code> 的输入类型为文件；</li>
+<li><code>id=&quot;fileInput&quot;</code>：指定 <code>input</code> 的唯一 id；</li>
+<li><code>multiple=&quot;multiple&quot;</code>：指定 <code>input</code> 可以同时上传多个文件；</li>
+</ul>
+<p>下面来给 <code>input</code> 标签添加 <code>onchange</code> 事件，当选择文件并上传之后触发：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> fileInput = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;fileInput&quot;</span>);<br><br>fileInput.<span class="hljs-property">onchange</span> = <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(e.<span class="hljs-property">target</span>.<span class="hljs-property">files</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p>当点击上传文件时，控制台就会输出一个 FileList 数组，这个数组的每个元素都是一个 File 对象，一个上传的文件就对应一个 File 对象：</p>
+<img src="/2022/11/02/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%8F%8A%E6%96%87%E4%BB%B6/image-20221102100344363.png" srcset="/img/loading.gif" lazyload class="" title="image-20221102100344363">
+
+
+
+<p>每个 <code>File</code> 对象都包含文件的一些属性，这些属性都继承自 Blob 对象：</p>
+<ul>
+<li><code>lastModified</code>：引用文件最后修改日期，为自1970年1月1日0:00以来的毫秒数；</li>
+<li><code>lastModifiedDate</code>：引用文件的最后修改日期；</li>
+<li><code>name</code>：引用文件的文件名；</li>
+<li><code>size</code>：引用文件的文件大小；</li>
+<li><code>type</code>：文件的媒体类型（MIME）；</li>
+<li><code>webkitRelativePath</code>：文件的路径或 URL。</li>
+</ul>
+<p>通常，我们在上传文件时，可以通过对比 size 属性来限制文件大小，通过对比 type 来限制上传文件的格式等。</p>
+<h3 id="文件拖放"><a href="#文件拖放" class="headerlink" title="文件拖放"></a>文件拖放</h3><p>拖放区域用于响应放置操作并从放置的项目中提取信息。这些是通过 <code>ondrop</code> 和 <code>ondragover</code> 两个 API 实现的。</p>
+<p><strong>例子</strong></p>
+<p>定义放置区域</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;drop-zone&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>添加事件处理程序</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> dropZone = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;drop-zone&quot;</span>);<br><br>dropZone.<span class="hljs-property">ondragover</span> = <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> &#123;<br>    e.<span class="hljs-title function_">preventDefault</span>();<br>&#125;<br><br>dropZone.<span class="hljs-property">ondrop</span> = <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> &#123;<br>    e.<span class="hljs-title function_">preventDefault</span>();<br>    <span class="hljs-keyword">const</span> files = e.<span class="hljs-property">dataTransfer</span>.<span class="hljs-property">files</span>;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(files)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p>当拖放文件到拖放区域时，控制台就会输出一个 FileList 数组，该数组的每一个元素都是一个 <code>File</code> 对象。这个 FileList 数组是从事件参数的 <code>dataTransfer</code> 属性的 <code>files</code> 获取的.</p>
+<p>这里得到的 <code>File</code> 对象和通过 <code>input</code> 标签获得的 <code>File</code> 对象是完全一样的。</p>
+<h2 id="FileReader"><a href="#FileReader" class="headerlink" title="FileReader"></a>FileReader</h2><h3 id="什么是-FileReader"><a href="#什么是-FileReader" class="headerlink" title="什么是 FileReader"></a>什么是 FileReader</h3><p>异步 API，用于读取文件并提取内容以供进一步使用</p>
+<p>FileReader 可以将 Blob 读取为不同的格式。</p>
+<h3 id="创建实例"><a href="#创建实例" class="headerlink" title="创建实例"></a>创建实例</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> reader = <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileReader</span>();<br></code></pre></td></tr></table></figure>
+
+<p>这个对象常用属性如下：</p>
+<ul>
+<li><code>error</code>：表示在读取文件时发生的错误；</li>
+<li><code>result</code>：文件内容。该属性仅在读取操作完成后才有效，数据的格式取决于使用哪个方法来启动读取操作。</li>
+<li>readyState：表示 FileReader 状态的数字</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>常量名</strong></th>
+<th><strong>值</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>EMPTY</td>
+<td>0</td>
+<td>还没有加载任何数据。</td>
+</tr>
+<tr>
+<td>LOADING</td>
+<td>1</td>
+<td>数据正在被加载。</td>
+</tr>
+<tr>
+<td>DONE</td>
+<td>2</td>
+<td>已完成全部的读取请求。</td>
+</tr>
+</tbody></table>
+<h3 id="读取文件"><a href="#读取文件" class="headerlink" title="读取文件"></a>读取文件</h3><ul>
+<li><code>readAsArrayBuffer()</code>：读取指定 Blob 中的内容，完成之后，<code>result</code> 属性中保存的将是被读取文件的 <code>ArrayBuffer</code> 数据对象；</li>
+<li><code>FileReader.readAsBinaryString()</code>：读取指定 Blob 中的内容，完成之后，<code>result</code> 属性中将包含所读取文件的原始二进制数据；</li>
+<li><code>FileReader.readAsDataURL()</code>：读取指定 Blob 中的内容，完成之后，<code>result</code> 属性中将包含一个<code>data: URL</code> 格式的 Base64 字符串以表示所读取文件的内容。</li>
+<li><code>FileReader.readAsText()</code>：读取指定 Blob 中的内容，完成之后，<code>result</code> 属性中将包含一个字符串以表示所读取的文件内容。</li>
+</ul>
+<p>上面这些方法都接受一个要读取的 blob 对象作为参数，读取完之后会将读取的结果放入对象的 <code>result</code> 属性中，只是结果的形式不同。</p>
+<h3 id="事件处理"><a href="#事件处理" class="headerlink" title="事件处理"></a>事件处理</h3><p>FileReader 对象常用的事件如下：</p>
+<ul>
+<li><code>abort</code>：该事件在读取操作被中断时触发；</li>
+<li><code>error</code>：该事件在读取操作发生错误时触发；</li>
+<li><code>load</code>：该事件在读取操作完成时触发；</li>
+<li><code>progress</code>：该事件在读取 Blob 时触发。</li>
+</ul>
+<p>当然，这些方法可以加上前置 on 后在HTML元素上使用，比如<code>onload</code>、<code>onerror</code>、<code>onabort</code>、<code>onprogress</code>。除此之外，由于<code>FileReader</code>对象继承自<code>EventTarget</code>，因此还可以使用 <code>addEventListener()</code> 监听上述事件。</p>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a><strong>例子</strong></h3><h5 id="上传图片并显示在页面上"><a href="#上传图片并显示在页面上" class="headerlink" title="上传图片并显示在页面上"></a><strong>上传图片并显示在页面上</strong></h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;file&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;fileInput&quot;</span> /&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;preview&quot;</span> /&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> fileInput = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;fileInput&quot;</span>);<br><span class="hljs-keyword">const</span> preview = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;preview&quot;</span>);<br><span class="hljs-keyword">const</span> reader = <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileReader</span>();<br><br><span class="hljs-comment">// 上传文件时触发</span><br>fileInput.<span class="hljs-property">onchange</span> = <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> &#123;<br>  <span class="hljs-comment">// 读取为 dataurl 的形式</span><br>  reader.<span class="hljs-title function_">readAsDataURL</span>(e.<span class="hljs-property">target</span>.<span class="hljs-property">files</span>[<span class="hljs-number">0</span>]);<br>&#125;;<br><br><span class="hljs-comment">// reader.readAsDataURL 处理完毕后触发</span><br>reader.<span class="hljs-property">onload</span> = <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> &#123;<br>  preview.<span class="hljs-property">src</span> = e.<span class="hljs-property">target</span>.<span class="hljs-property">result</span>;<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(e.<span class="hljs-property">target</span>.<span class="hljs-property">result</span>);<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+
+
+<h5 id="上传大文件监控进度"><a href="#上传大文件监控进度" class="headerlink" title="上传大文件监控进度"></a><strong>上传大文件监控进度</strong></h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> reader = <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileReader</span>();<br><br>reader.<span class="hljs-property">onprogress</span> = <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> &#123;<br>  <span class="hljs-comment">// progress 事件提供了两个属性：loaded（已读取量）和total（需读取总量）。</span><br>  <span class="hljs-keyword">if</span> (e.<span class="hljs-property">loaded</span> &amp;&amp; e.<span class="hljs-property">total</span>) &#123;<br>    <span class="hljs-keyword">const</span> percent = (event.<span class="hljs-property">loaded</span> / event.<span class="hljs-property">total</span>) * <span class="hljs-number">100</span>;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`上传进度: <span class="hljs-subst">$&#123;<span class="hljs-built_in">Math</span>.round(percent)&#125;</span> %`</span>);<br>  &#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="ArrayBuffer"><a href="#ArrayBuffer" class="headerlink" title="ArrayBuffer"></a>ArrayBuffer</h2><img src="/2022/11/02/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%8F%8A%E6%96%87%E4%BB%B6/image-20221102143245073.png" srcset="/img/loading.gif" lazyload class="" title="image-20221102143245073">
+
+<p>上面4行是 TypedArray，最后一行是 DataView</p>
+<h3 id="什么是-ArrayBuffer"><a href="#什么是-ArrayBuffer" class="headerlink" title="什么是 ArrayBuffer"></a>什么是 ArrayBuffer</h3><p>在处理文件（创建、上传、下载），尤其是图像和音频时，经常会遇到二进制数据。</p>
+<p>ArrayBuffer 对象用来表示对<strong>固定长度</strong>的<strong>连续内存空间的引用</strong>。</p>
+<p>ArrayBuffer 本身就是一个黑盒，不能直接读写所存储的数据，需要借助以下视图对象来读写：</p>
+<ul>
+<li><strong>TypedArray</strong>：用来生成内存的视图，通过9个构造函数，可以生成9种数据格式的视图。</li>
+<li><strong>DataViews</strong>：用来生成内存的视图，可以自定义格式和字节序。</li>
+</ul>
+<p>TypedArray视图和 DataView视图的区别主要是<strong>字节序</strong>，前者的数组成员都是同一个数据类型，后者的数组成员可以是不同的数据类型。</p>
+<p>视图对象本身并不存储任何东西。它是一副“眼镜”，透过它来解释存储在 <code>ArrayBuffer</code> 中的字节。</p>
+<h3 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h3><h4 id="new-ArrayBuffer"><a href="#new-ArrayBuffer" class="headerlink" title="new ArrayBuffer()"></a>new ArrayBuffer()</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayBuffer</span>(bytelength)<br></code></pre></td></tr></table></figure>
+
+<p><code>ArrayBuffer()</code>构造函数可以分配指定字节数量的缓冲区，其参数和返回值如下：</p>
+<ul>
+<li><strong>参数</strong>：它接受一个参数，即 bytelength，表示要创建数组缓冲区的大小（以字节为单位。）；</li>
+<li><strong>返回值</strong>：返回一个新的指定大小的ArrayBuffer对象，内容初始化为0。</li>
+</ul>
+<h4 id=""><a href="#" class="headerlink" title=""></a></h4><h4 id="ArrayBuffer-prototype-byteLength"><a href="#ArrayBuffer-prototype-byteLength" class="headerlink" title="ArrayBuffer.prototype.byteLength"></a>ArrayBuffer.prototype.byteLength</h4><p>只读属性，表示 ArrayBuffer 的 byte 的大小</p>
+<p>ArrayBuffer 构造完成时生成，不可改变</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayBuffer</span>(<span class="hljs-number">16</span>); <br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(buffer.<span class="hljs-property">byteLength</span>);  <span class="hljs-comment">// 16</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="ArrayBuffer-prototype-slice"><a href="#ArrayBuffer-prototype-slice" class="headerlink" title="ArrayBuffer.prototype.slice()"></a>ArrayBuffer.prototype.slice()</h4><p>截取 ArrayBuffer 实例，它返回一个新的 ArrayBuffer ，它的内容是这个 ArrayBuffer 的字节副本。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayBuffer</span>(<span class="hljs-number">16</span>); <br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(buffer.<span class="hljs-title function_">slice</span>(<span class="hljs-number">0</span>, <span class="hljs-number">8</span>));  <span class="hljs-comment">// 16</span><br></code></pre></td></tr></table></figure>
+
+<p>这个方法实际上有两步操作，首先会分配一段指定长度的内存，然后拷贝原来ArrayBuffer对象的置顶部分。</p>
+<h4 id="ArrayBuffer-isView"><a href="#ArrayBuffer-isView" class="headerlink" title="ArrayBuffer.isView()"></a>ArrayBuffer.isView()</h4><p>这个方法就是用来判断参数是否是 TypedArray 实例或者 DataView 实例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayBuffer</span>(<span class="hljs-number">16</span>);<br><span class="hljs-title class_">ArrayBuffer</span>.<span class="hljs-title function_">isView</span>(buffer)   <span class="hljs-comment">// false</span><br><br><span class="hljs-keyword">const</span> view = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint32Array</span>(buffer);<br><span class="hljs-title class_">ArrayBuffer</span>.<span class="hljs-title function_">isView</span>(view)     <span class="hljs-comment">// true</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="TypedArray"><a href="#TypedArray" class="headerlink" title="TypedArray"></a>TypedArray</h2><h3 id="什么是-TypedArray"><a href="#什么是-TypedArray" class="headerlink" title="什么是 TypedArray"></a>什么是 TypedArray</h3><p>TypedArray 对象一共提供 9 种类型的视图，每一种视图都是一种构造函数</p>
+<img src="/2022/11/02/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%8F%8A%E6%96%87%E4%BB%B6/image-20221102104821408.png" srcset="/img/loading.gif" lazyload class="" title="image-20221102104821408">
+
+<p>因此，一个 16 字节 <code>ArrayBuffer</code> 中的二进制数据可以解释为 16 个“小数字”，或 8 个更大的数字（每个数字 2 个字节），或 4 个更大的数字（每个数字 4 个字节），或 2 个高精度的浮点数（每个数字 8 个字节）。</p>
+<img src="/2022/11/02/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%8F%8A%E6%96%87%E4%BB%B6/image-20221102142709530.png" srcset="/img/loading.gif" lazyload class="" title="image-20221102142709530">
+
+
+
+<p>这些构造函数生成的对象统称为 TypedArray 对象。它们和正常的数组很类似，都有<code>length</code> 属性，都能用索引获取数组元素，<strong>所有数组的方法都可以在 TypedArray 上面使用</strong>。</p>
+<p>那类型化数组和数组有什么区别呢？</p>
+<ul>
+<li>类型化数组的元素都是连续的，不会为空；</li>
+<li>类型化数组的所有成员的类型和格式相同；</li>
+<li>类型化数组元素默认值为 0；</li>
+<li>类型化数组本质上只是一个视图层，不会存储数据，数据都存储在更底层的 ArrayBuffer 对象中。</li>
+</ul>
+<h3 id="使用-2"><a href="#使用-2" class="headerlink" title="使用"></a>使用</h3><h4 id="new-TypedArray"><a href="#new-TypedArray" class="headerlink" title="new TypedArray()"></a>new TypedArray()</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">new</span> <span class="hljs-title class_">Int8Array</span>(length);<br><span class="hljs-keyword">new</span> <span class="hljs-title class_">Int8Array</span>(typedArray);<br><span class="hljs-keyword">new</span> <span class="hljs-title class_">Int8Array</span>(object);<br><span class="hljs-keyword">new</span> <span class="hljs-title class_">Int8Array</span>(buffer [, byteOffset [, length]]);<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="BYTES-PER-ELEMENT"><a href="#BYTES-PER-ELEMENT" class="headerlink" title="BYTES_PER_ELEMENT"></a>BYTES_PER_ELEMENT</h4><p>每种视图的构造函数都有一个 <code>BYTES_PER_ELEMENT</code> 属性（实例上也有），表示这种数据类型占据的字节数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs JS"><span class="hljs-title class_">Int8Array</span>.<span class="hljs-property">BYTES_PER_ELEMENT</span> <span class="hljs-comment">// 1</span><br><span class="hljs-title class_">Uint8Array</span>.<span class="hljs-property">BYTES_PER_ELEMENT</span> <span class="hljs-comment">// 1</span><br><span class="hljs-title class_">Int16Array</span>.<span class="hljs-property">BYTES_PER_ELEMENT</span> <span class="hljs-comment">// 2</span><br><span class="hljs-title class_">Uint16Array</span>.<span class="hljs-property">BYTES_PER_ELEMENT</span> <span class="hljs-comment">// 2</span><br><span class="hljs-title class_">Int32Array</span>.<span class="hljs-property">BYTES_PER_ELEMENT</span> <span class="hljs-comment">// 4</span><br><span class="hljs-title class_">Uint32Array</span>.<span class="hljs-property">BYTES_PER_ELEMENT</span> <span class="hljs-comment">// 4</span><br><span class="hljs-title class_">Float32Array</span>.<span class="hljs-property">BYTES_PER_ELEMENT</span> <span class="hljs-comment">// 4</span><br><span class="hljs-title class_">Float64Array</span>.<span class="hljs-property">BYTES_PER_ELEMENT</span> <span class="hljs-comment">// 8</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="TypedArray-prototype-buffer"><a href="#TypedArray-prototype-buffer" class="headerlink" title="TypedArray.prototype.buffer"></a><strong>TypedArray.prototype.buffer</strong></h4><p>TypedArray 实例的 buffer 属性会返回内存中对应的 ArrayBuffer对象，只读属性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> a = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint32Array</span>(<span class="hljs-number">8</span>);<br><span class="hljs-keyword">const</span> b = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Int32Array</span>(a.<span class="hljs-property">buffer</span>); <br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="TypedArray-prototype-slice"><a href="#TypedArray-prototype-slice" class="headerlink" title="TypedArray.prototype.slice()"></a><strong>TypedArray.prototype.slice()</strong></h4><p>TypeArray 实例的 slice方法可以返回一个指定位置的新的 TypedArray实例。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> view = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Int16Array</span>(<span class="hljs-number">8</span>);<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(view.<span class="hljs-title function_">slice</span>(<span class="hljs-number">0</span> ,<span class="hljs-number">5</span>));<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="byteLength-和-length"><a href="#byteLength-和-length" class="headerlink" title="byteLength 和 length"></a><strong>byteLength 和 length</strong></h4><ul>
+<li><code>byteLength</code>：返回 TypedArray 占据的内存长度，单位为字节；</li>
+<li><code>length</code>：返回 TypedArray 元素个数；</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> view = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Int16Array</span>(<span class="hljs-number">8</span>);<br>view.<span class="hljs-property">length</span>;      <span class="hljs-comment">// 8</span><br>view.<span class="hljs-property">byteLength</span>;  <span class="hljs-comment">// 16</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="DataView"><a href="#DataView" class="headerlink" title="DataView"></a>DataView</h2><h3 id="什么是-DataView"><a href="#什么是-DataView" class="headerlink" title="什么是 DataView"></a>什么是 DataView</h3><p><strong>DataView</strong> 视图是一个可以从 二进制 ArrayBuffer 对象中读写多种数值类型的底层接口，使用它时，不用考虑不同平台的字节序问题。</p>
+<p>DataView视图提供更多操作选项，而且支持设定字节序。</p>
+<p>在设计目的上，<strong>ArrayBuffer对象的各种TypedArray视图，是用来向网卡、声卡之类的本机设备传送数据</strong>，所以使用本机的字节序就可以了；而<strong>DataView视图的设计目的，是用来处理网络设备传来的数据</strong>，所以大端字节序或小端字节序是可以自行设定的。</p>
+<h3 id="使用-3"><a href="#使用-3" class="headerlink" title="使用"></a>使用</h3><h4 id="new-DataView"><a href="#new-DataView" class="headerlink" title="new DataView()"></a>new DataView()</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">new</span> <span class="hljs-title class_">DataView</span>(buffer [, byteOffset [, byteLength]])<br></code></pre></td></tr></table></figure>
+
+<p><code>buffer</code>：一个已经存在的 ArrayBuffer 对象，DataView 对象的数据源。</p>
+<p><code>byteOffset</code>：可选，此 DataView 对象的第一个字节在 buffer 中的字节偏移。如果未指定，则默认从第一个字节开始。</p>
+<p><code>byteLength</code>：可选，此 DataView 对象的字节长度。如果未指定，这个视图的长度将匹配 buffer 的长度。</p>
+<h4 id="buffer、byteLength、byteOffset"><a href="#buffer、byteLength、byteOffset" class="headerlink" title="buffer、byteLength、byteOffset"></a>buffer、byteLength、byteOffset</h4><p>DataView实例有以下常用属性：</p>
+<ul>
+<li><code>buffer</code>：返回对应的ArrayBuffer对象；</li>
+<li><code>byteLength</code>：返回占据的内存字节长度；</li>
+<li><code>byteOffset</code>：返回当前视图从对应的ArrayBuffer对象的哪个字节开始。</li>
+</ul>
+<h4 id="读取内存"><a href="#读取内存" class="headerlink" title="读取内存"></a>读取内存</h4><p>getInt8：读取1个字节，返回一个8位整数。</p>
+<p>getUint8：读取1个字节，返回一个无符号的8位整数。</p>
+<p>getInt16：读取2个字节，返回一个16位整数。</p>
+<p>getUint16：读取2个字节，返回一个无符号的16位整数。</p>
+<p>getInt32：读取4个字节，返回一个32位整数。</p>
+<p>getUint32：读取4个字节，返回一个无符号的32位整数。</p>
+<p>getFloat32：读取4个字节，返回一个32位浮点数。</p>
+<p>getFloat64：读取8个字节，返回一个64位浮点数。</p>
+<p>参数都是一个字节序号，表示开始读取的字节位置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayBuffer</span>(<span class="hljs-number">24</span>);<br><span class="hljs-keyword">const</span> view = <span class="hljs-keyword">new</span> <span class="hljs-title class_">DataView</span>(buffer);<br><br><span class="hljs-comment">// 从第1个字节读取一个8位无符号整数</span><br><span class="hljs-keyword">const</span> view1 = view.<span class="hljs-title function_">getUint8</span>(<span class="hljs-number">0</span>);<br><br><span class="hljs-comment">// 从第2个字节读取一个16位无符号整数</span><br><span class="hljs-keyword">const</span> view2 = view.<span class="hljs-title function_">getUint16</span>(<span class="hljs-number">1</span>);<br><br><span class="hljs-comment">// 从第4个字节读取一个16位无符号整数</span><br><span class="hljs-keyword">const</span> view3 = view.<span class="hljs-title function_">getUint16</span>(<span class="hljs-number">3</span>);<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="写入内存"><a href="#写入内存" class="headerlink" title="写入内存"></a>写入内存</h4><p>DataView 实例提供了以下方法来写入内存，它们都接受两个参数，第一个参数表示开始写入数据的字节序号，第二个参数为写入的数据：</p>
+<ul>
+<li>setInt8：写入1个字节的8位整数。</li>
+<li>setUint8：写入1个字节的8位无符号整数。</li>
+<li>setInt16：写入2个字节的16位整数。</li>
+<li>setUint16：写入2个字节的16位无符号整数。</li>
+<li>setInt32：写入4个字节的32位整数。</li>
+<li>setUint32：写入4个字节的32位无符号整数。</li>
+<li>setFloat32：写入4个字节的32位浮点数。</li>
+<li>setFloat64：写入8个字节的64位浮点数。</li>
+</ul>
+<h2 id="Object-URL-x2F-Blob-URL"><a href="#Object-URL-x2F-Blob-URL" class="headerlink" title="Object URL &#x2F; Blob URL"></a>Object URL &#x2F; Blob URL</h2><h3 id="什么是-Object-URL"><a href="#什么是-Object-URL" class="headerlink" title="什么是 Object URL"></a>什么是 Object URL</h3><p>用来表示 File Object 的 URL</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a7177d40eb374b09bb6413dd44a9212f~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>Blob URL&#x2F;Object URL 是一种伪协议，允许将 Blob 和 File 对象用作图像、二进制数据下载链接等的 URL 源。</p>
+<h3 id="使用-4"><a href="#使用-4" class="headerlink" title="使用"></a>使用</h3><h4 id="URL-createObjectURL"><a href="#URL-createObjectURL" class="headerlink" title="URL.createObjectURL()"></a>URL.createObjectURL()</h4><p>将 File 对象转为 URL</p>
+<p><strong>input 上传图片，在 img 中显示</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;file&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;fileInput&quot;</span> /&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;preview&quot;</span> /&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> fileInput = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;fileInput&quot;</span>);<br><span class="hljs-keyword">const</span> preview = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;preview&quot;</span>);<br><br>fileInput.<span class="hljs-property">onchange</span> = <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> &#123;<br>  <span class="hljs-comment">// URL.createObjectURL() 将File 对象转化为一个 URL, 然后赋值给 img 的 src</span><br>  preview.<span class="hljs-property">src</span> = <span class="hljs-variable constant_">URL</span>.<span class="hljs-title function_">createObjectURL</span>(e.<span class="hljs-property">target</span>.<span class="hljs-property">files</span>[<span class="hljs-number">0</span>]);<br>  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(preview.<span class="hljs-property">src</span>);<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f7f21bcf752940199d5985065baacb92~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="URL-revokeObjectURL"><a href="#URL-revokeObjectURL" class="headerlink" title="URL.revokeObjectURL"></a>URL.revokeObjectURL</h4><p>虽然浏览器会在文档卸载时自动释放 Data URL，但为了提高性能，我们应该使用<code>createObjectURL()</code>来手动清除 URL 释放内存。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> objUrl = <span class="hljs-variable constant_">URL</span>.<span class="hljs-title function_">createObjectURL</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">File</span>([<span class="hljs-string">&quot;&quot;</span>], <span class="hljs-string">&quot;filename&quot;</span>));<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(objUrl);<br><span class="hljs-variable constant_">URL</span>.<span class="hljs-title function_">revokeObjectURL</span>(objUrl);<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="Data-URL-x2F-base64"><a href="#Data-URL-x2F-base64" class="headerlink" title="Data URL &#x2F; base64"></a>Data URL &#x2F; base64</h2><p>Data URL 即 Data As URL。所以， <strong>如果资源过大，地址便会很长。</strong></p>
+<p>base64 编码将<strong>二进制</strong>数据表示为一个由 0 到 64 的 ASCII 码组成的字符串，非常安全且“可读“。</p>
+<h3 id="为什么要将图片转为base64编码而不是直接传图片的url地址"><a href="#为什么要将图片转为base64编码而不是直接传图片的url地址" class="headerlink" title="为什么要将图片转为base64编码而不是直接传图片的url地址"></a><strong>为什么要将图片转为base64编码而不是直接传图片的url地址</strong></h3><ol>
+<li><strong>减少http请求数</strong></li>
+</ol>
+<p>将图片转为base64编码放在html或css中，可以随着html的下载同时下载，不需要再请求服务器</p>
+<ol start="2">
+<li><strong>先于内容加载</strong></li>
+</ol>
+<p>将编码成base64的图片置于css中，而css代码又一般是在html头部加载的，其加载顺序先于下面内容。</p>
+<ol start="3">
+<li>可以像单独图片一样使用，而且对于同一张图片应用地方多，可以放入公共common块中</li>
+</ol>
+<h3 id="使用前提"><a href="#使用前提" class="headerlink" title="使用前提"></a>使用前提</h3><p>被base64编码的<strong>图片要足够小的尺寸</strong>：因为将图片生成的base64字符串编码一般而言都会比原文件大一些，即使能被gzip压缩，但是css样式代码中要写一大版的base64编码字符难看，消耗的是css文件体积</p>
+<h3 id="使用Base64也不代表性能优化"><a href="#使用Base64也不代表性能优化" class="headerlink" title="使用Base64也不代表性能优化"></a><strong>使用Base64也不代表性能优化</strong></h3><p>使用Base64减少一个图片的http请求的同时<strong>Css文件就会付出体积增大的代价</strong></p>
+<p><strong>文件体积增大意味着CRP的阻塞，同时页面解析CSS生成的CSSOM时间增加</strong> </p>
+<h2 id="Object-URL-和-Data-URL-的区别"><a href="#Object-URL-和-Data-URL-的区别" class="headerlink" title="Object URL 和 Data URL 的区别"></a>Object URL 和 Data URL 的区别</h2><ul>
+<li><code>blob</code>显示的形式<code>blob:域名/e61c67e3-df3a-453a-8f41-df740c1f5faf</code> ，dataURL的显示形式<code>data:image/jpeg;base64,/9j/4AAQ...</code></li>
+<li><code>Blob URL</code>的长度一般比较短，但<code>Data URL</code>因为直接存储图片<code>base64</code>编码后的数据，往往很长，如上图所示，浏览器在显示<code>Data URL</code>时使用了省略号（…）。当显式大图片时，使用<code>Blob URL</code>能获取更好的可能性。</li>
+<li><code>Blob URL</code>可以方便的使用<code>XMLHttpRequest</code>获取源数据（<code>xhr.responseType = &#39;blob&#39;</code>）。对于<code>Data URL</code>，并不是所有浏览器都支持通过<code>XMLHttpRequest</code>获取源数据的</li>
+<li><strong><code>Blob URL</code> 只能在当前应用内部使用，把<code>Blob URL</code>复制到浏览器的地址栏中，是无法获取数据的。<code>Data URL</code>相比之下，就有很好的移植性，你可以在任意浏览器中使用。</strong></li>
+<li><code>Blob URL</code>除了可以用作图片资源的网络地址，<code>Blob URL</code>也可以用作其他资源的网络地址，例如<code>html</code>文件、<code>json</code>文件等，为了保证浏览器能正确的解析<code>Blob URL</code>返回的文件类型，需要在创建<code>Blob</code>对象时指定相应的<code>type</code>。</li>
+</ul>
+<p>Blob 转换为 object url</p>
+<ul>
+<li>如果介意内存，我们需要撤销（revoke）它们</li>
+<li>直接访问 <code>Blob</code>，无需“编码&#x2F;解码”</li>
+</ul>
+<p>Blob 转换为 data url</p>
+<ul>
+<li>无需撤销（revoke）任何操作。</li>
+<li>对大的 <code>Blob</code> 进行编码时，性能和内存会有损耗。</li>
+</ul>
+<p>总的来说，小图片建议用 data url，可以减少 http 请求。大图片建议用 blob url，因为 data url 过大。</p>
+<h2 id="格式转换"><a href="#格式转换" class="headerlink" title="格式转换"></a>格式转换</h2><h3 id="ArrayBuffer-Blob"><a href="#ArrayBuffer-Blob" class="headerlink" title="ArrayBuffer - Blob"></a>ArrayBuffer - Blob</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> blob = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Blob</span>([<span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint8Array</span>(buffer, byteOffset, length)]);<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="ArrayBuffer-base64"><a href="#ArrayBuffer-base64" class="headerlink" title="ArrayBuffer - base64"></a>ArrayBuffer - base64</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> base64 = <span class="hljs-title function_">btoa</span>(<span class="hljs-title class_">String</span>.<span class="hljs-property">fromCharCode</span>.<span class="hljs-title function_">apply</span>(<span class="hljs-literal">null</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint8Array</span>(arrayBuffer)));<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="base64-blob"><a href="#base64-blob" class="headerlink" title="base64 - blob"></a>base64 - blob</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> <span class="hljs-title function_">base64toBlob</span> = (<span class="hljs-params">base64Data, contentType, sliceSize</span>) =&gt; &#123;<br>  <span class="hljs-keyword">const</span> byteCharacters = <span class="hljs-title function_">atob</span>(base64Data);<br>  <span class="hljs-keyword">const</span> byteArrays = [];<br><br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> offset = <span class="hljs-number">0</span>; offset &lt; byteCharacters.<span class="hljs-property">length</span>; offset += sliceSize) &#123;<br>    <span class="hljs-keyword">const</span> slice = byteCharacters.<span class="hljs-title function_">slice</span>(offset, offset + sliceSize);<br><br>    <span class="hljs-keyword">const</span> byteNumbers = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(slice.<span class="hljs-property">length</span>);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; slice.<span class="hljs-property">length</span>; i++) &#123;<br>      byteNumbers[i] = slice.<span class="hljs-title function_">charCodeAt</span>(i);<br>    &#125;<br><br>    <span class="hljs-keyword">const</span> byteArray = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint8Array</span>(byteNumbers);<br>    byteArrays.<span class="hljs-title function_">push</span>(byteArray);<br>  &#125;<br><br>  <span class="hljs-keyword">const</span> blob = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Blob</span>(byteArrays, &#123;<span class="hljs-attr">type</span>: contentType&#125;);<br>  <span class="hljs-keyword">return</span> blob;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="blob-ArrayBuffer"><a href="#blob-ArrayBuffer" class="headerlink" title="blob - ArrayBuffer"></a>blob - ArrayBuffer</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">blobToArrayBuffer</span>(<span class="hljs-params">blob</span>) &#123; <br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;<br>      <span class="hljs-keyword">const</span> reader = <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileReader</span>();<br>      reader.<span class="hljs-property">onload</span> = <span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">resolve</span>(reader.<span class="hljs-property">result</span>);<br>      reader.<span class="hljs-property">onerror</span> = <span class="hljs-function">() =&gt;</span> reject;<br>      reader.<span class="hljs-title function_">readAsArrayBuffer</span>(blob);<br>  &#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="blob-base64"><a href="#blob-base64" class="headerlink" title="blob - base64"></a>blob - base64</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">blobToBase64</span>(<span class="hljs-params">blob</span>) &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">const</span> reader = <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileReader</span>();<br>    reader.<span class="hljs-property">onloadend</span> = <span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">resolve</span>(reader.<span class="hljs-property">result</span>);<br>    reader.<span class="hljs-title function_">readAsDataURL</span>(blob);<br>  &#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="blob-Object-URL"><a href="#blob-Object-URL" class="headerlink" title="blob - Object URL"></a>blob - Object URL</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> objectUrl = <span class="hljs-variable constant_">URL</span>.<span class="hljs-title function_">createObjectURL</span>(blob);<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>ArrayBuffer &#x2F; TypedArray &#x2F; DataView 是二进制数据，其中 ArrayBuffer 是一段固定长度的内存空间，不能直接修改，需要通过 TypedArray 或 DataView 来改写</p>
+<p>Blob 表示 具有类型的二进制数据，可以通过 类型+ArrayBuffer 生成</p>
+<p>Blob 可以通过 URL.createObjectURL(blob) 直接转化成 Object URL</p>
+<p>FileReader 是异步API，可以将 Blob 读取为不同的形式，包括 ArrayBuffer &#x2F; Base64 &#x2F; Text &#x2F; BinaryString</p>
+<p>File 继承于 Blob，可以理解为 Blob 的子类</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/aa83846a988842ad8656a68331207bef~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>从图中我们不难看出如何修改一个已有文件，利用 FileReader API 将 blob 转为 ArrayBuffer，利用 DataView 或 TypedArray 进行修改，再 new Blob 生成新的文件。</p>
+<img src="/2022/11/02/%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%8F%8A%E6%96%87%E4%BB%B6/v2-b46fd4abb0531fa97c60c693d3cd0a46_720w.webp" srcset="/img/loading.gif" lazyload class="" title="img">
+
+
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7148254347401363463">https://juejin.cn/post/7148254347401363463</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/147664305">https://zhuanlan.zhihu.com/p/147664305</a></p>
+<p><a target="_blank" rel="noopener" href="https://zh.javascript.info/binary">https://zh.javascript.info/binary</a></p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/JS/" class="category-chain-item">JS</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>二进制及文件</div>
+      <div>http://example.com/2022/11/02/二进制及文件/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>November 2, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/11/01/%E6%89%8B%E5%86%99%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F/" title="手写发布订阅模式">
+                        <span class="hidden-mobile">手写发布订阅模式</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+    
+      
+            
+                  
+</div>
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
