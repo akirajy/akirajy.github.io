@@ -34,7 +34,7 @@
 <meta property="og:image" content="http://example.com/2022/07/01/vue3/bc0be8211fc54b6c941c036791ba4efetplv-k3u1fbpfcp-watermark-165726304478210.image">
 <meta property="og:image" content="http://example.com/2022/07/01/vue3/6cc55165c0e34069a75fe36f8712eb80tplv-k3u1fbpfcp-watermark-165726305601013.image">
 <meta property="article:published_time" content="2022-07-01T02:38:54.000Z">
-<meta property="article:modified_time" content="2022-10-12T01:36:11.059Z">
+<meta property="article:modified_time" content="2022-11-04T09:38:12.623Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/2022/07/01/vue3/image-20220701143037245.png">
@@ -238,7 +238,7 @@
         
         
         
-          140 mins
+          141 mins
         
       </span>
     
@@ -617,12 +617,12 @@
 <h2 id="新的组件"><a href="#新的组件" class="headerlink" title="新的组件"></a>新的组件</h2><h3 id="1-Fragment"><a href="#1-Fragment" class="headerlink" title="1.Fragment"></a>1.Fragment</h3><ul>
 <li>在Vue2中: 组件必须有一个根标签</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>	&lt;div&gt;<br>		&lt;h3&gt;App组件&lt;/h3&gt;<br>	&lt;/div&gt;<br>&lt;/template&gt;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>	&lt;div&gt;<br>		&lt;h3&gt;App组件&lt;/h3&gt;<br>        &lt;h4&gt;123&lt;/h4&gt;<br>	&lt;/div&gt;<br>&lt;/template&gt;<br></code></pre></td></tr></table></figure>
 
 <ul>
-<li>在Vue3中: 组件可以没有根标签, 内部会将多个标签包含在一个 <strong>Fragment 虚拟元素</strong>中</li>
+<li>在Vue3中: 组件可以没有根标签, 内部会将多个标签包含在一个 <strong>Fragment 虚拟元素</strong>中，fragment 标签编译完后不会出现在 dom 树中</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>	&lt;h3&gt;App组件&lt;/h3&gt;<br>&lt;/template&gt;<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>	&lt;h3&gt;App组件&lt;/h3&gt;<br>	&lt;h4&gt;123&lt;/h4&gt;<br>&lt;/template&gt;<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>好处: 减少标签层级, 减小内存占用</li>
@@ -641,7 +641,7 @@
 <li><p>异步引入组件</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123;defineAsyncComponent&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">Child</span> = <span class="hljs-title function_">defineAsyncComponent</span>(<span class="hljs-function">()=&gt;</span><span class="hljs-title function_">import</span>(<span class="hljs-string">&#x27;./components/Child.vue&#x27;</span>))<br></code></pre></td></tr></table></figure>
 </li>
-<li><p>使用<code>Suspense</code>包裹组件，并配置好<code>default</code> 与 <code>fallback</code></p>
+<li><p>使用<code>Suspense</code>包裹组件，并配置好<code>default</code> 与 <code>fallback</code>。default 包裹的是异步组件，fallback 包裹的是当异步组件还没加载完毕时，页面显示的静态组件。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;template&gt;<br>	&lt;div class=&quot;app&quot;&gt;<br>		&lt;h3&gt;我是App组件&lt;/h3&gt;<br>		&lt;Suspense&gt;<br>			&lt;template v-slot:default&gt;<br>				&lt;Child/&gt;<br>			&lt;/template&gt;<br>			&lt;template v-slot:fallback&gt;<br>				&lt;h3&gt;加载中.....&lt;/h3&gt;<br>			&lt;/template&gt;<br>		&lt;/Suspense&gt;<br>	&lt;/div&gt;<br>&lt;/template&gt;<br></code></pre></td></tr></table></figure></li>
 </ul>
 </li>
