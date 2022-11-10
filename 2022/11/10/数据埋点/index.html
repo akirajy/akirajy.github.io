@@ -1,0 +1,797 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="数据埋点背景实习开会的时候，说需要一些用户数据，提到埋点，此时我并不知道什么是埋点，故会后阅读了一些文章，这篇文章作为记录与总结。 为什么需要数据埋点对于产品，我们需要关注用户的行为  用户在产品里 主要做什么操作、停留多久、访问几次 用户点击率占比如何，会不会出现某些功能设计对于用户而言是无效的 用户在核心使用流程上是否顺畅，页面反馈是否正常友好 可能有哪些潜在的用户的功能需要更新  要收集这些">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据埋点">
+<meta property="og:url" content="http://example.com/2022/11/10/%E6%95%B0%E6%8D%AE%E5%9F%8B%E7%82%B9/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="数据埋点背景实习开会的时候，说需要一些用户数据，提到埋点，此时我并不知道什么是埋点，故会后阅读了一些文章，这篇文章作为记录与总结。 为什么需要数据埋点对于产品，我们需要关注用户的行为  用户在产品里 主要做什么操作、停留多久、访问几次 用户点击率占比如何，会不会出现某些功能设计对于用户而言是无效的 用户在核心使用流程上是否顺畅，页面反馈是否正常友好 可能有哪些潜在的用户的功能需要更新  要收集这些">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-11-10T01:34:13.000Z">
+<meta property="article:modified_time" content="2022-11-10T03:28:32.973Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>数据埋点 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"qPzYEpTngSrzQtV1XpsPSmPm-gzGzoHsz","app_key":"kf4lqne4FqonWhpUQzS1Ffrx","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>JY BLOG</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="数据埋点"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-11-10 09:34" pubdate>
+          November 10, 2022 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.1k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          35 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span>次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">数据埋点</h1>
+            
+            <div class="markdown-body">
+              
+              <h1 id="数据埋点"><a href="#数据埋点" class="headerlink" title="数据埋点"></a>数据埋点</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>实习开会的时候，说需要一些用户数据，提到埋点，此时我并不知道什么是埋点，故会后阅读了一些文章，这篇文章作为记录与总结。</p>
+<h2 id="为什么需要数据埋点"><a href="#为什么需要数据埋点" class="headerlink" title="为什么需要数据埋点"></a>为什么需要数据埋点</h2><p>对于产品，我们需要关注用户的行为</p>
+<ul>
+<li>用户在产品里 主要做什么操作、停留多久、访问几次</li>
+<li>用户点击率占比如何，会不会出现某些功能设计对于用户而言是无效的</li>
+<li>用户在核心使用流程上是否顺畅，页面反馈是否正常友好</li>
+<li>可能有哪些潜在的用户的功能需要更新</li>
+</ul>
+<p>要收集这些数据就需要进行埋点。</p>
+<p>总的来说：<strong>收集数据</strong>，分析数据，评估项目质量和重要性，指明产品优化方向。</p>
+<h2 id="前端埋点要考虑哪些方面"><a href="#前端埋点要考虑哪些方面" class="headerlink" title="前端埋点要考虑哪些方面"></a>前端埋点要考虑哪些方面</h2><h3 id="用户行为"><a href="#用户行为" class="headerlink" title="用户行为"></a>用户行为</h3><p>用户行为就是在网页应用中进行的一系列操作，但用户的操作有很多种，都需要记录下来是不可能的，一般需要记录用户的以下几种行为：</p>
+<ul>
+<li>用户浏览页面次数，PV（Page View）<ul>
+<li>用户每次访问网站中的一个页面就被记录为 <code>1</code> 个 <code>PV</code>，多次访问同一个页面，访问量就会累计</li>
+</ul>
+</li>
+<li>页面浏览用户数，UV（Unique visitor）<ul>
+<li>通过网络正常访问页面的使用者，通常一台电脑客户端或一个用户账号为一个访客，一般同一个客户端或用户账号在 <code>24h</code> 内多次访问只会被记录为 <code>1</code> 个 <code>UV</code>，计算策略视具体情况而定</li>
+</ul>
+</li>
+<li>用户点击按钮次数<ul>
+<li>以上两种可以认为是 **<code>自动式触发埋点</code>**，而点击按钮次数就属于是 **<code>互动式触发埋点</code>**，便于去了解这个功能按钮的使用情况</li>
+</ul>
+</li>
+</ul>
+<p>还有如 停留时长（Time On Site）和跳出率（Bounce Rate）等</p>
+<h3 id="错误警告"><a href="#错误警告" class="headerlink" title="错误警告"></a>错误警告</h3><p>页面中代码运行产生的错误，可能会导致用户核心操作流程被中断，为了避免大量用户受到影响，我们需要获取 <strong>生产环境的错误数据</strong>，这样才能便于开发者及时进行修复。</p>
+<p>通常来讲代码中的错误会包含以下几大类：</p>
+<ul>
+<li><strong>全局错误</strong>，即未被捕获的错误</li>
+<li><strong>局部错误</strong>，即通过 <code>try...catch、promise.then、promise.catch</code> 等捕获的错误</li>
+<li><strong>接口请求错误</strong>，即在二次封装请求 <code>API</code> 中进行请求和接收响应时的错误</li>
+<li><strong>组件级错误</strong>，即使用 <code>Vue/React</code> 组件时发生的错误</li>
+</ul>
+<h3 id="页面性能"><a href="#页面性能" class="headerlink" title="页面性能"></a>页面性能</h3><p>页面性能其实也是前端性能优化中一个需要考虑和优化的点，毕竟如果一个网站老是发生 <strong>白屏、交互卡顿、页面资源加载时间长</strong> 等问题，肯定是没办法留住用户的，特别是用户的真实环境各不相同，如 <code>Windows x、MACOS、Android、iOS</code> 等，更加需要统计和收集相关数据，便于进行集中优化处理，提升用户体验。</p>
+<ul>
+<li><strong>首次绘制（<code>First Paint，FP</code>）</strong><ul>
+<li>在渲染进程确认要渲染当前响应资源后，渲染进程会先创建一个空白页面，通常把创建空白页面的这个时间点称为 <code>First Paint</code>，简称 <code>FP</code></li>
+<li>所谓的 <strong>白屏时间</strong> 其实指的就是创建这个空白页面到浏览器开始渲染非空白内容的时间，比如页面背景发生变化等</li>
+</ul>
+</li>
+<li><strong>首次内容绘制（<code>First Contentful Paint，FCP</code>）</strong><ul>
+<li>当用户看见一些 “内容” 元素被绘制在页面上的时间点，和白屏是不一样，它可以是 <strong><code>文本</code></strong> 首次绘制，或 <code>SVG</code> 首次出现，或 <code>Canvas</code> 首次绘制等，即当页面中绘制了第一个 <strong>像素</strong> 时，这个时间点称为 <code>First Content Paint</code>，简称 <code>FCP</code></li>
+</ul>
+</li>
+<li><strong>首屏时间 &#x2F; 最大内容绘制（<code>Largest Contentful Paint, LCP</code>）</strong><ul>
+<li><code>LCP</code> 是一种新的性能度量标准，<code>LCP</code> 侧重于用户体验的性能度量标准，与现有度量标准相比，更容易理解与推理，当首屏内容完全绘制完成时，这个时间点称为 <code>Largest Content Paint</code>，简称 <code>LCP</code></li>
+<li><strong>最大内容绘制应在 <code>2.5s</code> 内完成</strong></li>
+</ul>
+</li>
+<li><strong>首次输入延迟（<code>First Input Delay, FID</code>）</strong><ul>
+<li><code>FID</code> 测量的是当用户第一次在页面上交互的时候（<strong>点击链接</strong>、<strong>点击按钮</strong> 或 <strong>自定义基于 <code>js</code> 的事件</strong>），到浏览器实际开始处理这个事件的时间</li>
+<li><strong>首次输入延迟应在 <code>100ms</code> 内完成</strong></li>
+</ul>
+</li>
+<li><strong>累积布局偏移（<code>Cumulative Layout Shift, CLS</code>)</strong><ul>
+<li><code>CLS</code> 是为了测量 <strong>视觉稳定性</strong>，以便提供良好的用户体验</li>
+<li><strong>累积布局偏移应保持在 <code>0.1</code> 或更少</strong></li>
+</ul>
+</li>
+<li><strong>首字节达到时间（<code>Time to First Byte，TTFB</code>）</strong><ul>
+<li>指的是浏览器开始收到服务器响应数据的时间（<strong>后台处理时间 + 重定向时间</strong>），是反映服务端响应速度的重要指标</li>
+<li><strong><code>TTFB</code> 时间如果超过 <code>500ms</code>，用户在打开网页的时就会感觉到明显的等待</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="神策数据埋点"><a href="#神策数据埋点" class="headerlink" title="神策数据埋点"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41619796/article/details/112028163?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0-112028163-blog-124500335.pc_relevant_3mothn_strategy_recovery&spm=1001.2101.3001.4242.1&utm_relevant_index=3">神策数据埋点</a></h2><p><strong>文档：<a target="_blank" rel="noopener" href="https://www.sensorsdata.cn/2.0/manual/js_sdk_faq.html">https://www.sensorsdata.cn/2.0/manual/js_sdk_faq.html</a></strong></p>
+<h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a><strong>安装依赖</strong></h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stata">npm install --<span class="hljs-keyword">save</span> <span class="hljs-keyword">sa</span>-sdk-javascript<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="项目配置"><a href="#项目配置" class="headerlink" title="项目配置"></a><strong>项目配置</strong></h3><p>在 utils 文件夹下新建 sensors.js，配置单页应用的固定代码，（非单页应用不需要加上配置对象： is_track_single_page: true）。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> sensors <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;sa-sdk-javascript&#x27;</span><br>sensors.<span class="hljs-title function_">init</span>(&#123; <span class="hljs-comment">// 神策系统配置</span><br>            <span class="hljs-attr">server_url</span>: <span class="hljs-string">&#x27;http://shence.ap-ec.cn:8106/debug&#x27;</span>, <span class="hljs-comment">// 数据接收地址</span><br>            <span class="hljs-attr">is_track_single_page</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 单页应用页面浏览事件采集(url改变就触发)</span><br>            <span class="hljs-attr">use_app_track</span>: <span class="hljs-literal">true</span>,<br>            <span class="hljs-attr">show_log</span>: <span class="hljs-literal">false</span>, <span class="hljs-comment">// 控制台显示数据开</span><br>            <span class="hljs-attr">heatmap</span>: &#123; <span class="hljs-comment">// 热图设置 default开启 not_collect关闭（详细配置解释看官方文档）</span><br>                <span class="hljs-attr">clickmap</span>: <span class="hljs-string">&#x27;default&#x27;</span>, <span class="hljs-comment">// 点击热图，收集点击事件</span><br>                <span class="hljs-attr">scroll_notice_map</span>: <span class="hljs-string">&#x27;default&#x27;</span>, <span class="hljs-comment">// 视区热图，收集页面区域停留时间</span><br>            &#125;<br>        &#125;)<br> <br>sensors.<span class="hljs-title function_">quick</span>(<span class="hljs-string">&#x27;autoTrack&#x27;</span>) <span class="hljs-comment">// 首次触发页面加载事件 $pageview</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> sensors<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="全局注册神策埋点"><a href="#全局注册神策埋点" class="headerlink" title="全局注册神策埋点"></a><strong>全局注册神策埋点</strong></h3><p>在 main.js 文件中，将神策埋点信息挂载到 vue 实例下，操作如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// vue2 的挂载</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">Vue</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span><br><span class="hljs-keyword">import</span> sensors <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/utils/sensors.js&#x27;</span><br><span class="hljs-title class_">Vue</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">$sensors</span> = sensors<br><br><span class="hljs-comment">// 使用</span><br><span class="hljs-variable language_">this</span>.<span class="hljs-property">$sensors</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// vue3 的挂载</span><br><span class="hljs-keyword">import</span> <span class="hljs-title class_">App</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./App.vue&#x27;</span><br><span class="hljs-keyword">import</span> sensors <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/utils/sensors.js&#x27;</span><br><span class="hljs-keyword">const</span> app = <span class="hljs-title function_">createApp</span>(<span class="hljs-title class_">App</span>)<br><br>app.<span class="hljs-property">config</span>.<span class="hljs-property">globalProperties</span>.<span class="hljs-property">$sensors</span> = sensors<br><br><span class="hljs-comment">// 使用</span><br><span class="hljs-keyword">const</span> currentInstance = <span class="hljs-title function_">getCurrentInstance</span>()<br><span class="hljs-keyword">const</span> &#123; $sensors &#125; = currentInstance.<span class="hljs-property">appContext</span>.<span class="hljs-property">config</span>.<span class="hljs-property">globalProperties</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="埋点操作"><a href="#埋点操作" class="headerlink" title="埋点操作"></a>埋点操作</h3><h4 id="1-自动采集事件埋点"><a href="#1-自动采集事件埋点" class="headerlink" title="1.自动采集事件埋点"></a>1.自动采集事件埋点</h4><p>主要用于主动触发页面浏览事件，一般只在页面配置后调用一次即可。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">sensors.<span class="hljs-title function_">quick</span>(<span class="hljs-string">&#x27;autoTrack&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-事件埋点（页面上事件用这个）"><a href="#2-事件埋点（页面上事件用这个）" class="headerlink" title="2. 事件埋点（页面上事件用这个）"></a>2. 事件埋点（页面上事件用这个）</h4><p>事件名+传递参数（必须是对象）+回调函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-variable language_">this</span>.<span class="hljs-property">$sensors</span>.<span class="hljs-title function_">track</span>(<span class="hljs-string">&#x27;ViewSupplyChainDetails&#x27;</span>[, param][,callback])<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-公共属性埋点"><a href="#3-公共属性埋点" class="headerlink" title="3.公共属性埋点"></a>3.公共属性埋点</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> param = &#123;<br>    <span class="hljs-attr">platform_type</span>: <span class="hljs-string">&#x27;WEB&#x27;</span>, <span class="hljs-comment">// 平台类型：App，H5，Web</span><br>    <span class="hljs-attr">app_name</span>: <span class="hljs-string">&#x27;沐甜商城网站&#x27;</span>, <span class="hljs-comment">// 应用名称</span><br>    <span class="hljs-attr">product_line</span>: <span class="hljs-string">&#x27;白糖&#x27;</span>,<br>&#125;<br> <br>sensors.<span class="hljs-title function_">registerPage</span>(param) <span class="hljs-comment">// 设置公共属性</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="4-给点击事件加触发埋点，使用vue的自定义指令"><a href="#4-给点击事件加触发埋点，使用vue的自定义指令" class="headerlink" title="4.给点击事件加触发埋点，使用vue的自定义指令"></a>4.给点击事件加触发埋点，使用vue的自定义指令</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 指令：v-saclick</span><br><span class="hljs-comment"> * 使用示例：v-saclick=&quot;&#123;clickName:&#x27;XXX&#x27;,clickData:&#123;params1:&#x27;XXX&#x27;,params2:&#x27;XX&#x27;&#125;&#125;&quot;</span><br><span class="hljs-comment"> * clickName：埋点函数名</span><br><span class="hljs-comment"> * clickData | Object   params当前埋点函数所需参数</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">const</span> saclick = <span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">directive</span>(<span class="hljs-string">&#x27;saclick&#x27;</span>, &#123;<br>  <span class="hljs-attr">bind</span>: <span class="hljs-function">(<span class="hljs-params">el, binding</span>) =&gt;</span> &#123;<br>    el.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;<br>      <span class="hljs-keyword">const</span> clickName = binding.<span class="hljs-property">value</span>.<span class="hljs-property">clickName</span> <span class="hljs-comment">// 携带的数据</span><br>      <span class="hljs-keyword">const</span> data = binding.<span class="hljs-property">value</span>.<span class="hljs-property">clickData</span> || &#123;&#125; <span class="hljs-comment">//接收传参</span><br>      sa.<span class="hljs-title function_">track</span>(clickName, data)<br>    &#125;)<br>  &#125;<br>&#125;)<br> <br><span class="hljs-keyword">export</span> &#123; preventReClick, saclick &#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7163046672874864676">https://juejin.cn/post/7163046672874864676</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904061934780424">https://juejin.cn/post/6844904061934780424</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41619796/article/details/112028163?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0-112028163-blog-124500335.pc_relevant_3mothn_strategy_recovery&amp;spm=1001.2101.3001.4242.1&amp;utm_relevant_index=3">https://blog.csdn.net/qq_41619796/article/details/112028163?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0-112028163-blog-124500335.pc_relevant_3mothn_strategy_recovery&amp;spm=1001.2101.3001.4242.1&amp;utm_relevant_index=3</a></p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%B8%9A%E5%8A%A1/" class="category-chain-item">业务</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>数据埋点</div>
+      <div>http://example.com/2022/11/10/数据埋点/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>November 10, 2022</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/11/10/clip-path/" title="clip-path">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">clip-path</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/11/09/h5%E6%94%AF%E4%BB%98/" title="h5支付">
+                        <span class="hidden-mobile">h5支付</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+    
+      
+            
+                  
+</div>
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
