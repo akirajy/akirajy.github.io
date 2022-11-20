@@ -26,6 +26,7 @@
 <meta property="og:image" content="http://example.com/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/image-20220906222915890.png">
 <meta property="og:image" content="http://example.com/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/image-20220906223103579.png">
 <meta property="og:image" content="http://example.com/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/image-20220916140510192.png">
+<meta property="og:image" content="http://example.com/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/image-20221111205310301.png">
 <meta property="og:image" content="http://example.com/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/image-20220916204520003.png">
 <meta property="og:image" content="http://example.com/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/image-20220916210837353.png">
 <meta property="og:image" content="http://example.com/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/image-20220916210928338.png">
@@ -34,9 +35,10 @@
 <meta property="og:image" content="http://example.com/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/image-20220925183438206.png">
 <meta property="og:image" content="http://example.com/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/image-20220926141821034.png">
 <meta property="og:image" content="http://example.com/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/image-20221004185441044.png">
+<meta property="og:image" content="http://example.com/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/image-20221111202200896.png">
 <meta property="og:image" content="http://example.com/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/image-20220924191406689.png">
 <meta property="article:published_time" content="2022-09-06T14:24:21.000Z">
-<meta property="article:modified_time" content="2022-11-11T09:11:03.157Z">
+<meta property="article:modified_time" content="2022-11-14T07:29:50.732Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/image-20220906222915890.png">
@@ -229,7 +231,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.5k words
+          12k words
         
       </span>
     
@@ -240,7 +242,7 @@
         
         
         
-          80 mins
+          99 mins
         
       </span>
     
@@ -340,6 +342,13 @@
 <p>backdrop-filter 和 filter 的区别：</p>
 <p>backdrop-filter 只使背景模糊，不影响内容</p>
 <p>filter 会使整部分都模糊</p>
+<h2 id="shadow-扩散效果"><a href="#shadow-扩散效果" class="headerlink" title="shadow 扩散效果"></a>shadow 扩散效果</h2><p>hover&#x2F;focus 时，触发动画，边框从0向外扩散（红色），到0.7vw为止（透明）。</p>
+<img src="/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/image-20221111205310301.png" srcset="/img/loading.gif" lazyload class="" title="image-20221111205310301">
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs css">&amp;<span class="hljs-selector-pseudo">:hover</span>, &amp;<span class="hljs-selector-pseudo">:focus</span> &#123;<br>    <span class="hljs-attribute">animation</span>: pulse <span class="hljs-number">1s</span>;<br>    // x 偏移量 | y 偏移量 | 阴影模糊半径 | 阴影扩散半径 | 阴影颜色<br>    <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0.7vw</span> transparent;<br>&#125;<br><br><span class="hljs-keyword">@keyframes</span> pulse &#123;<br>    <span class="hljs-number">0%</span> &#123;<br>        <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-built_in">var</span>(--color);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
 <h2 id="head-动画效果"><a href="#head-动画效果" class="headerlink" title="head 动画效果"></a>head 动画效果</h2><img src="/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/image-20220916204520003.png" srcset="/img/loading.gif" lazyload class="" title="image-20220916204520003">
 
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;head&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./img/back.gif&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Pokemon<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
@@ -413,7 +422,14 @@
 
 
 
+<h2 id="让分页器一直变色"><a href="#让分页器一直变色" class="headerlink" title="让分页器一直变色"></a>让分页器一直变色</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">animation</span>: changeColor <span class="hljs-number">2s</span> linear infinite;<br><span class="hljs-keyword">@keyframes</span> changeColor &#123;<br>    <span class="hljs-selector-tag">from</span> &#123;<br>        <span class="hljs-attribute">filter</span>: <span class="hljs-built_in">hue-rotate</span>(<span class="hljs-number">0</span>)<br>    &#125;<br>    <span class="hljs-selector-tag">to</span> &#123;<br>        <span class="hljs-attribute">filter</span>: <span class="hljs-built_in">hue-rotate</span>(<span class="hljs-number">360deg</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
+<p>利用 animation 动画 和 filter: hue-rotate 属性，hue-rotate 是色调旋转滤镜</p>
+<p>关于 hue-rotate 可以看张鑫旭的这篇文章 <a target="_blank" rel="noopener" href="https://www.zhangxinxu.com/wordpress/2018/11/css-filter-hue-rotate-button/">https://www.zhangxinxu.com/wordpress/2018/11/css-filter-hue-rotate-button/</a></p>
+<h2 id="边框360度转"><a href="#边框360度转" class="headerlink" title="边框360度转"></a>边框360度转</h2><img src="/2022/09/06/pokemon%E9%A1%B9%E7%9B%AE/image-20221111202200896.png" srcset="/img/loading.gif" lazyload class="" title="image-20221111202200896"> 
+
+<p>利用 animation 和 clip-path 以及 filter-hue-rotate。clip-path 用于裁剪路径，可以看我的博客中的一篇文章。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.about-border</span> &#123;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;<br>    <span class="hljs-attribute">background-color</span>: transparent;<br>    <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid;<br>    <span class="hljs-attribute">border-image</span>: <span class="hljs-built_in">linear-gradient</span>(<span class="hljs-number">45deg</span>, <span class="hljs-built_in">rgb</span>(<span class="hljs-number">184</span>, <span class="hljs-number">159</span>, <span class="hljs-number">218</span>), <span class="hljs-built_in">rgb</span>(<span class="hljs-number">15</span>, <span class="hljs-number">48</span>, <span class="hljs-number">194</span>)) <span class="hljs-number">1</span>;<br>    <span class="hljs-attribute">clip-path</span>: <span class="hljs-built_in">inset</span>(<span class="hljs-number">0</span> <span class="hljs-number">100%</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span>);<br>    <span class="hljs-attribute">animation</span>: clipPath <span class="hljs-number">5s</span> infinite linear;<br>&#125;<br><span class="hljs-keyword">@keyframes</span> clipPath &#123;<br>    <span class="hljs-number">0%</span>&#123;<br>        <span class="hljs-attribute">clip-path</span>: <span class="hljs-built_in">inset</span>(<span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">100%</span> <span class="hljs-number">0</span>);<br>        <span class="hljs-attribute">filter</span>: <span class="hljs-built_in">hue-rotate</span>(<span class="hljs-number">0deg</span>);<br>    &#125;<br>    <span class="hljs-number">25%</span> &#123;<br>        <span class="hljs-attribute">clip-path</span>: <span class="hljs-built_in">inset</span>(<span class="hljs-number">0</span> <span class="hljs-number">100%</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span>);<br>    &#125;<br>    <span class="hljs-number">50%</span> &#123;<br>        <span class="hljs-attribute">clip-path</span>: <span class="hljs-built_in">inset</span>(<span class="hljs-number">100%</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span>);<br>        <span class="hljs-attribute">filter</span>: <span class="hljs-built_in">hue-rotate</span>(<span class="hljs-number">360deg</span>);<br>    &#125;<br>    <span class="hljs-number">75%</span> &#123;<br>        <span class="hljs-attribute">clip-path</span>: <span class="hljs-built_in">inset</span>(<span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">100%</span>);<br>    &#125;<br>    <span class="hljs-number">100%</span> &#123;<br>        <span class="hljs-attribute">clip-path</span>: <span class="hljs-built_in">inset</span>(<span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">100%</span> <span class="hljs-number">0</span>);<br>        <span class="hljs-attribute">filter</span>: <span class="hljs-built_in">hue-rotate</span>(<span class="hljs-number">0deg</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
@@ -436,6 +452,18 @@
 
 <p><strong>2.不同种族的 card 应该有不同的配色方案</strong></p>
 <p>没有 ui，十几个种族，自己设计太麻烦</p>
+<h1 id="部署到-github-并生成网页"><a href="#部署到-github-并生成网页" class="headerlink" title="部署到 github 并生成网页"></a>部署到 github 并生成网页</h1><p><strong>完整流程：</strong></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_46898790/article/details/126105486">https://blog.csdn.net/m0_46898790/article/details/126105486</a></p>
+<p><strong>一些简单配置</strong></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/shinjie1210/article/details/122473024">https://blog.csdn.net/shinjie1210/article/details/122473024</a></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">import</span> &#123; defineConfig &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vite&#x27;</span><br><span class="hljs-keyword">import</span> vue <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@vitejs/plugin-vue&#x27;</span><br><span class="hljs-keyword">import</span> legacyPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@vitejs/plugin-legacy&#x27;</span><br><br><span class="hljs-comment">// https://vitejs.dev/config/</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title function_">defineConfig</span>(&#123;<br>  <span class="hljs-attr">plugins</span>: [<br>    <span class="hljs-title function_">vue</span>(),<br>    <span class="hljs-comment">// 兼容</span><br>    <span class="hljs-title function_">legacyPlugin</span>(&#123;<br>      <span class="hljs-attr">targets</span>: [<span class="hljs-string">&#x27;chrome 52&#x27;</span>], <span class="hljs-comment">// 需要兼容的目标列表，可以设置多个</span><br>      <span class="hljs-attr">additionalLegacyPolyfills</span>: [<span class="hljs-string">&#x27;regenerator-runtime/runtime&#x27;</span>] <span class="hljs-comment">// 面向IE11时需要此插件</span><br>    &#125;)<br>  ],<br>  <span class="hljs-comment">// 配置基本路径</span><br>  <span class="hljs-attr">base</span>: <span class="hljs-string">&#x27;./&#x27;</span>,<br>  <span class="hljs-attr">build</span>: &#123;<br>    <span class="hljs-attr">rollupOptions</span>: &#123;<br>      <span class="hljs-comment">// 打包后的文件根据后缀归类</span><br>      <span class="hljs-attr">output</span>: &#123;<br>        <span class="hljs-attr">chunkFileNames</span>: <span class="hljs-string">&#x27;static/js/[name]-[hash].js&#x27;</span>,<br>        <span class="hljs-attr">entryFileNames</span>: <span class="hljs-string">&#x27;static/js/[name]-[hash].js&#x27;</span>,<br>        <span class="hljs-attr">assetFileNames</span>: <span class="hljs-string">&#x27;static/[ext]/[name]-[hash].[ext]&#x27;</span>,<br>      &#125;<br>    &#125;,<br>    <span class="hljs-comment">// 去除 console 和 debugger</span><br>    <span class="hljs-attr">terserOptions</span>: &#123;<br>      <span class="hljs-attr">compress</span>: &#123;<br>        <span class="hljs-attr">drop_console</span>: <span class="hljs-literal">true</span>,<br>        <span class="hljs-attr">drop_debugger</span>: <span class="hljs-literal">true</span>,<br>      &#125;,<br>    &#125;,<br>  &#125;,<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>base 不加打包后的网页打不开的，路径会有问题</p>
+<p><strong>构建网页</strong></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/mrliucx/article/details/125574957">https://blog.csdn.net/mrliucx/article/details/125574957</a></p>
+<p><strong>网页地址</strong></p>
+<p><a target="_blank" rel="noopener" href="https://akirajy.github.io/pokemonBook/">https://akirajy.github.io/pokemonBook/</a></p>
+<p>注：如果既要开源，又要通过 github 部署成网页，可以 main 分支中放源代码，pages 分支中放打包后的文件</p>
 
               
             </div>
