@@ -16,12 +16,12 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Git    初始化用户设置设置用户名 git config –global user.name lwj 设置邮箱 git config –global user.email &amp;#x36;&amp;#49;&amp;#x39;&amp;#53;&amp;#48;&amp;#48;&amp;#56;&amp;#x32;&amp;#56;&amp;#64;&amp;#x71;&amp;#113;&amp;#46;&amp;#99;&amp;#111;&amp;#109; 初始化git init 多了一个 .git 文件">
+    <meta name="description" content="Git    初始化用户设置设置用户名 git config –global user.name lwj 设置邮箱 git config –global user.email &amp;#54;&amp;#49;&amp;#57;&amp;#x35;&amp;#48;&amp;#x30;&amp;#x38;&amp;#x32;&amp;#56;&amp;#x40;&amp;#x71;&amp;#113;&amp;#46;&amp;#x63;&amp;#111;&amp;#109; 初始化git init 多了一个 .git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git">
 <meta property="og:url" content="http://example.com/2022/07/09/Git/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Git    初始化用户设置设置用户名 git config –global user.name lwj 设置邮箱 git config –global user.email &amp;#x36;&amp;#49;&amp;#x39;&amp;#53;&amp;#48;&amp;#48;&amp;#56;&amp;#x32;&amp;#56;&amp;#64;&amp;#x71;&amp;#113;&amp;#46;&amp;#99;&amp;#111;&amp;#109; 初始化git init 多了一个 .git 文件">
+<meta property="og:description" content="Git    初始化用户设置设置用户名 git config –global user.name lwj 设置邮箱 git config –global user.email &amp;#54;&amp;#49;&amp;#57;&amp;#x35;&amp;#48;&amp;#x30;&amp;#x38;&amp;#x32;&amp;#56;&amp;#x40;&amp;#x71;&amp;#113;&amp;#46;&amp;#x63;&amp;#111;&amp;#109; 初始化git init 多了一个 .git">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2022/07/09/Git/image-20220709160235846.png">
 <meta property="og:image" content="http://example.com/2022/07/09/Git/image-20220709161701963.png">
@@ -34,7 +34,7 @@
 <meta property="og:image" content="http://example.com/2022/07/09/Git/image-20220709171256207.png">
 <meta property="og:image" content="http://example.com/2022/07/09/Git/image-20221026215721434.png">
 <meta property="article:published_time" content="2022-07-09T07:59:14.000Z">
-<meta property="article:modified_time" content="2022-10-26T14:18:51.808Z">
+<meta property="article:modified_time" content="2022-11-22T09:33:21.444Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/2022/07/09/Git/image-20220709160235846.png">
@@ -227,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k words
+          2.6k words
         
       </span>
     
@@ -238,7 +238,7 @@
         
         
         
-          17 mins
+          22 mins
         
       </span>
     
@@ -295,7 +295,7 @@
 <h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><h3 id="用户设置"><a href="#用户设置" class="headerlink" title="用户设置"></a>用户设置</h3><p><strong>设置用户名</strong></p>
 <p>git config –global user.name lwj</p>
 <p><strong>设置邮箱</strong></p>
-<p>git config –global user.email <a href="mailto:&#x36;&#49;&#x39;&#53;&#48;&#48;&#56;&#x32;&#56;&#64;&#x71;&#113;&#46;&#99;&#111;&#109;">&#x36;&#49;&#x39;&#53;&#48;&#48;&#56;&#x32;&#56;&#64;&#x71;&#113;&#46;&#99;&#111;&#109;</a></p>
+<p>git config –global user.email <a href="mailto:&#54;&#49;&#57;&#x35;&#48;&#x30;&#x38;&#x32;&#56;&#x40;&#x71;&#113;&#46;&#x63;&#111;&#109;">&#54;&#49;&#57;&#x35;&#48;&#x30;&#x38;&#x32;&#56;&#x40;&#x71;&#113;&#46;&#x63;&#111;&#109;</a></p>
 <h3 id="初始化-1"><a href="#初始化-1" class="headerlink" title="初始化"></a>初始化</h3><p>git init</p>
 <p>多了一个 .git 文件夹，git 的所有记录都在此文件夹中</p>
 <p>默认位于 master (主分支)</p>
@@ -374,6 +374,27 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">$ git stash apply stash@&#123;1&#125;<br>复制代码<br></code></pre></td></tr></table></figure>
 
 <p>pop，drop 同理。</p>
+<h2 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45032067/article/details/124621305">版本回退</a></h2><p><strong>场景一：如果想将代码恢复到之前某个提交的版本，且那个版本之后提交的版本都不要了，就可以使用 git reset</strong></p>
+<p><strong>原理：</strong> git <a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=reset&spm=1001.2101.3001.7020">reset</a> 的作用是修改HEAD的位置，即将HEAD指向的位置改变为之前存在的某个版本</p>
+<p><strong>操作：</strong></p>
+<ol>
+<li>查看版本号：git log，也可以上代码托管网页上查看history，找到需要回滚的目标版本号</li>
+<li>使用“git reset –hard 目标版本号”命令将版本回退</li>
+<li>使用“git push -f”提交更改，此时如果用“git push”会报错，因为我们本地库HEAD指向的版本比远程库的要旧，用“git push -f”强制推上去。</li>
+</ol>
+<p><strong>场景二：如果我们想撤销之前的某一版本，但是又想保留该目标版本后面的版本，记录下这整个版本变动流程，就可以用这种方法。</strong></p>
+<p><strong>原理：</strong>我们commit了三个版本（版本一、版本二、 版本三），突然发现版本二不行（如：有bug），想要撤销版本二，但又不想影响撤销版本三的提交，就可以用 git revert 命令来反做版本二，生成新的版本四，这个版本四里会保留版本三的东西，但撤销了版本二的东西。</p>
+<p><strong>操作：</strong></p>
+<ol>
+<li><p>查看版本号：git log，也可以上代码托管网页上查看history，找到需要撤销的目标版本号</p>
+</li>
+<li><p>使用“git revert -n 版本号”反做，并使用“git commit -m 版本名”提交：<br>  （1）反做，使用“git revert -n 版本号”命令。</p>
+</li>
+</ol>
+<p>  注意： 这里可能会出现冲突，那么需要手动修改冲突的文件。而且要git add 文件名。<br>  （2）提交，使用“git commit -m 版本名”</p>
+<ol start="3">
+<li>使用“git push”推上远程库：</li>
+</ol>
 <h2 id="使用顺序注意"><a href="#使用顺序注意" class="headerlink" title="使用顺序注意"></a>使用顺序注意</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/aaaaa1994/article/details/90340224">https://blog.csdn.net/aaaaa1994/article/details/90340224</a> 实习期间遇到了同样的问题</p>
 <p>1.本地修改与远程代码无冲突，优先使用</p>
 <p>pull -&gt; commit -&gt; push</p>

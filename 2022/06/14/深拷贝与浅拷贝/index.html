@@ -24,7 +24,7 @@
 <meta property="og:description" content="对象的深拷贝与浅拷贝什么是浅拷贝只拷贝了数据对象的第一层，深层次的数据值与原始数据会互相影响（拷贝后的数据与原始数据还存有关联） 常见浅拷贝的方式：Object.assign()、扩展运算符 123456789const obj1 &#x3D; &amp;#123; name: &amp;#x27;dog&amp;#x27;, info: &amp;#123; age: 3 &amp;#125; &amp;#125;const obj2 &#x3D; Object">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-06-14T04:53:10.000Z">
-<meta property="article:modified_time" content="2022-10-16T03:01:30.607Z">
+<meta property="article:modified_time" content="2022-11-23T06:53:02.651Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="JS">
 <meta property="article:tag" content="深拷贝与浅拷贝">
@@ -219,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.6k words
+          3.7k words
         
       </span>
     
@@ -230,7 +230,7 @@
         
         
         
-          31 mins
+          32 mins
         
       </span>
     
@@ -312,6 +312,7 @@
 <li>对象中的 NaN、Infinity、-Infinity 会变成 null</li>
 <li>对象循环引用时会报错</li>
 </ol>
+<p>这些问题大部分源于 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify">JSON.stringify()</a>，毕竟这个函数的初衷不是用来做拷贝的。当然，json.stringify 提供了第二个参数（为一个函数），对象中的每个值会递归交给函数处理，可以在该函数中判断类型做相应处理。</p>
 <h4 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h4><h5 id="简单版"><a href="#简单版" class="headerlink" title="简单版"></a>简单版</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">deepClone</span>(<span class="hljs-params">obj</span>) &#123;<br>    <span class="hljs-comment">// 处理 null date reg 原始类型</span><br>    <span class="hljs-keyword">if</span> (obj === <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> obj<br>    <span class="hljs-keyword">if</span> (obj <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Date</span>) <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(obj)<br>    <span class="hljs-keyword">if</span> (obj <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">RegExp</span>) <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RegExp</span>(obj)<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> obj !== <span class="hljs-string">&#x27;object&#x27;</span>) <span class="hljs-keyword">return</span> obj<br><br>    <span class="hljs-comment">// 处理对象和数组</span><br>    <span class="hljs-keyword">const</span> cloneObj = <span class="hljs-keyword">new</span> obj.<span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>)      <span class="hljs-comment">// 根据对象和数组自动生成</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">of</span> <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">keys</span>(obj)) &#123;<br>        cloneObj[key] = <span class="hljs-title function_">deepClone</span>(obj[key])<br>    &#125;<br>    <br>    <span class="hljs-keyword">return</span> cloneObj<br>&#125;<br></code></pre></td></tr></table></figure>
 
 

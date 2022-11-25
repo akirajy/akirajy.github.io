@@ -16,21 +16,23 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="字符集ASCII最早的 127 个字符，大小写英文字母、制表符、换行符等。几乎所有后出的字符集都会兼容 UnicodeUnicode 是国际标准字符集，它将世界各种语言的每个字符定义一个唯一的编码，以满足跨语言、跨平台的文本信息转换。 Unicode 字符集的编码范围是 0x0000 - 0x10FFFF , 可以容纳一百多万个字符， 每个字符都有一个独一无二的编码，也即每个字符都有一个二进制数值">
+    <meta name="description" content="xhr封装axios123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869&#x2F;&#x2F; 实现function axios(method, url, data&#x3D;&amp;#123;&amp;#125;, params&#x3D;&amp;#">
 <meta property="og:type" content="article">
-<meta property="og:title" content="字符集、编码、码点">
-<meta property="og:url" content="http://example.com/2022/11/20/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E9%9B%86/index.html">
+<meta property="og:title" content="xhr封装axios">
+<meta property="og:url" content="http://example.com/2022/11/24/xhr%E5%B0%81%E8%A3%85axios/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="字符集ASCII最早的 127 个字符，大小写英文字母、制表符、换行符等。几乎所有后出的字符集都会兼容 UnicodeUnicode 是国际标准字符集，它将世界各种语言的每个字符定义一个唯一的编码，以满足跨语言、跨平台的文本信息转换。 Unicode 字符集的编码范围是 0x0000 - 0x10FFFF , 可以容纳一百多万个字符， 每个字符都有一个独一无二的编码，也即每个字符都有一个二进制数值">
+<meta property="og:description" content="xhr封装axios123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869&#x2F;&#x2F; 实现function axios(method, url, data&#x3D;&amp;#123;&amp;#125;, params&#x3D;&amp;#">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-11-20T09:25:46.000Z">
-<meta property="article:modified_time" content="2022-11-20T10:01:17.816Z">
+<meta property="article:published_time" content="2022-11-24T07:21:11.000Z">
+<meta property="article:modified_time" content="2022-11-24T07:22:55.714Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="JS">
+<meta property="article:tag" content="手写函数">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>字符集、编码、码点 - Hexo</title>
+  <title>xhr封装axios - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -193,7 +195,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="字符集、编码、码点"></span>
+            <span id="subtitle" data-typed-text="xhr封装axios"></span>
           
         </div>
 
@@ -204,8 +206,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-11-20 17:25" pubdate>
-          November 20, 2022 pm
+        <time datetime="2022-11-24 15:21" pubdate>
+          November 24, 2022 pm
         </time>
       </span>
     
@@ -216,7 +218,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          610 words
+          1.5k words
         
       </span>
     
@@ -227,7 +229,7 @@
         
         
         
-          6 mins
+          13 mins
         
       </span>
     
@@ -273,24 +275,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">字符集、编码、码点</h1>
+            <h1 style="display: none">xhr封装axios</h1>
             
             <div class="markdown-body">
               
-              <h1 id="字符集"><a href="#字符集" class="headerlink" title="字符集"></a>字符集</h1><h2 id="ASCII"><a href="#ASCII" class="headerlink" title="ASCII"></a>ASCII</h2><p>最早的 127 个字符，大小写英文字母、制表符、换行符等。几乎所有后出的字符集都会兼容</p>
-<h2 id="Unicode"><a href="#Unicode" class="headerlink" title="Unicode"></a>Unicode</h2><p>Unicode 是国际标准字符集，它将世界各种语言的每个字符定义一个唯一的编码，以满足跨语言、跨平台的文本信息转换。</p>
-<p>Unicode 字符集的编码范围是 <strong>0x0000 - 0x10FFFF</strong> , 可以容纳一百多万个字符， 每个字符都有一个独一无二的编码，也即每个字符都有一个二进制数值和它对应，这里的二进制数值也叫 <strong>码点</strong> , 比如：汉字 <strong>“中”</strong> 的 码点是 <strong>0x4E2D</strong>, 大写字母 <strong>A</strong> 的码点是 <strong>0x41</strong>, 具体字符对应的 Unicode 编码可以查询 <a href="https://link.zhihu.com/?target=https://home.unicode.org/">Unicode字符编码表</a></p>
-<h2 id="地区字符集"><a href="#地区字符集" class="headerlink" title="地区字符集"></a>地区字符集</h2><p>不同国家&#x2F;地区语言的特定编码格式，互相之间是冲突的，因为码点是重的。</p>
-<h3 id="GB"><a href="#GB" class="headerlink" title="GB"></a>GB</h3><p>GB（国标），简体中文编码。</p>
-<p>占空间小（因为字符编码集小，字符没有那么长）</p>
-<p>同一个字符 GB 和 Unicode 码点不一致</p>
-<p>GB2312 -&gt; GBK(GB13000) -&gt; GB18030</p>
-<h3 id="ISO-8859"><a href="#ISO-8859" class="headerlink" title="ISO-8859"></a>ISO-8859</h3><p>东欧的</p>
-<h3 id="BIG5"><a href="#BIG5" class="headerlink" title="BIG5"></a>BIG5</h3><p>台湾的</p>
-<h2 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h2><p>Unicode 是一个符号集， 它只规定了每个符号的二进制值，但是符号具体如何存储它。</p>
-<p>UTF-8、UTF-16、UTF-32 才是真正的字符编码规则。</p>
-<p>UTF（Unicode Transformation Format”）意思是 Unicode 转换格式，后面的数字表明至少使用多少个比特位来存储字符</p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/427488961">https://zhuanlan.zhihu.com/p/427488961</a></p>
+              <h2 id="xhr封装axios"><a href="#xhr封装axios" class="headerlink" title="xhr封装axios"></a>xhr封装axios</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 实现</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">axios</span>(<span class="hljs-params">method, url, data=&#123;&#125;, params=&#123;&#125;</span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;<br>        <span class="hljs-comment">// 1.方法转大写</span><br>        method = method.<span class="hljs-title function_">toUpperCase</span>()<br>        <br>        <span class="hljs-comment">// 2.将 query 参数拼接到 url 上</span><br>        <span class="hljs-keyword">let</span> queryString = <span class="hljs-string">&quot;&quot;</span><br>        <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">keys</span>(params).<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">key</span> =&gt;</span> &#123;<br>            queryString += <span class="hljs-string">`<span class="hljs-subst">$&#123;key&#125;</span>=<span class="hljs-subst">$&#123;params[key]&#125;</span>&amp; `</span><br>        &#125;)<br>        <br>        <span class="hljs-comment">// 判断 queryString 中有没有值</span><br>        <span class="hljs-keyword">if</span> (queryString) &#123;<br>            <span class="hljs-comment">// 去除最后的 &amp;</span><br>            queryString = queryString.<span class="hljs-title function_">substring</span>(<span class="hljs-number">0</span>, queryString.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>)<br>            <span class="hljs-comment">// 接到 url 上</span><br>            url += <span class="hljs-string">&#x27;?&#x27;</span> + queryString<br>        &#125;<br>        <br>        <span class="hljs-comment">// 3.xhr 发请求</span><br>        <span class="hljs-keyword">let</span> xhr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">XMLHttpRequest</span>()<br>        xhr.<span class="hljs-title function_">open</span>(method, url)<br>        <span class="hljs-keyword">if</span> (method === <span class="hljs-string">&#x27;GET&#x27;</span>) &#123;<br>            xhr.<span class="hljs-title function_">send</span>()<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (method === <span class="hljs-string">&#x27;POST&#x27;</span>) &#123;<br>            xhr.<span class="hljs-title function_">setRequestHeader</span>(<br>            	<span class="hljs-string">&quot;Content-Type&quot;</span>,<br>                <span class="hljs-string">&quot;application/json;charset=utf-8&quot;</span><br>            )<br>            xhr.<span class="hljs-title function_">send</span>(<span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(data))<br>        &#125;<br>        xhr.<span class="hljs-property">onreadystatechange</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>            <span class="hljs-keyword">const</span> &#123; status, statusText &#125; = xhr<br>            <span class="hljs-keyword">if</span> (xhr.<span class="hljs-property">readyState</span> !== <span class="hljs-number">4</span>) <span class="hljs-keyword">return</span><br>            <span class="hljs-keyword">if</span> (status &gt;= <span class="hljs-number">200</span> &amp;&amp; status &lt; <span class="hljs-number">300</span>) &#123;<br>                <span class="hljs-comment">// 准备结果数据对象 response</span><br>                <span class="hljs-keyword">const</span> response = &#123;<br>                    <span class="hljs-attr">data</span>: <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(request.<span class="hljs-property">response</span>),<br>                    status,<br>                    statusText<br>                &#125;<br>                <span class="hljs-title function_">resolve</span>(response)<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;request error status is &quot;</span> + status))<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br>                       <br><span class="hljs-comment">// 调用</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">testPost</span>(<span class="hljs-params"></span>) &#123;<br>	<span class="hljs-title function_">axios</span>(&#123;<br>		<span class="hljs-attr">url</span>: <span class="hljs-string">&quot;http://localhost:3000/posts&quot;</span>,<br>		<span class="hljs-attr">method</span>: <span class="hljs-string">&quot;POST&quot;</span>,<br>		<span class="hljs-attr">data</span>: &#123;<br>			<span class="hljs-attr">title</span>: <span class="hljs-string">&quot;&quot;</span>,<br>			<span class="hljs-attr">author</span>: <span class="hljs-string">&quot;&quot;</span>,<br>			<span class="hljs-attr">id</span>: <span class="hljs-number">4</span><br>		&#125;<br>	&#125;).<span class="hljs-title function_">then</span>(<br>		<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> &#123;<br>			<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(response);<br>		&#125;,<br>		<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> &#123;<br>			<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">message</span>);<br>		&#125;<br>	);<br>&#125;<br></code></pre></td></tr></table></figure>
+
 
               
             </div>
@@ -308,12 +298,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E9%87%8D%E5%AD%A6%E5%89%8D%E7%AB%AF/" class="category-chain-item">重学前端</a>
+  <a href="/categories/JS/" class="category-chain-item">JS</a>
   
   
     <span>></span>
     
-  <a href="/categories/%E9%87%8D%E5%AD%A6%E5%89%8D%E7%AB%AF/JS/" class="category-chain-item">JS</a>
+  <a href="/categories/JS/%E6%89%8B%E5%86%99%E4%BB%A3%E7%A0%81/" class="category-chain-item">手写代码</a>
   
   
 
@@ -327,6 +317,15 @@
     </div>
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/JS/">#JS</a>
+      
+        <a href="/tags/%E6%89%8B%E5%86%99%E5%87%BD%E6%95%B0/">#手写函数</a>
+      
+    </div>
+  
 </div>
 
 
@@ -335,8 +334,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>字符集、编码、码点</div>
-      <div>http://example.com/2022/11/20/字符编码集/</div>
+      <div>xhr封装axios</div>
+      <div>http://example.com/2022/11/24/xhr封装axios/</div>
     </div>
     <div class="license-meta">
       
@@ -348,7 +347,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>November 20, 2022</div>
+          <div>November 24, 2022</div>
         </div>
       
       
@@ -378,9 +377,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/11/22/%E7%99%BB%E5%BD%95%E6%BB%91%E5%9D%97%E9%AA%8C%E8%AF%81/" title="登录滑块验证">
+                      <a href="/2022/11/25/%E8%B7%B3%E5%87%BA%E5%A4%9A%E9%87%8D%E5%BE%AA%E7%8E%AF/" title="continue跳出多重循环">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">登录滑块验证</span>
+                        <span class="hidden-mobile">continue跳出多重循环</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -388,8 +387,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/11/20/%E5%AD%97%E7%AC%A6%E9%9B%86%E3%80%81%E7%BC%96%E7%A0%81%E3%80%81%E7%A0%81%E7%82%B9/" title="字符集、编码、码点">
-                        <span class="hidden-mobile">字符集、编码、码点</span>
+                      <a href="/2022/11/22/%E7%99%BB%E5%BD%95%E6%BB%91%E5%9D%97%E9%AA%8C%E8%AF%81/" title="登录滑块验证">
+                        <span class="hidden-mobile">登录滑块验证</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2022/08/28/VueRouter%E7%9A%84hash%E5%92%8Chistory%E6%A8%A1%E5%BC%8F/image-20220911221416987.png">
 <meta property="article:published_time" content="2022-08-28T08:15:07.000Z">
-<meta property="article:modified_time" content="2022-09-11T14:19:15.332Z">
+<meta property="article:modified_time" content="2022-11-23T09:38:37.552Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Vue">
 <meta property="article:tag" content="路由">
@@ -220,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k words
+          2.3k words
         
       </span>
     
@@ -231,7 +231,7 @@
         
         
         
-          16 mins
+          19 mins
         
       </span>
     
@@ -290,9 +290,10 @@
 <li><code>#</code> 符号本身以及它后面的字符称之为 <code>hash</code>，可通过<code> window.location.hash</code> 属性读取。</li>
 <li><code>hash</code> 通过 <code>window.onhashchange</code> 的方式，来监听 <code>hash</code> 的改变，借此实现无刷新跳转的功能。</li>
 </ul>
+<p><strong>对 SEO 不友好</strong></p>
 <h4 id="设置hash模式"><a href="#设置hash模式" class="headerlink" title="设置hash模式"></a>设置hash模式</h4><p>vue2 中默认为 mode:hash</p>
 <p>vue3 中使用 createWebHashHistory</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs vue3">import &#123; createWebHashHistory &#125; from &#x27;vue-router&#x27;<br><br>const router = createRouter(&#123;<br>  history: createWebHistory(),<br>  routes<br>&#125;);<br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs vue3">import &#123; createWebHashHistory &#125; from &#x27;vue-router&#x27;<br><br>const router = createRouter(&#123;<br>  history: createWebHashHistory(),<br>  routes<br>&#125;);<br></code></pre></td></tr></table></figure>
 
 
 
@@ -300,7 +301,16 @@
 <p><code>history</code> 是路由的另一种模式，由于 hash 模式会在 url 中带#，如果不想要带 #的话，我们可以使用路由的 <code>history</code> 模式，只需要在响应的 <code>router</code> 配置规则时加上即可，<code>vue</code> 的路由默认是 <code>hash</code> 模式。</p>
 <p>利用了<code>HTML5 History Interface</code>中新增的 <code>pushState()</code> 和<code> replaceState()</code> 方法。</p>
 <p>这两个方法应用于浏览器的历史记录栈，在当前已有的<code> back、forward、go</code> 的基础之上，它们提供了对历史记录进行修改的功能。只是当它们执行修改时，虽然改变了当前的 URL，但浏览器不会立即向后端发送请求。</p>
-<h4 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h4><p>美观，没有#</p>
+<h4 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h4><ol>
+<li><p>美观，没有#</p>
+</li>
+<li><p>pushState() 相比于直接修改 hash 的优势</p>
+</li>
+</ol>
+<p>pushState()设置的新 URL 可以是与当前 URL 同源的任意 URL；而<code>hash</code>只可修改<code>#</code><br> 后面的部分，因此只能设置与当前 URL 同文档的 URL；</p>
+<p>pushState()设置的新 URL 可以与当前 URL 一模一样，这样也会把记录添加到栈中；<br> 而<code>hash</code>设置的新值必须与原来不一样才会触发动作将记录添加到栈中；</p>
+<p>pushState()通过<code>stateObject</code>参数可以添加任意类型的数据到记录中；<br> 而<code>hash</code>只可添加短字符串；</p>
+<p>pushState()可额外设置<code>title</code>属性供后续使用。</p>
 <h4 id="缺陷"><a href="#缺陷" class="headerlink" title="缺陷"></a>缺陷</h4><p><strong>需要后端配置（nginx代理转发，找不到就重定向到项目首页）</strong></p>
 <p>否则刷新页面会报404，因为会重新发请求，而此时的 url 已经改变。</p>
 <p>具体的说：当我们把 history 项目部署到服务器中后,此时我们在浏览器输入一个网址(比如是 <a href="https://link.juejin.cn/?target=http://www.test.com">www.test.com</a> ), 此时会经过 dns 解析，拿到 ip 地址后根据 ip 地址向该服务器发起请求,服务器接受到请求后,然后返回相应的结果(html,css,js)。如果我们在前端设置了重定向，此时页面会进行跳转到  <a href="https://link.juejin.cn/?target=http://www.test.com/home">www.test.com/home</a> ,在前端会进行匹配对应的组件然后将其渲染到页面上。此时如果我们刷新页面的话，浏览器会发送新的请求 <a href="https://link.juejin.cn/?target=http://www.test.com/home">www.test.com/home</a>, 如果后端服务器没有 &#x2F;home 对应的接口，那么就会返回404。</p>
@@ -319,6 +329,8 @@
 <p><a target="_blank" rel="noopener" href="https://cn.vuejs.org/guide/introduction.html">https://cn.vuejs.org/guide/introduction.html</a></p>
 <p>点击右侧的本页目录，中间部分不会替换，而是滚动到对应位置，使用的是 hash 模式。url 如下</p>
 <p><a target="_blank" rel="noopener" href="https://cn.vuejs.org/guide/typescript/composition-api.html#typing-component-props">https://cn.vuejs.org/guide/typescript/composition-api.html#typing-component-props</a></p>
+<p>注意：<strong>上面写的是错的，这里其实根本不是 hash，而是 html 自带的锚点。</strong></p>
+<p>现在感觉大部分的网页都使用的是 history，可能是因为对 SEO 不友好？</p>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7116336664540086286#heading-7">https://juejin.cn/post/7116336664540086286#heading-7</a></p>
 <p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7096034733649297421">https://juejin.cn/post/7096034733649297421</a></p>
 
