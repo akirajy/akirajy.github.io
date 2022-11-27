@@ -16,15 +16,15 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="字符集ASCII最早的 127 个字符，大小写英文字母、制表符、换行符等。几乎所有后出的字符集都会兼容 Unicode超大合集，划分不同片区，什么语言都有 GBGB（国标），简体中文编码。 占空间小（因为字符编码集小，字符没有那么长） 同一个字符 GB 和 Unicode 码点不一致 GB2312 -&gt; GBK(GB13000) -&gt; GB18030 ISO-8859东欧的 BIG5台">
+    <meta name="description" content="字符集ASCII最早的 127 个字符，大小写英文字母、制表符、换行符等。几乎所有后出的字符集都会兼容 UnicodeUnicode 是国际标准字符集，它将世界各种语言的每个字符定义一个唯一的编码，以满足跨语言、跨平台的文本信息转换。 Unicode 字符集的编码范围是 0x0000 - 0x10FFFF , 可以容纳一百多万个字符， 每个字符都有一个独一无二的编码，也即每个字符都有一个二进制数值">
 <meta property="og:type" content="article">
 <meta property="og:title" content="字符集、编码、码点">
 <meta property="og:url" content="http://example.com/2022/11/20/%E5%AD%97%E7%AC%A6%E9%9B%86%E3%80%81%E7%BC%96%E7%A0%81%E3%80%81%E7%A0%81%E7%82%B9/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="字符集ASCII最早的 127 个字符，大小写英文字母、制表符、换行符等。几乎所有后出的字符集都会兼容 Unicode超大合集，划分不同片区，什么语言都有 GBGB（国标），简体中文编码。 占空间小（因为字符编码集小，字符没有那么长） 同一个字符 GB 和 Unicode 码点不一致 GB2312 -&gt; GBK(GB13000) -&gt; GB18030 ISO-8859东欧的 BIG5台">
+<meta property="og:description" content="字符集ASCII最早的 127 个字符，大小写英文字母、制表符、换行符等。几乎所有后出的字符集都会兼容 UnicodeUnicode 是国际标准字符集，它将世界各种语言的每个字符定义一个唯一的编码，以满足跨语言、跨平台的文本信息转换。 Unicode 字符集的编码范围是 0x0000 - 0x10FFFF , 可以容纳一百多万个字符， 每个字符都有一个独一无二的编码，也即每个字符都有一个二进制数值">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-11-20T09:25:46.000Z">
-<meta property="article:modified_time" content="2022-11-20T09:56:25.378Z">
+<meta property="article:modified_time" content="2022-11-27T06:26:09.712Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -216,7 +216,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          279 words
+          610 words
         
       </span>
     
@@ -227,7 +227,7 @@
         
         
         
-          3 mins
+          6 mins
         
       </span>
     
@@ -278,15 +278,19 @@
             <div class="markdown-body">
               
               <h1 id="字符集"><a href="#字符集" class="headerlink" title="字符集"></a>字符集</h1><h2 id="ASCII"><a href="#ASCII" class="headerlink" title="ASCII"></a>ASCII</h2><p>最早的 127 个字符，大小写英文字母、制表符、换行符等。几乎所有后出的字符集都会兼容</p>
-<h2 id="Unicode"><a href="#Unicode" class="headerlink" title="Unicode"></a>Unicode</h2><p>超大合集，划分不同片区，什么语言都有</p>
-<h2 id="GB"><a href="#GB" class="headerlink" title="GB"></a>GB</h2><p>GB（国标），简体中文编码。</p>
+<h2 id="Unicode"><a href="#Unicode" class="headerlink" title="Unicode"></a>Unicode</h2><p>Unicode 是国际标准字符集，它将世界各种语言的每个字符定义一个唯一的编码，以满足跨语言、跨平台的文本信息转换。</p>
+<p>Unicode 字符集的编码范围是 <strong>0x0000 - 0x10FFFF</strong> , 可以容纳一百多万个字符， 每个字符都有一个独一无二的编码，也即每个字符都有一个二进制数值和它对应，这里的二进制数值也叫 <strong>码点</strong> , 比如：汉字 <strong>“中”</strong> 的 码点是 <strong>0x4E2D</strong>, 大写字母 <strong>A</strong> 的码点是 <strong>0x41</strong>, 具体字符对应的 Unicode 编码可以查询 <a href="https://link.zhihu.com/?target=https://home.unicode.org/">Unicode字符编码表</a></p>
+<h2 id="地区字符集"><a href="#地区字符集" class="headerlink" title="地区字符集"></a>地区字符集</h2><p>不同国家&#x2F;地区语言的特定编码格式，互相之间是冲突的，因为码点是重的。</p>
+<h3 id="GB"><a href="#GB" class="headerlink" title="GB"></a>GB</h3><p>GB（国标），简体中文编码。</p>
 <p>占空间小（因为字符编码集小，字符没有那么长）</p>
 <p>同一个字符 GB 和 Unicode 码点不一致</p>
 <p>GB2312 -&gt; GBK(GB13000) -&gt; GB18030</p>
 <h3 id="ISO-8859"><a href="#ISO-8859" class="headerlink" title="ISO-8859"></a>ISO-8859</h3><p>东欧的</p>
 <h3 id="BIG5"><a href="#BIG5" class="headerlink" title="BIG5"></a>BIG5</h3><p>台湾的</p>
-<p>不同国家&#x2F;地区语言的特定编码格式，互相之间是冲突的，因为码点是重的。</p>
-<h2 id="编码方式"><a href="#编码方式" class="headerlink" title="编码方式"></a>编码方式</h2><h3 id="UTF-8"><a href="#UTF-8" class="headerlink" title="UTF-8"></a>UTF-8</h3><h3 id="UTF-16"><a href="#UTF-16" class="headerlink" title="UTF-16"></a>UTF-16</h3><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/427488961">https://zhuanlan.zhihu.com/p/427488961</a></p>
+<h2 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h2><p>Unicode 是一个符号集， 它只规定了每个符号的二进制值，但是符号具体如何存储它。</p>
+<p>UTF-8、UTF-16、UTF-32 才是真正的字符编码规则。</p>
+<p>UTF（Unicode Transformation Format”）意思是 Unicode 转换格式，后面的数字表明至少使用多少个比特位来存储字符</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/427488961">https://zhuanlan.zhihu.com/p/427488961</a></p>
 
               
             </div>
@@ -374,9 +378,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/11/20/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E9%9B%86/" title="字符集、编码、码点">
+                      <a href="/2022/11/22/%E7%99%BB%E5%BD%95%E6%BB%91%E5%9D%97%E9%AA%8C%E8%AF%81/" title="登录滑块验证">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">字符集、编码、码点</span>
+                        <span class="hidden-mobile">登录滑块验证</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
