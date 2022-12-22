@@ -44,7 +44,7 @@
 <meta property="og:image" content="http://example.com/2022/06/10/%E8%BE%93%E5%85%A5url%E5%90%8E%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%E5%8F%98%E5%8C%96/68747470733a2f2f636176737a686f75796f752d313235343039333639372e636f732e61702d63686f6e6771696e672e6d7971636c6f75642e636f6d2f6e6f74652d31342e706e67.png">
 <meta property="og:image" content="http://example.com/2022/06/10/%E8%BE%93%E5%85%A5url%E5%90%8E%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%E5%8F%98%E5%8C%96/68747470733a2f2f636176737a686f75796f752d313235343039333639372e636f732e61702d63686f6e6771696e672e6d7971636c6f75642e636f6d2f6e6f74652d31332e706e67.png">
 <meta property="article:published_time" content="2022-06-10T01:10:43.000Z">
-<meta property="article:modified_time" content="2022-11-07T05:48:51.885Z">
+<meta property="article:modified_time" content="2022-11-28T03:46:13.480Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="HTTP">
 <meta property="article:tag" content="DNS">
@@ -242,7 +242,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          8.5k words
+          8.6k words
         
       </span>
     
@@ -253,7 +253,7 @@
         
         
         
-          72 mins
+          73 mins
         
       </span>
     
@@ -774,7 +774,7 @@
 
 <h3 id="渲染页面时常见哪些不良现象？"><a href="#渲染页面时常见哪些不良现象？" class="headerlink" title="渲染页面时常见哪些不良现象？"></a>渲染页面时常见哪些不良现象？</h3><p>FOUC：主要指的是<strong>样式闪烁</strong>的问题，由于浏览器渲染机制（比如firefox），<strong>在 CSS 加载之前，先呈现了 HTML</strong>，就会导致展示出<strong>无样式</strong>内容，然后<strong>样式突然呈现</strong>的现象。会出现这个问题的原因主要是 <strong>css 加载时间过长，或者 css 被放在了文档底部</strong>。</p>
 <p><strong>白屏</strong>：有些浏览器渲染机制（比如chrome）要先构建 DOM 树和 CSSOM 树，构建完成后再进行渲染，如果 <strong>CSS 部分放在 HTML 尾部</strong>，由于 CSS 未加载完成，浏览器迟迟未渲染，从而导致白屏；也可能是把 <strong>js 文件放在头部</strong>，脚本的加载会阻塞后面文档内容的解析，从而页面迟迟未渲染出来，出现白屏问题。</p>
-<h3 id="浏览器的绘制过程"><a href="#浏览器的绘制过程" class="headerlink" title="浏览器的绘制过程"></a>浏览器的绘制过程</h3><h4 id="什么是重绘和回流（重拍）？"><a href="#什么是重绘和回流（重拍）？" class="headerlink" title="什么是重绘和回流（重拍）？"></a>什么是重绘和回流（重拍）？</h4><p><strong>重绘</strong>: 当渲染树中的一些元素需要更新属性，而这些属性<strong>只是影响元素的外观、风格，而不会影响布局</strong>的操作，比如 background-color，我们将这样的操作称为重绘。</p>
+<h3 id="浏览器的绘制过程"><a href="#浏览器的绘制过程" class="headerlink" title="浏览器的绘制过程"></a>浏览器的绘制过程</h3><h4 id="什么是重绘和回流（重排）？"><a href="#什么是重绘和回流（重排）？" class="headerlink" title="什么是重绘和回流（重排）？"></a>什么是重绘和回流（重排）？</h4><p><strong>重绘</strong>: 当渲染树中的一些元素需要更新属性，而这些属性<strong>只是影响元素的外观、风格，而不会影响布局</strong>的操作，比如 background-color，我们将这样的操作称为重绘。</p>
 <p><strong>回流</strong>：当渲染树中的一部分（或全部）因为元素的规模尺寸、布局、隐藏等改变而需要重新构建的操作，会<strong>影响到布局的操作</strong>，这样<br>的操作我们称为回流。</p>
 <p><strong>常见引起回流属性和方法：</strong></p>
 <p><strong>任何会改变元素几何信息（元素的位置和尺寸大小）的操作，都会触发回流。</strong></p>
@@ -789,16 +789,14 @@
 
 
 <h4 id="如何减少回流？"><a href="#如何减少回流？" class="headerlink" title="如何减少回流？"></a>如何减少回流？</h4><ol>
-<li><p><strong>最小化重绘和重排</strong>，比如<strong>样式集中改变</strong>，使用添加新样式类名 <code>.class</code> 或 <code>cssText</code> 。</p>
-</li>
-<li><p><strong>批量操作 DOM</strong>，比如读取某元素 <code>offsetWidth</code> 属性存到一个临时变量，再去使用，而不是频繁使用这个计算属性；又比如利用 <code>document.createDocumentFragment()</code> 来添加要被添加的节点，处理完之后再插入到实际 DOM 中。</p>
-</li>
-<li><p><strong>使用  absolute 或 fixed 使元素脱离文档流</strong>，这在制作复杂的动画时对性能的影响比较明显。</p>
-</li>
-<li><p><strong>开启 GPU 加速</strong>，利用 css 属性 <code>transform</code> 、<code>will-change</code> 等，比如改变元素位置，我们使用 <code>translate</code> 会比使用绝对定位改变其 <code>left</code> 、<code>top</code> 等来的高效，因为它不会触发重排或重绘，<code>transform</code> 使浏览器为元素创建⼀个 GPU 图层，这使得动画元素在一个独立的层中进行渲染。当元素的内容没有发生改变，就没有必要进行重绘。</p>
-</li>
-<li><p><strong>opacity替代visibility</strong>： 前者回流重绘都不会触发(前提是它单独在一个图层)，后者两个都会触发。</p>
-</li>
+<li><strong>最小化重绘和重排</strong>，比如<strong>样式集中改变</strong>，使用添加新样式类名 <code>.class</code> 或 <code>cssText</code> 。</li>
+<li><strong>批量操作 DOM</strong>，比如读取某元素 <code>offsetWidth</code> 属性存到一个临时变量，再去使用，而不是频繁使用这个计算属性；又比如利用 <code>document.createDocumentFragment()</code> 来添加要被添加的节点，处理完之后再插入到实际 DOM 中。</li>
+<li><strong>使用  absolute 或 fixed 使元素脱离文档流</strong>，这在制作复杂的动画时对性能的影响比较明显。</li>
+<li><strong>开启 GPU 加速</strong>，利用 css 属性 <code>transform</code> 、<code>will-change</code> 等，比如改变元素位置，我们使用 <code>translate</code> 会比使用绝对定位改变其 <code>left</code> 、<code>top</code> 等来的高效，因为它不会触发重排或重绘，<code>transform</code> 使浏览器为元素创建⼀个 GPU 图层，这使得动画元素在一个独立的层中进行渲染。当元素的内容没有发生改变，就没有必要进行重绘。</li>
+</ol>
+<p>注：will-change 用于告知浏览器该元素会有哪些变化的方法，这样浏览器可以在元素属性真正发生变化之前提前做好对应的优化准备工作。这种优化可以将一部分复杂的计算工作提前准备好，使页面的反应更为快速灵敏。（目前还处于实验阶段）</p>
+<ol start="5">
+<li><strong>opacity替代visibility</strong>： 前者回流重绘都不会触发(前提是它单独在一个图层，否则回流重绘都触发)，后者触发重绘。</li>
 </ol>
 <h4 id="为什么操作-DOM-慢？"><a href="#为什么操作-DOM-慢？" class="headerlink" title="为什么操作 DOM 慢？"></a>为什么操作 DOM 慢？</h4><p>一些 DOM 的操作或者属性访问可能会引起页面的回流和重绘，从而引起性能上的消耗。</p>
 <p>DOM 是属于渲染引擎中的东西，而 JS 又是 JS 引擎中的东西。当我们通过 JS 操作 DOM 的时候，其实这个操作涉及到了两个线程之间的通信，那么势必会带来一些性能上的损耗。</p>

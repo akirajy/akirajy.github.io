@@ -16,21 +16,22 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Hook Event什么是 Hook EventHook Event 是 Vue 的自定义事件结合生命周期钩子实现的一种从组件外部为组件注入额外生命周期方法的功能。 原理callHookVue 的生命周期函数是通过一个叫 callHook 的方法来执行的 1234567891011121314151617181920212223242526272829&#x2F;** * callHook(vm, &amp;#x2">
+    <meta name="description" content="背景vconsole背景hybrid项目中，在使用测试机调试阶段，app想要查看h5的一些信息的话，可以利用 vconsole h5使用1$ npm install vconsole  123456789101112import VConsole from &amp;#x27;vconsole&amp;#x27;;&#x2F;&#x2F; 实例化一个 vconsoleconst vConsole &#x3D; new VConsole();&#x2F;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="7.【转载】Hook Event">
-<meta property="og:url" content="http://example.com/2022/10/25/7-Hook-Event/index.html">
+<meta property="og:title" content="vconsole">
+<meta property="og:url" content="http://example.com/2022/12/22/vconsole/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Hook Event什么是 Hook EventHook Event 是 Vue 的自定义事件结合生命周期钩子实现的一种从组件外部为组件注入额外生命周期方法的功能。 原理callHookVue 的生命周期函数是通过一个叫 callHook 的方法来执行的 1234567891011121314151617181920212223242526272829&#x2F;** * callHook(vm, &amp;#x2">
+<meta property="og:description" content="背景vconsole背景hybrid项目中，在使用测试机调试阶段，app想要查看h5的一些信息的话，可以利用 vconsole h5使用1$ npm install vconsole  123456789101112import VConsole from &amp;#x27;vconsole&amp;#x27;;&#x2F;&#x2F; 实例化一个 vconsoleconst vConsole &#x3D; new VConsole();&#x2F;">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-10-25T09:40:22.000Z">
-<meta property="article:modified_time" content="2022-11-30T08:03:05.151Z">
+<meta property="article:published_time" content="2022-12-22T06:34:35.000Z">
+<meta property="article:modified_time" content="2022-12-22T06:44:21.330Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="业务与工程背景">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>7.【转载】Hook Event - Hexo</title>
+  <title>vconsole - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -193,7 +194,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="7.【转载】Hook Event"></span>
+            <span id="subtitle" data-typed-text="vconsole"></span>
           
         </div>
 
@@ -204,8 +205,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-10-25 17:40" pubdate>
-          October 25, 2022 pm
+        <time datetime="2022-12-22 14:34" pubdate>
+          December 22, 2022 pm
         </time>
       </span>
     
@@ -216,7 +217,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.9k words
+          333 words
         
       </span>
     
@@ -227,7 +228,7 @@
         
         
         
-          25 mins
+          3 mins
         
       </span>
     
@@ -273,36 +274,15 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">7.【转载】Hook Event</h1>
+            <h1 style="display: none">vconsole</h1>
             
             <div class="markdown-body">
               
-              <h1 id="Hook-Event"><a href="#Hook-Event" class="headerlink" title="Hook Event"></a>Hook Event</h1><h2 id="什么是-Hook-Event"><a href="#什么是-Hook-Event" class="headerlink" title="什么是 Hook Event"></a>什么是 Hook Event</h2><p>Hook Event 是 Vue 的自定义事件结合生命周期钩子实现的一种从组件外部为组件注入额外生命周期方法的功能。</p>
-<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><h3 id="callHook"><a href="#callHook" class="headerlink" title="callHook"></a>callHook</h3><p>Vue 的生命周期函数是通过一个叫 <code>callHook</code> 的方法来执行的</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * callHook(vm, &#x27;mounted&#x27;)</span><br><span class="hljs-comment"> * 执行实例指定的生命周期钩子函数</span><br><span class="hljs-comment"> * 如果实例设置有对应的 Hook Event，比如：&lt;comp <span class="hljs-doctag">@hook</span>:mounted=&quot;method&quot; /&gt;，执行完生命周期函数之后，触发该事件的执行</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> &#123;<span class="hljs-type">*</span>&#125; vm 组件实例</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> &#123;<span class="hljs-type">*</span>&#125; hook 生命周期钩子函数</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">callHook</span> (<span class="hljs-attr">vm</span>: <span class="hljs-title class_">Component</span>, <span class="hljs-attr">hook</span>: string) &#123;<br>  <span class="hljs-comment">// 在执行生命周期钩子函数期间禁止依赖收集</span><br>  <span class="hljs-title function_">pushTarget</span>()<br>  <span class="hljs-comment">// 从实例配置对象中获取指定钩子函数，比如 mounted</span><br>  <span class="hljs-keyword">const</span> handlers = vm.<span class="hljs-property">$options</span>[hook]<br>  <span class="hljs-comment">// mounted hook</span><br>  <span class="hljs-keyword">const</span> info = <span class="hljs-string">`<span class="hljs-subst">$&#123;hook&#125;</span> hook`</span><br>  <span class="hljs-keyword">if</span> (handlers) &#123;<br>    <span class="hljs-comment">// 通过 invokeWithErrorHandler 执行生命周期钩子</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, j = handlers.<span class="hljs-property">length</span>; i &lt; j; i++) &#123;<br>      <span class="hljs-title function_">invokeWithErrorHandling</span>(handlers[i], vm, <span class="hljs-literal">null</span>, vm, info)<br>    &#125;<br>  &#125;<br>  <span class="hljs-comment">// Hook Event，如果设置了 Hook Event，比如 &lt;comp @hook:mounted=&quot;method&quot; /&gt;，则通过 $emit 触发该事件</span><br>  <span class="hljs-comment">// vm._hasHookEvent 标识组件是否有 hook event，这是在 vm.$on 中处理组件自定义事件时设置的</span><br>  <span class="hljs-keyword">if</span> (vm.<span class="hljs-property">_hasHookEvent</span>) &#123;<br>    <span class="hljs-comment">// vm.$emit(&#x27;hook:mounted&#x27;)</span><br>    vm.$emit(<span class="hljs-string">&#x27;hook:&#x27;</span> + hook)<br>  &#125;<br>  <span class="hljs-comment">// 关闭依赖收集</span><br>  <span class="hljs-title function_">popTarget</span>()<br>&#125;<br></code></pre></td></tr></table></figure>
+              <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><h1 id="vconsole"><a href="#vconsole" class="headerlink" title="vconsole"></a><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/vconsole">vconsole</a></h1><h2 id="背景-1"><a href="#背景-1" class="headerlink" title="背景"></a>背景</h2><p>hybrid项目中，在使用测试机调试阶段，app想要查看h5的一些信息的话，可以利用 vconsole</p>
+<h2 id="h5使用"><a href="#h5使用" class="headerlink" title="h5使用"></a>h5使用</h2><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">$ npm <span class="hljs-keyword">install</span> vconsole<br></code></pre></td></tr></table></figure>
 
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-title class_">VConsole</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vconsole&#x27;</span>;<br><br><span class="hljs-comment">// 实例化一个 vconsole</span><br><span class="hljs-keyword">const</span> vConsole = <span class="hljs-keyword">new</span> <span class="hljs-title class_">VConsole</span>();<br><span class="hljs-comment">// or init with options</span><br><span class="hljs-keyword">const</span> vConsole = <span class="hljs-keyword">new</span> <span class="hljs-title class_">VConsole</span>(&#123; <span class="hljs-attr">theme</span>: <span class="hljs-string">&#x27;dark&#x27;</span> &#125;);<br><br><span class="hljs-comment">// 正常打印即可</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Hello world&#x27;</span>);<br><br><span class="hljs-comment">// 结束销毁</span><br>vConsole.<span class="hljs-title function_">destroy</span>();<br></code></pre></td></tr></table></figure>
 
-
-<h3 id="invokeWithErrorHandling"><a href="#invokeWithErrorHandling" class="headerlink" title="invokeWithErrorHandling"></a>invokeWithErrorHandling</h3><p>通用函数，这里用于执行生命周期钩子</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 通用函数，执行指定函数 handler</span><br><span class="hljs-comment"> * 传递进来的函数会被用 try catch 包裹，进行异常捕获处理</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">invokeWithErrorHandling</span> (<br>  <span class="hljs-attr">handler</span>: <span class="hljs-title class_">Function</span>,<br>  <span class="hljs-attr">context</span>: any,<br>  <span class="hljs-attr">args</span>: <span class="hljs-literal">null</span> | any[],<br>  <span class="hljs-attr">vm</span>: any,<br>  <span class="hljs-attr">info</span>: string<br>) &#123;<br>  <span class="hljs-keyword">let</span> res<br>  <span class="hljs-keyword">try</span> &#123;<br>    <span class="hljs-comment">// 执行传递进来的函数 handler，并将执行结果返回</span><br>    res = args ? handler.<span class="hljs-title function_">apply</span>(context, args) : handler.<span class="hljs-title function_">call</span>(context)<br>    <span class="hljs-keyword">if</span> (res &amp;&amp; !res.<span class="hljs-property">_isVue</span> &amp;&amp; <span class="hljs-title function_">isPromise</span>(res) &amp;&amp; !res.<span class="hljs-property">_handled</span>) &#123;<br>      res.<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> <span class="hljs-title function_">handleError</span>(e, vm, info + <span class="hljs-string">` (Promise/async)`</span>))<br>      <span class="hljs-comment">// issue #9511</span><br>      <span class="hljs-comment">// avoid catch triggering multiple times when nested calls</span><br>      res.<span class="hljs-property">_handled</span> = <span class="hljs-literal">true</span><br>    &#125;<br>  &#125; <span class="hljs-keyword">catch</span> (e) &#123;<br>    <span class="hljs-title function_">handleError</span>(e, vm, info)<br>  &#125;<br>  <span class="hljs-keyword">return</span> res<br>&#125;<br></code></pre></td></tr></table></figure>
-
-
-
-<h3 id="vm-on"><a href="#vm-on" class="headerlink" title="vm.$on"></a>vm.$on</h3><p>设置 vm._hasHookEvent，表示组件是否有 hook event，如果有的话，callHook 中会在生命周期钩子执行完毕后执行。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 监听实例上的自定义事件，vm._event = &#123; eventName: [fn1, ...], ... &#125;</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> &#123;<span class="hljs-type">*</span>&#125; event 单个的事件名称或者有多个事件名组成的数组</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> &#123;<span class="hljs-type">*</span>&#125; fn 当 event 被触发时执行的回调函数</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@returns</span> </span><br><span class="hljs-comment"> */</span><br><span class="hljs-title class_">Vue</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">$on</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">event: string | <span class="hljs-built_in">Array</span>&lt;string&gt;, fn: <span class="hljs-built_in">Function</span></span>): <span class="hljs-title class_">Component</span> &#123;<br>  <span class="hljs-keyword">const</span> <span class="hljs-attr">vm</span>: <span class="hljs-title class_">Component</span> = <span class="hljs-variable language_">this</span><br>  <span class="hljs-keyword">if</span> (<span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(event)) &#123;<br>    <span class="hljs-comment">// event 是有多个事件名组成的数组，则遍历这些事件，依次递归调用 $on</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>, l = event.<span class="hljs-property">length</span>; i &lt; l; i++) &#123;<br>      vm.$on(event[i], fn)<br>    &#125;<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-comment">// 将注册的事件和回调以键值对的形式存储到 vm._event 对象中 vm._event = &#123; eventName: [fn1, ...] &#125;</span><br>    (vm.<span class="hljs-property">_events</span>[event] || (vm.<span class="hljs-property">_events</span>[event] = [])).<span class="hljs-title function_">push</span>(fn)<br>    <span class="hljs-comment">// hookEvent，提供从外部为组件实例注入声明周期方法的机会</span><br>    <span class="hljs-comment">// 比如从组件外部为组件的 mounted 方法注入额外的逻辑</span><br>    <span class="hljs-comment">// 该能力是结合 callhook 方法实现的</span><br>    <span class="hljs-comment">// 正则判断 event 的名字是否有 hook</span><br>    <span class="hljs-keyword">if</span> (hookRE.<span class="hljs-title function_">test</span>(event)) &#123;<br>      vm.<span class="hljs-property">_hasHookEvent</span> = <span class="hljs-literal">true</span><br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">return</span> vm<br>&#125;<br></code></pre></td></tr></table></figure>
-
-
-
-<h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><h3 id="什么是-Hook-Event？"><a href="#什么是-Hook-Event？" class="headerlink" title="什么是 Hook Event？"></a>什么是 Hook Event？</h3><p>Hook Event 是 Vue 的自定义事件结合生命周期钩子实现的一种从组件外部为组件注入额外生命周期方法的功能。</p>
-<hr>
-<h3 id="Hook-Event-是如果实现的？"><a href="#Hook-Event-是如果实现的？" class="headerlink" title="Hook Event 是如果实现的？"></a>Hook Event 是如果实现的？</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">comp</span> @<span class="hljs-attr">hook:lifecycleMethod</span>=<span class="hljs-string">&quot;method&quot;</span> /&gt;</span><br></code></pre></td></tr></table></figure>
-
-<ul>
-<li>处理组件自定义事件的时候（vm.$on) 如果发现组件有 <code>hook:xx</code> 格式的事件（xx 为 Vue 的生命周期函数），则将 <code>vm._hasHookEvent</code> 置为 <code>true</code>，表示该组件有 Hook Event</li>
-<li>在组件生命周期方法被触发的时候，内部会通过 <code>callHook</code> 方法来执行这些生命周期函数，在生命周期函数执行之后，如果发现 <code>vm._hasHookEvent</code> 为 true，则表示当前组件有 Hook Event，通过 <code>vm.$emit(&#39;hook:xx&#39;)</code> 触发 Hook Event 的执行</li>
-</ul>
-<p>这就是 Hook Event 的实现原理。</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6954923081462710309">https://juejin.cn/post/6954923081462710309</a></p>
 
               
             </div>
@@ -310,34 +290,13 @@
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
       
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Vue/" class="category-chain-item">Vue</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/Vue/Vue%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/" class="category-chain-item">Vue源码解读</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
+        <a href="/tags/%E4%B8%9A%E5%8A%A1%E4%B8%8E%E5%B7%A5%E7%A8%8B%E8%83%8C%E6%99%AF/">#业务与工程背景</a>
+      
     </div>
-  
   
 </div>
 
@@ -347,8 +306,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>7.【转载】Hook Event</div>
-      <div>http://example.com/2022/10/25/7-Hook-Event/</div>
+      <div>vconsole</div>
+      <div>http://example.com/2022/12/22/vconsole/</div>
     </div>
     <div class="license-meta">
       
@@ -360,7 +319,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>October 25, 2022</div>
+          <div>December 22, 2022</div>
         </div>
       
       
@@ -390,18 +349,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/10/26/8-%E7%BC%96%E8%AF%91%E5%99%A8/" title="8.编译器">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">8.编译器</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/10/25/6-%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95/" title="6.【转载】实例方法">
-                        <span class="hidden-mobile">6.【转载】实例方法</span>
+                      <a href="/2022/11/25/%E8%B7%B3%E5%87%BA%E5%A4%9A%E9%87%8D%E5%BE%AA%E7%8E%AF/" title="continue跳出多重循环">
+                        <span class="hidden-mobile">continue跳出多重循环</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
