@@ -16,19 +16,19 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="框架设计概览权衡的艺术命令式和声明式命令式 关注过程 声明式 关注结果 Vue.js 帮我们封装了过程，内部实现是命令式的，而暴露给用户的却更加声明式 性能与可维护性的权衡声明式代码的性能不优于命令式代码的性能 命令式代码的更新性能消耗 &#x3D; 直接修改的性能消耗 声明式代码的更新性能消耗 &#x3D; 直接修改的性能消耗 + 找出差异的性能消耗 但声明式代码的可维护性更强 设计框架时 要保">
+    <meta name="description" content="框架设计概览权衡的艺术命令式和声明式命令式 关注过程（jquery) 声明式 关注结果（vue） Vue.js 帮我们封装了过程，内部实现是命令式的，而暴露给用户的却更加声明式 性能与可维护性的权衡声明式代码的性能不优于命令式代码的性能 命令式代码的更新性能消耗 &#x3D; 直接修改的性能消耗 声明式代码的更新性能消耗 &#x3D; 直接修改的性能消耗 + 找出差异的性能消耗 但声明式代码的可维">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vue.js设计与实现">
 <meta property="og:url" content="http://example.com/2022/07/18/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="框架设计概览权衡的艺术命令式和声明式命令式 关注过程 声明式 关注结果 Vue.js 帮我们封装了过程，内部实现是命令式的，而暴露给用户的却更加声明式 性能与可维护性的权衡声明式代码的性能不优于命令式代码的性能 命令式代码的更新性能消耗 &#x3D; 直接修改的性能消耗 声明式代码的更新性能消耗 &#x3D; 直接修改的性能消耗 + 找出差异的性能消耗 但声明式代码的可维护性更强 设计框架时 要保">
+<meta property="og:description" content="框架设计概览权衡的艺术命令式和声明式命令式 关注过程（jquery) 声明式 关注结果（vue） Vue.js 帮我们封装了过程，内部实现是命令式的，而暴露给用户的却更加声明式 性能与可维护性的权衡声明式代码的性能不优于命令式代码的性能 命令式代码的更新性能消耗 &#x3D; 直接修改的性能消耗 声明式代码的更新性能消耗 &#x3D; 直接修改的性能消耗 + 找出差异的性能消耗 但声明式代码的可维">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2022/07/18/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20220718191653483.png">
 <meta property="og:image" content="http://example.com/2022/07/18/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20220718191710254.png">
 <meta property="og:image" content="http://example.com/2022/07/18/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20220718171611741.png">
 <meta property="og:image" content="http://example.com/2022/07/18/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20220718204108277.png">
 <meta property="article:published_time" content="2022-07-18T09:02:23.000Z">
-<meta property="article:modified_time" content="2022-07-18T15:10:04.511Z">
+<meta property="article:modified_time" content="2022-12-24T07:29:57.430Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/2022/07/18/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20220718191653483.png">
@@ -221,7 +221,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k words
+          1.7k words
         
       </span>
     
@@ -282,8 +282,8 @@
             
             <div class="markdown-body">
               
-              <h2 id="框架设计概览"><a href="#框架设计概览" class="headerlink" title="框架设计概览"></a>框架设计概览</h2><h3 id="权衡的艺术"><a href="#权衡的艺术" class="headerlink" title="权衡的艺术"></a>权衡的艺术</h3><h4 id="命令式和声明式"><a href="#命令式和声明式" class="headerlink" title="命令式和声明式"></a>命令式和声明式</h4><p>命令式 关注过程</p>
-<p>声明式 关注结果</p>
+              <h2 id="框架设计概览"><a href="#框架设计概览" class="headerlink" title="框架设计概览"></a>框架设计概览</h2><h3 id="权衡的艺术"><a href="#权衡的艺术" class="headerlink" title="权衡的艺术"></a>权衡的艺术</h3><h4 id="命令式和声明式"><a href="#命令式和声明式" class="headerlink" title="命令式和声明式"></a>命令式和声明式</h4><p>命令式 关注过程（jquery)</p>
+<p>声明式 关注结果（vue）</p>
 <p>Vue.js 帮我们封装了过程，内部实现是命令式的，而暴露给用户的却更加声明式</p>
 <h4 id="性能与可维护性的权衡"><a href="#性能与可维护性的权衡" class="headerlink" title="性能与可维护性的权衡"></a>性能与可维护性的权衡</h4><p>声明式代码的性能不优于命令式代码的性能</p>
 <p>命令式代码的更新性能消耗 &#x3D; 直接修改的性能消耗</p>

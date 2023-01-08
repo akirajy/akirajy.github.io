@@ -16,12 +16,12 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Git    初始化用户设置设置用户名 git config –global user.name lwj 设置邮箱 git config –global user.email &amp;#54;&amp;#x31;&amp;#57;&amp;#x35;&amp;#x30;&amp;#x30;&amp;#x38;&amp;#x32;&amp;#56;&amp;#64;&amp;#113;&amp;#x71;&amp;#x2e;&amp;#x63;&amp;#x6f;&amp;#x6d; 初始化git init 多了一个 .g">
+    <meta name="description" content="Git    初始化用户设置设置用户名 git config –global user.name lwj 设置邮箱 git config –global user.email &amp;#54;&amp;#49;&amp;#57;&amp;#53;&amp;#x30;&amp;#x30;&amp;#56;&amp;#x32;&amp;#x38;&amp;#64;&amp;#x71;&amp;#x71;&amp;#46;&amp;#x63;&amp;#111;&amp;#x6d; 初始化git init 多了一个 .git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git">
 <meta property="og:url" content="http://example.com/2022/07/09/Git/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Git    初始化用户设置设置用户名 git config –global user.name lwj 设置邮箱 git config –global user.email &amp;#54;&amp;#x31;&amp;#57;&amp;#x35;&amp;#x30;&amp;#x30;&amp;#x38;&amp;#x32;&amp;#56;&amp;#64;&amp;#113;&amp;#x71;&amp;#x2e;&amp;#x63;&amp;#x6f;&amp;#x6d; 初始化git init 多了一个 .g">
+<meta property="og:description" content="Git    初始化用户设置设置用户名 git config –global user.name lwj 设置邮箱 git config –global user.email &amp;#54;&amp;#49;&amp;#57;&amp;#53;&amp;#x30;&amp;#x30;&amp;#56;&amp;#x32;&amp;#x38;&amp;#64;&amp;#x71;&amp;#x71;&amp;#46;&amp;#x63;&amp;#111;&amp;#x6d; 初始化git init 多了一个 .git">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/2022/07/09/Git/image-20220709160235846.png">
 <meta property="og:image" content="http://example.com/2022/07/09/Git/image-20220709161701963.png">
@@ -34,7 +34,7 @@
 <meta property="og:image" content="http://example.com/2022/07/09/Git/image-20220709171256207.png">
 <meta property="og:image" content="http://example.com/2022/07/09/Git/image-20221026215721434.png">
 <meta property="article:published_time" content="2022-07-09T07:59:14.000Z">
-<meta property="article:modified_time" content="2022-12-05T08:02:54.894Z">
+<meta property="article:modified_time" content="2022-12-26T07:41:02.092Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/2022/07/09/Git/image-20220709160235846.png">
@@ -227,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3k words
+          3.1k words
         
       </span>
     
@@ -295,7 +295,7 @@
 <h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><h3 id="用户设置"><a href="#用户设置" class="headerlink" title="用户设置"></a>用户设置</h3><p><strong>设置用户名</strong></p>
 <p>git config –global user.name lwj</p>
 <p><strong>设置邮箱</strong></p>
-<p>git config –global user.email <a href="mailto:&#54;&#x31;&#57;&#x35;&#x30;&#x30;&#x38;&#x32;&#56;&#64;&#113;&#x71;&#x2e;&#x63;&#x6f;&#x6d;">&#54;&#x31;&#57;&#x35;&#x30;&#x30;&#x38;&#x32;&#56;&#64;&#113;&#x71;&#x2e;&#x63;&#x6f;&#x6d;</a></p>
+<p>git config –global user.email <a href="mailto:&#54;&#49;&#57;&#53;&#x30;&#x30;&#56;&#x32;&#x38;&#64;&#x71;&#x71;&#46;&#x63;&#111;&#x6d;">&#54;&#49;&#57;&#53;&#x30;&#x30;&#56;&#x32;&#x38;&#64;&#x71;&#x71;&#46;&#x63;&#111;&#x6d;</a></p>
 <h3 id="初始化-1"><a href="#初始化-1" class="headerlink" title="初始化"></a>初始化</h3><p>git init</p>
 <p>多了一个 .git 文件夹，git 的所有记录都在此文件夹中</p>
 <p>默认位于 master (主分支)</p>
@@ -417,6 +417,8 @@
 <p><strong>2、git add . 或 git add .&#x2F; 把文件提交到暂存区</strong></p>
 <p><strong>3、git commit -m ‘feat:改动说明’ 提交到仓库区</strong></p>
 <p><strong>解释：出现这种状态是因为你把拉下来的主分支(master)代码做了一些改动，哪怕修改一个标点符号也是不能合并，需要提交完才可以合并</strong></p>
+<h2 id="获取新建的远程分支"><a href="#获取新建的远程分支" class="headerlink" title="获取新建的远程分支"></a>获取新建的远程分支</h2><p>git fetch  （本地同步远程）</p>
+<p>git checkout -b 本地分支名 远程分支名	（新建与远程分支关联的本地分支）</p>
 <h2 id="使用顺序注意"><a href="#使用顺序注意" class="headerlink" title="使用顺序注意"></a>使用顺序注意</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/aaaaa1994/article/details/90340224">https://blog.csdn.net/aaaaa1994/article/details/90340224</a> 实习期间遇到了同样的问题</p>
 <p>1.本地修改与远程代码无冲突，优先使用</p>
 <p>pull -&gt; commit -&gt; push</p>
