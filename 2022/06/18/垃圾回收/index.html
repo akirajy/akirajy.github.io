@@ -27,7 +27,7 @@
 <meta property="og:image" content="http://example.com/2022/06/18/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/153329224-c2120a5d-4f25-4659-9347-d6217d5a5ce8.png">
 <meta property="og:image" content="http://example.com/2022/06/18/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/153329251-e6a21086-f646-48d5-a23c-c2e3351497ef.png">
 <meta property="article:published_time" content="2022-06-18T01:25:43.000Z">
-<meta property="article:modified_time" content="2022-10-16T02:59:55.735Z">
+<meta property="article:modified_time" content="2023-02-10T07:55:08.436Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="JS">
 <meta property="article:tag" content="垃圾回收">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.8k words
+          3.8k words
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          24 mins
+          32 mins
         
       </span>
     
@@ -306,13 +306,49 @@
 
 <p>上图中的带斜纹的区域代表暂未使用的内存，新生代(new_space)被划分为了两个部分，其中一部分叫做inactive new space，表示暂未激活的内存区域，另一部分为激活状态。</p>
 <h3 id="新生代"><a href="#新生代" class="headerlink" title="新生代"></a>新生代</h3><p>新生代的垃圾回收过程中主要采用了**<code>Scavenge</code>**算法。</p>
-<p><code>Scavenge</code>算法是一种典型的牺牲空间换取时间的算法，对于老生代内存来说，可能会存储大量对象，如果在老生代中使用这种算法，势必会造成内存资源的浪费，但是在新生代内存中，大部分对象的生命周期较短，在时间效率上表现可观，所以还是比较适合这种算法。</p>
+<p><code>Scavenge</code>算法是一种典型的牺牲空间换取时间的算法（<strong>不需要处理垃圾，只需要复制有用的对象</strong>），对于老生代内存来说，可能会存储大量对象，如果在老生代中使用这种算法，势必会造成内存资源的浪费，但是在新生代内存中，大部分对象的生命周期较短，在时间效率上表现可观，所以还是比较适合这种算法。</p>
 <p>在<code>Scavenge</code>算法的具体实现中，主要采用了<code>Cheney</code>算法，它将新生代内存一分为二，每一个部分的空间称为<code>semispace</code>，也就是我们在上图中看见的new_space中划分的两个区域，其中处于激活状态的区域我们称为<code>From</code>空间，未激活(inactive new space)的区域我们称为<code>To</code>空间。这两个空间中，始终只有一个处于使用状态，另一个处于闲置状态。我们的程序中声明的对象首先会被分配到<code>From</code>空间，当进行垃圾回收时，如果<code>From</code>空间中尚有存活对象，则会被复制到<code>To</code>空间进行保存，非存活的对象会被自动回收。当复制完成后，<code>From</code>空间和<code>To</code>空间完成一次角色互换，<code>To</code>空间会变为新的<code>From</code>空间，原来的<code>From</code>空间则变为<code>To</code>空间。</p>
 <p><code>Scavenge</code>算法的垃圾回收过程主要就是将存活对象在<code>From</code>空间和<code>To</code>空间之间进行复制，同时完成两个空间之间的角色互换，因此该算法的缺点也比较明显，浪费了一半的内存用于复制。</p>
+<h3 id="扫描过程"><a href="#扫描过程" class="headerlink" title="扫描过程"></a>扫描过程</h3><p><strong>广度优先遍历 + 双指针</strong></p>
+<ul>
+<li>假设全局变量下的变量A引用了变量B和变量C，变量B引用了变量D，变量E没被引用</li>
+</ul>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-variable">ROOT</span><br>↓<br><span class="hljs-variable">A</span>          <span class="hljs-built_in">E</span><br>↓→ → →<br>↓    ↓<br><span class="hljs-variable">B</span>    <span class="hljs-built_in">C</span><br>↓<br><span class="hljs-built_in">D</span><br><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>那么在to区域，存在一个扫描指针和分配指针，起初都指向最开始</li>
+<li>然后A发现被全局引用，那么A拷贝到to区域，这时候扫描指针指向A，分配指针指向后面一位</li>
+</ul>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs armasm">A<br>↑   ↑<br><span class="hljs-symbol">SM</span>  <span class="hljs-built_in">FP</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>然后A又引用了B，这时候把B拷贝到to区域，放在A后面，扫描指针还是指向A，分配指针往后移动一位</li>
+</ul>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs armasm">A   <span class="hljs-keyword">B</span><br>↑       ↑<br><span class="hljs-symbol">SM</span>     <span class="hljs-built_in">FP</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>然后再看A又引用了C，这时候把C拷贝到to区域，放在B后面，扫描指针还是指向A，分配指针往后移动一位</li>
+</ul>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs armasm">A   <span class="hljs-keyword">B</span>   C  <br>↑           ↑<br><span class="hljs-symbol">SM</span>          <span class="hljs-built_in">FP</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>然后发现A没有引用其他了，那将扫描指针往后移动一位指向B</li>
+</ul>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs armasm">A   <span class="hljs-keyword">B</span>    C<br>    ↑        ↑<br>    SM       <span class="hljs-built_in">FP</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>然后发现B没有引用其他了，那再将扫描指针往后移动一位指向C</li>
+</ul>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs armasm">A   <span class="hljs-keyword">B</span>    C<br>         ↑     ↑<br>         SM    <span class="hljs-built_in">FP</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>然后C也没有引用其他了，还剩下D，D不存在引用，所以不需要移动到to区域，这时候清空FROM区域，然后将FROM和To交换。</li>
+<li>这就完成了一次垃圾回收。</li>
+</ul>
 <h3 id="对象晋升"><a href="#对象晋升" class="headerlink" title="对象晋升"></a>对象晋升</h3><p>当一个对象在经过多次复制之后依旧存活，那么它会被认为是一个生命周期较长的对象，在下一次进行垃圾回收时（在将对象从<code>From</code>空间复制到<code>To</code>空间之前），该对象会被直接转移到老生代中，这种对象从新生代转移到老生代的过程我们称之为<code>晋升</code>。<br> 对象晋升的条件主要有以下两个（满足任意一个则会晋升）：</p>
 <ul>
 <li>对象是否经历过一次<code>Scavenge</code>算法</li>
-<li><code>To</code>空间的内存占比是否已经超过<code>25%</code></li>
+<li><code>To</code>空间的内存占比是否已经超过<code>25%</code> （<strong>为了不影响后续FROM空间的分配</strong>）</li>
 </ul>
 <h3 id="老生代"><a href="#老生代" class="headerlink" title="老生代"></a>老生代</h3><p>在老生代中，因为管理着大量的存活对象，如果依旧使用<code>Scavenge</code>算法的话，很明显会浪费一半的内存，因此已经不再使用<code>Scavenge</code>算法，而是采用新的算法**<code>Mark-Sweep(标记清除)</code>和<code>Mark-Compact(标记整理)</code>**来进行管理。</p>
 <p>标记清除的问题是在经历过一次标记清除后，内存空间可能会出现不连续的状态，因为我们所清理的对象的内存地址可能不是连续的，所以就会出现<strong>内存碎片</strong>的问题，导致后面如果需要分配一个大对象而空闲内存不足以分配，就会提前触发垃圾回收，而这次垃圾回收其实是没必要的，因为我们确实有很多空闲内存，只不过是不连续的。</p>
@@ -321,6 +357,24 @@
 <p>增量标记 <img src="/2022/06/18/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/153329251-e6a21086-f646-48d5-a23c-c2e3351497ef.png" srcset="/img/loading.gif" lazyload class="" title="1620975019709-efc33748-fbfc-4fb5-a19d-97abadbf8f97"></p>
 <p>为了减少垃圾回收带来的停顿时间，V8引擎又引入了<strong>Incremental Marking(增量标记)<strong>的概念，即将</strong>原本需要一次性遍历堆内存的操作改为增量标记的方式</strong>，先标记堆内存中的一部分对象，然后暂停，将执行权重新交给JS主线程，待主线程任务执行完毕后再从原来暂停标记的地方继续标记，直到标记完整个堆内存。尽可能少地影响主线程的任务，避免应用卡顿，提升应用性能。</p>
 <p>得益于增量标记的好处，V8引擎后续继续引入了<strong>延迟清理(lazy sweeping)<strong>和</strong>增量式整理(incremental compaction)<strong>，让清理和整理的过程也变成增量式的。同时为了充分利用多核CPU的性能，也将引入</strong>并行标记</strong>和<strong>并行清理</strong>，进一步地减少垃圾回收对主线程的影响，为应用提升更多的性能。</p>
+<h3 id="快速总结"><a href="#快速总结" class="headerlink" title="快速总结"></a>快速总结</h3><h4 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h4><p><strong>新生代</strong></p>
+<p><strong>老生代</strong></p>
+<p>大对象区</p>
+<p>代码区</p>
+<p>map区</p>
+<h4 id="新生代垃圾回收"><a href="#新生代垃圾回收" class="headerlink" title="新生代垃圾回收"></a>新生代垃圾回收</h4><p><strong>Scavenge 算法</strong>，空间换时间。Scavange 的 实现采用了 Cheney 算法。将新生代分为 <strong>from 空间 和 to 空间</strong>，对象首先会被分到 from 空间，经过一次扫描（<strong>广度优先遍历+双指针</strong>），我们就知道了哪些对象仍然被引用，这些对象就会被复制到 to 区域，然后 from 区域清空，再将 from 和 to 交换 。</p>
+<p><strong>Scavenge 效率高在哪里？</strong></p>
+<p>不需要处理垃圾，只需要复制有用的变量即可。</p>
+<p>相较于标记清除，需要给每个对象打标记。</p>
+<h4 id="老生代垃圾回收"><a href="#老生代垃圾回收" class="headerlink" title="老生代垃圾回收"></a>老生代垃圾回收</h4><p><strong>标记清除 + 标记整理</strong></p>
+<p><strong>标记清除的问题</strong>：<strong>内存碎片</strong>（经历过一次标记清楚后，对象的内存地址不连续，剩余的零碎的空间无法放置连续的大对象，从而导致提前的垃圾回收。</p>
+<p><strong>标记整理解决了该问题</strong>：回收过程中将死亡对象清除后，在整理的过程中，会将活动的对象往堆内存的一端进行移动，移动完成后再清理掉边界外的全部内存。</p>
+<p><strong>进一步优化：</strong></p>
+<p>增量标记：将<strong>原本需要一次性遍历堆内存的操作改为增量标记的方式</strong></p>
+<h4 id="对象晋升-1"><a href="#对象晋升-1" class="headerlink" title="对象晋升"></a>对象晋升</h4><p>新生代 —&gt; 老生代</p>
+<p>条件（满足任一）：</p>
+<p>1.对象是否经历过一次 Scavenge 算法</p>
+<p>2.To 空间的内存占比是否超过 25%</p>
 <h2 id="如何避免内存泄漏"><a href="#如何避免内存泄漏" class="headerlink" title="如何避免内存泄漏"></a>如何避免内存泄漏</h2><ol>
 <li><strong>尽可能少地创建全局变量</strong></li>
 </ol>
@@ -336,6 +390,7 @@
 <p>WeakMap, WeakSet</p>
 <p>弱引用是指垃圾回收的过程中不会将键名对该对象的引用考虑进去，只要所引用的对象没有其他的引用了，垃圾回收机制就会释放该对象所占用的内存</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904016325902344#heading-2">https://juejin.cn/post/6844904016325902344#heading-2</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_17175013/article/details/103759055">https://blog.csdn.net/qq_17175013/article/details/103759055</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1bP4y1u7GF?spm_id_from=333.337.search-card.all.click&amp;vd_source=1616b746cefe2e7615c229563ba38eb4">https://www.bilibili.com/video/BV1bP4y1u7GF?spm_id_from=333.337.search-card.all.click&amp;vd_source=1616b746cefe2e7615c229563ba38eb4</a></p>
 
               

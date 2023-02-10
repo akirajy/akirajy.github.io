@@ -24,7 +24,7 @@
 <meta property="og:description" content="Array.prototype.map123&#x2F;&#x2F; 样例[1,2]._map(i &#x3D;&gt; i * 2)[2,4]    mdn 里的 map 12map(function(element, index, array) &amp;#123; &#x2F;* … *&#x2F; &amp;#125;, thisArg)&#x2F;&#x2F; thisArg 可省略    1234567891011&#x2F;&#x2F; 不能写箭头函数, this会指向数组的父级Arra">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-08-28T09:46:55.000Z">
-<meta property="article:modified_time" content="2022-10-16T10:57:40.093Z">
+<meta property="article:modified_time" content="2023-02-03T07:33:43.639Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="JS">
 <meta property="article:tag" content="手写函数">
@@ -218,7 +218,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.8k words
+          5.4k words
         
       </span>
     
@@ -229,7 +229,7 @@
         
         
         
-          41 mins
+          45 mins
         
       </span>
     
@@ -332,6 +332,10 @@
 
 
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">_new</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-comment">// 1.创建一个空对象</span><br>    <span class="hljs-keyword">let</span> obj = &#123;&#125;<br>    <br>    <span class="hljs-comment">// 2.将该空对象的原型链连接到传入的对象</span><br>    <span class="hljs-keyword">let</span> [<span class="hljs-title class_">Con</span>, ...args] = <span class="hljs-variable language_">arguments</span><br>    obj.<span class="hljs-property">__proto__</span> = <span class="hljs-title class_">Con</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span><br>    <br>    <span class="hljs-comment">// 3.执行函数并绑定this</span><br>    <span class="hljs-keyword">let</span> res = <span class="hljs-title class_">Con</span>.<span class="hljs-title function_">call</span>(obj, ...args)<br>    <br>    <span class="hljs-comment">// 4.如果函数有返回值并且为object，则返回函数的返回值，否则返回obj</span><br>    <span class="hljs-keyword">return</span> res <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Object</span> ? res : obj<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">myInstanceof</span>(<span class="hljs-params">left, right</span>) &#123;<br>  <span class="hljs-keyword">let</span> p = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">getPrototypeOf</span>(left)<br>  <span class="hljs-keyword">let</span> prototype = right.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span><br>  <span class="hljs-keyword">while</span> (p) &#123;<br>    <span class="hljs-keyword">if</span> (p === prototype) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span><br>    p = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">getPrototypeOf</span>(p)<br>  &#125;<br>  <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br>&#125;<br><br><span class="hljs-comment">// true true false</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">myInstanceof</span>(<span class="hljs-number">5</span>, <span class="hljs-title class_">Number</span>));<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">myInstanceof</span>(<span class="hljs-number">5</span>, <span class="hljs-title class_">Object</span>));<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">myInstanceof</span>(<span class="hljs-number">5</span>, <span class="hljs-title class_">String</span>));<br><br><span class="hljs-comment">// false false true true</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">5</span> <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Number</span>);<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">5</span> <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Object</span>);<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Number</span>(<span class="hljs-number">5</span>) <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Number</span>);<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Number</span>(<span class="hljs-number">5</span>) <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Object</span>);<br><br><span class="hljs-comment">// myInstanceof 的实现还是有些问题，没有区分 5 和 new Number(5)</span><br></code></pre></td></tr></table></figure>
 
 
 
