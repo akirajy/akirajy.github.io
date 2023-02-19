@@ -33,7 +33,7 @@
 <meta property="og:image" content="http://example.com/2023/02/19/vuejs%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20230216230628969.png">
 <meta property="og:image" content="http://example.com/2023/02/19/vuejs%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20230216231813589.png">
 <meta property="article:published_time" content="2023-02-19T05:55:14.000Z">
-<meta property="article:modified_time" content="2023-02-19T05:56:28.350Z">
+<meta property="article:modified_time" content="2023-02-19T06:01:21.854Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/2023/02/19/vuejs%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20220718191653483.png">
@@ -237,7 +237,7 @@
         
         
         
-          185 mins
+          186 mins
         
       </span>
     
@@ -316,11 +316,11 @@
 <h4 id="良好的-Tree-Shaking"><a href="#良好的-Tree-Shaking" class="headerlink" title="良好的 Tree-Shaking"></a>良好的 Tree-Shaking</h4><p>利用 &#x2F;*#__PURE__*&#x2F; 注释 来让 webpack 相信这段代码不会产生副作用，从而 tree-shaking 掉</p>
 <p>副作用：当调用函数的时候会对外部产生影响（例如修改了全局变量）</p>
 <p>Vue.js 3 源码中，基本都是在一些顶级调用的函数中使用 &#x2F;*#__PURE__*&#x2F; 注释掉</p>
-<h4 id="框架应该输出怎样的构建产物"><a href="#框架应该输出怎样的构建产物" class="headerlink" title="框架应该输出怎样的构建产物"></a>框架应该输出怎样的构建产物</h4><p>为了让用户能够通过 <script> 标签直接引用并使用，需要输出 IIFE 格式的资源</p>
-<p>为了让用户能够通过 <script type="module"> 引用并使用，需要输出 ESM 格式的资源</p>
+<h4 id="框架应该输出怎样的构建产物"><a href="#框架应该输出怎样的构建产物" class="headerlink" title="框架应该输出怎样的构建产物"></a>框架应该输出怎样的构建产物</h4><p>为了让用户能够通过 &lt;script&gt; 标签直接引用并使用，需要输出 IIFE 格式的资源</p>
+<p>为了让用户能够通过 &lt;script type&#x3D;”module”&gt; 引用并使用，需要输出 ESM 格式的资源</p>
 <p>ESM格式的资源有两种：</p>
-<p>esm-browser.js 用于浏览器		使用 __DEV__  true/false 来判断环境</p>
-<p>esm-bundler.js 用于打包工具	 使用 process.env.NODE_ENV !== ‘production’ 来判断</p>
+<p>esm-browser.js 用于浏览器		使用 __DEV__  true&#x2F;false 来判断环境</p>
+<p>esm-bundler.js 用于打包工具	 使用 process.env.NODE_ENV !&#x3D;&#x3D; ‘production’ 来判断</p>
 <p>为了让用户能够通过在服务端通过</p>
 <figure class="highlight isbl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs isbl"><span class="hljs-variable">const</span> <span class="hljs-variable">Vue</span> = <span class="hljs-function"><span class="hljs-title">require</span>(<span class="hljs-string">&#x27;vue&#x27;</span>)</span><br></code></pre></td></tr></table></figure>
 
@@ -561,7 +561,7 @@
 
 
 <p>设置和删除都会向 trigger 传第三个参数 type，所以 trigger 函数也要做修改</p>
-<p>如果 type 是 ADD/DELETE，则需要触发与 ITERATE_KEY 相关联的副作用函数</p>
+<p>如果 type 是 ADD&#x2F;DELETE，则需要触发与 ITERATE_KEY 相关联的副作用函数</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 在 set 拦截函数内调用 trigger 函数触发变化</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">trigger</span>(<span class="hljs-params">target, key</span>) &#123;<br>  <span class="hljs-keyword">const</span> depsMap = bucket.<span class="hljs-title function_">get</span>(key)<br>  <span class="hljs-keyword">if</span> (!depsMap) <span class="hljs-keyword">return</span><br>  <span class="hljs-keyword">const</span> effects = depsMap.<span class="hljs-title function_">get</span>(key)<br>  <br>  <span class="hljs-comment">// 直接 effects.forEach 遍历会造成无限循环，因为执行 effectFn 会在 effects 中将 effectFn 清除，然后（可能重新建立联系）又会在 effects 中将 effectFn 加入，forEach的性质导致会将 effectFn 当作新元素再次执行</span><br>  <span class="hljs-keyword">const</span> effectsToRun = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>()<br>  effects &amp;&amp; effects.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">effectFn</span> =&gt;</span> &#123;<br>    <span class="hljs-comment">// 如果 trigger 触发执行的副作用函数与当前正在执行的副作用函数相同，则不触发执行。(避免无限递归)</span><br>    <span class="hljs-keyword">if</span> (effectFn !== activeEffect) &#123;<br>      effectsToRun.<span class="hljs-title function_">add</span>(effectFn)<br>    &#125;<br>  &#125;)<br><br>  <span class="hljs-comment">// 只有当操作类型为 &#x27;ADD&#x27; 或 &#x27;DELETE&#x27; 时，触发与 ITERATE_KEY 相关联的副作用函数</span><br>  <span class="hljs-keyword">if</span> (type === <span class="hljs-string">&#x27;ADD&#x27;</span> || type === <span class="hljs-string">&#x27;DELETE&#x27;</span>) &#123;<br>    <span class="hljs-keyword">const</span> iterateEffects = depsMap.<span class="hljs-title function_">get</span>(<span class="hljs-variable constant_">ITERATE_KEY</span>)<br>    iterateEffects &amp;&amp; iterateEffects.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">effectFn</span> =&gt;</span> &#123;<br>      <span class="hljs-keyword">if</span> (effectFn !== activeEffect) &#123;<br>        effectsToRun.<span class="hljs-title function_">add</span>(effectFn)<br>      &#125;<br>    &#125;)<br>  &#125;<br><br>  effectsToRun.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">effectFn</span> =&gt;</span> &#123;<br>    <span class="hljs-comment">// 如果一个副作用函数存在调度器，则调用该调度器，并将副作用函数作为参数传递</span><br>    <span class="hljs-keyword">if</span> (effectFn.<span class="hljs-property">options</span>.<span class="hljs-property">scheduler</span>) &#123;<br>      effectFn.<span class="hljs-property">options</span>.<span class="hljs-title function_">scheduler</span>(effectFn)<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      <span class="hljs-comment">// 否则直接执行副作用函数</span><br>      <span class="hljs-title function_">effectFn</span>()<br>    &#125;<br>  &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
