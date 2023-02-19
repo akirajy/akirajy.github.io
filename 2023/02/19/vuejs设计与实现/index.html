@@ -18,29 +18,29 @@
   
     <meta name="description" content="框架设计概览权衡的艺术命令式和声明式命令式 关注过程（jquery) 声明式 关注结果（vue） Vue.js 帮我们封装了过程，内部实现是命令式的，而暴露给用户的却更加声明式 性能与可维护性的权衡声明式代码的性能不优于命令式代码的性能 命令式代码的更新性能消耗 &#x3D; 直接修改的性能消耗 声明式代码的更新性能消耗 &#x3D; 直接修改的性能消耗 + 找出差异的性能消耗 但声明式代码的可维">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vue.js设计与实现">
-<meta property="og:url" content="http://example.com/2023/02/17/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/index.html">
+<meta property="og:title" content="vuejs设计与实现">
+<meta property="og:url" content="http://example.com/2023/02/19/vuejs%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="框架设计概览权衡的艺术命令式和声明式命令式 关注过程（jquery) 声明式 关注结果（vue） Vue.js 帮我们封装了过程，内部实现是命令式的，而暴露给用户的却更加声明式 性能与可维护性的权衡声明式代码的性能不优于命令式代码的性能 命令式代码的更新性能消耗 &#x3D; 直接修改的性能消耗 声明式代码的更新性能消耗 &#x3D; 直接修改的性能消耗 + 找出差异的性能消耗 但声明式代码的可维">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2023/02/17/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20220718191653483.png">
-<meta property="og:image" content="http://example.com/2023/02/17/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20220718191710254.png">
-<meta property="og:image" content="http://example.com/2023/02/17/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20220718171611741.png">
-<meta property="og:image" content="http://example.com/2023/02/17/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20220718204108277.png">
-<meta property="og:image" content="http://example.com/2023/02/17/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20230215113629076.png">
-<meta property="og:image" content="http://example.com/2023/02/17/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20230215140207154.png">
-<meta property="og:image" content="http://example.com/2023/02/17/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20230216230526120.png">
-<meta property="og:image" content="http://example.com/2023/02/17/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20230216230628969.png">
-<meta property="og:image" content="http://example.com/2023/02/17/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20230216231813589.png">
-<meta property="article:published_time" content="2023-02-17T05:15:23.000Z">
-<meta property="article:modified_time" content="2023-02-17T07:09:05.429Z">
+<meta property="og:image" content="http://example.com/2023/02/19/vuejs%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20220718191653483.png">
+<meta property="og:image" content="http://example.com/2023/02/19/vuejs%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20220718191710254.png">
+<meta property="og:image" content="http://example.com/2023/02/19/vuejs%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20220718171611741.png">
+<meta property="og:image" content="http://example.com/2023/02/19/vuejs%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20220718204108277.png">
+<meta property="og:image" content="http://example.com/2023/02/19/vuejs%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20230215113629076.png">
+<meta property="og:image" content="http://example.com/2023/02/19/vuejs%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20230215140207154.png">
+<meta property="og:image" content="http://example.com/2023/02/19/vuejs%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20230216230526120.png">
+<meta property="og:image" content="http://example.com/2023/02/19/vuejs%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20230216230628969.png">
+<meta property="og:image" content="http://example.com/2023/02/19/vuejs%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20230216231813589.png">
+<meta property="article:published_time" content="2023-02-19T05:55:14.000Z">
+<meta property="article:modified_time" content="2023-02-19T05:56:28.350Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2023/02/17/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20220718191653483.png">
+<meta name="twitter:image" content="http://example.com/2023/02/19/vuejs%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20220718191653483.png">
   
   
   
-  <title>Vue.js设计与实现 - Hexo</title>
+  <title>vuejs设计与实现 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -203,7 +203,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Vue.js设计与实现"></span>
+            <span id="subtitle" data-typed-text="vuejs设计与实现"></span>
           
         </div>
 
@@ -214,8 +214,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-02-17 13:15" pubdate>
-          February 17, 2023 pm
+        <time datetime="2023-02-19 13:55" pubdate>
+          February 19, 2023 pm
         </time>
       </span>
     
@@ -283,7 +283,7 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Vue.js设计与实现</h1>
+            <h1 style="display: none">vuejs设计与实现</h1>
             
             <div class="markdown-body">
               
@@ -297,13 +297,13 @@
 <p>设计框架时 要保证可维护性的同时让性能损失最小化</p>
 <h4 id="虚拟-DOM-的性能到底如何"><a href="#虚拟-DOM-的性能到底如何" class="headerlink" title="虚拟 DOM 的性能到底如何"></a>虚拟 DOM 的性能到底如何</h4><p>虚拟 DOM 就是为了<strong>最小化找出差异</strong>这一步的性能消耗而出现的 (diff算法)</p>
 <p><strong>创建页面差异不大</strong></p>
-<img src="/2023/02/17/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20220718191653483.png" srcset="/img/loading.gif" lazyload class="" title="image-20220718191653483">
+<img src="/2023/02/19/vuejs%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20220718191653483.png" srcset="/img/loading.gif" lazyload class="" title="image-20220718191653483">
 
 <p><strong>更新页面性能差异大</strong></p>
-<img src="/2023/02/17/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20220718191710254.png" srcset="/img/loading.gif" lazyload class="" title="image-20220718191710254">
+<img src="/2023/02/19/vuejs%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20220718191710254.png" srcset="/img/loading.gif" lazyload class="" title="image-20220718191710254">
 
 <p><strong>更新页面的性能效果总结</strong></p>
-<img src="/2023/02/17/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20220718171611741.png" srcset="/img/loading.gif" lazyload class="" title="image-20220718171611741">
+<img src="/2023/02/19/vuejs%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20220718171611741.png" srcset="/img/loading.gif" lazyload class="" title="image-20220718171611741">
 
 
 
@@ -374,7 +374,7 @@
 
 
 
-<h4 id="模板的工作原理"><a href="#模板的工作原理" class="headerlink" title="模板的工作原理"></a>模板的工作原理</h4><img src="/2023/02/17/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20220718204108277.png" srcset="/img/loading.gif" lazyload class="" title="image-20220718204108277">
+<h4 id="模板的工作原理"><a href="#模板的工作原理" class="headerlink" title="模板的工作原理"></a>模板的工作原理</h4><img src="/2023/02/19/vuejs%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20220718204108277.png" srcset="/img/loading.gif" lazyload class="" title="image-20220718204108277">
 
 
 
@@ -382,7 +382,7 @@
 <p>动态内容改变时，渲染器会自动寻找变更点，找起来比较麻烦。</p>
 <p>如果编译器有能力分析动态内容，获取更多信息，就会方便很多。</p>
 <p>编译器能够识别出哪些是静态属性，哪些是动态属性（比如，模板上有冒号的属性就是动态的（双向绑定），没有的就是静态的），在生成虚拟 DOM 的时候就会携带额外的 patchFlags 信息。(patchFlags 应该是 vue3 新增的)</p>
-<h4 id="总结编译与渲染流程"><a href="#总结编译与渲染流程" class="headerlink" title="总结编译与渲染流程"></a>总结编译与渲染流程</h4><img src="/2023/02/17/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20230215113629076.png" srcset="/img/loading.gif" lazyload class="" title="image-20230215113629076">
+<h4 id="总结编译与渲染流程"><a href="#总结编译与渲染流程" class="headerlink" title="总结编译与渲染流程"></a>总结编译与渲染流程</h4><img src="/2023/02/19/vuejs%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20230215113629076.png" srcset="/img/loading.gif" lazyload class="" title="image-20230215113629076">
 
 
 
@@ -396,7 +396,7 @@
 <figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs ada">target<br>	<span class="hljs-comment">-- key1</span><br>		<span class="hljs-comment">-- effect1-1</span><br>		<span class="hljs-comment">-- effect1-2</span><br>	<span class="hljs-comment">-- key2</span><br>		<span class="hljs-comment">-- effect2-1</span><br>		<span class="hljs-comment">-- effect2-2</span><br></code></pre></td></tr></table></figure>
 
 <p>建立 weakmap - map - set 的数据结构</p>
-<img src="/2023/02/17/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20230215140207154.png" srcset="/img/loading.gif" lazyload class="" title="image-20230215140207154">
+<img src="/2023/02/19/vuejs%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20230215140207154.png" srcset="/img/loading.gif" lazyload class="" title="image-20230215140207154">
 
 
 
@@ -414,7 +414,7 @@
 <h4 id="嵌套的-effect-和-effect-栈"><a href="#嵌套的-effect-和-effect-栈" class="headerlink" title="嵌套的 effect 和 effect 栈"></a>嵌套的 effect 和 effect 栈</h4><p>effect 应设计为可嵌套的，因为存在组件嵌套的场景。</p>
 <p>维持原先的写法会导致，内部的 effect 函数覆盖了外部的 effect 函数，因为同一时刻只能存在一个 activeEffect。</p>
 <p>为了解决这个问题，需要一个副作用函数栈 effectStack。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs js"><br><span class="hljs-comment">// 全局变量存储被注册的副作用函数</span><br><span class="hljs-keyword">let</span> activeEffect<br><span class="hljs-comment">// 副作用函数栈</span><br><span class="hljs-keyword">const</span> effectStack = []<br><span class="hljs-comment">// 注册副作用函数</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">effect</span>(<span class="hljs-params">fn</span>) &#123;<br>  <span class="hljs-keyword">const</span> <span class="hljs-title function_">effectFn</span> = (<span class="hljs-params"></span>) =&gt; &#123;<br>    <span class="hljs-comment">// 接收副作用函数作为参数，遍历副作用函数的effectFn.deps，每一项都是一个依赖集合，将该副作用函数从依赖集合中清除</span><br>    <span class="hljs-title function_">cleanup</span>(effectFn)<br>    activeEffect = effectFn<br>    <span class="hljs-comment">// 执行副作用函数前，将当前副作用函数压栈</span><br>    effectStack.<span class="hljs-title function_">push</span>(effectFn)<br>    <span class="hljs-comment">// 执行副作用函数时，依赖集合会重新收集副作用函数</span><br>    <span class="hljs-title function_">fn</span>()<br>    <span class="hljs-comment">// 副作用函数执行完毕后，将当前副作用函数弹出栈，并将 activeEffect 还原成之前的值</span><br>    effectStack.<span class="hljs-title function_">pop</span>()<br>    activeEffect = effectStack[effectStack.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>]<br>  &#125;<br>  effectFn.<span class="hljs-property">deps</span> = []<br>  <span class="hljs-title function_">effectFn</span>()<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 全局变量存储被注册的副作用函数</span><br><span class="hljs-keyword">let</span> activeEffect<br><span class="hljs-comment">// 副作用函数栈</span><br><span class="hljs-keyword">const</span> effectStack = []<br><span class="hljs-comment">// 注册副作用函数</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">effect</span>(<span class="hljs-params">fn</span>) &#123;<br>  <span class="hljs-keyword">const</span> <span class="hljs-title function_">effectFn</span> = (<span class="hljs-params"></span>) =&gt; &#123;<br>    <span class="hljs-comment">// 接收副作用函数作为参数，遍历副作用函数的effectFn.deps，每一项都是一个依赖集合，将该副作用函数从依赖集合中清除</span><br>    <span class="hljs-title function_">cleanup</span>(effectFn)<br>    activeEffect = effectFn<br>    <span class="hljs-comment">// 执行副作用函数前，将当前副作用函数压栈</span><br>    effectStack.<span class="hljs-title function_">push</span>(effectFn)<br>    <span class="hljs-comment">// 执行副作用函数时，依赖集合会重新收集副作用函数</span><br>    <span class="hljs-title function_">fn</span>()<br>    <span class="hljs-comment">// 副作用函数执行完毕后，将当前副作用函数弹出栈，并将 activeEffect 还原成之前的值</span><br>    effectStack.<span class="hljs-title function_">pop</span>()<br>    activeEffect = effectStack[effectStack.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>]<br>  &#125;<br>  effectFn.<span class="hljs-property">deps</span> = []<br>  <span class="hljs-title function_">effectFn</span>()<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
@@ -510,12 +510,12 @@
 <p><strong>内部方法指的是当我们对一个对象进行操作时在引擎内部调用的方法，这些方法对于 JS 使用者来说是不可见的。</strong></p>
 <p>例如 访问 obj.foo 时，引擎内部会调用 [[GET]] 这个内部方法来读取属性值。</p>
 <p><strong>ES2022规范要求的所有必要的内部方法：</strong></p>
-<img src="/2023/02/17/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20230216230526120.png" srcset="/img/loading.gif" lazyload class="" title="image-20230216230526120">
+<img src="/2023/02/19/vuejs%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20230216230526120.png" srcset="/img/loading.gif" lazyload class="" title="image-20230216230526120">
 
 
 
 <p><strong>还有两个额外的必要内部方法：</strong></p>
-<img src="/2023/02/17/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20230216230628969.png" srcset="/img/loading.gif" lazyload class="" title="image-20230216230628969">
+<img src="/2023/02/19/vuejs%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20230216230628969.png" srcset="/img/loading.gif" lazyload class="" title="image-20230216230628969">
 
 <p>如果一个对象需要作为函数调用，那么这个对象就必须部署内部方法[[Call]]。</p>
 <p><strong>内部方法具有多态性：</strong></p>
@@ -531,7 +531,7 @@
 <p>创建代理对象时指定的拦截函数，实际上是用来自定义代理对象本身的内部方法和行为的，而不是用来指定被代理对象的内部方法和行为的。</p>
 <p><strong>Proxy 对象部署的所有内部方法</strong></p>
 <p>[[Call]] 和 [[Construct]] 只有当被代理对象是函数和构造函数时才会部署</p>
-<img src="/2023/02/17/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20230216231813589.png" srcset="/img/loading.gif" lazyload class="" title="image-20230216231813589">
+<img src="/2023/02/19/vuejs%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/image-20230216231813589.png" srcset="/img/loading.gif" lazyload class="" title="image-20230216231813589">
 
 
 
@@ -601,8 +601,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Vue.js设计与实现</div>
-      <div>http://example.com/2023/02/17/Vue-js设计与实现/</div>
+      <div>vuejs设计与实现</div>
+      <div>http://example.com/2023/02/19/vuejs设计与实现/</div>
     </div>
     <div class="license-meta">
       
@@ -614,7 +614,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>February 17, 2023</div>
+          <div>February 19, 2023</div>
         </div>
       
       
@@ -644,18 +644,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/02/19/vuejs%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/" title="vuejs设计与实现">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">vuejs设计与实现</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/02/13/%E5%A6%82%E4%BD%95%E6%8F%90%E5%8D%87webpack%E6%89%93%E5%8C%85%E9%80%9F%E5%BA%A6/" title="如何提升webpack打包速度">
-                        <span class="hidden-mobile">如何提升webpack打包速度</span>
+                      <a href="/2023/02/17/Vue-js%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/" title="Vue.js设计与实现">
+                        <span class="hidden-mobile">Vue.js设计与实现</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
