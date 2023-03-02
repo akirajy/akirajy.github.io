@@ -16,25 +16,25 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="requestAnimationFrame在Web应用中，实现动画效果的方法比较多，Javascript 中可以通过定时器 setTimeout&#x2F; setInterval 来实现，css3 可以使用 transition和 animation 来实现，html5 中的 canvas 也可以实现。除此之外，html5 还提供一个专门用于请求动画的API，那就是 requestAnimati">
+    <meta name="description" content="AST什么是AST抽象语法树（Abstract Syntax Tree，AST）是源代码语法结构的一种抽象表示，它以树状的形式表现编程语言的语法结构。 在代码语法的检查、代码风格的检查、代码的格式化、代码的高亮、代码错误提示、代码自动补全等等场景均有广泛的应用。 通过js编译流程引入AST一个完整的编译器整体执行过程可以分为三个步骤：  **Parsing(解析过程)**：这个过程要经词法分析、语">
 <meta property="og:type" content="article">
-<meta property="og:title" content="requestAnimationFrame">
-<meta property="og:url" content="http://example.com/2023/02/01/requestAnimationFrame/index.html">
+<meta property="og:title" content="AST">
+<meta property="og:url" content="http://example.com/2023/02/26/AST/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="requestAnimationFrame在Web应用中，实现动画效果的方法比较多，Javascript 中可以通过定时器 setTimeout&#x2F; setInterval 来实现，css3 可以使用 transition和 animation 来实现，html5 中的 canvas 也可以实现。除此之外，html5 还提供一个专门用于请求动画的API，那就是 requestAnimati">
+<meta property="og:description" content="AST什么是AST抽象语法树（Abstract Syntax Tree，AST）是源代码语法结构的一种抽象表示，它以树状的形式表现编程语言的语法结构。 在代码语法的检查、代码风格的检查、代码的格式化、代码的高亮、代码错误提示、代码自动补全等等场景均有广泛的应用。 通过js编译流程引入AST一个完整的编译器整体执行过程可以分为三个步骤：  **Parsing(解析过程)**：这个过程要经词法分析、语">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="c:/Users/61950/AppData/Roaming/Typora/typora-user-images/image-20220609201544048.png">
-<meta property="article:published_time" content="2023-02-01T08:26:14.000Z">
-<meta property="article:modified_time" content="2023-02-01T08:27:36.581Z">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2f90236f5c914a069bd51611b75160a7~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
+<meta property="article:published_time" content="2023-02-26T07:04:19.000Z">
+<meta property="article:modified_time" content="2023-02-26T07:34:51.018Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="JS">
 <meta property="article:tag" content="基础">
-<meta property="article:tag" content="js">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="c:/Users/61950/AppData/Roaming/Typora/typora-user-images/image-20220609201544048.png">
+<meta name="twitter:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2f90236f5c914a069bd51611b75160a7~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp">
   
   
   
-  <title>requestAnimationFrame - Hexo</title>
+  <title>AST - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +197,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="requestAnimationFrame"></span>
+            <span id="subtitle" data-typed-text="AST"></span>
           
         </div>
 
@@ -208,8 +208,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-02-01 16:26" pubdate>
-          February 1, 2023 pm
+        <time datetime="2023-02-26 15:04" pubdate>
+          February 26, 2023 pm
         </time>
       </span>
     
@@ -220,7 +220,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k words
+          2.3k words
         
       </span>
     
@@ -231,7 +231,7 @@
         
         
         
-          14 mins
+          20 mins
         
       </span>
     
@@ -277,43 +277,50 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">requestAnimationFrame</h1>
+            <h1 style="display: none">AST</h1>
             
             <div class="markdown-body">
               
-              <h3 id="requestAnimationFrame"><a href="#requestAnimationFrame" class="headerlink" title="requestAnimationFrame"></a><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/1dc6909e9456">requestAnimationFrame</a></h3><p>在Web应用中，实现动画效果的方法比较多，Javascript 中可以通过定时器 setTimeout&#x2F; setInterval 来实现，css3 可以使用 transition和 animation 来实现，html5 中的 canvas 也可以实现。除此之外，html5 还提供一个专门用于请求动画的API，那就是 requestAnimationFrame。</p>
-<h4 id="什么是-raf"><a href="#什么是-raf" class="headerlink" title="什么是 raf"></a>什么是 raf</h4><p>requestAnimationFrame是浏览器⽤于<strong>定时循环</strong>操作的⼀个接口，类似于setTimeout，主要⽤途是<strong>按帧对网页进行重绘</strong>，让各种网页动<br>画效果（DOM动画、Canvas动画、SVG动画、WebGL动画）能够有⼀个统⼀的刷新机制，从而节省系统资源，提高系统性能，改善视觉效果。</p>
-<h4 id="为什么需要-raf"><a href="#为什么需要-raf" class="headerlink" title="为什么需要 raf"></a>为什么需要 raf</h4><p><strong>setTimeout&#x2F; setInterval 的两个问题：</strong></p>
+              <h1 id="AST"><a href="#AST" class="headerlink" title="AST"></a>AST</h1><h2 id="什么是AST"><a href="#什么是AST" class="headerlink" title="什么是AST"></a>什么是AST</h2><p>抽象语法树（Abstract Syntax Tree，AST）是源代码语法结构的一种抽象表示，它以树状的形式表现编程语言的语法结构。</p>
+<p>在代码语法的检查、代码风格的检查、代码的格式化、代码的高亮、代码错误提示、代码自动补全等等场景均有广泛的应用。</p>
+<h2 id="通过js编译流程引入AST"><a href="#通过js编译流程引入AST" class="headerlink" title="通过js编译流程引入AST"></a>通过js编译流程引入AST</h2><p>一个完整的编译器整体执行过程可以分为三个步骤：</p>
 <ol>
-<li><strong>时间不准</strong></li>
+<li>**Parsing(解析过程)**：这个过程要经<code>词法分析</code>、<code>语法分析</code>、<code>构建AST（抽象语法树）</code>一系列操作；</li>
+<li><strong>Transformation（转化过程</strong>）：这个过程就是将上一步解析后的内容，按照编译器指定的规则进行处理，<code>形成一个新的表现形式</code>；</li>
+<li><strong>Code Generation（代码生成</strong>）：将上一步处理好的内容<code>转化为新的代码</code>；</li>
 </ol>
-<p>它们只是在设定的时间后将相应任务添加到任务队列中，并不是执行任务的时间。</p>
-<ol start="2">
-<li><strong>和屏幕刷新率步调不一致</strong></li>
-</ol>
-<p>可能会掉帧</p>
-<img src="C:\Users\61950\AppData\Roaming\Typora\typora-user-images\image-20220609201544048.png" srcset="/img/loading.gif" lazyload alt="image-20220609201544048" style="zoom:80%;" />
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2f90236f5c914a069bd51611b75160a7~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h3><h4 id="词法分析"><a href="#词法分析" class="headerlink" title="词法分析"></a>词法分析</h4><p>令牌 Token 是一个不可分割的最小单元（关键字&#x2F;标识符&#x2F;操作符）</p>
+<p><strong>词法分析也称扫描。调用 next() 方法，一个一个字母的来读取字符，然后与定义好的 JavaScript 关键字做比较，生成对应的令牌流Tokens （数组）。</strong></p>
+<p>扫描的过程中，会过滤掉源代码中的注释和空白字符。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js">n * n;<br><br>[<br>  &#123; <span class="hljs-attr">type</span>: &#123; ... &#125;, <span class="hljs-attr">value</span>: <span class="hljs-string">&quot;n&quot;</span>,  <span class="hljs-attr">loc</span>: &#123; ... &#125; &#125;,<br>  &#123; <span class="hljs-attr">type</span>: &#123; ... &#125;, <span class="hljs-attr">value</span>: <span class="hljs-string">&quot;*&quot;</span>,  <span class="hljs-attr">loc</span>: &#123; ... &#125; &#125;,<br>  &#123; <span class="hljs-attr">type</span>: &#123; ... &#125;, <span class="hljs-attr">value</span>: <span class="hljs-string">&quot;n&quot;</span>,  <span class="hljs-attr">loc</span>: &#123; ... &#125; &#125;,<br>  ...<br>]<br></code></pre></td></tr></table></figure>
+
+<p>每一个 type 有一组属性来描述该令牌：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs js">&#123;<br>  <span class="hljs-attr">type</span>: &#123;<br>    <span class="hljs-attr">label</span>: <span class="hljs-string">&#x27;name&#x27;</span>,<br>    <span class="hljs-attr">keyword</span>: <span class="hljs-literal">undefined</span>,<br>    <span class="hljs-attr">beforeExpr</span>: <span class="hljs-literal">false</span>,<br>    <span class="hljs-attr">startsExpr</span>: <span class="hljs-literal">true</span>,<br>    <span class="hljs-attr">rightAssociative</span>: <span class="hljs-literal">false</span>,<br>    <span class="hljs-attr">isLoop</span>: <span class="hljs-literal">false</span>,<br>    <span class="hljs-attr">isAssign</span>: <span class="hljs-literal">false</span>,<br>    <span class="hljs-attr">prefix</span>: <span class="hljs-literal">false</span>,<br>    <span class="hljs-attr">postfix</span>: <span class="hljs-literal">false</span>,<br>    <span class="hljs-attr">binop</span>: <span class="hljs-literal">null</span>,<br>    <span class="hljs-attr">updateContext</span>: <span class="hljs-literal">null</span><br>  &#125;,<br>  ...<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
-<p>requestAnimationFrame的到来就是解决这个问题的 ，它采用的是系<strong>统时间间隔(约16.7ms)<strong>，保持最佳绘制效果与效率，使各种网页动画有一个统一的刷新机制，从而</strong>节省系统资源</strong>，<strong>提高系统性能</strong>。</p>
-<h4 id="raf-的优缺点"><a href="#raf-的优缺点" class="headerlink" title="raf 的优缺点"></a>raf 的优缺点</h4><ol>
-<li>cpu节能</li>
-</ol>
-<p>使用setInterval实现的动画，当页面被隐藏或最小化时，setInterval仍然在后台执行动画任务。<strong>而<code>requestAnimationFrame</code>在页面未激活时，该页面的屏幕刷新任务也会被系统暂停。</strong>当页面被激活时，任务会从上次停留的地方继续执行，有效节省了CPU开销。</p>
-<ol start="2">
-<li>流畅</li>
-</ol>
-<p>不掉帧、不卡帧</p>
-<p>缺点是兼容性问题</p>
-<h4 id="raf-的使用"><a href="#raf-的使用" class="headerlink" title="raf 的使用"></a>raf 的使用</h4><p><strong>简单使用</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> myReq;<br><span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">function</span> <span class="hljs-title function_">step</span>(<span class="hljs-params">timestamp</span>) &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(i++);<br>    myReq = <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">requestAnimationFrame</span>(step);<br>&#125;<br><span class="hljs-variable language_">window</span>.<span class="hljs-title function_">requestAnimationFrame</span>(step);<br><br><span class="hljs-variable language_">document</span>.<span class="hljs-property">onclick</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">cancelAnimationFrame</span>(myReq);    <span class="hljs-comment">// 专属清除方式</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="语法分析"><a href="#语法分析" class="headerlink" title="语法分析"></a>语法分析</h4><p>语法分析会<strong>将词法分析出来的令牌流转化成有语法含义的抽象语法树结构</strong>。同时，验证语法，如果有错抛出错误。</p>
+<h4 id="抽象语法树"><a href="#抽象语法树" class="headerlink" title="抽象语法树"></a>抽象语法树</h4><p>一个 AST 可以由单一的节点或是成百上千个节点构成。</p>
+<p>节点拥有相同的结构</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 节点接口</span><br>interface <span class="hljs-title class_">Node</span> &#123;<br>  <span class="hljs-attr">type</span>: string;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>字符串形式的 type 字段表示节点的类型（如： “FunctionDeclaration“，”Identifier“，或 “BinaryExpression“）。 每一种类型的节点定义了一些附加属性用来进一步描述该节点类型。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs js">&#123;<br>  <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;FunctionDeclaration&quot;</span>,<br>  <span class="hljs-attr">id</span>: &#123;...&#125;,<br>  <span class="hljs-attr">params</span>: [...],<br>  <span class="hljs-attr">body</span>: &#123;...&#125;<br>&#125;<br>&#123;<br>  <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;Identifier&quot;</span>,<br>  <span class="hljs-attr">name</span>: ...<br>&#125;<br>&#123;<br>  <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;BinaryExpression&quot;</span>,<br>  <span class="hljs-attr">operator</span>: ...,<br>  <span class="hljs-attr">left</span>: &#123;...&#125;,<br>  <span class="hljs-attr">right</span>: &#123;...&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
-<p><strong>封装：自定义秒数</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">animate</span>(<span class="hljs-params">cb,time</span>)&#123;<br>    <span class="hljs-keyword">let</span> myReq;    <span class="hljs-comment">// 记录requestAnimationFrame的返回值</span><br>    <span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>;    <span class="hljs-comment">// 记录requestAnimationFrame的执行次数（屏幕刷新次数）</span><br>    myReq = <span class="hljs-title function_">requestAnimationFrame</span>(<span class="hljs-keyword">function</span> <span class="hljs-title function_">fn</span>(<span class="hljs-params"></span>)&#123;    <span class="hljs-comment">// 开启初始requestAnimationFrame</span><br>        <span class="hljs-comment">// 计数器 % (60/一秒钟执行的次数)</span><br>        <span class="hljs-keyword">if</span>(i%<span class="hljs-built_in">parseInt</span>(<span class="hljs-number">60</span>/(<span class="hljs-number">1000</span>/time)) == <span class="hljs-number">0</span>)&#123;<br>            <span class="hljs-title function_">cb</span>();    <span class="hljs-comment">// 执行真正要做的事情</span><br>        &#125;<br>        i++;    <span class="hljs-comment">// 记录requestAnimationFrame执行的次数</span><br>        myReq = <span class="hljs-title function_">requestAnimationFrame</span>(fn);    <span class="hljs-comment">// 开启下次requestAnimationFrame</span><br>        <span class="hljs-variable language_">window</span>.<span class="hljs-property">myReq</span> = myReq;    <span class="hljs-comment">// 将requestAnimationFrame返回值暴露，方便清除</span><br>    &#125;);<br>&#125;<br><br><span class="hljs-comment">// 测试</span><br><span class="hljs-title function_">animate</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;自己封装了个计时器，好厉害呀&quot;</span>);<br>&#125;, <span class="hljs-number">1000</span>);    <span class="hljs-comment">// 自定义执行时间</span><br><span class="hljs-variable language_">document</span>.<span class="hljs-property">onclick</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-comment">// 主动控制清除动画</span><br>    <span class="hljs-title function_">cancelAnimationFrame</span>(myReq);<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="一个简单的转换例子"><a href="#一个简单的转换例子" class="headerlink" title="一个简单的转换例子"></a>一个简单的转换例子</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 源代码</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">square</span>(<span class="hljs-params">n</span>) &#123;<br>  <span class="hljs-keyword">return</span> n * n;<br>&#125;<br></code></pre></td></tr></table></figure>
 
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 转换</span><br>&#123;<br>  <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;FunctionDeclaration&quot;</span>,<br>  <span class="hljs-attr">id</span>: &#123;<br>    <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;Identifier&quot;</span>,<br>    <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;square&quot;</span><br>  &#125;,<br>  <span class="hljs-attr">params</span>: [&#123;<br>    <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;Identifier&quot;</span>,<br>    <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;n&quot;</span><br>  &#125;],<br>  <span class="hljs-attr">body</span>: &#123;<br>    <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;BlockStatement&quot;</span>,<br>    <span class="hljs-attr">body</span>: [&#123;<br>      <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;ReturnStatement&quot;</span>,<br>      <span class="hljs-attr">argument</span>: &#123;<br>        <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;BinaryExpression&quot;</span>,<br>        <span class="hljs-attr">operator</span>: <span class="hljs-string">&quot;*&quot;</span>,<br>        <span class="hljs-attr">left</span>: &#123;<br>          <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;Identifier&quot;</span>,<br>          <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;n&quot;</span><br>        &#125;,<br>        <span class="hljs-attr">right</span>: &#123;<br>          <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;Identifier&quot;</span>,<br>          <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;n&quot;</span><br>        &#125;<br>      &#125;<br>    &#125;]<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="AST的应用"><a href="#AST的应用" class="headerlink" title="AST的应用"></a>AST的应用</h2><p>webpack的很多插件都用了，比如 ESLint、babel 等等。</p>
+<p>需要深入了解的时候再看下面这篇文章。</p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7155151377013047304#heading-3">https://juejin.cn/post/7155151377013047304#heading-3</a></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7155151377013047304#heading-3">https://juejin.cn/post/7155151377013047304#heading-3</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32247819/article/details/119547877">https://blog.csdn.net/qq_32247819/article/details/119547877</a></p>
 
               
             </div>
@@ -325,9 +332,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%9F%BA%E7%A1%80/">#基础</a>
+        <a href="/tags/JS/">#JS</a>
       
-        <a href="/tags/js/">#js</a>
+        <a href="/tags/%E5%9F%BA%E7%A1%80/">#基础</a>
       
     </div>
   
@@ -339,8 +346,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>requestAnimationFrame</div>
-      <div>http://example.com/2023/02/01/requestAnimationFrame/</div>
+      <div>AST</div>
+      <div>http://example.com/2023/02/26/AST/</div>
     </div>
     <div class="license-meta">
       
@@ -352,7 +359,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>February 1, 2023</div>
+          <div>February 26, 2023</div>
         </div>
       
       
@@ -382,18 +389,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/02/03/npm-install-xxx-%E6%8A%A5%E9%94%99/" title="npm install (xxx) 报错">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">npm install (xxx) 报错</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/01/09/%E7%9B%91%E8%A7%86vuex%E6%95%B0%E6%8D%AE%E7%9A%84%E5%8F%98%E5%8C%96/" title="监视vuex数据的变化">
-                        <span class="hidden-mobile">监视vuex数据的变化</span>
+                      <a href="/2023/02/19/vuejs%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/" title="vuejs设计与实现">
+                        <span class="hidden-mobile">vuejs设计与实现</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

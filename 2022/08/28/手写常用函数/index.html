@@ -24,7 +24,7 @@
 <meta property="og:description" content="Array.prototype.map123&#x2F;&#x2F; 样例[1,2]._map(i &#x3D;&gt; i * 2)[2,4]    mdn 里的 map 12map(function(element, index, array) &amp;#123; &#x2F;* … *&#x2F; &amp;#125;, thisArg)&#x2F;&#x2F; thisArg 可省略    1234567891011&#x2F;&#x2F; 不能写箭头函数, this会指向数组的父级Arra">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-08-28T09:46:55.000Z">
-<meta property="article:modified_time" content="2023-02-03T07:33:43.639Z">
+<meta property="article:modified_time" content="2023-02-20T13:02:34.831Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="JS">
 <meta property="article:tag" content="手写函数">
@@ -218,7 +218,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.4k words
+          6k words
         
       </span>
     
@@ -229,7 +229,7 @@
         
         
         
-          45 mins
+          50 mins
         
       </span>
     
@@ -386,6 +386,8 @@
 <p>是一个正向的，从左向右递推的过程。</p>
 <p>如果 a 是函数，b是参数，就是 (a,b) &#x3D;&gt; a(b)</p>
 <p>但是要考虑到 b 也是函数，所以 b 也得调用一下，得到返回值后再作为 a 的参数传入</p>
+<h2 id="格式化时间"><a href="#格式化时间" class="headerlink" title="格式化时间"></a>格式化时间</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">dateFormat</span>(<span class="hljs-params">date</span>) &#123;<br>  <span class="hljs-keyword">let</span> year = date.<span class="hljs-title function_">getFullYear</span>()<br>  <span class="hljs-keyword">let</span> month = <span class="hljs-title function_">showTime</span>(date.<span class="hljs-title function_">getMonth</span>() + <span class="hljs-number">1</span>)<br>  <span class="hljs-keyword">let</span> day = <span class="hljs-title function_">showTime</span>(date.<span class="hljs-title function_">getDay</span>())<br>  <span class="hljs-keyword">let</span> hours = <span class="hljs-title function_">showTime</span>(date.<span class="hljs-title function_">getHours</span>())<br>  <span class="hljs-keyword">let</span> minutes = <span class="hljs-title function_">showTime</span>(date.<span class="hljs-title function_">getMinutes</span>())<br>  <span class="hljs-keyword">let</span> second = <span class="hljs-title function_">showTime</span>(date.<span class="hljs-title function_">getSeconds</span>())<br>  <span class="hljs-keyword">const</span> str = <span class="hljs-string">`<span class="hljs-subst">$&#123;year&#125;</span>-<span class="hljs-subst">$&#123;month&#125;</span>-<span class="hljs-subst">$&#123;day&#125;</span>-<span class="hljs-subst">$&#123;hours&#125;</span>-<span class="hljs-subst">$&#123;minutes&#125;</span>-<span class="hljs-subst">$&#123;second&#125;</span>`</span><br><br>  <span class="hljs-keyword">return</span> str<br>&#125;<br><br><span class="hljs-comment">// 不够两位数就补0</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">showTime</span>(<span class="hljs-params">t</span>) &#123;<br>  <span class="hljs-keyword">let</span> time<br>  time = t &gt; <span class="hljs-number">10</span> ? t : <span class="hljs-string">&#x27;0&#x27;</span> + t<br>  <span class="hljs-keyword">return</span> time<br>&#125;<br><br><span class="hljs-comment">// 2023-02-01-21-00-56</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">dateFormat</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(<span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>())))<br></code></pre></td></tr></table></figure>
+
 
               
             </div>
