@@ -16,21 +16,24 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051&lt;!DOCTYPE html&gt;&lt;html lang&#x3D;&quot;en&quot;&gt;&lt;head&gt;  &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;">
+    <meta name="description" content="开发者工具中如何审查selectItem和Popover问题所在当我们点击【选择网页中的响应元素进行检查时】，select下拉框便会收起，我们则无法审查select-item。     如何解决1.打开浏览器控制台 2.ctrl+shift+p 3.输入focus模糊查询，选中 Emulate a focused page（chrome调成英文）   现在下拉框便不会自动收起了">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Intersection Observer实现图片懒加载">
-<meta property="og:url" content="http://example.com/2023/03/18/Intersection-Observer%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD/index.html">
+<meta property="og:title" content="开发者工具中如何审查selectItem和Popover">
+<meta property="og:url" content="http://example.com/2023/06/04/%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7%E4%B8%AD%E5%A6%82%E4%BD%95%E5%AE%A1%E6%9F%A5selectItem%E5%92%8CPopover/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051&lt;!DOCTYPE html&gt;&lt;html lang&#x3D;&quot;en&quot;&gt;&lt;head&gt;  &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;">
+<meta property="og:description" content="开发者工具中如何审查selectItem和Popover问题所在当我们点击【选择网页中的响应元素进行检查时】，select下拉框便会收起，我们则无法审查select-item。     如何解决1.打开浏览器控制台 2.ctrl+shift+p 3.输入focus模糊查询，选中 Emulate a focused page（chrome调成英文）   现在下拉框便不会自动收起了">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-03-18T14:27:13.000Z">
-<meta property="article:modified_time" content="2023-03-18T14:29:39.608Z">
+<meta property="og:image" content="http://example.com/2023/06/04/%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7%E4%B8%AD%E5%A6%82%E4%BD%95%E5%AE%A1%E6%9F%A5selectItem%E5%92%8CPopover/image-20230604143339437.png">
+<meta property="og:image" content="http://example.com/2023/06/04/%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7%E4%B8%AD%E5%A6%82%E4%BD%95%E5%AE%A1%E6%9F%A5selectItem%E5%92%8CPopover/image-20230604144047737.png">
+<meta property="article:published_time" content="2023-06-04T06:29:11.000Z">
+<meta property="article:modified_time" content="2023-06-04T06:42:22.792Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2023/06/04/%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7%E4%B8%AD%E5%A6%82%E4%BD%95%E5%AE%A1%E6%9F%A5selectItem%E5%92%8CPopover/image-20230604143339437.png">
   
   
   
-  <title>Intersection Observer实现图片懒加载 - Hexo</title>
+  <title>开发者工具中如何审查selectItem和Popover - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -193,7 +196,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Intersection Observer实现图片懒加载"></span>
+            <span id="subtitle" data-typed-text="开发者工具中如何审查selectItem和Popover"></span>
           
         </div>
 
@@ -204,8 +207,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-03-18 22:27" pubdate>
-          March 18, 2023 pm
+        <time datetime="2023-06-04 14:29" pubdate>
+          June 4, 2023 pm
         </time>
       </span>
     
@@ -216,7 +219,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2k words
+          176 words
         
       </span>
     
@@ -227,7 +230,7 @@
         
         
         
-          17 mins
+          2 mins
         
       </span>
     
@@ -273,12 +276,21 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Intersection Observer实现图片懒加载</h1>
+            <h1 style="display: none">开发者工具中如何审查selectItem和Popover</h1>
             
             <div class="markdown-body">
               
-              <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">&quot;X-UA-Compatible&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;IE=edge&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span><br><span class="language-css">    <span class="hljs-selector-tag">img</span> &#123;</span><br><span class="language-css">      <span class="hljs-attribute">width</span>: <span class="hljs-number">50vw</span>;</span><br><span class="language-css">      <span class="hljs-attribute">height</span>: <span class="hljs-number">50vw</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css">  </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br>  <span class="hljs-comment">&lt;!-- 自定义属性 data-origin，地址不能直接写到src里，会直接加载，就起不到懒加载的效果了 --&gt;</span><br>  <span class="hljs-comment">&lt;!-- 自定义属性规范：定义时 data-xxx； js 获取时 img.dataset.xxx (不一定是 img，dom元素即可)--&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">data-origin</span>=<span class="hljs-string">&quot;https://t7.baidu.com/it/u=1595072465,3644073269&amp;fm=193&amp;f=GIF&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">data-origin</span>=<span class="hljs-string">&quot;https://t7.baidu.com/it/u=4198287529,2774471735&amp;fm=193&amp;f=GIF&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">data-origin</span>=<span class="hljs-string">&quot;https://t7.baidu.com/it/u=1956604245,3662848045&amp;fm=193&amp;f=GIF&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">data-origin</span>=<span class="hljs-string">&quot;https://t7.baidu.com/it/u=3569419905,626536365&amp;fm=193&amp;f=GIF&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">data-origin</span>=<span class="hljs-string">&quot;https://t7.baidu.com/it/u=3911840071,2534614245&amp;fm=193&amp;f=GIF&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">  <span class="hljs-comment">/* </span></span><br><span class="hljs-comment"><span class="language-javascript">    var observer = new IntersectionObserver(callback, option);</span></span><br><span class="hljs-comment"><span class="language-javascript">    callback 回调在可见性变化时触发（元素进入视口、元素离开视口）</span></span><br><span class="hljs-comment"><span class="language-javascript">        callback 参数为 监视的所有项</span></span><br><span class="hljs-comment"><span class="language-javascript">    option 配置对象（可选参数）</span></span><br><span class="hljs-comment"><span class="language-javascript">        root: 修改 observer 实例的对象 默认为文档视口</span></span><br><span class="hljs-comment"><span class="language-javascript">        rootMargin: 扩大或缩小视口元素，从而影响交叉区域的大小 默认为 &quot;0px 0px 0px 0px&quot;</span></span><br><span class="hljs-comment"><span class="language-javascript">        threshold: 监听目标与边界盒交叉区域的比例值 0.0表示有1像素交叉便被认为可见，1.0表示整个元素都在可见范围内才被认为可见</span></span><br><span class="hljs-comment"><span class="language-javascript">  */</span></span><br><span class="language-javascript">  <span class="hljs-keyword">let</span> observer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">IntersectionObserver</span>(<span class="hljs-function">(<span class="hljs-params">items</span>) =&gt;</span> &#123;</span><br><span class="language-javascript">    items.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> &#123;</span><br><span class="language-javascript">      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(item)</span><br><span class="language-javascript">      <span class="hljs-comment">// 如果图片和视口发生了交叉，那么修改图片的 src 从而加载图片，然后断开监听，免得反复触发</span></span><br><span class="language-javascript">      <span class="hljs-keyword">if</span> (item.<span class="hljs-property">isIntersecting</span>) &#123;</span><br><span class="language-javascript">        item.<span class="hljs-property">target</span>.<span class="hljs-property">src</span> = item.<span class="hljs-property">target</span>.<span class="hljs-property">dataset</span>.<span class="hljs-property">origin</span></span><br><span class="language-javascript">        observer.<span class="hljs-title function_">unobserve</span>(item.<span class="hljs-property">target</span>)</span><br><span class="language-javascript">      &#125;</span><br><span class="language-javascript">    &#125;)</span><br><span class="language-javascript">  &#125;)</span><br><span class="language-javascript"></span><br><span class="language-javascript">  <span class="hljs-keyword">const</span> images = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementsByTagName</span>(<span class="hljs-string">&#x27;img&#x27;</span>)</span><br><span class="language-javascript">  <span class="hljs-comment">// 必须得一个一个 observe</span></span><br><span class="language-javascript">  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> image <span class="hljs-keyword">of</span> images) &#123;</span><br><span class="language-javascript">    observer.<span class="hljs-title function_">observe</span>(image)</span><br><span class="language-javascript">  &#125;</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+              <h1 id="开发者工具中如何审查selectItem和Popover"><a href="#开发者工具中如何审查selectItem和Popover" class="headerlink" title="开发者工具中如何审查selectItem和Popover"></a>开发者工具中如何审查selectItem和Popover</h1><h2 id="问题所在"><a href="#问题所在" class="headerlink" title="问题所在"></a>问题所在</h2><p>当我们点击【选择网页中的响应元素进行检查时】，select下拉框便会收起，我们则无法审查select-item。</p>
+<img src="/2023/06/04/%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7%E4%B8%AD%E5%A6%82%E4%BD%95%E5%AE%A1%E6%9F%A5selectItem%E5%92%8CPopover/image-20230604143339437.png" srcset="/img/loading.gif" lazyload class="" title="image-20230604143339437">
 
+
+
+<h2 id="如何解决"><a href="#如何解决" class="headerlink" title="如何解决"></a>如何解决</h2><p>1.打开浏览器控制台</p>
+<p>2.ctrl+shift+p</p>
+<p>3.输入focus模糊查询，选中 Emulate a focused page（chrome调成英文）</p>
+<img src="/2023/06/04/%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7%E4%B8%AD%E5%A6%82%E4%BD%95%E5%AE%A1%E6%9F%A5selectItem%E5%92%8CPopover/image-20230604144047737.png" srcset="/img/loading.gif" lazyload class="" title="image-20230604144047737">
+
+<p>现在下拉框便不会自动收起了</p>
 
               
             </div>
@@ -296,7 +308,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%AE%9E%E7%94%A8Demo/" class="category-chain-item">实用Demo</a>
+  <a href="/categories/%E5%B0%8F%E6%8A%80%E5%B7%A7/" class="category-chain-item">小技巧</a>
   
   
 
@@ -316,8 +328,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Intersection Observer实现图片懒加载</div>
-      <div>http://example.com/2023/03/18/Intersection-Observer实现图片懒加载/</div>
+      <div>开发者工具中如何审查selectItem和Popover</div>
+      <div>http://example.com/2023/06/04/开发者工具中如何审查selectItem和Popover/</div>
     </div>
     <div class="license-meta">
       
@@ -329,7 +341,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>March 18, 2023</div>
+          <div>June 4, 2023</div>
         </div>
       
       
@@ -359,9 +371,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/06/04/%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7%E4%B8%AD%E5%A6%82%E4%BD%95%E5%AE%A1%E6%9F%A5selectItem%E5%92%8CPopover/" title="开发者工具中如何审查selectItem和Popover">
+                      <a href="/2023/06/04/%E4%B8%8D%E8%A6%81%E7%94%A8forEach%E6%89%A7%E8%A1%8C%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1/" title="不要用forEach执行异步任务">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">开发者工具中如何审查selectItem和Popover</span>
+                        <span class="hidden-mobile">不要用forEach执行异步任务</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -369,8 +381,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/03/14/%E5%B9%B6%E5%8F%91%E5%8A%A0%E8%BD%BD%E5%9B%BE%E7%89%87-%E5%B9%B6%E5%8F%91%E6%95%B0%E6%9C%80%E5%A4%A7%E4%B8%BAn/" title="并发加载图片 并发数最大为n">
-                        <span class="hidden-mobile">并发加载图片 并发数最大为n</span>
+                      <a href="/2023/03/18/Intersection-Observer%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E6%87%92%E5%8A%A0%E8%BD%BD/" title="Intersection Observer实现图片懒加载">
+                        <span class="hidden-mobile">Intersection Observer实现图片懒加载</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
