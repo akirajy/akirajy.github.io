@@ -16,21 +16,21 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="forEach无法保证执行顺序12345678910111213141516171819async function processRoles() &amp;#123;    let roles &#x3D; [&amp;#x27;admin&amp;#x27;, &amp;#x27;editor&amp;#x27;, &amp;#x27;employee&amp;#x27;];    roles.forEach(async role &#x3D;&gt; &amp;#123;">
+    <meta name="description" content="简单的 useState 源码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697">
 <meta property="og:type" content="article">
-<meta property="og:title" content="不要用forEach执行异步任务">
-<meta property="og:url" content="http://example.com/2023/06/04/%E4%B8%8D%E8%A6%81%E7%94%A8forEach%E6%89%A7%E8%A1%8C%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1/index.html">
+<meta property="og:title" content="以 useState 为例的 hooks 源码">
+<meta property="og:url" content="http://example.com/2024/02/22/%E4%BB%A5-useState-%E4%B8%BA%E4%BE%8B%E7%9A%84-hooks-%E6%BA%90%E7%A0%81/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="forEach无法保证执行顺序12345678910111213141516171819async function processRoles() &amp;#123;    let roles &#x3D; [&amp;#x27;admin&amp;#x27;, &amp;#x27;editor&amp;#x27;, &amp;#x27;employee&amp;#x27;];    roles.forEach(async role &#x3D;&gt; &amp;#123;">
+<meta property="og:description" content="简单的 useState 源码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-06-04T06:44:00.000Z">
-<meta property="article:modified_time" content="2023-06-04T07:02:45.738Z">
+<meta property="article:published_time" content="2024-02-22T13:49:34.000Z">
+<meta property="article:modified_time" content="2024-02-22T13:53:04.630Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>不要用forEach执行异步任务 - Hexo</title>
+  <title>以 useState 为例的 hooks 源码 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -193,7 +193,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="不要用forEach执行异步任务"></span>
+            <span id="subtitle" data-typed-text="以 useState 为例的 hooks 源码"></span>
           
         </div>
 
@@ -204,8 +204,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-06-04 14:44" pubdate>
-          June 4, 2023 pm
+        <time datetime="2024-02-22 21:49" pubdate>
+          February 22, 2024 pm
         </time>
       </span>
     
@@ -216,7 +216,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k words
+          2.4k words
         
       </span>
     
@@ -227,7 +227,7 @@
         
         
         
-          13 mins
+          21 mins
         
       </span>
     
@@ -273,36 +273,16 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">不要用forEach执行异步任务</h1>
+            <h1 style="display: none">以 useState 为例的 hooks 源码</h1>
             
             <div class="markdown-body">
               
-              <h2 id="forEach无法保证执行顺序"><a href="#forEach无法保证执行顺序" class="headerlink" title="forEach无法保证执行顺序"></a>forEach无法保证执行顺序</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">processRoles</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">let</span> roles = [<span class="hljs-string">&#x27;admin&#x27;</span>, <span class="hljs-string">&#x27;editor&#x27;</span>, <span class="hljs-string">&#x27;employee&#x27;</span>];<br>    roles.<span class="hljs-title function_">forEach</span>(<span class="hljs-keyword">async</span> role =&gt; &#123;<br>        <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> <span class="hljs-title function_">performTask</span>(role);<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result);<br>    &#125;);<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;任务处理完成&#x27;</span>);<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">performTask</span>(<span class="hljs-params">role</span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;<br>        <span class="hljs-comment">// 模拟异步操作</span><br>        <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>            <span class="hljs-title function_">resolve</span>(<span class="hljs-string">`已处理角色：<span class="hljs-subst">$&#123;role&#125;</span>`</span>);<br>        &#125;, <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * <span class="hljs-number">1000</span>);<br>    &#125;);<br>&#125;<br><br><span class="hljs-title function_">processRoles</span>();<br></code></pre></td></tr></table></figure>
-
-<p>如果业务场景要求保证执行顺序，则需要输出为：</p>
-<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs mel">已处理角色：admin<br>已处理角色：<span class="hljs-keyword">editor</span><br>已处理角色：employee<br>任务处理完成<br></code></pre></td></tr></table></figure>
-
-<p>但 forEach 实际输出可能乱序：</p>
-<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs mel">任务处理完成<br>已处理角色：employee<br>已处理角色：admin<br>已处理角色：<span class="hljs-keyword">editor</span><br></code></pre></td></tr></table></figure>
+              <h2 id="简单的-useState-源码"><a href="#简单的-useState-源码" class="headerlink" title="简单的 useState 源码"></a>简单的 useState 源码</h2><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-comment">// 区分是 update 还是 mount</span><br><span class="hljs-keyword">let</span> isMount = <span class="hljs-literal">true</span><br><br><span class="hljs-comment">// 指针，指向 memorizedState 中正在工作的 hook</span><br><span class="hljs-keyword">let</span> workInProgressHook = <span class="hljs-literal">null</span><br><br><span class="hljs-comment">// 每个组件都有一个 fiber 对象，这里是 App 的 Fiber对象</span><br><span class="hljs-keyword">const</span> fiber = &#123;<br>  <span class="hljs-attr">stateNode</span>: <span class="hljs-title class_">App</span>,<br>  <span class="hljs-comment">// 用链表的结构 保存所有的 State（函数式组件就是 useState 的数据，类组件就是 this.state 中的数据）</span><br>  <span class="hljs-attr">memorizedState</span>: <span class="hljs-literal">null</span><br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">useState</span>(<span class="hljs-params">initialState</span>) &#123;<br>  <span class="hljs-keyword">let</span> hook<br><br>  <span class="hljs-comment">/* 1.取老 state */</span><br>  <span class="hljs-comment">// 如果是 Mount，需要构建链表</span><br>  <span class="hljs-keyword">if</span> (isMount) &#123;<br>    <span class="hljs-comment">// hook 为链表的一个节点</span><br>    hook = &#123;<br>      <span class="hljs-comment">// 当前状态</span><br>      <span class="hljs-attr">memorizedState</span>: initialState,<br>      <span class="hljs-attr">next</span>: <span class="hljs-literal">null</span>,<br>      <span class="hljs-comment">// 接下来会产生的状态变更。之所以是队列，因为可能连续触发多次状态的更新</span><br>      <span class="hljs-attr">queue</span>: &#123;<br>        <span class="hljs-attr">pending</span>: <span class="hljs-literal">null</span><br>      &#125;<br>    &#125;<br>    <span class="hljs-comment">// 构建链表</span><br>    <span class="hljs-keyword">if</span> (!fiber.<span class="hljs-property">memorizedState</span>) &#123;<br>      fiber.<span class="hljs-property">memorizedState</span> = hook<br>      workInProgressHook = hook<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      workInProgressHook.<span class="hljs-property">next</span> = hook<br>    &#125;<br>    workInProgressHook = hook<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-comment">// 如果是 Update，确定当前 useState 的 hook 节点</span><br>    hook = workInProgressHook<br>    workInProgressHook = workInProgressHook.<span class="hljs-property">next</span><br>  &#125;<br>  <span class="hljs-comment">// 取当前 hook 的状态</span><br>  <span class="hljs-keyword">let</span> baseState = hook.<span class="hljs-property">memorizedState</span><br><br>  <span class="hljs-comment">/* 2.计算新的 state */</span><br>  <span class="hljs-keyword">if</span> (hook.<span class="hljs-property">queue</span>.<span class="hljs-property">pending</span>) &#123;<br>    <span class="hljs-keyword">let</span> firstUpdate = hook.<span class="hljs-property">queue</span>.<span class="hljs-property">pending</span>.<span class="hljs-property">next</span><br><br>    <span class="hljs-keyword">do</span> &#123;<br>      <span class="hljs-keyword">const</span> action = firstUpdate.<span class="hljs-property">action</span><br>      <span class="hljs-comment">// 执行 action，更新 state</span><br>      baseState = <span class="hljs-title function_">action</span>(baseState)<br>      firstUpdate = firstUpdate.<span class="hljs-property">next</span><br>    &#125; <span class="hljs-keyword">while</span> (firstUpdate !== hook.<span class="hljs-property">queue</span>.<span class="hljs-property">pending</span>.<span class="hljs-property">next</span>)<br><br>    hook.<span class="hljs-property">queue</span>.<span class="hljs-property">pending</span> = <span class="hljs-literal">null</span><br>  &#125;<br><br>  hook.<span class="hljs-property">memorizedState</span> = baseState<br>  <span class="hljs-keyword">return</span> [baseState, dispatchAction.<span class="hljs-title function_">bind</span>(<span class="hljs-literal">null</span>, hook.<span class="hljs-property">queue</span>)]<br>&#125;<br><br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">dispatchAction</span>(<span class="hljs-params">queue, action</span>) &#123;<br>  <span class="hljs-comment">// queue 表示原先的待更新队列，action 为这次传进来的更新</span><br>  <span class="hljs-comment">// update 是一个环状链表。为什么？因为更新有优先级</span><br>  <span class="hljs-keyword">const</span> update = &#123;<br>    action,<br>    <span class="hljs-attr">next</span>: <span class="hljs-literal">null</span><br>  &#125;<br><br>  <span class="hljs-comment">// 构建与更新环状链表</span><br>  <span class="hljs-keyword">if</span> (queue.<span class="hljs-property">pending</span> === <span class="hljs-literal">null</span>) &#123;<br>    update.<span class="hljs-property">next</span> = update<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    update.<span class="hljs-property">next</span> = queue.<span class="hljs-property">pending</span>.<span class="hljs-property">next</span><br>    queue.<span class="hljs-property">pending</span>.<span class="hljs-property">next</span> = update<br>  &#125;<br>  queue.<span class="hljs-property">pending</span> = update<br><br>  <span class="hljs-comment">// 调用调度器</span><br>  <span class="hljs-title function_">schedule</span>()<br>&#125;<br><br><span class="hljs-comment">// 调度器</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">schedule</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-comment">// workInProgressHook 指针复位，重新指向第一个</span><br>  workInProgressHook = fiber.<span class="hljs-property">memorizedState</span><br>  <span class="hljs-comment">// 触发组件的 render</span><br>  fiber.<span class="hljs-title function_">stateNode</span>()<br>  isMount = <span class="hljs-literal">false</span><br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> [num1, updateNum1] = <span class="hljs-title function_">useState</span>(<span class="hljs-number">0</span>)<br>  <span class="hljs-keyword">const</span> [num2, updateNum2] = <span class="hljs-title function_">useState</span>(<span class="hljs-number">10</span>)<br><br>  <span class="hljs-keyword">return</span> &#123;<br>    <span class="hljs-title function_">onClick</span>(<span class="hljs-params"></span>) &#123;<br>      <span class="hljs-comment">// updateNum(num + 1)</span><br>      <span class="hljs-title function_">updateNum1</span>(<span class="hljs-function"><span class="hljs-params">num</span> =&gt;</span> num + <span class="hljs-number">1</span>)<br>      <span class="hljs-title function_">updateNum1</span>(<span class="hljs-function"><span class="hljs-params">num</span> =&gt;</span> num + <span class="hljs-number">1</span>)<br>      <span class="hljs-title function_">updateNum1</span>(<span class="hljs-function"><span class="hljs-params">num</span> =&gt;</span> num + <span class="hljs-number">1</span>)<br>    &#125;<br>  &#125;<br><br>  <span class="hljs-comment">// return &lt;p onClick=&#123;() =&gt; updateNum(num + 1)&#125;&gt;&lt;/p&gt;</span><br>&#125;<br><br><span class="hljs-variable language_">window</span>.<span class="hljs-property">app</span> = <span class="hljs-title function_">schedule</span>()<br></code></pre></td></tr></table></figure>
 
 
 
-<h2 id="forEach逻辑"><a href="#forEach逻辑" class="headerlink" title="forEach逻辑"></a>forEach逻辑</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; length; i++) &#123;<br>  <span class="hljs-keyword">if</span> (i <span class="hljs-keyword">in</span> array) &#123;<br>    <span class="hljs-keyword">var</span> element = array[i];<br>    <span class="hljs-title function_">callback</span>(element, i, array);<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-
-
-<h2 id="for…of保证执行顺序"><a href="#for…of保证执行顺序" class="headerlink" title="for…of保证执行顺序"></a>for…of保证执行顺序</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">processRoles</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">let</span> roles = [<span class="hljs-string">&#x27;admin&#x27;</span>, <span class="hljs-string">&#x27;editor&#x27;</span>, <span class="hljs-string">&#x27;employee&#x27;</span>];<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> role <span class="hljs-keyword">of</span> roles) &#123;<br>        <span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> <span class="hljs-title function_">performTask</span>(role);<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result);<br>    &#125;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;任务处理完成&#x27;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
-
-
-
-<h2 id="for…of逻辑"><a href="#for…of逻辑" class="headerlink" title="for…of逻辑"></a>for…of逻辑</h2><p>for…of 的实现是基于迭代器的</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">processRoles</span>(<span class="hljs-params"></span>) &#123;<br>    <span class="hljs-keyword">let</span> roles = [<span class="hljs-string">&#x27;admin&#x27;</span>, <span class="hljs-string">&#x27;editor&#x27;</span>, <span class="hljs-string">&#x27;employee&#x27;</span>];<br>    <span class="hljs-keyword">let</span> iterator = roles[<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">iterator</span>]();<br>    <span class="hljs-keyword">let</span> res = iterator.<span class="hljs-title function_">next</span>();<br>    <span class="hljs-keyword">while</span>(!res.<span class="hljs-property">done</span>) &#123;<br>        <span class="hljs-keyword">let</span> value = res.<span class="hljs-property">value</span>;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(value);<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">await</span> <span class="hljs-title function_">performTask</span>(value));<br>        res = iterator.<span class="hljs-title function_">next</span>();<br>    &#125;<br>	<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;任务处理完成&#x27;</span>);<br>&#125;<br><span class="hljs-title function_">processRoles</span>()<br></code></pre></td></tr></table></figure>
-
-
-
-<h2 id="用栈来理解"><a href="#用栈来理解" class="headerlink" title="用栈来理解"></a>用栈来理解</h2><p>foreach里参数是fn。每一次循环都是一个新的栈。所以await不起作用，因为栈内本来也就一个函数。</p>
-<p>for&#x2F;for…of的循环都在同一个栈内。需要等一个实现完才到下一个。</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7236313127070105637">https://juejin.cn/post/7236313127070105637</a></p>
+<h2 id="为什么组件-render-时，useState-的状态不会被重置？"><a href="#为什么组件-render-时，useState-的状态不会被重置？" class="headerlink" title="为什么组件 render 时，useState 的状态不会被重置？"></a><strong>为什么组件 render 时，useState 的状态不会被重置？</strong></h2><p>因为状态是被维护在组件外部的 Fiber 对象中的 memorizedState 这个属性中的，我们在组件内使用的只是对外层对象中属性的引用（闭包）。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1iV411b7L1/?spm_id_from=333.337.search-card.all.click&amp;vd_source=1616b746cefe2e7615c229563ba38eb4">https://www.bilibili.com/video/BV1iV411b7L1/?spm_id_from=333.337.search-card.all.click&amp;vd_source=1616b746cefe2e7615c229563ba38eb4</a></p>
 
               
             </div>
@@ -320,12 +300,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/JS/" class="category-chain-item">JS</a>
+  <a href="/categories/React/" class="category-chain-item">React</a>
   
   
     <span>></span>
     
-  <a href="/categories/JS/%E5%9F%BA%E7%A1%80/" class="category-chain-item">基础</a>
+  <a href="/categories/React/hooks/" class="category-chain-item">hooks</a>
   
   
 
@@ -347,8 +327,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>不要用forEach执行异步任务</div>
-      <div>http://example.com/2023/06/04/不要用forEach执行异步任务/</div>
+      <div>以 useState 为例的 hooks 源码</div>
+      <div>http://example.com/2024/02/22/以-useState-为例的-hooks-源码/</div>
     </div>
     <div class="license-meta">
       
@@ -360,7 +340,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>June 4, 2023</div>
+          <div>February 22, 2024</div>
         </div>
       
       
@@ -390,18 +370,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/02/22/%E4%BB%A5-useState-%E4%B8%BA%E4%BE%8B%E7%9A%84-hooks-%E6%BA%90%E7%A0%81/" title="以 useState 为例的 hooks 源码">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">以 useState 为例的 hooks 源码</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/06/04/%E5%BC%80%E5%8F%91%E8%80%85%E5%B7%A5%E5%85%B7%E4%B8%AD%E5%A6%82%E4%BD%95%E5%AE%A1%E6%9F%A5selectItem%E5%92%8CPopover/" title="开发者工具中如何审查selectItem和Popover">
-                        <span class="hidden-mobile">开发者工具中如何审查selectItem和Popover</span>
+                      <a href="/2023/06/04/%E4%B8%8D%E8%A6%81%E7%94%A8forEach%E6%89%A7%E8%A1%8C%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1/" title="不要用forEach执行异步任务">
+                        <span class="hidden-mobile">不要用forEach执行异步任务</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
