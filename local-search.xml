@@ -4,6 +4,27 @@
   
   
   <entry>
+    <title>react devtool profiler</title>
+    <link href="/2024/02/25/react-devtool-profiler/"/>
+    <url>/2024/02/25/react-devtool-profiler/</url>
+    
+    <content type="html"><![CDATA[<h2 id="重要设置"><a href="#重要设置" class="headerlink" title="重要设置"></a>重要设置</h2><img src="/2024/02/25/react-devtool-profiler/v2-e26fde9f773c9a0bf7588f416a0c5293_720w.webp" class="" title="img"><p>两个选项：</p><p>1.记录为什么被 render</p><p>2.过滤掉低于阈值的 commit（在有很多 commit 时有效）</p><h2 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h2><p>和 Performance 录制类似，不赘述</p><h2 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a>核心功能</h2><img src="/2024/02/25/react-devtool-profiler/v2-0629b8f2a8f6366801cfd973b7e0e5bc_720w.webp" class="" title="img"><ol><li><strong>图表类型</strong><ul><li>火焰图</li><li>排序图</li></ul></li><li><strong>图表区域：</strong>在应用程序的剖析切片中，代表<strong>某次<code>commit</code>对应的组件渲染时间的相关信息</strong>。</li><li><strong>提交区域：</strong> <strong>每个条形图代表应用程序在整个录制阶段所有的<code>commit</code>操作。</strong>每当你通过点击选择一个<code>commit</code>，图表区域和提交信息就会相应地更新。</li><li><strong>提交信息面板：</strong>关于单个选定的<code>commit</code>阶段或单个选定组件的细节。</li></ol><h2 id="图表面板"><a href="#图表面板" class="headerlink" title="图表面板"></a>图表面板</h2><p>火焰图表示应用程序在<strong>特定<code>commit</code>中的渲染树</strong>。</p><p>图表中的每一条都代表一个<code>React组件</code>。</p><p>这些组件从上到下依次为根组件和叶子节点（根部是最上面的组件，叶子是最下面的）。</p><img src="/2024/02/25/react-devtool-profiler/v2-31526babc97c8544cf08c96f12b5b6ca_720w.webp" class="" title="img"><p>条形图的<strong>宽度</strong>表示该<strong>组件及其子组件的渲染时间</strong><br>条形图的<strong>颜色</strong>代表组件<strong>本身渲染的时间</strong>（绿色代表快，黄色代表慢）</p><img src="/2024/02/25/react-devtool-profiler/v2-8bcebb1e0810e959817daf07d7f7a28a_720w.webp" class="" title="img"><ul><li><strong>灰色填充</strong>–在这次提交中没有渲染的组件，但它是<strong>渲染路径的一部分</strong>（例如，<code>App</code>没有渲染，但它是<code>FilterableList</code>的父组件，而<code>FilterableList</code>被渲染）。</li><li><strong>灰色渐变条纹</strong>–在本次<code>commit</code>中没有渲染的组件，也不是渲染路径的一部分（例如，<code>Header</code>没有渲染，但它也没有任何子代被渲染）。</li></ul><h2 id="提交信息面板"><a href="#提交信息面板" class="headerlink" title="提交信息面板"></a>提交信息面板</h2><p><strong>提交信息面板</strong>有两种不同的用途。</p><ol><li><strong>展示整个应用的渲染信息</strong></li></ol><img src="/2024/02/25/react-devtool-profiler/v2-75bb13214156d51d1984e7ee82fb53eb_720w.webp" class="" title="img"><p>当没有选择任何组件时（放大），它会显示<strong>当前在<code>commit</code>过程中的<code>commit</code>概况</strong>。数据包括**<code>commit</code>的时间<strong>（自应用程序启动以来），</strong>渲染的时间<strong>，以及</strong>优先级**。</p><ol start="2"><li><strong>展示单个组件的渲染信息</strong></li></ol><img src="/2024/02/25/react-devtool-profiler/v2-005d97b82099ce515e3ff995033a0230_720w.webp" class="" title="img"><p>当你在某个图表区域中点击一个组件（放大它）时，<strong>提交信息面板</strong>会显示这个组件的细节。这包括该组件在这个特定的<code>commit</code>过程中<strong>渲染的原因</strong>以及带有时间戳的<strong>提交列表</strong>。这个列表是交互式的，允许你在这个特定组件参与的不同提交之间轻松浏览。</p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://zhuanlan.zhihu.com/p/546469367">https://zhuanlan.zhihu.com/p/546469367</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>React</category>
+      
+      <category>性能优化</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>以 useState 为例的 hooks 源码</title>
     <link href="/2024/02/22/%E4%BB%A5-useState-%E4%B8%BA%E4%BE%8B%E7%9A%84-hooks-%E6%BA%90%E7%A0%81/"/>
     <url>/2024/02/22/%E4%BB%A5-useState-%E4%B8%BA%E4%BE%8B%E7%9A%84-hooks-%E6%BA%90%E7%A0%81/</url>

@@ -16,21 +16,28 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="简单的 useState 源码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697">
+    <meta name="description" content="重要设置  两个选项： 1.记录为什么被 render 2.过滤掉低于阈值的 commit（在有很多 commit 时有效） 使用方式和 Performance 录制类似，不赘述 核心功能   图表类型 火焰图 排序图   图表区域：在应用程序的剖析切片中，代表某次commit对应的组件渲染时间的相关信息。 提交区域： 每个条形图代表应用程序在整个录制阶段所有的commit操作。每当你通过点击选择">
 <meta property="og:type" content="article">
-<meta property="og:title" content="以 useState 为例的 hooks 源码">
-<meta property="og:url" content="http://example.com/2024/02/22/%E4%BB%A5-useState-%E4%B8%BA%E4%BE%8B%E7%9A%84-hooks-%E6%BA%90%E7%A0%81/index.html">
+<meta property="og:title" content="react devtool profiler">
+<meta property="og:url" content="http://example.com/2024/02/25/react-devtool-profiler/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="简单的 useState 源码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697">
+<meta property="og:description" content="重要设置  两个选项： 1.记录为什么被 render 2.过滤掉低于阈值的 commit（在有很多 commit 时有效） 使用方式和 Performance 录制类似，不赘述 核心功能   图表类型 火焰图 排序图   图表区域：在应用程序的剖析切片中，代表某次commit对应的组件渲染时间的相关信息。 提交区域： 每个条形图代表应用程序在整个录制阶段所有的commit操作。每当你通过点击选择">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-02-22T13:49:34.000Z">
-<meta property="article:modified_time" content="2024-02-22T13:53:04.630Z">
+<meta property="og:image" content="http://example.com/2024/02/25/react-devtool-profiler/v2-e26fde9f773c9a0bf7588f416a0c5293_720w.webp">
+<meta property="og:image" content="http://example.com/2024/02/25/react-devtool-profiler/v2-0629b8f2a8f6366801cfd973b7e0e5bc_720w.webp">
+<meta property="og:image" content="http://example.com/2024/02/25/react-devtool-profiler/v2-31526babc97c8544cf08c96f12b5b6ca_720w.webp">
+<meta property="og:image" content="http://example.com/2024/02/25/react-devtool-profiler/v2-8bcebb1e0810e959817daf07d7f7a28a_720w.webp">
+<meta property="og:image" content="http://example.com/2024/02/25/react-devtool-profiler/v2-75bb13214156d51d1984e7ee82fb53eb_720w.webp">
+<meta property="og:image" content="http://example.com/2024/02/25/react-devtool-profiler/v2-005d97b82099ce515e3ff995033a0230_720w.webp">
+<meta property="article:published_time" content="2024-02-25T07:39:22.000Z">
+<meta property="article:modified_time" content="2024-02-25T07:54:50.423Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2024/02/25/react-devtool-profiler/v2-e26fde9f773c9a0bf7588f416a0c5293_720w.webp">
   
   
   
-  <title>以 useState 为例的 hooks 源码 - Hexo</title>
+  <title>react devtool profiler - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -193,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="以 useState 为例的 hooks 源码"></span>
+            <span id="subtitle" data-typed-text="react devtool profiler"></span>
           
         </div>
 
@@ -204,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-02-22 21:49" pubdate>
-          February 22, 2024 pm
+        <time datetime="2024-02-25 15:39" pubdate>
+          February 25, 2024 pm
         </time>
       </span>
     
@@ -216,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.4k words
+          802 words
         
       </span>
     
@@ -227,7 +234,7 @@
         
         
         
-          21 mins
+          7 mins
         
       </span>
     
@@ -273,16 +280,54 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">以 useState 为例的 hooks 源码</h1>
+            <h1 style="display: none">react devtool profiler</h1>
             
             <div class="markdown-body">
               
-              <h2 id="简单的-useState-源码"><a href="#简单的-useState-源码" class="headerlink" title="简单的 useState 源码"></a>简单的 useState 源码</h2><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-comment">// 区分是 update 还是 mount</span><br><span class="hljs-keyword">let</span> isMount = <span class="hljs-literal">true</span><br><br><span class="hljs-comment">// 指针，指向 memorizedState 中正在工作的 hook</span><br><span class="hljs-keyword">let</span> workInProgressHook = <span class="hljs-literal">null</span><br><br><span class="hljs-comment">// 每个组件都有一个 fiber 对象，这里是 App 的 Fiber对象</span><br><span class="hljs-keyword">const</span> fiber = &#123;<br>  <span class="hljs-attr">stateNode</span>: <span class="hljs-title class_">App</span>,<br>  <span class="hljs-comment">// 用链表的结构 保存所有的 State（函数式组件就是 useState 的数据，类组件就是 this.state 中的数据）</span><br>  <span class="hljs-attr">memorizedState</span>: <span class="hljs-literal">null</span><br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">useState</span>(<span class="hljs-params">initialState</span>) &#123;<br>  <span class="hljs-keyword">let</span> hook<br><br>  <span class="hljs-comment">/* 1.取老 state */</span><br>  <span class="hljs-comment">// 如果是 Mount，需要构建链表</span><br>  <span class="hljs-keyword">if</span> (isMount) &#123;<br>    <span class="hljs-comment">// hook 为链表的一个节点</span><br>    hook = &#123;<br>      <span class="hljs-comment">// 当前状态</span><br>      <span class="hljs-attr">memorizedState</span>: initialState,<br>      <span class="hljs-attr">next</span>: <span class="hljs-literal">null</span>,<br>      <span class="hljs-comment">// 接下来会产生的状态变更。之所以是队列，因为可能连续触发多次状态的更新</span><br>      <span class="hljs-attr">queue</span>: &#123;<br>        <span class="hljs-attr">pending</span>: <span class="hljs-literal">null</span><br>      &#125;<br>    &#125;<br>    <span class="hljs-comment">// 构建链表</span><br>    <span class="hljs-keyword">if</span> (!fiber.<span class="hljs-property">memorizedState</span>) &#123;<br>      fiber.<span class="hljs-property">memorizedState</span> = hook<br>      workInProgressHook = hook<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      workInProgressHook.<span class="hljs-property">next</span> = hook<br>    &#125;<br>    workInProgressHook = hook<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-comment">// 如果是 Update，确定当前 useState 的 hook 节点</span><br>    hook = workInProgressHook<br>    workInProgressHook = workInProgressHook.<span class="hljs-property">next</span><br>  &#125;<br>  <span class="hljs-comment">// 取当前 hook 的状态</span><br>  <span class="hljs-keyword">let</span> baseState = hook.<span class="hljs-property">memorizedState</span><br><br>  <span class="hljs-comment">/* 2.计算新的 state */</span><br>  <span class="hljs-keyword">if</span> (hook.<span class="hljs-property">queue</span>.<span class="hljs-property">pending</span>) &#123;<br>    <span class="hljs-keyword">let</span> firstUpdate = hook.<span class="hljs-property">queue</span>.<span class="hljs-property">pending</span>.<span class="hljs-property">next</span><br><br>    <span class="hljs-keyword">do</span> &#123;<br>      <span class="hljs-keyword">const</span> action = firstUpdate.<span class="hljs-property">action</span><br>      <span class="hljs-comment">// 执行 action，更新 state</span><br>      baseState = <span class="hljs-title function_">action</span>(baseState)<br>      firstUpdate = firstUpdate.<span class="hljs-property">next</span><br>    &#125; <span class="hljs-keyword">while</span> (firstUpdate !== hook.<span class="hljs-property">queue</span>.<span class="hljs-property">pending</span>.<span class="hljs-property">next</span>)<br><br>    hook.<span class="hljs-property">queue</span>.<span class="hljs-property">pending</span> = <span class="hljs-literal">null</span><br>  &#125;<br><br>  hook.<span class="hljs-property">memorizedState</span> = baseState<br>  <span class="hljs-keyword">return</span> [baseState, dispatchAction.<span class="hljs-title function_">bind</span>(<span class="hljs-literal">null</span>, hook.<span class="hljs-property">queue</span>)]<br>&#125;<br><br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">dispatchAction</span>(<span class="hljs-params">queue, action</span>) &#123;<br>  <span class="hljs-comment">// queue 表示原先的待更新队列，action 为这次传进来的更新</span><br>  <span class="hljs-comment">// update 是一个环状链表。为什么？因为更新有优先级</span><br>  <span class="hljs-keyword">const</span> update = &#123;<br>    action,<br>    <span class="hljs-attr">next</span>: <span class="hljs-literal">null</span><br>  &#125;<br><br>  <span class="hljs-comment">// 构建与更新环状链表</span><br>  <span class="hljs-keyword">if</span> (queue.<span class="hljs-property">pending</span> === <span class="hljs-literal">null</span>) &#123;<br>    update.<span class="hljs-property">next</span> = update<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    update.<span class="hljs-property">next</span> = queue.<span class="hljs-property">pending</span>.<span class="hljs-property">next</span><br>    queue.<span class="hljs-property">pending</span>.<span class="hljs-property">next</span> = update<br>  &#125;<br>  queue.<span class="hljs-property">pending</span> = update<br><br>  <span class="hljs-comment">// 调用调度器</span><br>  <span class="hljs-title function_">schedule</span>()<br>&#125;<br><br><span class="hljs-comment">// 调度器</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">schedule</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-comment">// workInProgressHook 指针复位，重新指向第一个</span><br>  workInProgressHook = fiber.<span class="hljs-property">memorizedState</span><br>  <span class="hljs-comment">// 触发组件的 render</span><br>  fiber.<span class="hljs-title function_">stateNode</span>()<br>  isMount = <span class="hljs-literal">false</span><br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> [num1, updateNum1] = <span class="hljs-title function_">useState</span>(<span class="hljs-number">0</span>)<br>  <span class="hljs-keyword">const</span> [num2, updateNum2] = <span class="hljs-title function_">useState</span>(<span class="hljs-number">10</span>)<br><br>  <span class="hljs-keyword">return</span> &#123;<br>    <span class="hljs-title function_">onClick</span>(<span class="hljs-params"></span>) &#123;<br>      <span class="hljs-comment">// updateNum(num + 1)</span><br>      <span class="hljs-title function_">updateNum1</span>(<span class="hljs-function"><span class="hljs-params">num</span> =&gt;</span> num + <span class="hljs-number">1</span>)<br>      <span class="hljs-title function_">updateNum1</span>(<span class="hljs-function"><span class="hljs-params">num</span> =&gt;</span> num + <span class="hljs-number">1</span>)<br>      <span class="hljs-title function_">updateNum1</span>(<span class="hljs-function"><span class="hljs-params">num</span> =&gt;</span> num + <span class="hljs-number">1</span>)<br>    &#125;<br>  &#125;<br><br>  <span class="hljs-comment">// return &lt;p onClick=&#123;() =&gt; updateNum(num + 1)&#125;&gt;&lt;/p&gt;</span><br>&#125;<br><br><span class="hljs-variable language_">window</span>.<span class="hljs-property">app</span> = <span class="hljs-title function_">schedule</span>()<br></code></pre></td></tr></table></figure>
+              <h2 id="重要设置"><a href="#重要设置" class="headerlink" title="重要设置"></a>重要设置</h2><img src="/2024/02/25/react-devtool-profiler/v2-e26fde9f773c9a0bf7588f416a0c5293_720w.webp" srcset="/img/loading.gif" lazyload class="" title="img">
 
+<p>两个选项：</p>
+<p>1.记录为什么被 render</p>
+<p>2.过滤掉低于阈值的 commit（在有很多 commit 时有效）</p>
+<h2 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h2><p>和 Performance 录制类似，不赘述</p>
+<h2 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a>核心功能</h2><img src="/2024/02/25/react-devtool-profiler/v2-0629b8f2a8f6366801cfd973b7e0e5bc_720w.webp" srcset="/img/loading.gif" lazyload class="" title="img">
 
+<ol>
+<li><strong>图表类型</strong><ul>
+<li>火焰图</li>
+<li>排序图</li>
+</ul>
+</li>
+<li><strong>图表区域：</strong>在应用程序的剖析切片中，代表<strong>某次<code>commit</code>对应的组件渲染时间的相关信息</strong>。</li>
+<li><strong>提交区域：</strong> <strong>每个条形图代表应用程序在整个录制阶段所有的<code>commit</code>操作。</strong>每当你通过点击选择一个<code>commit</code>，图表区域和提交信息就会相应地更新。</li>
+<li><strong>提交信息面板：</strong>关于单个选定的<code>commit</code>阶段或单个选定组件的细节。</li>
+</ol>
+<h2 id="图表面板"><a href="#图表面板" class="headerlink" title="图表面板"></a>图表面板</h2><p>火焰图表示应用程序在<strong>特定<code>commit</code>中的渲染树</strong>。</p>
+<p>图表中的每一条都代表一个<code>React组件</code>。</p>
+<p>这些组件从上到下依次为根组件和叶子节点（根部是最上面的组件，叶子是最下面的）。</p>
+<img src="/2024/02/25/react-devtool-profiler/v2-31526babc97c8544cf08c96f12b5b6ca_720w.webp" srcset="/img/loading.gif" lazyload class="" title="img">
 
-<h2 id="为什么组件-render-时，useState-的状态不会被重置？"><a href="#为什么组件-render-时，useState-的状态不会被重置？" class="headerlink" title="为什么组件 render 时，useState 的状态不会被重置？"></a><strong>为什么组件 render 时，useState 的状态不会被重置？</strong></h2><p>因为状态是被维护在组件外部的 Fiber 对象中的 memorizedState 这个属性中的，我们在组件内使用的只是对外层对象中属性的引用（闭包）。</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1iV411b7L1/?spm_id_from=333.337.search-card.all.click&amp;vd_source=1616b746cefe2e7615c229563ba38eb4">https://www.bilibili.com/video/BV1iV411b7L1/?spm_id_from=333.337.search-card.all.click&amp;vd_source=1616b746cefe2e7615c229563ba38eb4</a></p>
+<p>条形图的<strong>宽度</strong>表示该<strong>组件及其子组件的渲染时间</strong><br>条形图的<strong>颜色</strong>代表组件<strong>本身渲染的时间</strong>（绿色代表快，黄色代表慢）</p>
+<img src="/2024/02/25/react-devtool-profiler/v2-8bcebb1e0810e959817daf07d7f7a28a_720w.webp" srcset="/img/loading.gif" lazyload class="" title="img">
+
+<ul>
+<li><strong>灰色填充</strong>–在这次提交中没有渲染的组件，但它是<strong>渲染路径的一部分</strong>（例如，<code>App</code>没有渲染，但它是<code>FilterableList</code>的父组件，而<code>FilterableList</code>被渲染）。</li>
+<li><strong>灰色渐变条纹</strong>–在本次<code>commit</code>中没有渲染的组件，也不是渲染路径的一部分（例如，<code>Header</code>没有渲染，但它也没有任何子代被渲染）。</li>
+</ul>
+<h2 id="提交信息面板"><a href="#提交信息面板" class="headerlink" title="提交信息面板"></a>提交信息面板</h2><p><strong>提交信息面板</strong>有两种不同的用途。</p>
+<ol>
+<li><strong>展示整个应用的渲染信息</strong></li>
+</ol>
+<img src="/2024/02/25/react-devtool-profiler/v2-75bb13214156d51d1984e7ee82fb53eb_720w.webp" srcset="/img/loading.gif" lazyload class="" title="img">
+
+<p>当没有选择任何组件时（放大），它会显示<strong>当前在<code>commit</code>过程中的<code>commit</code>概况</strong>。数据包括**<code>commit</code>的时间<strong>（自应用程序启动以来），</strong>渲染的时间<strong>，以及</strong>优先级**。</p>
+<ol start="2">
+<li><strong>展示单个组件的渲染信息</strong></li>
+</ol>
+<img src="/2024/02/25/react-devtool-profiler/v2-005d97b82099ce515e3ff995033a0230_720w.webp" srcset="/img/loading.gif" lazyload class="" title="img">
+
+<p>当你在某个图表区域中点击一个组件（放大它）时，<strong>提交信息面板</strong>会显示这个组件的细节。这包括该组件在这个特定的<code>commit</code>过程中<strong>渲染的原因</strong>以及带有时间戳的<strong>提交列表</strong>。这个列表是交互式的，允许你在这个特定组件参与的不同提交之间轻松浏览。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/546469367">https://zhuanlan.zhihu.com/p/546469367</a></p>
 
               
             </div>
@@ -305,7 +350,7 @@
   
     <span>></span>
     
-  <a href="/categories/React/hooks/" class="category-chain-item">hooks</a>
+  <a href="/categories/React/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" class="category-chain-item">性能优化</a>
   
   
 
@@ -327,8 +372,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>以 useState 为例的 hooks 源码</div>
-      <div>http://example.com/2024/02/22/以-useState-为例的-hooks-源码/</div>
+      <div>react devtool profiler</div>
+      <div>http://example.com/2024/02/25/react-devtool-profiler/</div>
     </div>
     <div class="license-meta">
       
@@ -340,7 +385,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>February 22, 2024</div>
+          <div>February 25, 2024</div>
         </div>
       
       
@@ -370,18 +415,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/02/25/react-devtool-profiler/" title="react devtool profiler">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">react devtool profiler</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/06/04/%E4%B8%8D%E8%A6%81%E7%94%A8forEach%E6%89%A7%E8%A1%8C%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1/" title="不要用forEach执行异步任务">
-                        <span class="hidden-mobile">不要用forEach执行异步任务</span>
+                      <a href="/2024/02/22/%E4%BB%A5-useState-%E4%B8%BA%E4%BE%8B%E7%9A%84-hooks-%E6%BA%90%E7%A0%81/" title="以 useState 为例的 hooks 源码">
+                        <span class="hidden-mobile">以 useState 为例的 hooks 源码</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
