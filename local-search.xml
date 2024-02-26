@@ -4,6 +4,27 @@
   
   
   <entry>
+    <title>react版本迭代</title>
+    <link href="/2024/02/26/react%E7%89%88%E6%9C%AC%E8%BF%AD%E4%BB%A3/"/>
+    <url>/2024/02/26/react%E7%89%88%E6%9C%AC%E8%BF%AD%E4%BB%A3/</url>
+    
+    <content type="html"><![CDATA[<h2 id="React-14（2015年10月）"><a href="#React-14（2015年10月）" class="headerlink" title="React 14（2015年10月）"></a><strong>React 14（2015年10月）</strong></h2><p>引入了函数式组件（Stateless Functional Components）。此时的函数组件仍然停留在无状态组件阶段，仅仅执行一些静态渲染。</p><p>引入了 PropTypes 来进行组件属性类型检查。</p><p>弃用了 React.createClass。</p><h2 id="React-15（2016年4月）"><a href="#React-15（2016年4月）" class="headerlink" title="React 15（2016年4月）"></a><strong>React 15（2016年4月）</strong></h2><p>引入了 ReactDOM.createPortal 用于将组件渲染到父组件以外的 DOM 节点。</p><p>引入了 dangerouslySetInnerHTML 属性来插入原始 HTML。</p><p>改进了错误提示。</p><h2 id="React-16（2017年9月）【重要的16大版本】"><a href="#React-16（2017年9月）【重要的16大版本】" class="headerlink" title="React 16（2017年9月）【重要的16大版本】"></a><strong>React 16（2017年9月）【重要的16大版本】</strong></h2><p>引入了返回数组和字符串的 React 元素。</p><p>引入了 React Fragments（片段）。</p><p>引入了错误边界（Error Boundaries）以提高应用的容错性。</p><p>引入了 Portals，用于更灵活地将组件渲染到 DOM 的其他部分。</p><p><strong>引入了异步渲染和 React Fiber，提高了渲染性能。同步不可中断更新变成了异步可中断更新。（已经存在并发模式）</strong></p><p>新的错误处理机制，如错误边界和 componentDidCatch。</p><h3 id="React-16-3（2018年3月）"><a href="#React-16-3（2018年3月）" class="headerlink" title="React 16.3（2018年3月）"></a><strong>React 16.3（2018年3月）</strong></h3><p>引入了 Context API 的改进版本，提供更好的状态管理和共享数据。</p><p>改进了异步渲染机制。</p><h3 id="React-16-6（2018年11月）"><a href="#React-16-6（2018年11月）" class="headerlink" title="React 16.6（2018年11月）"></a><strong>React 16.6（2018年11月）</strong></h3><p>引入了 React.memo 和 React.lazy 来优化性能和实现动态加载。</p><p>引入了 Suspense 用于实现更强大的代码分割和异步加载。</p><h3 id="React-16-8（2019年2月）"><a href="#React-16-8（2019年2月）" class="headerlink" title="React 16.8（2019年2月）"></a><strong>React 16.8（2019年2月）</strong></h3><p><strong>引入了 Hooks，允许在函数组件中使用状态和生命周期等特性。</strong></p><h2 id="React-17（2020年10月）"><a href="#React-17（2020年10月）" class="headerlink" title="React 17（2020年10月）"></a><strong>React 17（2020年10月）</strong></h2><p>主要关注于平滑迁移和新特性的稳定性。</p><p>未引入大量新功能，主要解决了一些现有问题。</p><h2 id="React-18（2022年3月）"><a href="#React-18（2022年3月）" class="headerlink" title="React 18（2022年3月）"></a><strong>React 18（2022年3月）</strong></h2><img src="react版本迭代/image-20240226135650471.png" alt="image-20240226135650471" style="zoom: 67%;" /><ul><li><strong>并发模式（Concurrent Mode）</strong></li></ul><p>引入了root api，更好的管理root节点。把 <code>render</code> 升级成 <code>createRoot(root).render(&lt;App /&gt;)</code> 就可以开启并发模式。</p><p>并发模式可帮助应用保持响应，并根据用户的设备性能和网速进行适当的调整，该模式通过使渲染可中断来修复阻塞渲染限制。在 <code>Concurrent</code> 模式中，<code>React</code> 可以同时更新多个状态。</p><p>有一些特性只有在开启并发模式后再可以使用：useDeferredValue、startTransition 等</p><ul><li><strong>setState自动批处理</strong></li></ul><p>在 18 之前，只有在react事件处理函数中，才会自动执行批处理，其它情况会多次更新（定时器、原生js事件）</p><p>在 18 之后，任何情况都会自动执行批处理，多次更新始终合并为一次</p><p>flushSync 退出批量更新 </p><ul><li>引入新的hooks</li></ul><h2 id="市面上所有-React-版本情况"><a href="#市面上所有-React-版本情况" class="headerlink" title="市面上所有 React 版本情况"></a>市面上所有 React 版本情况</h2><p><strong>当前一共有两种架构：</strong></p><ul><li>采用不可中断的递归方式更新的<code>Stack Reconciler</code>（React16之前）</li><li>采用可中断的遍历方式更新的<code>Fiber Reconciler</code>（React16之后）</li></ul><p><strong>新架构可以选择是否开启并发更新，所以当前市面上所有 React 版本有四种情况：</strong></p><ol><li>老架构（v15及之前版本）</li><li>新架构，未开启并发更新，与情况1行为一致（v16、v17 默认属于这种情况）</li><li>新架构，未开启并发更新，但是启用了并发模式和一些新功能（比如 <code>Automatic Batching</code>，v18 默认属于这种情况）</li><li>新架构，开启并发模式，开启并发更新</li></ol><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://juejin.cn/post/7094037148088664078?searchId=2024022613360310DCBC75969A224887C2#heading-23">https://juejin.cn/post/7094037148088664078?searchId=2024022613360310DCBC75969A224887C2#heading-23</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>React</category>
+      
+      <category>基础</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>react devtool profiler</title>
     <link href="/2024/02/25/react-devtool-profiler/"/>
     <url>/2024/02/25/react-devtool-profiler/</url>
