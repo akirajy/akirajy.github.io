@@ -1,0 +1,1047 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="宏观包结构基础包结构 react  react 基础包, 只提供定义 react 组件(ReactElement)的必要函数, 一般来说需要和渲染器(react-dom,react-native)一同使用. 在编写react应用的代码时, 大部分都是调用此包的 api.   react-dom  react 渲染器之一, 是 react 与 web 平台连接的桥梁(可以在浏览器和 nodejs 环">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React运行原理">
+<meta property="og:url" content="http://example.com/2024/02/27/React%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="宏观包结构基础包结构 react  react 基础包, 只提供定义 react 组件(ReactElement)的必要函数, 一般来说需要和渲染器(react-dom,react-native)一同使用. 在编写react应用的代码时, 大部分都是调用此包的 api.   react-dom  react 渲染器之一, 是 react 与 web 平台连接的桥梁(可以在浏览器和 nodejs 环">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2024/02/27/React%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86/core-packages.c2850581.png">
+<meta property="og:image" content="http://example.com/2024/02/27/React%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86/workloop.ef1c7673.png">
+<meta property="og:image" content="http://example.com/2024/02/27/React%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86/React运行原理/image-20240227141232333.png">
+<meta property="og:image" content="http://example.com/2024/02/27/React%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86/core.e65ca659.png">
+<meta property="article:published_time" content="2024-02-27T04:26:29.000Z">
+<meta property="article:modified_time" content="2024-02-27T14:53:37.765Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2024/02/27/React%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86/core-packages.c2850581.png">
+  
+  
+  
+  <title>React运行原理 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.1","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"qPzYEpTngSrzQtV1XpsPSmPm-gzGzoHsz","app_key":"kf4lqne4FqonWhpUQzS1Ffrx","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>JY BLOG</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="React运行原理"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-02-27 12:26" pubdate>
+          February 27, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          25k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          209 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span>次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">React运行原理</h1>
+            
+            <div class="markdown-body">
+              
+              <h2 id="宏观包结构"><a href="#宏观包结构" class="headerlink" title="宏观包结构"></a>宏观包结构</h2><h3 id="基础包结构"><a href="#基础包结构" class="headerlink" title="基础包结构"></a>基础包结构</h3><ol>
+<li><p>react</p>
+<blockquote>
+<p>react 基础包, 只提供定义 react 组件(<code>ReactElement</code>)的必要函数, 一般来说需要和渲染器(<code>react-dom</code>,<code>react-native</code>)一同使用. 在编写<code>react</code>应用的代码时, 大部分都是调用此包的 api.</p>
+</blockquote>
+</li>
+<li><p>react-dom</p>
+<blockquote>
+<p>react 渲染器之一, 是 react 与 web 平台连接的桥梁(可以在浏览器和 nodejs 环境中使用), <strong>将<code>react-reconciler</code>中的运行结果输出到 web 界面上</strong>. 在编写<code>react</code>应用的代码时,大多数场景下, 能用到此包的就是一个入口函数<code>ReactDOM.render(&lt;App/&gt;, document.getElementById(&#39;root&#39;))</code>, 其余使用的 api, 基本是<code>react</code>包提供的.</p>
+</blockquote>
+</li>
+<li><p>react-reconciler</p>
+<blockquote>
+<p>react 得以运行的核心包(<strong>综合协调<code>react-dom</code>,<code>react</code>,<code>scheduler</code>各包之间的调用与配合</strong>).<br>管理 react 应用状态的输入和结果的输出. 将输入信号最终转换成输出信号传递给渲染器.</p>
+</blockquote>
+<ul>
+<li>接受输入(<code>scheduleUpdateOnFiber</code>), 将<code>fiber</code>树生成逻辑封装到一个回调函数中(涉及<code>fiber</code>树形结构, <code>fiber.updateQueue</code>队列, 调和算法等),</li>
+<li>把此回调函数(<code>performSyncWorkOnRoot</code>或<code>performConcurrentWorkOnRoot</code>)送入<code>scheduler</code>进行调度</li>
+<li><code>scheduler</code>会控制回调函数执行的时机, 回调函数执行完成后得到全新的 fiber 树</li>
+<li>再调用渲染器(如<code>react-dom</code>, <code>react-native</code>等)将 fiber 树形结构最终反映到界面上</li>
+</ul>
+</li>
+<li><p>scheduler</p>
+<blockquote>
+<p>调度机制的核心实现, <strong>控制由<code>react-reconciler</code>送入的回调函数的执行时机</strong>, 在<code>concurrent</code>模式下可以实现任务分片. 在编写<code>react</code>应用的代码时, 同样几乎不会直接用到此包提供的 api.</p>
+</blockquote>
+<ul>
+<li>核心任务就是执行回调(回调函数由<code>react-reconciler</code>提供)</li>
+<li>通过控制回调函数的执行时机, 来达到任务分片的目的, 实现可中断渲染(<code>concurrent</code>模式下才有此特性)</li>
+</ul>
+</li>
+</ol>
+<h3 id="宏观总览"><a href="#宏观总览" class="headerlink" title="宏观总览"></a>宏观总览</h3><p>为了便于理解, 可将 react 应用整体结构分为接口层(<code>api</code>)和内核层(<code>core</code>)2 个部分</p>
+<ol>
+<li><p><strong>接口层（api）</strong></p>
+<p><code>react</code>包, 平时在开发过程中使用的绝大部分<code>api</code>均来自此包(不是所有). 在<code>react</code>启动之后, 正常可以改变渲染的基本操作有 3 个.</p>
+<ul>
+<li>class 组件中使用<code>setState()</code></li>
+<li>function 组件里面使用 hook,并发起<code>dispatchAction</code>去改变 hook 对象</li>
+<li>改变 context(其实也需要<code>setState</code>或<code>dispatchAction</code>的辅助才能改变)</li>
+</ul>
+<p>以上<code>setState</code>和<code>dispatchAction</code>都由<code>react</code>包直接暴露. 所以要想 react 工作, 基本上是调用<code>react</code>包的 api 去与其他包进行交互.</p>
+</li>
+<li><p><strong>内核层（core）</strong></p>
+<p>整个内核部分, 由 3 部分构成:</p>
+<ol>
+<li><p><strong>调度器（scheduler）</strong></p>
+<p>核心职责只有 1 个, 就是执行回调.</p>
+<ul>
+<li>把<code>react-reconciler</code>提供的回调函数, 包装到一个任务对象中.</li>
+<li>在内部维护一个任务队列, 优先级高的排在最前面.</li>
+<li>循环消费任务队列, 直到队列清空.</li>
+</ul>
+</li>
+<li><p><strong>构造器（react-reconciler）</strong></p>
+<p>有 3 个核心职责:</p>
+<ol>
+<li>装载渲染器, 渲染器必须实现<a target="_blank" rel="noopener" href="https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/README.md#practical-examples"><code>HostConfig</code>协议</a>(如: <code>react-dom</code>), 保证在需要的时候, 能够正确调用渲染器的 api, 生成实际节点(如: <code>dom</code>节点).</li>
+<li>接收<code>react-dom</code>包(初次<code>render</code>)和<code>react</code>包(后续更新<code>setState</code>)发起的更新请求.</li>
+<li>将<code>fiber</code>树的构造过程包装在一个回调函数中, 并将此回调函数传入到<code>scheduler</code>包等待调度.</li>
+</ol>
+</li>
+<li><p><strong>渲染器（react-dom）</strong></p>
+<p> 有 2 个核心职责:</p>
+<ol>
+<li>引导<code>react</code>应用的启动(通过<code>ReactDOM.render</code>).</li>
+<li>实现<a target="_blank" rel="noopener" href="https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/README.md#practical-examples"><code>HostConfig</code>协议</a>(<a target="_blank" rel="noopener" href="https://github.com/facebook/react/blob/v17.0.2/packages/react-dom/src/client/ReactDOMHostConfig.js">源码在 ReactDOMHostConfig.js 中</a>), 能够将<code>react-reconciler</code>包构造出来的<code>fiber</code>树表现出来, 生成 dom 节点(浏览器中), 生成字符串(ssr).</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="内核关系"><a href="#内核关系" class="headerlink" title="内核关系"></a>内核关系</h3><img src="/2024/02/27/React%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86/core-packages.c2850581.png" srcset="/img/loading.gif" lazyload class="" title="img">
+
+
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>react主要有四个包，react、react-dom（渲染器）、react-reconciler（构造器）、scheduler（调度器）。</p>
+<p>react提供了一些我们平时编写代码时常用的API。</p>
+<p>react-dom 将 react-reconciler 包构造出来的 fiber 树表现出来, 生成 dom 节点。当然还负责通过 ReactDOM.render 来启动 React 应用。</p>
+<p>react-reconciler 主要用于接受更新的请求（请求可能来源于react-dom的初次render，也可能来源于react的setState），将 fiber 树的构造或更新过程包装为一个回调，然后将这个回调传递给 scheduler 调度。</p>
+<p>schduler 接收到 reconciler 传过来的回调，将其包装为一个 task。内部会维护一个任务队列，优先级高的排在最前面，循环消费任务队列，直到任务队列为空。（schduler 是可以脱离 react 的，从包的名字上也可以看出来，本质上它就是一个根据优先级消费任务的算法）</p>
+<h2 id="工作循环与主干逻辑"><a href="#工作循环与主干逻辑" class="headerlink" title="工作循环与主干逻辑"></a>工作循环与主干逻辑</h2><img src="/2024/02/27/React%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86/workloop.ef1c7673.png" srcset="/img/loading.gif" lazyload class="" title="img">
+
+
+
+<h3 id="任务调度循环（调度任务）"><a href="#任务调度循环（调度任务）" class="headerlink" title="任务调度循环（调度任务）"></a>任务调度循环（调度任务）</h3><p>位于 scheduler 中 ，它是<code>react</code>应用得以运行的保证，它需要循环调用，控制所有任务(<code>task</code>)的调度。</p>
+<p>优先级任务队列以二叉堆为数据结构，循环执行堆，直到堆被清空。</p>
+<ul>
+<li>二叉堆插入和删除高效稳定O(logn)</li>
+</ul>
+<p>调度每一个任务，但不关系这个任务干什么，只需要执行回调函数 <code>performSyncWorkOnRoot</code>或<code>performConcurrentWorkOnRoot</code>。</p>
+<h3 id="fiber-构造循环（任务的一部分）"><a href="#fiber-构造循环（任务的一部分）" class="headerlink" title="fiber 构造循环（任务的一部分）"></a>fiber 构造循环（任务的一部分）</h3><p>位于  react-reconciler 中，控制 fiber 树的构造。</p>
+<p>fiber 构造循环是以树为数据结构，从上至下执行深度优先遍历。</p>
+<p>fiber 构造循环是任务的一部分，只负责 fiber 树的构造。实际上一个任务可能包括fiber树的构造，DOM渲染，调度检测。</p>
+<h3 id="主干逻辑"><a href="#主干逻辑" class="headerlink" title="主干逻辑"></a>主干逻辑</h3><p>1.将每一次更新（如DOM变更）视为一次更新需求</p>
+<p>2.react-reconciler 收到更新需求后，会去 scheduler 将更新需求转化一个任务</p>
+<p>3.scheduler 通过任务调度循环来执行 task</p>
+<p>4.task的实际执行过程发生在 react-reconciler 中</p>
+<ul>
+<li>fiber构造循环，循环完成后构造出最新的 fiber 树</li>
+<li>commitRoot，把最新的 fiber 树最终渲染到页面上，任务完成</li>
+</ul>
+<p>主干逻辑就是从DOM更新到实际渲染这一条链路, 为了更好的性能(如批量更新, 可中断渲染等功能)，react在输入到输出的链路上做了很多优化策略，比如本文讲述的<strong>任务调度循环和fiber构造循环相互配合就可以实现可中断渲染</strong>。</p>
+<h2 id="x3D-x3D-高频对象-x3D-x3D"><a href="#x3D-x3D-高频对象-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;高频对象&#x3D;&#x3D;"></a>&#x3D;&#x3D;高频对象&#x3D;&#x3D;</h2><h3 id="react包"><a href="#react包" class="headerlink" title="react包"></a>react包</h3><h4 id="ReactElement"><a href="#ReactElement" class="headerlink" title="ReactElement"></a>ReactElement</h4><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-comment">// 入口函数</span><br><span class="hljs-title class_">ReactDOM</span>.<span class="hljs-title function_">render</span>(<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">App</span> /&gt;</span></span>, <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;root&#x27;</span>));<br></code></pre></td></tr></table></figure>
+
+<p>包括<code>&lt;App/&gt;</code>及其所有子节点都是<code>ReactElement</code>对象，每个<code>ReactElement</code>对象的区别在于 type 不同。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">export</span> type <span class="hljs-title class_">ReactElement</span> = &#123;<br>  <span class="hljs-comment">// 用于辨别ReactElement对象</span><br>  <span class="hljs-attr">$typeof</span>: any,<br><br>  <span class="hljs-comment">// 内部属性</span><br>  <span class="hljs-attr">type</span>: any, <span class="hljs-comment">// 表明其种类</span><br>  <span class="hljs-attr">key</span>: any,<br>  <span class="hljs-attr">ref</span>: any,<br>  <span class="hljs-attr">props</span>: any,<br><br>  <span class="hljs-comment">// ReactFiber 记录创建本对象的Fiber节点, 还未与Fiber树关联之前, 该属性为null</span><br>  <span class="hljs-attr">_owner</span>: any,<br><br>  <span class="hljs-comment">// __DEV__ dev环境下的一些额外信息, 如文件路径, 文件名, 行列信息等</span><br>  <span class="hljs-attr">_store</span>: &#123;<span class="hljs-attr">validated</span>: boolean, ...&#125;,<br>  <span class="hljs-attr">_self</span>: <span class="hljs-title class_">React</span>$Element&lt;any&gt;,<br>  <span class="hljs-attr">_shadowChildren</span>: any,<br>  <span class="hljs-attr">_source</span>: <span class="hljs-title class_">Source</span>,<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<ol>
+<li><code>key</code>属性在<code>reconciler</code>阶段会用到，所有的<code>ReactElement</code>对象都有 key 属性，默认值为 null。（diff算法使用）</li>
+<li><code>type</code>属性决定了节点的种类:</li>
+</ol>
+<ul>
+<li>它的值可以是字符串(代表<code>div,span</code>等 dom 节点)，函数(代表<code>function, class</code>等节点)，或者 react 内部定义的节点类型(<code>portal,context,fragment</code>等)</li>
+<li>在<code>reconciler</code>阶段, 会根据 type 执行不同的逻辑(在 fiber 构建阶段详细解读)。<ul>
+<li>如 type 是一个字符串类型, 则直接使用.</li>
+<li>如 type 是一个<code>ReactComponent</code>类型, 则会调用其 render 方法获取子节点.</li>
+<li>如 type 是一个<code>function</code>类型,则会调用该方法获取子节点</li>
+<li>…</li>
+</ul>
+</li>
+</ul>
+<h5 id="ReactComponent（class类型组件）"><a href="#ReactComponent（class类型组件）" class="headerlink" title="ReactComponent（class类型组件）"></a>ReactComponent（class类型组件）</h5><p>对于<code>ReactElement</code>来讲，<code>ReactComponent</code>仅仅是诸多<code>type</code>类型中的一种。</p>
+<p>对于开发者来讲，<code>ReactComponent</code>使用非常高频(在状态组件章节中详细解读)。</p>
+<ol>
+<li><code>ReactComponent</code>是 class 类型，继承父类<code>Component</code>，拥有特殊的方法(<code>setState</code>，<code>forceUpdate</code>)和特殊的属性(<code>context</code>，<code>updater</code>等)。</li>
+<li>在<code>reconciler</code>阶段，会依据<code>ReactElement</code>对象的特征，生成对应的 fiber 节点。当识别到<code>ReactElement</code>对象是 class 类型的时候，会触发<code>ReactComponent</code>对象的生命周期，并调用其 <code>render</code>方法，生成<code>ReactElement</code>子节点。</li>
+</ol>
+<h5 id="其他-ReactElement"><a href="#其他-ReactElement" class="headerlink" title="其他 ReactElement"></a>其他 ReactElement</h5><p><code>function</code>类型的组件和<code>class</code>类型的组件一样, 是诸多<code>ReactElement</code>形式中的一种.</p>
+<h3 id="react-reconciler包"><a href="#react-reconciler包" class="headerlink" title="react-reconciler包"></a>react-reconciler包</h3><h4 id="Fiber对象"><a href="#Fiber对象" class="headerlink" title="Fiber对象"></a>Fiber对象</h4><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-comment">// 一个Fiber对象代表一个即将渲染或者已经渲染的组件(ReactElement), 一个组件可能对应两个fiber(current和WorkInProgress)</span><br><span class="hljs-comment">// 单个属性的解释在后文(在注释中无法添加超链接)</span><br><span class="hljs-keyword">export</span> type <span class="hljs-title class_">Fiber</span> = &#123;<br>  <span class="hljs-attr">tag</span>: <span class="hljs-title class_">WorkTag</span>,<br>  <span class="hljs-attr">key</span>: <span class="hljs-literal">null</span> | string,<br>  <span class="hljs-attr">elementType</span>: any,<br>  <span class="hljs-attr">type</span>: any,<br>  <span class="hljs-attr">stateNode</span>: any,<br>  <span class="hljs-attr">return</span>: <span class="hljs-title class_">Fiber</span> | <span class="hljs-literal">null</span>,<br>  <span class="hljs-attr">child</span>: <span class="hljs-title class_">Fiber</span> | <span class="hljs-literal">null</span>,<br>  <span class="hljs-attr">sibling</span>: <span class="hljs-title class_">Fiber</span> | <span class="hljs-literal">null</span>,<br>  <span class="hljs-attr">index</span>: number,<br>  <span class="hljs-attr">ref</span>:<br>    | <span class="hljs-literal">null</span><br>    | ((<span class="hljs-function">(<span class="hljs-params">handle: mixed</span>) =&gt;</span> <span class="hljs-keyword">void</span>) &amp; &#123; <span class="hljs-attr">_stringRef</span>: ?string, ... &#125;)<br>    | <span class="hljs-title class_">RefObject</span>,<br>  <span class="hljs-attr">pendingProps</span>: any, <span class="hljs-comment">// 从`ReactElement`对象传入的 props. 用于和`fiber.memoizedProps`比较可以得出属性是否变动</span><br>  <span class="hljs-attr">memoizedProps</span>: any, <span class="hljs-comment">// 上一次生成子节点时用到的属性, 生成子节点之后保持在内存中</span><br>  <span class="hljs-attr">updateQueue</span>: mixed, <span class="hljs-comment">// 存储state更新的队列, 当前节点的state改动之后, 都会创建一个update对象添加到这个队列中.</span><br>  <span class="hljs-attr">memoizedState</span>: any, <span class="hljs-comment">// 用于输出的state, 最终渲染所使用的state</span><br>  <span class="hljs-attr">dependencies</span>: <span class="hljs-title class_">Dependencies</span> | <span class="hljs-literal">null</span>, <span class="hljs-comment">// 该fiber节点所依赖的(contexts, events)等</span><br>  <span class="hljs-attr">mode</span>: <span class="hljs-title class_">TypeOfMode</span>, <span class="hljs-comment">// 二进制位Bitfield,继承至父节点,影响本fiber节点及其子树中所有节点. 与react应用的运行模式有关(有ConcurrentMode, BlockingMode, NoMode等选项).</span><br><br>  <span class="hljs-comment">// Effect 副作用相关</span><br>  <span class="hljs-attr">flags</span>: <span class="hljs-title class_">Flags</span>, <span class="hljs-comment">// 标志位</span><br>  <span class="hljs-attr">subtreeFlags</span>: <span class="hljs-title class_">Flags</span>, <span class="hljs-comment">//替代16.x版本中的 firstEffect, nextEffect. 当设置了 enableNewReconciler=true才会启用</span><br>  <span class="hljs-attr">deletions</span>: <span class="hljs-title class_">Array</span>&lt;<span class="hljs-title class_">Fiber</span>&gt; | <span class="hljs-literal">null</span>, <span class="hljs-comment">// 存储将要被删除的子节点. 当设置了 enableNewReconciler=true才会启用</span><br><br>  <span class="hljs-attr">nextEffect</span>: <span class="hljs-title class_">Fiber</span> | <span class="hljs-literal">null</span>, <span class="hljs-comment">// 单向链表, 指向下一个有副作用的fiber节点</span><br>  <span class="hljs-attr">firstEffect</span>: <span class="hljs-title class_">Fiber</span> | <span class="hljs-literal">null</span>, <span class="hljs-comment">// 指向副作用链表中的第一个fiber节点</span><br>  <span class="hljs-attr">lastEffect</span>: <span class="hljs-title class_">Fiber</span> | <span class="hljs-literal">null</span>, <span class="hljs-comment">// 指向副作用链表中的最后一个fiber节点</span><br><br>  <span class="hljs-comment">// 优先级相关</span><br>  <span class="hljs-attr">lanes</span>: <span class="hljs-title class_">Lanes</span>, <span class="hljs-comment">// 本fiber节点的优先级</span><br>  <span class="hljs-attr">childLanes</span>: <span class="hljs-title class_">Lanes</span>, <span class="hljs-comment">// 子节点的优先级</span><br>  <span class="hljs-attr">alternate</span>: <span class="hljs-title class_">Fiber</span> | <span class="hljs-literal">null</span>, <span class="hljs-comment">// 指向内存中的另一个fiber, 每个被更新过fiber节点在内存中都是成对出现(current和workInProgress)</span><br><br>  <span class="hljs-comment">// 性能统计相关(开启enableProfilerTimer后才会统计)</span><br>  <span class="hljs-comment">// react-dev-tool会根据这些时间统计来评估性能</span><br>  actualDuration?: number, <span class="hljs-comment">// 本次更新过程, 本节点以及子树所消耗的总时间</span><br>  actualStartTime?: number, <span class="hljs-comment">// 标记本fiber节点开始构建的时间</span><br>  selfBaseDuration?: number, <span class="hljs-comment">// 用于最近一次生成本fiber节点所消耗的时间</span><br>  treeBaseDuration?: number, <span class="hljs-comment">// 生成子树所消耗的时间的总和</span><br>&#125;;<br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>fiber树和ReactElement结构：</strong></p>
+<img src="React运行原理/image-20240227141232333.png" srcset="/img/loading.gif" lazyload alt="image-20240227141232333" style="zoom:67%;" />
+
+<ul>
+<li>其中<code>&lt;App/&gt;</code>,<code>&lt;Content/&gt;</code>为<code>ClassComponent</code>类型的<code>fiber</code>节点, 其余节点都是普通<code>HostComponent</code>类型节点.</li>
+<li><code>&lt;Content/&gt;</code>的子节点在<code>ReactElement</code>树中是<code>React.Fragment</code>, 但是在<code>fiber</code>树中<code>React.Fragment</code>并没有与之对应的<code>fiber</code>节点(<code>reconciler</code>阶段对此类型节点做了单独处理, 所以<code>ReactElement</code>节点和<code>fiber</code>节点不是一对一匹配).</li>
+</ul>
+<h2 id="reconciler运作流程"><a href="#reconciler运作流程" class="headerlink" title="reconciler运作流程"></a>reconciler运作流程</h2><h3 id="react-reconciler的主要作用"><a href="#react-reconciler的主要作用" class="headerlink" title="react-reconciler的主要作用"></a>react-reconciler的主要作用</h3><ol>
+<li>输入: 暴露<code>api</code>函数(如: <code>scheduleUpdateOnFiber</code>), 供给其他包(如<code>react</code>包)调用。</li>
+<li>注册调度任务: 与调度中心(<code>scheduler</code>包)交互, 注册调度任务<code>task</code>, 等待任务回调。</li>
+<li>执行任务回调: 在内存中构造出<code>fiber树</code>, 同时与与渲染器(<code>react-dom</code>)交互, 在内存中创建出与<code>fiber</code>对应的<code>DOM</code>节点。</li>
+<li>输出: 与渲染器(<code>react-dom</code>)交互, 渲染<code>DOM</code>节点。</li>
+</ol>
+<h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><p>无论是首次渲染还是后续更新，最后都会间接调用scheduleUpdateOnFiber</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-comment">// 唯一接收输入信号的函数</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">scheduleUpdateOnFiber</span>(<span class="hljs-params"></span><br><span class="hljs-params">  fiber: Fiber,</span><br><span class="hljs-params">  lane: Lane,</span><br><span class="hljs-params">  eventTime: number,</span><br><span class="hljs-params"></span>) &#123;<br>  <span class="hljs-comment">// ... 省略部分无关代码</span><br>  <span class="hljs-keyword">const</span> root = <span class="hljs-title function_">markUpdateLaneFromFiberToRoot</span>(fiber, lane);<br>  <span class="hljs-keyword">if</span> (lane === <span class="hljs-title class_">SyncLane</span>) &#123;<br>    <span class="hljs-keyword">if</span> (<br>      (executionContext &amp; <span class="hljs-title class_">LegacyUnbatchedContext</span>) !== <span class="hljs-title class_">NoContext</span> &amp;&amp;<br>      (executionContext &amp; (<span class="hljs-title class_">RenderContext</span> | <span class="hljs-title class_">CommitContext</span>)) === <span class="hljs-title class_">NoContext</span><br>    ) &#123;<br>      <span class="hljs-comment">// 直接进行`fiber构造`</span><br>      <span class="hljs-title function_">performSyncWorkOnRoot</span>(root);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      <span class="hljs-comment">// 注册调度任务, 经过`Scheduler`包的调度, 间接进行`fiber构造`</span><br>      <span class="hljs-title function_">ensureRootIsScheduled</span>(root, eventTime);<br>    &#125;<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-comment">// 注册调度任务, 经过`Scheduler`包的调度, 间接进行`fiber构造`</span><br>    <span class="hljs-title function_">ensureRootIsScheduled</span>(root, eventTime);<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>逻辑进入到<code>scheduleUpdateOnFiber</code>之后, 后面有 2 种可能:</p>
+<ol>
+<li>不经过调度, 直接进行<code>fiber构造</code>.</li>
+<li>注册调度任务, 经过<code>Scheduler</code>包的调度, 间接进行<code>fiber构造</code>.</li>
+</ol>
+<h3 id="注册调度任务"><a href="#注册调度任务" class="headerlink" title="注册调度任务"></a>注册调度任务</h3><p>与输入环节紧密相连, <code>scheduleUpdateOnFiber</code>函数之后, 立即进入<code>ensureRootIsScheduled</code>函数</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-comment">// ... 省略部分无关代码</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">ensureRootIsScheduled</span>(<span class="hljs-params">root: FiberRoot, currentTime: number</span>) &#123;<br>  <span class="hljs-comment">// 前半部分: 判断是否需要注册新的调度</span><br>  <span class="hljs-keyword">const</span> existingCallbackNode = root.<span class="hljs-property">callbackNode</span>;<br>  <span class="hljs-keyword">const</span> nextLanes = <span class="hljs-title function_">getNextLanes</span>(<br>    root,<br>    root === workInProgressRoot ? workInProgressRootRenderLanes : <span class="hljs-title class_">NoLanes</span>,<br>  );<br>  <span class="hljs-keyword">const</span> newCallbackPriority = <span class="hljs-title function_">returnNextLanesPriority</span>();<br>  <span class="hljs-keyword">if</span> (nextLanes === <span class="hljs-title class_">NoLanes</span>) &#123;<br>    <span class="hljs-keyword">return</span>;<br>  &#125;<br>  <span class="hljs-keyword">if</span> (existingCallbackNode !== <span class="hljs-literal">null</span>) &#123;<br>    <span class="hljs-keyword">const</span> existingCallbackPriority = root.<span class="hljs-property">callbackPriority</span>;<br>    <span class="hljs-keyword">if</span> (existingCallbackPriority === newCallbackPriority) &#123;<br>      <span class="hljs-keyword">return</span>;<br>    &#125;<br>    <span class="hljs-title function_">cancelCallback</span>(existingCallbackNode);<br>  &#125;<br><br>  <span class="hljs-comment">// 后半部分: 注册调度任务</span><br>  <span class="hljs-keyword">let</span> newCallbackNode;<br>  <span class="hljs-keyword">if</span> (newCallbackPriority === <span class="hljs-title class_">SyncLanePriority</span>) &#123;<br>    newCallbackNode = <span class="hljs-title function_">scheduleSyncCallback</span>(<br>      performSyncWorkOnRoot.<span class="hljs-title function_">bind</span>(<span class="hljs-literal">null</span>, root),<br>    );<br>  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (newCallbackPriority === <span class="hljs-title class_">SyncBatchedLanePriority</span>) &#123;<br>    newCallbackNode = <span class="hljs-title function_">scheduleCallback</span>(<br>      <span class="hljs-title class_">ImmediateSchedulerPriority</span>,<br>      performSyncWorkOnRoot.<span class="hljs-title function_">bind</span>(<span class="hljs-literal">null</span>, root),<br>    );<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-keyword">const</span> schedulerPriorityLevel =<br>      <span class="hljs-title function_">lanePriorityToSchedulerPriority</span>(newCallbackPriority);<br>    newCallbackNode = <span class="hljs-title function_">scheduleCallback</span>(<br>      schedulerPriorityLevel,<br>      performConcurrentWorkOnRoot.<span class="hljs-title function_">bind</span>(<span class="hljs-literal">null</span>, root),<br>    );<br>  &#125;<br>  root.<span class="hljs-property">callbackPriority</span> = newCallbackPriority;<br>  root.<span class="hljs-property">callbackNode</span> = newCallbackNode;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>ensureRootIsScheduled</code>的逻辑很清晰, 分为 2 部分:</p>
+<ol>
+<li>前半部分: 判断是否需要注册新的调度(如果无需新的调度, 会退出函数)</li>
+<li>后半部分: 注册调度任务<ul>
+<li><code>performSyncWorkOnRoot</code>或<code>performConcurrentWorkOnRoot</code>被封装到了任务回调(<code>scheduleCallback</code>)中</li>
+<li>等待调度中心执行任务, 任务运行其实就是执行<code>performSyncWorkOnRoot</code>或<code>performConcurrentWorkOnRoot</code></li>
+</ul>
+</li>
+</ol>
+<h3 id="执行任务回调"><a href="#执行任务回调" class="headerlink" title="执行任务回调"></a>执行任务回调</h3><p>实际上就是执行<code>performSyncWorkOnRoot</code>或<code>performConcurrentWorkOnRoot</code></p>
+<h4 id="performSyncWorkOnRoot"><a href="#performSyncWorkOnRoot" class="headerlink" title="performSyncWorkOnRoot"></a>performSyncWorkOnRoot</h4><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-comment">// ... 省略部分无关代码</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">performSyncWorkOnRoot</span>(<span class="hljs-params">root</span>) &#123;<br>  <span class="hljs-keyword">let</span> lanes;<br>  <span class="hljs-keyword">let</span> exitStatus;<br><br>  lanes = <span class="hljs-title function_">getNextLanes</span>(root, <span class="hljs-title class_">NoLanes</span>);<br>  <span class="hljs-comment">// 1. fiber树构造</span><br>  exitStatus = <span class="hljs-title function_">renderRootSync</span>(root, lanes);<br><br>  <span class="hljs-comment">// 2. 异常处理: 有可能fiber构造过程中出现异常</span><br>  <span class="hljs-keyword">if</span> (root.<span class="hljs-property">tag</span> !== <span class="hljs-title class_">LegacyRoot</span> &amp;&amp; exitStatus === <span class="hljs-title class_">RootErrored</span>) &#123;<br>    <span class="hljs-comment">// ...</span><br>  &#125;<br><br>  <span class="hljs-comment">// 3. 输出: 渲染fiber树</span><br>  <span class="hljs-keyword">const</span> <span class="hljs-attr">finishedWork</span>: <span class="hljs-title class_">Fiber</span> = (root.<span class="hljs-property">current</span>.<span class="hljs-property">alternate</span>: any);<br>  root.<span class="hljs-property">finishedWork</span> = finishedWork;<br>  root.<span class="hljs-property">finishedLanes</span> = lanes;<br>  <span class="hljs-title function_">commitRoot</span>(root);<br><br>  <span class="hljs-comment">// 退出前再次检测, 是否还有其他更新, 是否需要发起新调度</span><br>  <span class="hljs-title function_">ensureRootIsScheduled</span>(root, <span class="hljs-title function_">now</span>());<br>  <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>performSyncWorkOnRoot</code>的逻辑很清晰, 分为 3 部分:</p>
+<ol>
+<li>fiber 树构造</li>
+<li>异常处理: 有可能 fiber 构造过程中出现异常</li>
+<li>调用输出</li>
+</ol>
+<h4 id="performConcurrentWorkOnRoot"><a href="#performConcurrentWorkOnRoot" class="headerlink" title="performConcurrentWorkOnRoot"></a>performConcurrentWorkOnRoot</h4><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-comment">// ... 省略部分无关代码</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">performConcurrentWorkOnRoot</span>(<span class="hljs-params">root</span>) &#123;<br><br>  <span class="hljs-keyword">const</span> originalCallbackNode = root.<span class="hljs-property">callbackNode</span>;<br><br>  <span class="hljs-comment">// 1. 刷新pending状态的effects, 有可能某些effect会取消本次任务</span><br>  <span class="hljs-keyword">const</span> didFlushPassiveEffects = <span class="hljs-title function_">flushPassiveEffects</span>();<br>  <span class="hljs-keyword">if</span> (didFlushPassiveEffects) &#123;<br>    <span class="hljs-keyword">if</span> (root.<span class="hljs-property">callbackNode</span> !== originalCallbackNode) &#123;<br>      <span class="hljs-comment">// 任务被取消, 退出调用</span><br>      <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      <span class="hljs-comment">// Current task was not canceled. Continue.</span><br>    &#125;<br>  &#125;<br>  <span class="hljs-comment">// 2. 获取本次渲染的优先级</span><br>  <span class="hljs-keyword">let</span> lanes = <span class="hljs-title function_">getNextLanes</span>(<br>    root,<br>    root === workInProgressRoot ? workInProgressRootRenderLanes : <span class="hljs-title class_">NoLanes</span>,<br>  );<br>  <span class="hljs-comment">// 3. 构造fiber树</span><br>  <span class="hljs-keyword">let</span> exitStatus = <span class="hljs-title function_">renderRootConcurrent</span>(root, lanes);<br><br>  <span class="hljs-keyword">if</span> (<br>    <span class="hljs-title function_">includesSomeLane</span>(<br>      workInProgressRootIncludedLanes,<br>      workInProgressRootUpdatedLanes,<br>    )<br>  ) &#123;<br>    <span class="hljs-comment">// 如果在render过程中产生了新的update, 且新update的优先级与最初render的优先级有交集</span><br>    <span class="hljs-comment">// 那么最初render无效, 丢弃最初render的结果, 等待下一次调度</span><br>    <span class="hljs-title function_">prepareFreshStack</span>(root, <span class="hljs-title class_">NoLanes</span>);<br>  &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (exitStatus !== <span class="hljs-title class_">RootIncomplete</span>) &#123;<br>    <span class="hljs-comment">// 4. 异常处理: 有可能fiber构造过程中出现异常</span><br>    <span class="hljs-keyword">if</span> (exitStatus === <span class="hljs-title class_">RootErrored</span>) &#123;<br>      <span class="hljs-comment">// ...</span><br>    &#125;.<br>    <span class="hljs-keyword">const</span> <span class="hljs-attr">finishedWork</span>: <span class="hljs-title class_">Fiber</span> = (root.<span class="hljs-property">current</span>.<span class="hljs-property">alternate</span>: any);<br>    root.<span class="hljs-property">finishedWork</span> = finishedWork;<br>    root.<span class="hljs-property">finishedLanes</span> = lanes;<br>    <span class="hljs-comment">// 5. 输出: 渲染fiber树</span><br>    <span class="hljs-title function_">finishConcurrentRender</span>(root, exitStatus, lanes);<br>  &#125;<br><br>  <span class="hljs-comment">// 退出前再次检测, 是否还有其他更新, 是否需要发起新调度</span><br>  <span class="hljs-title function_">ensureRootIsScheduled</span>(root, <span class="hljs-title function_">now</span>());<br>  <span class="hljs-keyword">if</span> (root.<span class="hljs-property">callbackNode</span> === originalCallbackNode) &#123;<br>    <span class="hljs-comment">// 渲染被阻断, 返回一个新的performConcurrentWorkOnRoot函数, 等待下一次调用</span><br>    <span class="hljs-keyword">return</span> performConcurrentWorkOnRoot.<span class="hljs-title function_">bind</span>(<span class="hljs-literal">null</span>, root);<br>  &#125;<br>  <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>performConcurrentWorkOnRoot</code>的逻辑与<code>performSyncWorkOnRoot</code>的不同之处在于, <strong>对于可中断渲染的支持</strong>：</p>
+<ol>
+<li>调用<code>performConcurrentWorkOnRoot</code>函数时, 首先检查是否处于<code>render</code>过程中, 是否需要恢复上一次渲染。</li>
+<li>如果本次渲染被中断, 最后返回一个新的 performConcurrentWorkOnRoot 函数, 等待下一次调用。</li>
+</ol>
+<h3 id="commit提交"><a href="#commit提交" class="headerlink" title="commit提交"></a>commit提交</h3><p>在输出阶段,<code>commitRoot</code>的实现逻辑是在<code>commitRootImpl</code>函数中, 其主要逻辑是<strong>处理副作用队列, 将最新的 fiber 树结构反映到 DOM 上</strong>.</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-comment">// ... 省略部分无关代码</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">commitRootImpl</span>(<span class="hljs-params">root, renderPriorityLevel</span>) &#123;<br>  <span class="hljs-comment">// 设置局部变量</span><br>  <span class="hljs-keyword">const</span> finishedWork = root.<span class="hljs-property">finishedWork</span>;<br>  <span class="hljs-keyword">const</span> lanes = root.<span class="hljs-property">finishedLanes</span>;<br><br>  <span class="hljs-comment">// 清空FiberRoot对象上的属性</span><br>  root.<span class="hljs-property">finishedWork</span> = <span class="hljs-literal">null</span>;<br>  root.<span class="hljs-property">finishedLanes</span> = <span class="hljs-title class_">NoLanes</span>;<br>  root.<span class="hljs-property">callbackNode</span> = <span class="hljs-literal">null</span>;<br><br>  <span class="hljs-comment">// 提交阶段</span><br>  <span class="hljs-keyword">let</span> firstEffect = finishedWork.<span class="hljs-property">firstEffect</span>;<br>  <span class="hljs-keyword">if</span> (firstEffect !== <span class="hljs-literal">null</span>) &#123;<br>    <span class="hljs-keyword">const</span> prevExecutionContext = executionContext;<br>    executionContext |= <span class="hljs-title class_">CommitContext</span>;<br>    <span class="hljs-comment">// 阶段1: dom突变之前</span><br>    nextEffect = firstEffect;<br>    <span class="hljs-keyword">do</span> &#123;<br>      <span class="hljs-title function_">commitBeforeMutationEffects</span>();<br>    &#125; <span class="hljs-keyword">while</span> (nextEffect !== <span class="hljs-literal">null</span>);<br><br>    <span class="hljs-comment">// 阶段2: dom突变, 界面发生改变</span><br>    nextEffect = firstEffect;<br>    <span class="hljs-keyword">do</span> &#123;<br>      <span class="hljs-title function_">commitMutationEffects</span>(root, renderPriorityLevel);<br>    &#125; <span class="hljs-keyword">while</span> (nextEffect !== <span class="hljs-literal">null</span>);<br>    root.<span class="hljs-property">current</span> = finishedWork;<br><br>    <span class="hljs-comment">// 阶段3: layout阶段, 调用生命周期componentDidUpdate和回调函数等</span><br>    nextEffect = firstEffect;<br>    <span class="hljs-keyword">do</span> &#123;<br>      <span class="hljs-title function_">commitLayoutEffects</span>(root, lanes);<br>    &#125; <span class="hljs-keyword">while</span> (nextEffect !== <span class="hljs-literal">null</span>);<br>    nextEffect = <span class="hljs-literal">null</span>;<br>    executionContext = prevExecutionContext;<br>  &#125;<br>  <span class="hljs-title function_">ensureRootIsScheduled</span>(root, <span class="hljs-title function_">now</span>());<br>  <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>核心逻辑分为 3 个步骤：</p>
+<ol>
+<li>commitBeforeMutationEffects</li>
+</ol>
+<p>dom 变更之前, 主要处理副作用队列中带有<code>Snapshot</code>,<code>Passive</code>标记的<code>fiber</code>节点.</p>
+<ol start="2">
+<li>commitMutationEffects</li>
+</ol>
+<p>dom 变更, 界面得到更新. 主要处理副作用队列中带有<code>Placement</code>, <code>Update</code>, <code>Deletion</code>, <code>Hydrating</code>标记的<code>fiber</code>节点.</p>
+<ol start="3">
+<li>commitLayoutEffects</li>
+</ol>
+<p>dom 变更后, 主要处理副作用队列中带有<code>Update | Callback</code>标记的<code>fiber</code>节点.</p>
+<h3 id="x3D-x3D-总结-x3D-x3D"><a href="#x3D-x3D-总结-x3D-x3D" class="headerlink" title="&#x3D;&#x3D;总结&#x3D;&#x3D;"></a>&#x3D;&#x3D;总结&#x3D;&#x3D;</h3><p>无论是首次渲染还是后续更新，都会进入一个函数 scheduleUpdateOnFiber，这个函数是 react-reconciler 暴露给其它包的，这个函数主要是根据上下文来直接或间接的执行 fiber 构造。所谓间接就是要注册调度任务，然后经过 Scheduler 的调度。</p>
+<p>注册调度任务就是将 performSyncWorkOnRoot 或 performConcurrentWorkOnRoot 封装为回调，放到任务队列，等待执行，执行任务也就是执行这两个函数，当这两个函数被执行时，就进入 render 阶段，会以dfs的方式对比老的 Fiber 节点和新的组件返回的 JSX 对象，生成新的 Fiber 节点以及 effectList。</p>
+<p>这两个函数的区别就在于对于可中断渲染的支持，performConcurrentWorkOnRoot  支持可中断渲染，因此会在每次调用时检查是否处于 render 的过程中，如果是就恢复上一次渲染。</p>
+<p>然后进入 commit 阶段，基于 effectList 生成新的DOM。</p>
+<h2 id="优先级管理"><a href="#优先级管理" class="headerlink" title="优先级管理"></a>优先级管理</h2><p><strong>可中断渲染，时间切片(time slicing)，异步渲染(suspense)</strong> 等特性, 在源码中得以实现都依赖于优先级管理。</p>
+<p><code>React</code>内部对于<code>优先级</code>的管理, 贯穿运作流程的 4 个阶段(从输入到输出), 根据其功能的不同, 可以分为 3 种类型:</p>
+<ol>
+<li><code>fiber</code>优先级(<code>LanePriority</code>): 位于<code>react-reconciler</code>包, 也就是<a target="_blank" rel="noopener" href="https://github.com/facebook/react/pull/18796"><code>Lane(车道模型)</code></a>.</li>
+<li>调度优先级(<code>SchedulerPriority</code>): 位于<code>scheduler</code>包.</li>
+<li>优先级等级(<code>ReactPriorityLevel</code>) : 位于<code>react-reconciler</code>包中的<a target="_blank" rel="noopener" href="https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/SchedulerWithReactIntegration.old.js"><code>SchedulerWithReactIntegration.js</code></a>, 负责上述 2 套优先级体系的转换.</li>
+</ol>
+<h3 id="Lane"><a href="#Lane" class="headerlink" title="Lane"></a>Lane</h3><h4 id="Lane是什么"><a href="#Lane是什么" class="headerlink" title="Lane是什么"></a>Lane是什么</h4><p><strong>使用31位的二进制表示31条赛道，位数越小的赛道优先级越高</strong>，某些相邻的赛道拥有相同优先级</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title class_">NoLanes</span>: <span class="hljs-title class_">Lanes</span> = <span class="hljs-comment">/*                        */</span> <span class="hljs-number">0b0000000000000000000000000000000</span>;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title class_">NoLane</span>: <span class="hljs-title class_">Lane</span> = <span class="hljs-comment">/*                          */</span> <span class="hljs-number">0b0000000000000000000000000000000</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title class_">SyncLane</span>: <span class="hljs-title class_">Lane</span> = <span class="hljs-comment">/*                        */</span> <span class="hljs-number">0b0000000000000000000000000000001</span>;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title class_">SyncBatchedLane</span>: <span class="hljs-title class_">Lane</span> = <span class="hljs-comment">/*                 */</span> <span class="hljs-number">0b0000000000000000000000000000010</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title class_">InputDiscreteHydrationLane</span>: <span class="hljs-title class_">Lane</span> = <span class="hljs-comment">/*      */</span> <span class="hljs-number">0b0000000000000000000000000000100</span>;<br><span class="hljs-keyword">const</span> <span class="hljs-title class_">InputDiscreteLanes</span>: <span class="hljs-title class_">Lanes</span> = <span class="hljs-comment">/*                    */</span> <span class="hljs-number">0b0000000000000000000000000011000</span>;<br><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">InputContinuousHydrationLane</span>: <span class="hljs-title class_">Lane</span> = <span class="hljs-comment">/*           */</span> <span class="hljs-number">0b0000000000000000000000000100000</span>;<br><span class="hljs-keyword">const</span> <span class="hljs-title class_">InputContinuousLanes</span>: <span class="hljs-title class_">Lanes</span> = <span class="hljs-comment">/*                  */</span> <span class="hljs-number">0b0000000000000000000000011000000</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title class_">DefaultHydrationLane</span>: <span class="hljs-title class_">Lane</span> = <span class="hljs-comment">/*            */</span> <span class="hljs-number">0b0000000000000000000000100000000</span>;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title class_">DefaultLanes</span>: <span class="hljs-title class_">Lanes</span> = <span class="hljs-comment">/*                   */</span> <span class="hljs-number">0b0000000000000000000111000000000</span>;<br><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">TransitionHydrationLane</span>: <span class="hljs-title class_">Lane</span> = <span class="hljs-comment">/*                */</span> <span class="hljs-number">0b0000000000000000001000000000000</span>;<br><span class="hljs-keyword">const</span> <span class="hljs-title class_">TransitionLanes</span>: <span class="hljs-title class_">Lanes</span> = <span class="hljs-comment">/*                       */</span> <span class="hljs-number">0b0000000001111111110000000000000</span>;<br><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">RetryLanes</span>: <span class="hljs-title class_">Lanes</span> = <span class="hljs-comment">/*                            */</span> <span class="hljs-number">0b0000011110000000000000000000000</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title class_">SomeRetryLane</span>: <span class="hljs-title class_">Lanes</span> = <span class="hljs-comment">/*                  */</span> <span class="hljs-number">0b0000010000000000000000000000000</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title class_">SelectiveHydrationLane</span>: <span class="hljs-title class_">Lane</span> = <span class="hljs-comment">/*          */</span> <span class="hljs-number">0b0000100000000000000000000000000</span>;<br><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">NonIdleLanes</span> = <span class="hljs-comment">/*                                 */</span> <span class="hljs-number">0b0000111111111111111111111111111</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title class_">IdleHydrationLane</span>: <span class="hljs-title class_">Lane</span> = <span class="hljs-comment">/*               */</span> <span class="hljs-number">0b0001000000000000000000000000000</span>;<br><span class="hljs-keyword">const</span> <span class="hljs-title class_">IdleLanes</span>: <span class="hljs-title class_">Lanes</span> = <span class="hljs-comment">/*                             */</span> <span class="hljs-number">0b0110000000000000000000000000000</span>;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title class_">OffscreenLane</span>: <span class="hljs-title class_">Lane</span> = <span class="hljs-comment">/*                   */</span> <span class="hljs-number">0b1000000000000000000000000000000</span>;<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="Lanes"><a href="#Lanes" class="headerlink" title="Lanes"></a>Lanes</h4><p>可以看到其中有几个变量占用了几条赛道，比如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> <span class="hljs-title class_">InputDiscreteLanes</span>: <span class="hljs-title class_">Lanes</span> = <span class="hljs-comment">/*                    */</span> <span class="hljs-number">0b0000000000000000000000000011000</span>;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title class_">DefaultLanes</span>: <span class="hljs-title class_">Lanes</span> = <span class="hljs-comment">/*                   */</span> <span class="hljs-number">0b0000000000000000000111000000000</span>;<br><span class="hljs-keyword">const</span> <span class="hljs-title class_">TransitionLanes</span>: <span class="hljs-title class_">Lanes</span> = <span class="hljs-comment">/*                       */</span> <span class="hljs-number">0b0000000001111111110000000000000</span>;<br></code></pre></td></tr></table></figure>
+
+<p>这就是<code>批</code>的概念，被称作<code>lanes</code>（区别于<code>优先级</code>的<code>lane</code>）。</p>
+<p>其中<code>InputDiscreteLanes</code>是“用户交互”触发更新会拥有的<code>优先级</code>范围。</p>
+<p><code>DefaultLanes</code>是“请求数据返回后触发更新”拥有的<code>优先级</code>范围。</p>
+<p><code>TransitionLanes</code>是<code>Suspense</code>、<code>useTransition</code>、<code>useDeferredValue</code>拥有的<code>优先级</code>范围。</p>
+<p>这其中有个细节，越低<code>优先级</code>的<code>lanes</code>占用的位越多。比如<code>InputDiscreteLanes</code>占了2个位，<code>TransitionLanes</code>占了9个位。</p>
+<p>原因在于：越低<code>优先级</code>的<code>更新</code>越容易被打断，导致积压下来，所以需要更多的位。相反，最高优的同步更新的<code>SyncLane</code>不需要多余的<code>lanes</code>。</p>
+<h4 id="为什么这么设计"><a href="#为什么这么设计" class="headerlink" title="为什么这么设计"></a>为什么这么设计</h4><p>主要是方便我们使用位操作来实现一些比较、合并、重置等功能。</p>
+<h4 id="Lane有关操作"><a href="#Lane有关操作" class="headerlink" title="Lane有关操作"></a>Lane有关操作</h4><h5 id="生成-lane"><a href="#生成-lane" class="headerlink" title="生成 lane"></a>生成 lane</h5><p>我们可以使用左移操作来快速生成一个对应的 lane，比如我们想要生成一个 <code>DefaultLane</code> 我们只需要用下面的代码即可</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> lane = <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">5</span>;<br></code></pre></td></tr></table></figure>
+
+
+
+<h5 id="筛选-lanes"><a href="#筛选-lanes" class="headerlink" title="筛选 lanes"></a>筛选 lanes</h5><p>我们有时候需要判断哪些 lane 已经有任务了，哪些 lane 没有任务，这个时候我们需要使用我们的 lanes 和我们预定义的一些 lanes 内容进行按位与的操作，得到的内容就是我们哪些对应的车道上有任务，比如我们现在想要知道在非闲置车道上哪些车道已经有任务了，我们只需要用 NonIdleLanes 和我们 lanes 做按位与操作即可</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> nonIdlePendingLanes = pendingLanes &amp; <span class="hljs-title class_">NonIdleLanes</span>;<br></code></pre></td></tr></table></figure>
+
+<p>如果我们想要筛选出不包含某些车道的任务，我们只需要先把筛选模型按位取反再按位与即可：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> <span class="hljs-title class_">IdlePendingLanes</span> = pendingLanes &amp; ~<span class="hljs-title class_">NonIdleLanes</span>;<br></code></pre></td></tr></table></figure>
+
+
+
+<h5 id="合并-lanes"><a href="#合并-lanes" class="headerlink" title="合并 lanes"></a>合并 lanes</h5><p>如果想把 lane 合并到 lanes 中，我们只需要进行按位或的操作就行了</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jsx">root.<span class="hljs-property">pendingLanes</span> |= updateLan<br></code></pre></td></tr></table></figure>
+
+
+
+<h5 id="取出优先级最高的已经使用的-lane"><a href="#取出优先级最高的已经使用的-lane" class="headerlink" title="取出优先级最高的已经使用的 lane"></a>取出优先级最高的已经使用的 lane</h5><p>取出优先级最高的任务，也就是二进制中最右边的那个 1。</p>
+<p>操作是 lanes 与自己的负数进行按位与操作，因为我们的负数是使用补码保存的，如果最后一位是 1 ，那么补码就会变成 1，与操作就会返回 1；如果最后一位是 0 ，补码就是 0，但是会产生一位的进位，这个进位会持续到遇到 0 为止，而这个 0 就是 1的补码，此时就会产生 1 了，与操作就会返回 1。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jsx">lanes &amp; -lanes;<br></code></pre></td></tr></table></figure>
+
+
+
+<h5 id="删除对应的-lane"><a href="#删除对应的-lane" class="headerlink" title="删除对应的 lane"></a>删除对应的 lane</h5><p>我们有时候会从我们总的 lanes 里取出我们需要 lane 的然后重置它，我们可以对指定的车道的值按位取反，然后和我们的 lanes 进行按位与操作，这时除了我们需要的那个车道是 0 其他都是 1 ，按位与的时候，我们重置的车道必定变成 0，而其他的车道会变成保留自己原来的值：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jsx">lanes &amp;= ~lane;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="LanePriority"><a href="#LanePriority" class="headerlink" title="LanePriority"></a>LanePriority</h3><p><code>LanePriority</code>: 属于<code>react-reconciler</code>包, 定义于 ReactFiberLane.js</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title class_">SyncLanePriority</span>: <span class="hljs-title class_">LanePriority</span> = <span class="hljs-number">15</span>;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title class_">SyncBatchedLanePriority</span>: <span class="hljs-title class_">LanePriority</span> = <span class="hljs-number">14</span>;<br><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">InputDiscreteHydrationLanePriority</span>: <span class="hljs-title class_">LanePriority</span> = <span class="hljs-number">13</span>;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title class_">InputDiscreteLanePriority</span>: <span class="hljs-title class_">LanePriority</span> = <span class="hljs-number">12</span>;<br><br><span class="hljs-comment">// .....</span><br><br><span class="hljs-keyword">const</span> <span class="hljs-title class_">OffscreenLanePriority</span>: <span class="hljs-title class_">LanePriority</span> = <span class="hljs-number">1</span>;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title class_">NoLanePriority</span>: <span class="hljs-title class_">LanePriority</span> = <span class="hljs-number">0</span>;<br></code></pre></td></tr></table></figure>
+
+<p>与<code>fiber</code>构造过程相关的优先级(如<code>fiber.updateQueue</code>,<code>fiber.lanes</code>)都使用<code>LanePriority</code></p>
+<h3 id="SchedulerPriority"><a href="#SchedulerPriority" class="headerlink" title="SchedulerPriority"></a>SchedulerPriority</h3><p><code>SchedulerPriority</code>, 属于<code>scheduler</code>包, 定义于<code>SchedulerPriorities.js</code>中</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title class_">NoPriority</span> = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title class_">ImmediatePriority</span> = <span class="hljs-number">1</span>;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title class_">UserBlockingPriority</span> = <span class="hljs-number">2</span>;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title class_">NormalPriority</span> = <span class="hljs-number">3</span>;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title class_">LowPriority</span> = <span class="hljs-number">4</span>;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title class_">IdlePriority</span> = <span class="hljs-number">5</span>;<br></code></pre></td></tr></table></figure>
+
+<p>与<code>scheduler</code>调度中心相关的优先级使用<code>SchedulerPriority</code>.</p>
+<h3 id="ReactPriorityLevel"><a href="#ReactPriorityLevel" class="headerlink" title="ReactPriorityLevel"></a>ReactPriorityLevel</h3><p><code>reactPriorityLevel</code>, 属于<code>react-reconciler</code>包, 定义于<code>SchedulerWithReactIntegration.js</code>中</p>
+<p>用于转换 SchedulerPriority 和 LanePriority，协同调度中心（scheduler包）和 fiber 树构造（react-reconciler包）中对优先级的使用。</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title class_">ImmediatePriority</span>: <span class="hljs-title class_">ReactPriorityLevel</span> = <span class="hljs-number">99</span>;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title class_">UserBlockingPriority</span>: <span class="hljs-title class_">ReactPriorityLevel</span> = <span class="hljs-number">98</span>;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title class_">NormalPriority</span>: <span class="hljs-title class_">ReactPriorityLevel</span> = <span class="hljs-number">97</span>;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title class_">LowPriority</span>: <span class="hljs-title class_">ReactPriorityLevel</span> = <span class="hljs-number">96</span>;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title class_">IdlePriority</span>: <span class="hljs-title class_">ReactPriorityLevel</span> = <span class="hljs-number">95</span>;<br><span class="hljs-comment">// NoPriority is the absence of priority. Also React-only.</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title class_">NoPriority</span>: <span class="hljs-title class_">ReactPriorityLevel</span> = <span class="hljs-number">90</span>;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_46463785/article/details/130402847">https://blog.csdn.net/weixin_46463785/article/details/130402847</a></p>
+<h2 id="调度原理（Scheduler）"><a href="#调度原理（Scheduler）" class="headerlink" title="调度原理（Scheduler）"></a>调度原理（Scheduler）</h2><h3 id="原理图"><a href="#原理图" class="headerlink" title="原理图"></a>原理图</h3><img src="/2024/02/27/React%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86/core.e65ca659.png" srcset="/img/loading.gif" lazyload class="" title="img">
+
+
+
+<h3 id="调度相关核心函数"><a href="#调度相关核心函数" class="headerlink" title="调度相关核心函数"></a>调度相关核心函数</h3><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> requestHostCallback; <span class="hljs-comment">// 请求及时回调: port.postMessage</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> cancelHostCallback; <span class="hljs-comment">// 取消及时回调: scheduledHostCallback = null</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> requestHostTimeout; <span class="hljs-comment">// 请求延时回调: setTimeout</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> cancelHostTimeout; <span class="hljs-comment">// 取消延时回调: cancelTimeout</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> shouldYieldToHost; <span class="hljs-comment">// 是否让出主线程(currentTime &gt;= deadline &amp;&amp; needsPaint): 让浏览器能够执行更高优先级的任务(如ui绘制, 用户输入等)</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> requestPaint; <span class="hljs-comment">// 请求绘制: 设置 needsPaint = true</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> getCurrentTime; <span class="hljs-comment">// 获取当前时间</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> forceFrameRate; <span class="hljs-comment">// 强制设置 yieldInterval (让出主线程的周期). 这个函数虽然存在, 但是从源码来看, 几乎没有用到</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="调度"><a href="#调度" class="headerlink" title="调度"></a>调度</h4><p><strong>请求或取消调度</strong></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/facebook/react/blob/v17.0.2/packages/scheduler/src/forks/SchedulerHostConfig.default.js#L224-L230">requestHostCallback</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/facebook/react/blob/v17.0.2/packages/scheduler/src/forks/SchedulerHostConfig.default.js#L232-L234">cancelHostCallback</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/facebook/react/blob/v17.0.2/packages/scheduler/src/forks/SchedulerHostConfig.default.js#L236-L240">requestHostTimeout</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/facebook/react/blob/v17.0.2/packages/scheduler/src/forks/SchedulerHostConfig.default.js#L242-L245">cancelHostTimeout</a></li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-comment">// 接收 MessageChannel 消息</span><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">performWorkUntilDeadline</span> = (<span class="hljs-params"></span>) =&gt; &#123;<br>  <span class="hljs-comment">// ...省略无关代码</span><br>  <span class="hljs-keyword">if</span> (scheduledHostCallback !== <span class="hljs-literal">null</span>) &#123;<br>    <span class="hljs-keyword">const</span> currentTime = <span class="hljs-title function_">getCurrentTime</span>();<br>    <span class="hljs-comment">// 更新deadline</span><br>    deadline = currentTime + yieldInterval;<br>    <span class="hljs-comment">// 执行callback</span><br>    <span class="hljs-title function_">scheduledHostCallback</span>(hasTimeRemaining, currentTime);<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    isMessageLoopRunning = <span class="hljs-literal">false</span>;<br>  &#125;<br>&#125;;<br><br><span class="hljs-keyword">const</span> channel = <span class="hljs-keyword">new</span> <span class="hljs-title class_">MessageChannel</span>();<br><span class="hljs-keyword">const</span> port = channel.<span class="hljs-property">port2</span>;<br>channel.<span class="hljs-property">port1</span>.<span class="hljs-property">onmessage</span> = performWorkUntilDeadline;<br><br><span class="hljs-comment">// 请求回调</span><br>requestHostCallback = <span class="hljs-keyword">function</span> (<span class="hljs-params">callback</span>) &#123;<br>  <span class="hljs-comment">// 1. 保存callback</span><br>  scheduledHostCallback = callback;<br>  <span class="hljs-keyword">if</span> (!isMessageLoopRunning) &#123;<br>    isMessageLoopRunning = <span class="hljs-literal">true</span>;<br>    <span class="hljs-comment">// 2. 通过 MessageChannel 发送消息</span><br>    port.<span class="hljs-title function_">postMessage</span>(<span class="hljs-literal">null</span>);<br>  &#125;<br>&#125;;<br><span class="hljs-comment">// 取消回调</span><br>cancelHostCallback = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  scheduledHostCallback = <span class="hljs-literal">null</span>;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>请求回调之后<code>scheduledHostCallback = callback</code>, 然后通过<code>MessageChannel</code>发消息的方式触发<code>performWorkUntilDeadline</code>函数, 最后执行回调<code>scheduledHostCallback</code>.</p>
+<p>此处需要注意: <code>MessageChannel</code>在浏览器事件循环中属于<code>宏任务</code>, 所以调度中心永远是<code>异步执行</code>回调函数.</p>
+<h4 id="关于MessageChannel"><a href="#关于MessageChannel" class="headerlink" title="关于MessageChannel"></a>关于MessageChannel</h4><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6889314677528985614?searchId=202402272149034FDB259ADEE976088AD9">https://juejin.cn/post/6889314677528985614?searchId=202402272149034FDB259ADEE976088AD9</a></p>
+<h4 id="时间切片"><a href="#时间切片" class="headerlink" title="时间切片"></a>时间切片</h4><p>执行时间分割, 让出主线程(把控制权归还浏览器, 浏览器可以处理用户输入, UI 绘制等紧急任务).</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/facebook/react/blob/v17.0.2/packages/scheduler/src/forks/SchedulerHostConfig.default.js#L22-L24">getCurrentTime</a>: 获取当前时间</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/facebook/react/blob/v17.0.2/packages/scheduler/src/forks/SchedulerHostConfig.default.js#L129-L152">shouldYieldToHost</a>: 是否让出主线程</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/facebook/react/blob/v17.0.2/packages/scheduler/src/forks/SchedulerHostConfig.default.js#L154-L156">requestPaint</a>: 请求绘制</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/facebook/react/blob/v17.0.2/packages/scheduler/src/forks/SchedulerHostConfig.default.js#L168-L183">forceFrameRate</a>: 强制设置 <code>yieldInterval</code>(从源码中的引用来看, 算一个保留函数, 其他地方没有用到)</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> localPerformance = performance;<br><span class="hljs-comment">// 获取当前时间</span><br>getCurrentTime = <span class="hljs-function">() =&gt;</span> localPerformance.<span class="hljs-title function_">now</span>();<br><br><span class="hljs-comment">// 时间切片周期, 默认是5ms(如果一个task运行超过该周期, 下一个task执行之前, 会把控制权归还浏览器)</span><br><span class="hljs-keyword">let</span> yieldInterval = <span class="hljs-number">5</span>;<br><br><span class="hljs-keyword">let</span> deadline = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">const</span> maxYieldInterval = <span class="hljs-number">300</span>;<br><span class="hljs-keyword">let</span> needsPaint = <span class="hljs-literal">false</span>;<br><span class="hljs-keyword">const</span> scheduling = navigator.<span class="hljs-property">scheduling</span>;<br><span class="hljs-comment">// 是否让出主线程</span><br>shouldYieldToHost = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> currentTime = <span class="hljs-title function_">getCurrentTime</span>();<br>  <span class="hljs-keyword">if</span> (currentTime &gt;= deadline) &#123;<br>    <span class="hljs-keyword">if</span> (needsPaint || scheduling.<span class="hljs-title function_">isInputPending</span>()) &#123;<br>      <span class="hljs-comment">// There is either a pending paint or a pending input.</span><br>      <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br>    <span class="hljs-comment">// There&#x27;s no pending input. Only yield if we&#x27;ve reached the max</span><br>    <span class="hljs-comment">// yield interval.</span><br>    <span class="hljs-keyword">return</span> currentTime &gt;= maxYieldInterval; <span class="hljs-comment">// 在持续运行的react应用中, currentTime肯定大于300ms, 这个判断只在初始化过程中才有可能返回false</span><br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-comment">// There&#x27;s still time left in the frame.</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>  &#125;<br>&#125;;<br><br><span class="hljs-comment">// 请求绘制</span><br>requestPaint = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  needsPaint = <span class="hljs-literal">true</span>;<br>&#125;;<br><br><span class="hljs-comment">// 设置时间切片的周期</span><br>forceFrameRate = <span class="hljs-keyword">function</span> (<span class="hljs-params">fps</span>) &#123;<br>  <span class="hljs-keyword">if</span> (fps &lt; <span class="hljs-number">0</span> || fps &gt; <span class="hljs-number">125</span>) &#123;<br>    <span class="hljs-comment">// Using console[&#x27;error&#x27;] to evade Babel and ESLint</span><br>    <span class="hljs-variable language_">console</span>[<span class="hljs-string">&#x27;error&#x27;</span>](<br>      <span class="hljs-string">&#x27;forceFrameRate takes a positive int between 0 and 125, &#x27;</span> +<br>        <span class="hljs-string">&#x27;forcing frame rates higher than 125 fps is not supported&#x27;</span>,<br>    );<br>    <span class="hljs-keyword">return</span>;<br>  &#125;<br>  <span class="hljs-keyword">if</span> (fps &gt; <span class="hljs-number">0</span>) &#123;<br>    yieldInterval = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(<span class="hljs-number">1000</span> / fps);<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-comment">// reset the framerate</span><br>    yieldInterval = <span class="hljs-number">5</span>;<br>  &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="完整回调的实现"><a href="#完整回调的实现" class="headerlink" title="完整回调的实现"></a>完整回调的实现</h4><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">const</span> <span class="hljs-title function_">performWorkUntilDeadline</span> = (<span class="hljs-params"></span>) =&gt; &#123;<br>  <span class="hljs-keyword">if</span> (scheduledHostCallback !== <span class="hljs-literal">null</span>) &#123;<br>    <span class="hljs-keyword">const</span> currentTime = <span class="hljs-title function_">getCurrentTime</span>(); <span class="hljs-comment">// 1. 获取当前时间</span><br>    deadline = currentTime + yieldInterval; <span class="hljs-comment">// 2. 设置deadline</span><br>    <span class="hljs-keyword">const</span> hasTimeRemaining = <span class="hljs-literal">true</span>;<br>    <span class="hljs-keyword">try</span> &#123;<br>      <span class="hljs-comment">// 3. 执行回调, 返回是否有还有剩余任务</span><br>      <span class="hljs-keyword">const</span> hasMoreWork = <span class="hljs-title function_">scheduledHostCallback</span>(hasTimeRemaining, currentTime);<br>      <span class="hljs-keyword">if</span> (!hasMoreWork) &#123;<br>        <span class="hljs-comment">// 没有剩余任务, 退出</span><br>        isMessageLoopRunning = <span class="hljs-literal">false</span>;<br>        scheduledHostCallback = <span class="hljs-literal">null</span>;<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        port.<span class="hljs-title function_">postMessage</span>(<span class="hljs-literal">null</span>); <span class="hljs-comment">// 有剩余任务, 发起新的调度</span><br>      &#125;<br>    &#125; <span class="hljs-keyword">catch</span> (error) &#123;<br>      port.<span class="hljs-title function_">postMessage</span>(<span class="hljs-literal">null</span>); <span class="hljs-comment">// 如有异常, 重新发起调度</span><br>      <span class="hljs-keyword">throw</span> error;<br>    &#125;<br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    isMessageLoopRunning = <span class="hljs-literal">false</span>;<br>  &#125;<br>  needsPaint = <span class="hljs-literal">false</span>; <span class="hljs-comment">// 重置开关</span><br>&#125;;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="任务队列管理"><a href="#任务队列管理" class="headerlink" title="任务队列管理"></a>任务队列管理</h3><p>调度的目的是为了消费任务, 接下来就具体分析任务队列是如何管理与实现的。</p>
+<p>在<a target="_blank" rel="noopener" href="https://github.com/facebook/react/blob/v17.0.2/packages/scheduler/src/Scheduler.js">Scheduler.js</a>中, 维护了一个<a target="_blank" rel="noopener" href="https://github.com/facebook/react/blob/v17.0.2/packages/scheduler/src/Scheduler.js#L62">taskQueue</a>, 任务队列管理就是围绕这个<code>taskQueue</code>展开.</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-comment">// Tasks are stored on a min heap</span><br><span class="hljs-keyword">var</span> taskQueue = [];<br><span class="hljs-keyword">var</span> timerQueue = [];<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="创建任务"><a href="#创建任务" class="headerlink" title="创建任务"></a>创建任务</h4><p>在<code>unstable_scheduleCallback</code>函数中</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-comment">// 省略部分无关代码</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">unstable_scheduleCallback</span>(<span class="hljs-params">priorityLevel, callback, options</span>) &#123;<br>  <span class="hljs-comment">// 1. 获取当前时间</span><br>  <span class="hljs-keyword">var</span> currentTime = <span class="hljs-title function_">getCurrentTime</span>();<br>  <span class="hljs-keyword">var</span> startTime;<br>  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> options === <span class="hljs-string">&#x27;object&#x27;</span> &amp;&amp; options !== <span class="hljs-literal">null</span>) &#123;<br>    <span class="hljs-comment">// 从函数调用关系来看, 在v17.0.2中,所有调用 unstable_scheduleCallback 都未传入options</span><br>    <span class="hljs-comment">// 所以省略延时任务相关的代码</span><br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    startTime = currentTime;<br>  &#125;<br>  <span class="hljs-comment">// 2. 根据传入的优先级, 设置任务的过期时间 expirationTime</span><br>  <span class="hljs-keyword">var</span> timeout;<br>  <span class="hljs-keyword">switch</span> (priorityLevel) &#123;<br>    <span class="hljs-keyword">case</span> <span class="hljs-title class_">ImmediatePriority</span>:<br>      timeout = <span class="hljs-variable constant_">IMMEDIATE_PRIORITY_TIMEOUT</span>;<br>      <span class="hljs-keyword">break</span>;<br>    <span class="hljs-keyword">case</span> <span class="hljs-title class_">UserBlockingPriority</span>:<br>      timeout = <span class="hljs-variable constant_">USER_BLOCKING_PRIORITY_TIMEOUT</span>;<br>      <span class="hljs-keyword">break</span>;<br>    <span class="hljs-keyword">case</span> <span class="hljs-title class_">IdlePriority</span>:<br>      timeout = <span class="hljs-variable constant_">IDLE_PRIORITY_TIMEOUT</span>;<br>      <span class="hljs-keyword">break</span>;<br>    <span class="hljs-keyword">case</span> <span class="hljs-title class_">LowPriority</span>:<br>      timeout = <span class="hljs-variable constant_">LOW_PRIORITY_TIMEOUT</span>;<br>      <span class="hljs-keyword">break</span>;<br>    <span class="hljs-keyword">case</span> <span class="hljs-title class_">NormalPriority</span>:<br>    <span class="hljs-attr">default</span>:<br>      timeout = <span class="hljs-variable constant_">NORMAL_PRIORITY_TIMEOUT</span>;<br>      <span class="hljs-keyword">break</span>;<br>  &#125;<br>  <span class="hljs-keyword">var</span> expirationTime = startTime + timeout;<br>  <span class="hljs-comment">// 3. 创建新任务</span><br>  <span class="hljs-keyword">var</span> newTask = &#123;<br>    <span class="hljs-attr">id</span>: taskIdCounter++,<br>    callback,<br>    priorityLevel,<br>    startTime,<br>    expirationTime,<br>    <span class="hljs-attr">sortIndex</span>: -<span class="hljs-number">1</span>,<br>  &#125;;<br>  <span class="hljs-keyword">if</span> (startTime &gt; currentTime) &#123;<br>    <span class="hljs-comment">// 省略无关代码 v17.0.2中不会使用</span><br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    newTask.<span class="hljs-property">sortIndex</span> = expirationTime;<br>    <span class="hljs-comment">// 4. 加入任务队列</span><br>    <span class="hljs-title function_">push</span>(taskQueue, newTask);<br>    <span class="hljs-comment">// 5. 请求调度</span><br>    <span class="hljs-keyword">if</span> (!isHostCallbackScheduled &amp;&amp; !isPerformingWork) &#123;<br>      isHostCallbackScheduled = <span class="hljs-literal">true</span>;<br>      <span class="hljs-title function_">requestHostCallback</span>(flushWork);<br>    &#125;<br>  &#125;<br>  <span class="hljs-keyword">return</span> newTask;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="任务对象"><a href="#任务对象" class="headerlink" title="任务对象"></a>任务对象</h4><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-keyword">var</span> newTask = &#123;<br>  <span class="hljs-attr">id</span>: taskIdCounter++, <span class="hljs-comment">// id: 一个自增编号</span><br>  callback, <span class="hljs-comment">// callback: 传入的回调函数</span><br>  priorityLevel, <span class="hljs-comment">// priorityLevel: 优先级等级</span><br>  startTime, <span class="hljs-comment">// startTime: 创建task时的当前时间</span><br>  expirationTime, <span class="hljs-comment">// expirationTime: task的过期时间, 优先级越高 expirationTime = startTime + timeout 越小</span><br>  <span class="hljs-attr">sortIndex</span>: -<span class="hljs-number">1</span>,<br>&#125;;<br>newTask.<span class="hljs-property">sortIndex</span> = expirationTime; <span class="hljs-comment">// sortIndex: 排序索引, 全等于过期时间. 保证过期时间越小, 越紧急的任务排在最前面</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="消费任务"><a href="#消费任务" class="headerlink" title="消费任务"></a>消费任务</h4><p>创建任务之后, 最后请求调度<code>requestHostCallback(flushWork)</code>， <code>flushWork</code>函数作为参数被传入调度中心内核等待回调。</p>
+<p>在调度中心中, 只需下一个事件循环就会执行回调, 最终执行<code>flushWork</code>。flushWork中会执行 workLoop。</p>
+<p><strong>队列消费的主要逻辑是在<code>workLoop</code>函数中，这部分就是任务调度循环。</strong></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-comment">// 省略部分无关代码</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">workLoop</span>(<span class="hljs-params">hasTimeRemaining, initialTime</span>) &#123;<br>  <span class="hljs-keyword">let</span> currentTime = initialTime; <span class="hljs-comment">// 保存当前时间, 用于判断任务是否过期</span><br>  currentTask = <span class="hljs-title function_">peek</span>(taskQueue); <span class="hljs-comment">// 获取队列中的第一个任务</span><br>  <span class="hljs-keyword">while</span> (currentTask !== <span class="hljs-literal">null</span>) &#123;<br>    <span class="hljs-keyword">if</span> (<br>      currentTask.<span class="hljs-property">expirationTime</span> &gt; currentTime &amp;&amp;<br>      (!hasTimeRemaining || <span class="hljs-title function_">shouldYieldToHost</span>())<br>    ) &#123;<br>      <span class="hljs-comment">// 虽然currentTask没有过期, 但是执行时间超过了限制(毕竟只有5ms, shouldYieldToHost()返回true). 停止继续执行, 让出主线程</span><br>      <span class="hljs-keyword">break</span>;<br>    &#125;<br>    <span class="hljs-keyword">const</span> callback = currentTask.<span class="hljs-property">callback</span>;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> callback === <span class="hljs-string">&#x27;function&#x27;</span>) &#123;<br>      currentTask.<span class="hljs-property">callback</span> = <span class="hljs-literal">null</span>;<br>      currentPriorityLevel = currentTask.<span class="hljs-property">priorityLevel</span>;<br>      <span class="hljs-keyword">const</span> didUserCallbackTimeout = currentTask.<span class="hljs-property">expirationTime</span> &lt;= currentTime;<br>      <span class="hljs-comment">// 执行回调</span><br>      <span class="hljs-keyword">const</span> continuationCallback = <span class="hljs-title function_">callback</span>(didUserCallbackTimeout);<br>      currentTime = <span class="hljs-title function_">getCurrentTime</span>();<br>      <span class="hljs-comment">// 回调完成, 判断是否还有连续(派生)回调</span><br>      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> continuationCallback === <span class="hljs-string">&#x27;function&#x27;</span>) &#123;<br>        <span class="hljs-comment">// 产生了连续回调(如fiber树太大, 出现了中断渲染), 保留currentTask</span><br>        currentTask.<span class="hljs-property">callback</span> = continuationCallback;<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-comment">// 把currentTask移出队列</span><br>        <span class="hljs-keyword">if</span> (currentTask === <span class="hljs-title function_">peek</span>(taskQueue)) &#123;<br>          <span class="hljs-title function_">pop</span>(taskQueue);<br>        &#125;<br>      &#125;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      <span class="hljs-comment">// 如果任务被取消(这时currentTask.callback = null), 将其移出队列</span><br>      <span class="hljs-title function_">pop</span>(taskQueue);<br>    &#125;<br>    <span class="hljs-comment">// 更新currentTask</span><br>    currentTask = <span class="hljs-title function_">peek</span>(taskQueue);<br>  &#125;<br>  <span class="hljs-keyword">if</span> (currentTask !== <span class="hljs-literal">null</span>) &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>; <span class="hljs-comment">// 如果task队列没有清空, 返回true. 等待调度中心下一次回调</span><br>  &#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>; <span class="hljs-comment">// task队列已经清空, 返回false.</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>时间切片(time slicing) 和 fiber树的可中断渲染。 这 2 大特性的实现, 都集中于这个<code>while</code>循环。</p>
+<p>每一次<code>while</code>循环的退出就是一个时间切片, 深入分析<code>while</code>循环的退出条件:</p>
+<ol>
+<li>队列被完全清空: 这种情况就是很正常的情况, 一气呵成, 没有遇到任何阻碍.</li>
+<li>执行超时: 在消费 taskQueue 时, 在执行 task.callback 之前, 都会检测是否超时, 所以超时检测是以 task 为单位.<ul>
+<li>如果某个<code>task.callback</code>执行时间太长(如: <code>fiber树</code>很大, 或逻辑很重)也会造成超时</li>
+<li>所以在执行<code>task.callback</code>过程中, 也需要一种机制检测是否超时, 如果超时了就立刻暂停<code>task.callback</code>的执行.</li>
+</ul>
+</li>
+</ol>
+<p><strong>时间切片原理</strong></p>
+<p>消费任务队列的过程中, 可以消费<code>1~n</code>个 task, 甚至清空整个 queue. 但是在每一次具体执行<code>task.callback</code>之前都要进行超时检测, 如果超时可以立即退出循环并等待下一次调用.</p>
+<p><strong>可中断渲染原理</strong></p>
+<p>在时间切片的基础之上, 如果单个<code>task.callback</code>执行时间就很长(假设 200ms). 就需要<code>task.callback</code>自己能够检测是否超时, 所以在 fiber 树构造过程中, 每构造完成一个单元, 都会检测一次超时(<a target="_blank" rel="noopener" href="https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactFiberWorkLoop.old.js#L1637-L1639">源码链接</a>), 如遇超时就退出<code>fiber树构造循环</code>, 并返回一个新的回调函数(就是此处的<code>continuationCallback</code>)并等待下一次回调继续未完成的<code>fiber树构造</code>.</p>
+<h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><p>scheduler 会维护一个基于大顶堆的任务队列，接受回调并包装成 task 对象（可能是组件的初次渲染、更新或提交），根据优先级被添加到任务队列中，schduler 有自己的优先级 schdulerPriority。为了避免任务过长而导致页面卡顿，就采用了时间分片的思想，将任务拆分成多个时间片段，初始是5ms，如果任务超时了，就中断并将控制权还给浏览器，去做layout、paint等事情，这样就基本能保证不会掉帧卡顿了。然后在下一帧再恢复到之前中断的地方继续往下执行。</p>
+<p>scheduler 经常需要执行 reconciler 传递过来的构建 fiber 的任务。fiber 的引入正是为了支持可中断性和恢复，如果使用原先的递归比较虚拟 DOM 的方法来做 diff，那是没有办法在中端之后恢复原位的。Fiber架构采用了深度优先遍历的方式，允许在遍历树的过程中暂停和恢复，每个Fiber节点都包含了大量上下文的信息，因此可以非常方便的复位。</p>
+<p><strong>Fiber是怎么实现中断和恢复的？</strong></p>
+<p>在每处理完成一个 Fiber 节点时，会检查时间片是否到时，如果到了，则会中断此次 “渲染” </p>
+<p>注：Reconciliation 阶段React Fiber会找出需要更新哪些DOM， 是可以被打断的，但是到了第二阶段Commit Phase ，那就一鼓作气把DOM更新完，绝不会被打断。</p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/React/" class="category-chain-item">React</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/React/%E8%BF%9B%E9%98%B6/" class="category-chain-item">进阶</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>React运行原理</div>
+      <div>http://example.com/2024/02/27/React运行原理/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>February 27, 2024</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/02/29/graphql/" title="graphql">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">graphql</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/02/26/react%E7%89%88%E6%9C%AC%E8%BF%AD%E4%BB%A3/" title="react版本迭代">
+                        <span class="hidden-mobile">react版本迭代</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+    
+      
+            
+                  
+</div>
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
